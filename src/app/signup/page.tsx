@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth, UserRole } from "@/context/AuthContext";
 import { motion } from "framer-motion";
-import { Lock, Mail, ArrowRight, User as UserIcon, Eye, EyeOff, CheckCircle2, AlertCircle, Phone } from "lucide-react";
+import { Lock, Mail, ArrowRight, User as UserIcon, Eye, EyeOff, CheckCircle2, AlertCircle, Phone, X } from "lucide-react";
 
 function SignupForm() {
   const router = useRouter();
@@ -103,6 +103,16 @@ function SignupForm() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 w-full max-w-md backdrop-blur-xl bg-white/75 border border-white/80 shadow-2xl rounded-3xl p-6 sm:p-9 text-stone-900 my-8"
       >
+        {/* Close (X) Button */}
+        <Link
+          href="/"
+          className="absolute top-4 right-4 p-2 rounded-full text-stone-500 hover:text-stone-900 hover:bg-stone-100 transition z-50"
+          aria-label="Close and return to Home"
+          title="Return to Home"
+        >
+          <X className="w-5 h-5" />
+        </Link>
+
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center mb-6">
           <Link href="/" className="inline-block transition-transform hover:scale-105 mb-3">
