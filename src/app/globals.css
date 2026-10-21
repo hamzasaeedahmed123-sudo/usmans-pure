@@ -47,6 +47,20 @@ html {
   width: 100%;
 }
 
+/* Force hide pure categories switcher on mobile viewports (< 768px) */
+@media (max-width: 767px) {
+  .pure-categories-wrapper {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
 /* Prevent unwanted iOS auto-zoom on focus while keeping smooth tapping & senior accessibility */
 @media (max-width: 640px) {
   html,

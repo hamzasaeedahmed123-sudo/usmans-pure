@@ -298,7 +298,7 @@ export function ProductSliderHero() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto">
           
           {/* Top Category Switcher Tabs: Instantly explains the 3 product categories */}
-          <div className="hidden md:flex items-center justify-center sm:justify-start gap-2 mb-6 sm:mb-8 overflow-x-auto pb-1">
+          <div className="pure-categories-wrapper hidden md:flex items-center justify-center sm:justify-start gap-2 mb-6 sm:mb-8 overflow-x-auto pb-1">
             <span className="hidden sm:inline-block text-[11px] font-bold uppercase tracking-wider opacity-70 mr-1">
               Pure Categories:
             </span>
