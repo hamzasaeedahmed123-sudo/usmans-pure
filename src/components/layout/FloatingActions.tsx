@@ -8,20 +8,26 @@ import { ShoppingBag, MessageCircle } from "lucide-react";
 export function FloatingActions() {
   const { totalCount, toggleCart, isOpen } = useCart();
   const pathname = usePathname();
-  const isCheckoutOrCart = pathname === "/checkout" || pathname === "/cart";
+
+  // Hide completely on checkout route
+  if (pathname === "/checkout") {
+    return null;
+  }
+
+  const isCart = pathname === "/cart";
 
   const whatsappHref =
     "https://wa.me/923000000000?text=Assalam-o-Alaikum%20Usman's%20Pure%20Products!%20I%20have%20an%20inquiry%20about%20your%20pure%20chakki%20flours%20and%20spices.";
 
   return (
     <div
-      className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col gap-2.5 sm:gap-3 items-end transition-opacity duration-200 ${
-        isOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+      className={`fixed bottom-5 right-4 sm:bottom-6 sm:right-6 z-30 flex flex-col gap-2.5 sm:gap-3 items-end transition-opacity duration-200 ${
+        isOpen ? "hidden opacity-0 pointer-events-none" : "opacity-100"
       }`}
       aria-label="Floating Quick Actions"
     >
-      {/* Button 1: Shopping Cart Drawer Toggle (Hidden on checkout & cart pages) */}
-      {!isCheckoutOrCart && (
+      {/* Button 1: Shopping Cart Drawer Toggle (Hidden on cart page) */}
+      {!isCart && (
         <div className="relative group">
           <button
             type="button"

@@ -233,7 +233,7 @@ export function CartDrawer() {
 
         {/* Pricing Summary & Actions Footer */}
         {items.length > 0 && (
-          <div className="p-4 sm:p-6 pb-24 sm:pb-6 bg-white border-t border-[#1E1510]/10 space-y-3.5 sm:space-y-4 shadow-lg shrink-0">
+          <div className="z-50 relative bg-white border-t border-[#1E1510]/10 p-4 pb-6 shadow-lg space-y-3.5 sm:space-y-4 shrink-0">
             {/* Price breakdown */}
             <div className="space-y-2 text-xs">
               <div className="flex justify-between text-[#6B5D52]">
