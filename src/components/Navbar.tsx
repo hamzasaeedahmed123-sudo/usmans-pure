@@ -97,7 +97,7 @@ export function Navbar({
   return (
     <>
       <header
-        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 overflow-hidden relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
+        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
       >
         {/* Left Section (Logo): Clean without redundant badge */}
         <div className="flex items-center shrink-0">
@@ -121,11 +121,11 @@ export function Navbar({
         </div>
 
         {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
-        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 bg-[#ede8e1]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink-0">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-[#ede8e1]/90 backdrop-blur-md px-3 xl:px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink">
           {/* 1. Home */}
           <Link
             href="/"
-            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             Home
           </Link>
@@ -133,10 +133,10 @@ export function Navbar({
           {/* 2. Doctor's Choice with Verified Badge */}
           <Link
             href="/doctors-choice"
-            className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+            className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             <span>Doctor&apos;s Choice</span>
-            <span className="bg-emerald-700 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+            <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
               Verified
             </span>
           </Link>
@@ -150,7 +150,7 @@ export function Navbar({
           >
             <button
               onClick={() => setProductsDropdownOpen((prev) => !prev)}
-              className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition cursor-pointer whitespace-nowrap"
+              className="flex items-center gap-0.5 xl:gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition cursor-pointer whitespace-nowrap"
             >
               <span>All Products</span>
               <svg
@@ -222,10 +222,10 @@ export function Navbar({
           {/* 4. Mega Bundles with Save Badge */}
           <Link
             href="/bundles"
-            className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+            className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             <span>Mega Bundles</span>
-            <span className="bg-amber-600 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+            <span className="bg-amber-600 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
               Save
             </span>
           </Link>
@@ -233,7 +233,7 @@ export function Navbar({
           {/* 5. About Us */}
           <Link
             href="/about"
-            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             About Us
           </Link>
@@ -241,14 +241,14 @@ export function Navbar({
           {/* 6. Contact */}
           <Link
             href="/contact"
-            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             Contact
           </Link>
         </nav>
 
         {/* Right Section: Viewport safety padding and compact button sizing */}
-        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto pr-2 sm:pr-0">
+        <div className="flex items-center gap-2 shrink-0 ml-auto pr-1 sm:pr-2">
           {/* Quick Cart Trigger */}
           <button
             onClick={() => {

@@ -261,6 +261,13 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       if (storedCMS) {
         const parsed = JSON.parse(storedCMS);
         if (parsed && parsed.heroSlides) {
+          // Auto-migrate legacy shipping threshold string in cached localStorage
+          if (parsed.announcementSubText && /2,?000/.test(parsed.announcementSubText)) {
+            parsed.announcementSubText = parsed.announcementSubText.replace(/2,?000/g, "10,000");
+            try {
+              localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(parsed));
+            } catch {}
+          }
           setCmsContent({
             ...DEFAULT_CMS,
             ...parsed,
@@ -274,9 +281,17 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       if (storedSettings) {
         const parsed = JSON.parse(storedSettings);
         if (parsed) {
+          // Auto-migrate legacy 2000 threshold to 10000 in cached localStorage
+          if (parsed.freeShippingThreshold === 2000) {
+            parsed.freeShippingThreshold = 10000;
+            try {
+              localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(parsed));
+            } catch {}
+          }
           setStoreSettings({
             ...DEFAULT_STORE_SETTINGS,
             ...parsed,
+            freeShippingThreshold: parsed.freeShippingThreshold === 2000 ? 10000 : (parsed.freeShippingThreshold || 10000),
             paymentCredentials: {
               ...DEFAULT_PAYMENT_CREDENTIALS,
               ...(parsed.paymentCredentials || {}),

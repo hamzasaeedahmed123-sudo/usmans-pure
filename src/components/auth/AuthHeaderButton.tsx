@@ -184,14 +184,14 @@ export function AuthHeaderButton({ isMobile = false, slideTheme }: AuthHeaderBut
     <div className="hidden sm:flex items-center gap-1.5 sm:gap-2 shrink-0">
       <Link
         href="/login"
-        className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full bg-[#ede8e1] text-stone-800 hover:bg-stone-200 transition flex items-center gap-1.5 shrink-0 whitespace-nowrap shadow-xs"
+        className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs font-semibold rounded-full bg-[#ede8e1] text-stone-800 hover:bg-stone-200 transition flex items-center gap-1 shrink-0 whitespace-nowrap shadow-2xs"
       >
         <LogIn className="w-3.5 h-3.5 opacity-80" />
         <span>Log In</span>
       </Link>
       <Link
         href="/signup"
-        className="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium rounded-full bg-stone-900 text-white hover:bg-stone-800 transition flex items-center gap-1.5 shrink-0 whitespace-nowrap shadow-xs"
+        className="px-3 py-1.5 sm:px-3.5 sm:py-1.5 text-xs font-semibold rounded-full bg-stone-900 text-white hover:bg-stone-800 transition flex items-center gap-1 shrink-0 whitespace-nowrap shadow-2xs"
       >
         <UserPlus className="w-3.5 h-3.5" />
         <span>Sign Up</span>
