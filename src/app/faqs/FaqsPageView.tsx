@@ -43,7 +43,7 @@ const FAQS_DATA: FaqItem[] = [
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
-    a: "Absolutely zero. We guarantee 100% unadulterated whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
+    a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,
@@ -176,8 +176,8 @@ const FAQS_DATA: FaqItem[] = [
     id: 20,
     category: "orders",
     categoryLabel: "Orders & Delivery",
-    q: "Can I speak directly with a nutritionist before placing an order?",
-    a: "Yes, you can click our \"Ask a Nutritionist\" or WhatsApp advisory button anytime to discuss your specific dietary goals, lab reports, or family health needs with our clinical support team for free.",
+    q: "Can I speak directly with your team before placing an order?",
+    a: "Yes, you can click our WhatsApp button anytime to discuss your specific dietary preferences, flour recommendations, or family order requirements with our team for free.",
   },
 ];
 
@@ -276,7 +276,7 @@ export function FaqsPageView() {
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-[#5A4E45] max-w-2xl mx-auto font-light leading-relaxed">
-              Everything you need to know about our stone chakki milling, clinical flours, cold-pounded spices, and door-to-door delivery.
+              Everything you need to know about our stone chakki milling, diabetic &amp; diet flours, cold-pounded spices, and door-to-door delivery.
             </p>
 
             {/* Live Search Input */}
@@ -427,7 +427,7 @@ export function FaqsPageView() {
                 Chat Directly with Our Team on WhatsApp
               </h3>
               <p className="mt-2 text-xs sm:text-sm text-[#5A4E45] leading-relaxed">
-                Have specific health reports or flour inquiries? Our clinical nutrition advisory team responds within minutes to help you select the exact blend for your household.
+                Have specific flour inquiries or custom order requirements? Our team responds within minutes to help you select the exact blend for your family.
               </p>
             </div>
 

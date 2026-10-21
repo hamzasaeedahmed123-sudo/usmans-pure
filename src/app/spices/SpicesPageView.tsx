@@ -130,7 +130,7 @@ export function SpicesPageView() {
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#ECCDC3]">
               <div>
                 <h2 className="text-xl font-bold text-stone-900">Pure Stone-Pounded Spices</h2>
-                <p className="text-xs text-stone-500">Showing {spiceProducts.length} unadulterated essentials</p>
+                <p className="text-xs text-stone-500">Showing {spiceProducts.length} pure cold-pounded spices</p>
               </div>
               <Link
                 href="/products"

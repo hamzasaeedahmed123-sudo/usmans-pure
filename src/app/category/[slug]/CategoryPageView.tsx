@@ -35,42 +35,42 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
     };
   } = {
     flours: {
-      title: "Diet & Stone-Ground Chakki Flours",
+      title: "Traditional Whole Wheat & Multigrain Diet Atta",
       categoryKey: "flours",
-      badge: "100% Stone-Ground Whole Grain",
+      badge: "Pure Chakki Flour",
       description:
         "Slow-milled in traditional chakki stones under 40°C to keep natural wheat germ, bran, and vitamin E intact. Zero maida, zero bleaching agents, and zero preservatives.",
       highlights: [
         "Cold stone-milling at <40°C",
-        "Formulated for Weight Loss & Diabetic Glucose Control",
+        "Formulated for Weight Loss & Diabetic Sugar Management",
         "Preserves 100% Natural Dietary Fiber",
         "Pliable, aromatic rotis that stay soft for hours",
       ],
     },
     teas: {
-      title: "Pure Organic Herbal Teas & Infusions",
+      title: "Pure Caffeine-Free Herbal Teas",
       categoryKey: "teas",
-      badge: "100% Wild & Shade-Dried Herbs",
+      badge: "Herbal Infusions",
       description:
-        "Whole dried organic herbs hand-harvested from pesticide-free fields. Formulated to support natural lipid metabolism, restful sleep, cardiovascular wellness, and digestive relief.",
+        "Whole dried organic herbs hand-harvested from pesticide-free fields. Formulated to support natural energy, restful sleep, digestion, and daily wellness.",
       highlights: [
         "Naturally 100% Caffeine-Free",
         "Whole Dried Flower & Leaf Calyces",
         "Zero Artificial Flavors or Added Colors",
-        "Packed in UV-Shielded Aroma-Lock Pouches",
+        "Packed in Freshness-Sealed Pouches",
       ],
     },
     spices: {
-      title: "Cold Stone-Pounded Organic Spices",
+      title: "Cold-Pounded Desi Spices (Mirch, Haldi, Dhania)",
       categoryKey: "spices",
-      badge: "100% Zero Dyes & Zero Sudanese Red",
+      badge: "Traditional Spices",
       description:
-        "Whole unadulterated spices slow-pounded on stone mortars at cold temperatures. Retains 100% volatile natural essential oils without heating or artificial coloring.",
+        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains 100% natural aroma, flavor, and color without artificial dyes.",
       highlights: [
         "Cold Stone-Pounded (<35°C processing)",
-        "Zero Sudan Dyes, Lead Chromate or Sawdust Fillers",
+        "Zero Dyes, Lead Chromate or Sawdust Fillers",
         "Aroma-Locked Sealed Containers",
-        "Direct Single-Origin Certified Farm Sourcing",
+        "Direct Certified Farm Sourcing",
       ],
     },
   };

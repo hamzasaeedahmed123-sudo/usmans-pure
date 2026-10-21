@@ -15,7 +15,7 @@ import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
 export const metadata: Metadata = {
   title: "Usman's Pure | 100% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
   description:
-    "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Unadulterated, zero maida, whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
+    "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "chakki atta",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Usman's Pure | 100% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
     description:
-      "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Unadulterated, zero maida, whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
+      "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
     url: "https://usmanspure.com",
     type: "website",
     images: [

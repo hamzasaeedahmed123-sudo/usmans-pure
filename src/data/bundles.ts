@@ -306,7 +306,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F7EBE3]",
     includedTags: ["200g Kashmiri Chili", "200g Turmeric 7% Curcumin", "150g Garam Masala", "800g Pink Salt"],
     description:
-      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with unadulterated cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
+      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with 100% pure cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
     whatsInTheBox: [
       {
         name: "Hand-Pounded Kashmiri Red Chili Jar",

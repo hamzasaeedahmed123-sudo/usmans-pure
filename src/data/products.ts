@@ -358,7 +358,7 @@ export const PRODUCTS: Product[] = [
     benefits: [
       "High Potency >7% Natural Curcumin",
       "Powerful Cellular Antioxidant & Anti-Inflammatory",
-      "100% Unadulterated — Zero Chalk or Starch",
+      "100% Pure — Zero Chalk or Starch",
       "Lab Tested for Zero Heavy Metal Traces",
     ],
     inStock: true,
@@ -545,6 +545,6 @@ export const MEGA_BUNDLES: BundleItem[] = [
       "Himalayan Pink Rock Salt (800g Pouch)",
     ],
     description:
-      "Transform your cooking with 100% unadulterated cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
+      "Transform your cooking with 100% pure cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
   },
 ];

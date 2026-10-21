@@ -16,7 +16,7 @@ const CATEGORY_META: Record<string, { title: string; desc: string }> = {
   },
   spices: {
     title: "Pure Cold-Pounded Organic Spices | Usman's Pure",
-    desc: "Single-origin Lakadong turmeric, stone-pounded garam masala, and unadulterated Kashmiri chili powder.",
+    desc: "Single-origin Lakadong turmeric, stone-pounded garam masala, and 100% pure Kashmiri chili powder.",
   },
   teas: {
     title: "Organic Whole Herbal Teas & Infusions | Usman's Pure",

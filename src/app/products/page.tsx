@@ -4,14 +4,14 @@ import { ProductsPageView } from "./ProductsPageView";
 export const metadata: Metadata = {
   title: "All Products | Stone-Ground Flours, Spices & Organic Teas",
   description:
-    "Explore all 17 unadulterated essentials from Usman's Pure. Cold-milled chakki atta, therapeutic diabetic flour, single-origin Lakadong turmeric, and wild herbal teas.",
+    "Explore 100% pure stone-ground chakki flours, spices, and herbal teas from Usman's Pure. Freshly milled wheat, diabetic atta, cold-pounded spices, and natural herbal teas.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
     title: "All Products | Stone-Ground Flours, Spices & Organic Teas",
     description:
-      "Explore all 17 unadulterated essentials from Usman's Pure. Cold-milled chakki atta, therapeutic diabetic flour, single-origin Lakadong turmeric, and wild herbal teas.",
+      "Explore 100% pure stone-ground chakki flours, spices, and herbal teas from Usman's Pure. Freshly milled wheat, diabetic atta, cold-pounded spices, and natural herbal teas.",
     url: "https://usmanspure.com/products",
     type: "website",
     images: [

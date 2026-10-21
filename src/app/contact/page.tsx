@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { ContactPageView } from "./ContactPageView";
 
 export const metadata: Metadata = {
-  title: "Contact Us & Free Diet Consultation | Usman's Pure",
+  title: "Contact Us & Atta Inquiries | Usman's Pure",
   description:
-    "Get in touch with Usman's Pure customer support desk or consult our clinical nutritionist for free diet and flour guidance across Pakistan.",
+    "Get in touch with Usman's Pure customer support desk for questions on fresh stone-ground atta, custom flour orders, and delivery across Pakistan.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
-    title: "Contact Us & Free Diet Consultation | Usman's Pure",
+    title: "Contact Us & Atta Inquiries | Usman's Pure",
     description:
-      "Get in touch with Usman's Pure customer support desk or consult our clinical nutritionist for free diet and flour guidance across Pakistan.",
+      "Get in touch with Usman's Pure customer support desk for questions on fresh stone-ground atta, custom flour orders, and delivery across Pakistan.",
     url: "https://usmanspure.com/contact",
     type: "website",
     images: [
