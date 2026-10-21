@@ -97,7 +97,7 @@ export function Navbar({
   return (
     <>
       <header
-        className={`w-full max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4 h-20 relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
+        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between overflow-x-hidden relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
       >
         {/* Left Section (Logo + Category Badge): Group together with gap-3 shrink-0 */}
         <div className="flex items-center gap-3 shrink-0">
@@ -254,8 +254,8 @@ export function Navbar({
           </Link>
         </nav>
 
-        {/* Right Section: Expanded Spacing (ml-auto lg:ml-6 shrink-0) with zero overlap */}
-        <div className="flex items-center gap-3 ml-auto lg:ml-6 shrink-0">
+        {/* Right Section: Viewport safety padding and compact button sizing */}
+        <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto pr-2 sm:pr-0">
           {/* Quick Cart Trigger */}
           <button
             onClick={() => {
@@ -264,7 +264,7 @@ export function Navbar({
               }
             }}
             aria-label="Open Basket"
-            className="w-10 h-10 rounded-full bg-[#ede8e1] backdrop-blur-md border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
           >
             <svg
               className="w-4 h-4 text-stone-800"
@@ -288,7 +288,7 @@ export function Navbar({
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Open navigation menu"
-            className="lg:hidden w-10 h-10 rounded-full bg-[#ede8e1] backdrop-blur-md border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer"
+            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
           >
             {mobileMenuOpen ? (
               <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>

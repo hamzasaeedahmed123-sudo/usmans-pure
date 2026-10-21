@@ -126,7 +126,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
         <div
           className={`mx-auto transition-all duration-300 backdrop-blur-xl border-b ${themeClasses.glass}`}
         >
-          <div className="w-full max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4 h-20 relative z-50">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between overflow-x-hidden relative z-50">
             {/* Left Section (Logo + Stone-Ground Badge) */}
             <div className="flex items-center gap-3 shrink-0">
               <Link
@@ -266,13 +266,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               </Link>
             </nav>
 
-            {/* Right Section: Expanded Spacing (ml-auto lg:ml-6 shrink-0) with zero overlap */}
-            <div className="flex items-center gap-3 ml-auto lg:ml-6 shrink-0">
+            {/* Right Section: Viewport safety padding and compact button sizing */}
+            <div className="flex items-center gap-2 sm:gap-2.5 shrink-0 ml-auto pr-2 sm:pr-0">
               {/* Quick Search Trigger */}
               <button
                 onClick={() => setSearchModalOpen(true)}
                 aria-label="Search Pure Products"
-                className="cursor-pointer hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ede8e1] border border-stone-200/80 hover:bg-stone-200 text-xs font-medium shadow-xs transition"
+                className="cursor-pointer hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ede8e1] border border-stone-200/80 hover:bg-stone-200 text-xs font-medium shadow-xs transition shrink-0"
               >
                 <Search className="w-3.5 h-3.5 opacity-70" />
                 <span className="opacity-80">Search</span>
@@ -284,7 +284,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Shopping Cart Button */}
               <button
                 onClick={() => openCart()}
-                className="cursor-pointer relative w-10 h-10 rounded-full bg-[#ede8e1] border border-stone-200/80 shadow-xs flex items-center justify-center hover:bg-stone-200 transition"
+                className="cursor-pointer relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm shrink-0"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4 text-stone-800" />
@@ -302,7 +302,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden w-10 h-10 rounded-full bg-[#ede8e1] border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition cursor-pointer"
+                className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? (
