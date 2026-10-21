@@ -9,8 +9,8 @@ export function FloatingActions() {
   const { totalCount, toggleCart, isOpen } = useCart();
   const pathname = usePathname();
 
-  // Hide completely on checkout route
-  if (pathname === "/checkout") {
+  // Hide completely on checkout and admin routes
+  if (pathname === "/checkout" || pathname?.startsWith("/admin")) {
     return null;
   }
 

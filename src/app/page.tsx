@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { TickerMarquee } from "@/components/TickerMarquee";
+import { SalePromoBanner } from "@/components/SalePromoBanner";
 import { CategoryCollections } from "@/components/CategoryCollections";
 import { ProductCatalog } from "@/components/ProductCatalog";
 import { DoctorsChoiceBanner } from "@/components/DoctorsChoiceBanner";
@@ -60,6 +61,9 @@ export default function Home() {
 
       {/* 2. Scrolling Marquee Ticker */}
       <TickerMarquee />
+
+      {/* 2.5 Flash Sale & Promo Banners (CMS-driven) */}
+      <SalePromoBanner />
 
       {/* 3. Category Collections ("Our Collections") */}
       <CategoryCollections />
