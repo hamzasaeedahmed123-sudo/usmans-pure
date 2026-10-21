@@ -22,7 +22,70 @@ import {
   Tag,
   Undo2,
   Redo2,
+  ArrowUp,
+  ArrowDown,
+  Copy,
+  Layers,
+  HelpCircle,
+  Image as ImageIcon,
+  Check,
 } from "lucide-react";
+import { RichTextEditor } from "../components/RichTextEditor";
+import { MediaLibraryModal, MediaItem } from "../components/MediaLibraryModal";
+
+export type BlockType = "announcement" | "promo_banner" | "sale_spotlight" | "faq_item";
+
+export interface CustomBlock {
+  id: string;
+  type: BlockType;
+  title: string;
+  content: string;
+  badge?: string;
+  status: "published" | "draft";
+  link?: string;
+  buttonText?: string;
+}
+
+export const DEFAULT_BLOCKS: CustomBlock[] = [
+  {
+    id: "block-1",
+    type: "announcement",
+    title: "Nationwide Free Delivery",
+    content: "Free express dispatch across Pakistan on all stone-ground chakki flour orders above ₨2,000.",
+    badge: "Free Shipping",
+    status: "published",
+    link: "/products",
+    buttonText: "Shop Now",
+  },
+  {
+    id: "block-2",
+    type: "sale_spotlight",
+    title: "Diabetic-Care Multigrain Batch",
+    content: "Slow-milled whole grains with zero maida and 100% natural bran intact. Use code PURE10 at checkout.",
+    badge: "Flat 10% OFF",
+    status: "published",
+    link: "/category/flours",
+    buttonText: "Claim Discount",
+  },
+  {
+    id: "block-3",
+    type: "promo_banner",
+    title: "Cold Stone-Pounded Haldi & Organic Spices",
+    content: "Ground below 38°C to retain authentic essential oils, natural curcumin, and intense aroma.",
+    badge: "Pure Harvest",
+    status: "published",
+    link: "/category/spices",
+    buttonText: "Explore Spices",
+  },
+  {
+    id: "block-4",
+    type: "faq_item",
+    title: "What makes traditional stone-ground chakki atta healthier?",
+    content: "Unlike industrial roller mills which extract the nutrient-rich germ and overheat the wheat, our stone chakki grinds at low RPM preserving complete natural dietary fiber, germ, and vitamins.",
+    badge: "Milling FAQ",
+    status: "published",
+  },
+];
 
 interface ContentFormData {
   announcementText: string;
@@ -52,6 +115,7 @@ interface ContentFormData {
   saleButtonText: string;
   saleLink: string;
   customBanners: CustomPromoBanner[];
+  blocks: CustomBlock[];
 }
 
 export default function AdminContentPage() {
@@ -89,6 +153,15 @@ export default function AdminContentPage() {
       saleButtonText: cmsContent.saleBanner?.buttonText || "Shop Flash Sale",
       saleLink: cmsContent.saleBanner?.link || "/products",
       customBanners: cmsContent.customBanners || [],
+      blocks: (() => {
+        if (typeof window !== "undefined") {
+          try {
+            const raw = localStorage.getItem("usmans_pure_cms_blocks");
+            if (raw) return JSON.parse(raw);
+          } catch {}
+        }
+        return DEFAULT_BLOCKS;
+      })(),
     }),
     [cmsContent]
   );
@@ -97,6 +170,101 @@ export default function AdminContentPage() {
   const [past, setPast] = useState<ContentFormData[]>([]);
   const [future, setFuture] = useState<ContentFormData[]>([]);
   const [toastMessage, setToastMessage] = useState("");
+  const [mediaModalOpen, setMediaModalOpen] = useState(false);
+  const [addBlockDropdownOpen, setAddBlockDropdownOpen] = useState(false);
+
+  // Block management functions
+  const handleAddBlock = (type: BlockType) => {
+    setPast((prev) => [...prev.slice(-40), formData]);
+    setFuture([]);
+    const titles: Record<BlockType, string> = {
+      announcement: "Special Store Notice",
+      promo_banner: "Fresh Seasonal Batch Offer",
+      sale_spotlight: "Flash Weekend Discount",
+      faq_item: "Frequently Asked Question",
+    };
+    const badges: Record<BlockType, string> = {
+      announcement: "Store Alert",
+      promo_banner: "Promo Offer",
+      sale_spotlight: "Flash Sale",
+      faq_item: "Pure FAQ",
+    };
+    const newBlock: CustomBlock = {
+      id: `block-${Date.now()}`,
+      type,
+      title: titles[type],
+      content: "Write customized section content, pure stone-ground benefits, and customer instructions here...",
+      badge: badges[type],
+      status: "published",
+      link: "/products",
+      buttonText: "Learn More",
+    };
+    setFormData((prev) => ({
+      ...prev,
+      blocks: [...prev.blocks, newBlock],
+    }));
+    setAddBlockDropdownOpen(false);
+    showToast(`New ${type.replace("_", " ")} block added!`);
+  };
+
+  const handleMoveBlock = (index: number, direction: "up" | "down") => {
+    if (direction === "up" && index === 0) return;
+    if (direction === "down" && index === formData.blocks.length - 1) return;
+    setPast((prev) => [...prev.slice(-40), formData]);
+    setFuture([]);
+    const targetIndex = direction === "up" ? index - 1 : index + 1;
+    const newBlocks = [...formData.blocks];
+    const temp = newBlocks[index];
+    newBlocks[index] = newBlocks[targetIndex];
+    newBlocks[targetIndex] = temp;
+    setFormData((prev) => ({ ...prev, blocks: newBlocks }));
+    showToast(`Block moved ${direction}.`);
+  };
+
+  const handleDuplicateBlock = (index: number) => {
+    setPast((prev) => [...prev.slice(-40), formData]);
+    setFuture([]);
+    const original = formData.blocks[index];
+    const clone: CustomBlock = {
+      ...original,
+      id: `block-${Date.now()}`,
+      title: `${original.title} (Copy)`,
+    };
+    const newBlocks = [...formData.blocks];
+    newBlocks.splice(index + 1, 0, clone);
+    setFormData((prev) => ({ ...prev, blocks: newBlocks }));
+    showToast("Block duplicated.");
+  };
+
+  const handleDeleteBlock = (id: string) => {
+    if (confirm("Delete this block card?")) {
+      setPast((prev) => [...prev.slice(-40), formData]);
+      setFuture([]);
+      setFormData((prev) => ({
+        ...prev,
+        blocks: prev.blocks.filter((b) => b.id !== id),
+      }));
+      showToast("Block removed.");
+    }
+  };
+
+  const handleToggleBlockStatus = (id: string) => {
+    setPast((prev) => [...prev.slice(-40), formData]);
+    setFuture([]);
+    setFormData((prev) => ({
+      ...prev,
+      blocks: prev.blocks.map((b) =>
+        b.id === id ? { ...b, status: b.status === "published" ? "draft" : "published" } : b
+      ),
+    }));
+  };
+
+  const handleUpdateBlock = (id: string, updates: Partial<CustomBlock>) => {
+    setFormData((prev) => ({
+      ...prev,
+      blocks: prev.blocks.map((b) => (b.id === id ? { ...b, ...updates } : b)),
+    }));
+  };
 
   // Sync state if cmsContent updates externally (e.g. on first hydration)
   useEffect(() => {
@@ -211,6 +379,12 @@ export default function AdminContentPage() {
       customBanners: formData.customBanners,
     });
 
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("usmans_pure_cms_blocks", JSON.stringify(formData.blocks));
+      } catch {}
+    }
+
     showToast("Website content published! Changes are now live on the store.");
   };
 
@@ -219,6 +393,13 @@ export default function AdminContentPage() {
       resetToDefaults();
       setPast([]);
       setFuture([]);
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("usmans_pure_cms_blocks");
+      }
+      setFormData({
+        ...getStateFromCMS(),
+        blocks: DEFAULT_BLOCKS,
+      });
       showToast("Store content reset to default state.");
     }
   };
@@ -273,6 +454,17 @@ export default function AdminContentPage() {
           >
             <Redo2 className="w-3.5 h-3.5" />
             <span>Redo</span>
+          </button>
+
+          {/* Media Library Button */}
+          <button
+            type="button"
+            onClick={() => setMediaModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 transition cursor-pointer"
+            title="Open Media Library"
+          >
+            <ImageIcon className="w-3.5 h-3.5 text-amber-600" />
+            <span>Media Library</span>
           </button>
 
           {/* Reset Button */}
@@ -660,172 +852,262 @@ export default function AdminContentPage() {
             </div>
           </div>
 
-          {/* Custom Promo Banners List & Add Trigger */}
-          <div className="pt-4 border-t border-stone-100 space-y-3">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          {/* 4.2 WordPress-Style Section & Block Builder */}
+          <div className="pt-6 border-t border-stone-200/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider">
-                  Custom Promo Banners &amp; Teasers
+                <div className="flex items-center gap-1.5 text-xs font-bold text-amber-900 uppercase tracking-wider">
+                  <Layers className="w-4 h-4 text-amber-800" />
+                  <span>WordPress-Style Section &amp; Block Builder</span>
+                </div>
+                <h3 className="text-sm font-black text-stone-900 tracking-tight mt-0.5">
+                  Dynamic Content Blocks &amp; Section Manager
                 </h3>
                 <p className="text-[11px] text-stone-500">
-                  Configure additional promo teasers on the storefront for seasonal offers
+                  Compose, reorder with Move Up/Down, duplicate, draft, or publish custom content modules with rich text.
                 </p>
               </div>
 
-              {/* Add Custom Banner Trigger */}
-              <button
-                type="button"
-                onClick={() => {
-                  const newBanner: CustomPromoBanner = {
-                    id: `banner-${Date.now()}`,
-                    badge: "Special Promo",
-                    title: "Seasonal Fresh Harvest",
-                    discountTag: "Flat 10% Bundle Discount",
-                    description: "Pure whole-grain chakki atta packed fresh with zero preservatives.",
-                    link: "/products",
-                    buttonText: "Shop Special",
-                    bgColor: "#2A1F17",
-                    enabled: true,
-                  };
-                  updateFormDataBatch((prev) => ({
-                    ...prev,
-                    customBanners: [...prev.customBanners, newBanner],
-                  }));
-                  showToast("New Custom Banner Section added!");
-                }}
-                className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer self-start sm:self-auto"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>+ Add Custom Announcement Bar / Promo Card</span>
-              </button>
+              {/* Add New Block Dropdown Trigger */}
+              <div className="relative self-start sm:self-auto">
+                <button
+                  type="button"
+                  onClick={() => setAddBlockDropdownOpen((prev) => !prev)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>+ Add New Block</span>
+                </button>
+
+                {addBlockDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-stone-200 p-2 z-30 space-y-1 animate-in fade-in slide-in-from-top-2 duration-150">
+                    <p className="text-[10px] uppercase font-bold text-stone-400 px-3 py-1">
+                      Choose Block Type:
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => handleAddBlock("announcement")}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-bold text-stone-800 flex items-center gap-2 transition"
+                    >
+                      <Megaphone className="w-4 h-4 text-blue-600 shrink-0" />
+                      <div>
+                        <p>Announcement Bar</p>
+                        <p className="text-[10px] text-stone-500 font-normal">Top header ticker message</p>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleAddBlock("promo_banner")}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-bold text-stone-800 flex items-center gap-2 transition"
+                    >
+                      <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                      <div>
+                        <p>Promotional Banner</p>
+                        <p className="text-[10px] text-stone-500 font-normal">Featured promo card or teaser</p>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleAddBlock("sale_spotlight")}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-bold text-stone-800 flex items-center gap-2 transition"
+                    >
+                      <Flame className="w-4 h-4 text-orange-600 shrink-0" />
+                      <div>
+                        <p>Sale Spotlight</p>
+                        <p className="text-[10px] text-stone-500 font-normal">Limited flash batch discount</p>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleAddBlock("faq_item")}
+                      className="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-bold text-stone-800 flex items-center gap-2 transition"
+                    >
+                      <HelpCircle className="w-4 h-4 text-purple-600 shrink-0" />
+                      <div>
+                        <p>FAQ Item</p>
+                        <p className="text-[10px] text-stone-500 font-normal">Customer question &amp; answer accordion</p>
+                      </div>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
-            {formData.customBanners.length === 0 ? (
-              <div className="p-4 rounded-2xl border border-dashed border-stone-200 text-center text-xs text-stone-500">
-                No custom promo banners created yet. Click &quot;+ Add Custom Announcement Bar / Promo Card&quot; to configure one.
+            {/* Blocks List */}
+            {formData.blocks.length === 0 ? (
+              <div className="p-8 rounded-2xl border-2 border-dashed border-stone-200 text-center text-xs text-stone-500">
+                No blocks created yet. Click &quot;+ Add New Block&quot; to build dynamic content.
               </div>
             ) : (
-              <div className="space-y-3">
-                {formData.customBanners.map((banner, index) => (
-                  <div
-                    key={banner.id}
-                    className="p-4 rounded-2xl bg-stone-50 border border-stone-200/80 space-y-3"
-                  >
-                    <div className="flex items-center justify-between border-b border-stone-200/60 pb-2">
-                      <span className="text-xs font-bold text-stone-800 flex items-center gap-1.5">
-                        <Tag className="w-3.5 h-3.5 text-amber-800" />
-                        <span>Promo Teaser #{index + 1}: {banner.badge}</span>
-                      </span>
+              <div className="space-y-4">
+                {formData.blocks.map((block, index) => {
+                  const typeColors: Record<BlockType, { bg: string; text: string; label: string }> = {
+                    announcement: { bg: "bg-blue-100 text-blue-900 border-blue-200", text: "text-blue-700", label: "Announcement Bar" },
+                    promo_banner: { bg: "bg-amber-100 text-amber-900 border-amber-200", text: "text-amber-700", label: "Promotional Banner" },
+                    sale_spotlight: { bg: "bg-orange-100 text-orange-900 border-orange-200", text: "text-orange-700", label: "Sale Spotlight" },
+                    faq_item: { bg: "bg-purple-100 text-purple-900 border-purple-200", text: "text-purple-700", label: "FAQ Item" },
+                  };
+                  const currentStyle = typeColors[block.type] || typeColors.promo_banner;
 
-                      <div className="flex items-center gap-3">
-                        <label className="flex items-center gap-1.5 text-xs font-semibold text-stone-600 cursor-pointer">
+                  return (
+                    <div
+                      key={block.id}
+                      className="p-5 rounded-3xl bg-stone-50 border border-stone-200 shadow-2xs space-y-4 transition"
+                    >
+                      {/* Block Action Bar: Type, Publish/Draft Switch, Move Up/Down, Duplicate, Delete */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-stone-200 pb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs font-black text-stone-400">
+                            #{index + 1}
+                          </span>
+                          <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${currentStyle.bg}`}>
+                            {currentStyle.label}
+                          </span>
+                          <span className="text-xs font-bold text-stone-900">
+                            {block.title || "Untitled Block"}
+                          </span>
+                        </div>
+
+                        {/* Block Action Controls */}
+                        <div className="flex items-center gap-1.5">
+                          {/* Live Toggle switch: Publish / Draft */}
+                          <div className="flex items-center gap-1.5 mr-2 bg-white px-2.5 py-1 rounded-xl border border-stone-200 text-xs">
+                            <button
+                              type="button"
+                              onClick={() => handleToggleBlockStatus(block.id)}
+                              className={`w-9 h-5 rounded-full transition-colors p-0.5 cursor-pointer ${
+                                block.status === "published" ? "bg-emerald-600" : "bg-stone-300"
+                              }`}
+                            >
+                              <div
+                                className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                                  block.status === "published" ? "translate-x-4" : "translate-x-0"
+                                }`}
+                              />
+                            </button>
+                            <span
+                              className={`text-[11px] font-bold ${
+                                block.status === "published" ? "text-emerald-700" : "text-stone-400"
+                              }`}
+                            >
+                              {block.status === "published" ? "Published" : "Draft"}
+                            </span>
+                          </div>
+
+                          {/* Move Up Button */}
+                          <button
+                            type="button"
+                            onClick={() => handleMoveBlock(index, "up")}
+                            disabled={index === 0}
+                            className="p-1.5 rounded-lg border border-stone-200 bg-white hover:bg-stone-100 disabled:opacity-30 disabled:cursor-not-allowed text-stone-700 transition"
+                            title="Move Block Up"
+                          >
+                            <ArrowUp className="w-3.5 h-3.5" />
+                          </button>
+
+                          {/* Move Down Button */}
+                          <button
+                            type="button"
+                            onClick={() => handleMoveBlock(index, "down")}
+                            disabled={index === formData.blocks.length - 1}
+                            className="p-1.5 rounded-lg border border-stone-200 bg-white hover:bg-stone-100 disabled:opacity-30 disabled:cursor-not-allowed text-stone-700 transition"
+                            title="Move Block Down"
+                          >
+                            <ArrowDown className="w-3.5 h-3.5" />
+                          </button>
+
+                          {/* Duplicate Button */}
+                          <button
+                            type="button"
+                            onClick={() => handleDuplicateBlock(index)}
+                            className="p-1.5 rounded-lg border border-stone-200 bg-white hover:bg-stone-100 text-stone-700 transition cursor-pointer"
+                            title="Duplicate Block"
+                          >
+                            <Copy className="w-3.5 h-3.5" />
+                          </button>
+
+                          {/* Delete Button */}
+                          <button
+                            type="button"
+                            onClick={() => handleDeleteBlock(block.id)}
+                            className="p-1.5 rounded-lg border border-red-200 bg-white hover:bg-red-50 text-red-600 transition cursor-pointer"
+                            title="Delete Block"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Block Fields */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="sm:col-span-2">
+                          <label className="block text-[11px] font-bold text-stone-700 mb-1">
+                            Block Title / Headline
+                          </label>
                           <input
-                            type="checkbox"
-                            checked={banner.enabled}
-                            onChange={(e) => {
-                              const updated = formData.customBanners.map((b) =>
-                                b.id === banner.id ? { ...b, enabled: e.target.checked } : b
-                              );
-                              updateField("customBanners", updated);
-                            }}
-                            className="rounded text-amber-800"
+                            type="text"
+                            value={block.title}
+                            onChange={(e) => handleUpdateBlock(block.id, { title: e.target.value })}
+                            className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-900"
+                            placeholder="e.g. Traditional Slow-Stone Ground Wheat"
                           />
-                          <span>Enabled</span>
-                        </label>
+                        </div>
 
-                        <button
-                          type="button"
-                          onClick={() => {
-                            const filtered = formData.customBanners.filter((b) => b.id !== banner.id);
-                            updateField("customBanners", filtered);
-                            showToast("Custom banner removed.");
-                          }}
-                          className="p-1 rounded-lg hover:bg-red-50 text-red-600 transition cursor-pointer"
-                          title="Delete Custom Banner"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        <div>
+                          <label className="block text-[11px] font-bold text-stone-700 mb-1">
+                            Badge Tag (Optional)
+                          </label>
+                          <input
+                            type="text"
+                            value={block.badge || ""}
+                            onChange={(e) => handleUpdateBlock(block.id, { badge: e.target.value })}
+                            className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs text-stone-800"
+                            placeholder="e.g. Pure Heritage"
+                          />
+                        </div>
+                      </div>
+
+                      {/* WordPress-Style Visual Rich Editor for Block Body Content */}
+                      <RichTextEditor
+                        label="Block Body Content (WordPress Gutenberg Visual Toolbar)"
+                        value={block.content}
+                        onChange={(val) => handleUpdateBlock(block.id, { content: val })}
+                        placeholder="Write block content with rich headings, bullet lists, formatting, and images..."
+                        onOpenMediaLibrary={() => setMediaModalOpen(true)}
+                        minHeight="min-h-[120px]"
+                      />
+
+                      {/* Block Footer Actions / Link */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div>
+                          <label className="block text-[11px] font-bold text-stone-700 mb-0.5">
+                            Target Link (Optional)
+                          </label>
+                          <input
+                            type="text"
+                            value={block.link || ""}
+                            onChange={(e) => handleUpdateBlock(block.id, { link: e.target.value })}
+                            className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs"
+                            placeholder="e.g. /products or /category/flours"
+                          />
+                        </div>
+
+                        <div>
+                          <label className="block text-[11px] font-bold text-stone-700 mb-0.5">
+                            CTA Button Text (Optional)
+                          </label>
+                          <input
+                            type="text"
+                            value={block.buttonText || ""}
+                            onChange={(e) => handleUpdateBlock(block.id, { buttonText: e.target.value })}
+                            className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs"
+                            placeholder="e.g. Explore Grains"
+                          />
+                        </div>
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                      <div>
-                        <label className="block text-[11px] font-bold text-stone-600 mb-0.5">Badge Title</label>
-                        <input
-                          type="text"
-                          value={banner.badge}
-                          onChange={(e) => {
-                            const updated = formData.customBanners.map((b) =>
-                              b.id === banner.id ? { ...b, badge: e.target.value } : b
-                            );
-                            updateField("customBanners", updated);
-                          }}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold text-stone-600 mb-0.5">Section Title</label>
-                        <input
-                          type="text"
-                          value={banner.title}
-                          onChange={(e) => {
-                            const updated = formData.customBanners.map((b) =>
-                              b.id === banner.id ? { ...b, title: e.target.value } : b
-                            );
-                            updateField("customBanners", updated);
-                          }}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold text-stone-600 mb-0.5">Discount Tag</label>
-                        <input
-                          type="text"
-                          value={banner.discountTag}
-                          onChange={(e) => {
-                            const updated = formData.customBanners.map((b) =>
-                              b.id === banner.id ? { ...b, discountTag: e.target.value } : b
-                            );
-                            updateField("customBanners", updated);
-                          }}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200"
-                        />
-                      </div>
-
-                      <div className="sm:col-span-2">
-                        <label className="block text-[11px] font-bold text-stone-600 mb-0.5">Description Text</label>
-                        <input
-                          type="text"
-                          value={banner.description}
-                          onChange={(e) => {
-                            const updated = formData.customBanners.map((b) =>
-                              b.id === banner.id ? { ...b, description: e.target.value } : b
-                            );
-                            updateField("customBanners", updated);
-                          }}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-[11px] font-bold text-stone-600 mb-0.5">Button Text</label>
-                        <input
-                          type="text"
-                          value={banner.buttonText}
-                          onChange={(e) => {
-                            const updated = formData.customBanners.map((b) =>
-                              b.id === banner.id ? { ...b, buttonText: e.target.value } : b
-                            );
-                            updateField("customBanners", updated);
-                          }}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
@@ -924,6 +1206,16 @@ export default function AdminContentPage() {
           </button>
         </div>
       </form>
+
+      {/* Centralized Media Library Modal */}
+      <MediaLibraryModal
+        isOpen={mediaModalOpen}
+        onClose={() => setMediaModalOpen(false)}
+        onSelectMedia={(media) => {
+          showToast(`Selected "${media.name}" (${media.url})`);
+          setMediaModalOpen(false);
+        }}
+      />
     </div>
   );
 }
