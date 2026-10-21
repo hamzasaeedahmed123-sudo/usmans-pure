@@ -71,10 +71,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   // Protected route guard
   useEffect(() => {
+    if (pathname === "/admin/login") return;
     if (!isLoading && (!isAuthenticated || !isStaff)) {
-      router.push(`/login?redirect=${encodeURIComponent(pathname)}`);
+      router.push(`/admin/login?redirect=${encodeURIComponent(pathname)}`);
     }
   }, [isLoading, isAuthenticated, isStaff, router, pathname]);
+
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
 
   if (isLoading || !isAuthenticated || !isStaff) {
     return (
