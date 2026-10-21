@@ -127,30 +127,17 @@ export function Navbar({
           </span>
         </div>
 
-        {/* Center Section: Navigation Pill Menu (compact, px-5 py-2 gap-4 lg:gap-6 shrink-1 min-w-0) */}
-        <nav
-          className={`hidden lg:flex backdrop-blur-md border shadow-sm rounded-full px-5 py-2 items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium shrink-1 min-w-0 transition-colors duration-500 ease-in-out ${themeConfig.pillBg}`}
-        >
+        {/* Center Section: Navigation Pill Menu (wrapped in requested pill container) */}
+        <nav className="hidden md:flex items-center gap-1 sm:gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-stone-200/60 shadow-sm">
           {/* Item 1: Home */}
           <Link
             href="/"
-            className="hover:opacity-80 transition-opacity whitespace-nowrap"
+            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
           >
             Home
           </Link>
 
-          {/* Item 2: Doctor's Choice with Verified Badge */}
-          <Link
-            href="/doctors-choice"
-            className="hover:opacity-80 transition-opacity inline-flex items-center whitespace-nowrap"
-          >
-            <span>Doctor&apos;s Choice</span>
-            <span className="text-[10px] bg-emerald-700 text-white px-1.5 py-0.5 rounded-full font-bold ml-1 leading-none shadow-2xs">
-              Verified
-            </span>
-          </Link>
-
-          {/* Item 3: All Products with Hover / Click Dropdown */}
+          {/* Item 2: Shop with Hover / Click Dropdown */}
           <div
             ref={dropdownRef}
             className="relative"
@@ -159,11 +146,11 @@ export function Navbar({
           >
             <button
               onClick={() => setProductsDropdownOpen((prev) => !prev)}
-              className="hover:opacity-80 transition-opacity flex items-center gap-1 cursor-pointer whitespace-nowrap"
+              className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
             >
-              <span>All Products</span>
+              <span>Shop</span>
               <svg
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                className={`w-3 h-3 transition-transform duration-200 ${
                   productsDropdownOpen ? "rotate-180" : ""
                 }`}
                 fill="none"
@@ -226,36 +213,33 @@ export function Navbar({
             </AnimatePresence>
           </div>
 
-          {/* Item 4: Mega Bundles with Save Badge */}
+          {/* Item 3: Doctor's Choice / Bundles */}
           <Link
             href="/bundles"
-            className="hover:opacity-80 transition-opacity inline-flex items-center font-bold whitespace-nowrap"
+            className="hidden lg:inline-flex items-center px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
           >
-            <span>Mega Bundles</span>
-            <span className="text-[10px] bg-amber-600 text-white px-1.5 py-0.5 rounded-full font-bold ml-1 leading-none shadow-2xs">
-              Save
-            </span>
+            <span>Bundles</span>
           </Link>
 
-          {/* Item 5: About Us */}
+          {/* Item 4: About Us */}
           <Link
             href="/about"
-            className="hover:opacity-80 transition-opacity whitespace-nowrap"
+            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
           >
             About Us
           </Link>
 
-          {/* Item 6: Contact */}
+          {/* Item 5: Contact */}
           <Link
             href="/contact"
-            className="hover:opacity-80 transition-opacity whitespace-nowrap"
+            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
           >
             Contact
           </Link>
         </nav>
 
-        {/* Right Section (Cart Icon + Log In + Sign Up): Group together with gap-2.5 shrink-0 */}
-        <div className="flex items-center gap-2.5 shrink-0">
+        {/* Right Section: Action flex container strictly outside nav pill */}
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Quick Cart Trigger */}
           <button
             onClick={() => {

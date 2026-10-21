@@ -152,23 +152,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               </span>
             </div>
 
-            {/* Center Section: Navigation Pill */}
-            <nav className={`hidden lg:flex backdrop-blur-md border shadow-sm rounded-full px-5 py-2 items-center gap-4 lg:gap-6 text-xs lg:text-sm font-medium shrink-1 min-w-0 transition-colors duration-500 ease-in-out ${themeClasses.pill}`}>
+            {/* Center Section: Navigation Pill (wrapped in requested pill container) */}
+            <nav className="hidden md:flex items-center gap-1 sm:gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-stone-200/60 shadow-sm">
               <Link
                 href="/"
-                className="hover:text-stone-950 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
               >
                 Home
-              </Link>
-
-              <Link
-                href="/doctors-choice"
-                className="hover:text-stone-950 transition-colors inline-flex items-center whitespace-nowrap"
-              >
-                <span>Doctor&apos;s Choice</span>
-                <span className="text-[10px] bg-emerald-700 text-white px-1.5 py-0.5 rounded-full font-bold ml-1 leading-none shadow-2xs">
-                  Verified
-                </span>
               </Link>
 
               <div
@@ -178,9 +168,9 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               >
                 <button
                   onClick={() => setProductsDropdownOpen((prev) => !prev)}
-                  className="hover:text-stone-950 transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                  className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
                 >
-                  <span>All Products</span>
+                  <span>Shop</span>
                   <ChevronDown
                     className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${
                       productsDropdownOpen ? "rotate-180" : ""
@@ -229,31 +219,28 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
               <Link
                 href="/bundles"
-                className="hover:text-stone-950 transition-colors inline-flex items-center font-bold whitespace-nowrap"
+                className="hidden lg:inline-flex items-center px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
               >
-                <span>Mega Bundles</span>
-                <span className="text-[10px] bg-amber-600 text-white px-1.5 py-0.5 rounded-full font-bold ml-1 leading-none shadow-2xs">
-                  Save
-                </span>
+                <span>Bundles</span>
               </Link>
 
               <Link
                 href="/about"
-                className="hover:text-stone-950 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
               >
                 About Us
               </Link>
 
               <Link
                 href="/contact"
-                className="hover:text-stone-950 transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
               >
                 Contact
               </Link>
             </nav>
 
-            {/* Right Section (Cart Icon + Log In + Sign Up): Group together with gap-2.5 shrink-0 */}
-            <div className="flex items-center gap-2.5 shrink-0">
+            {/* Right Section: Separate Action Flex Container strictly outside nav pill */}
+            <div className="flex items-center gap-2 sm:gap-3">
               {/* Quick Search Trigger */}
               <button
                 onClick={() => setSearchModalOpen(true)}
@@ -288,7 +275,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-500 ease-in-out cursor-pointer ${themeClasses.cartBtn}`}
+                className={`md:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-500 ease-in-out cursor-pointer ${themeClasses.cartBtn}`}
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? (
@@ -302,7 +289,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
           {/* Mobile Slide-down Drawer */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
+            <div className="md:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
               <div className="px-2 pb-2.5 mb-2 border-b border-black/10 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-20 -mt-1 pt-1">
                 <div className="relative w-36 h-9 flex items-center">
                   <Image
