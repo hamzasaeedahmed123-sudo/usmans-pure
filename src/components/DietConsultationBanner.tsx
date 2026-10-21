@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { MessageCircle, CheckCircle2, UserCheck } from "lucide-react";
+import { MessageCircle, CheckCircle2 } from "lucide-react";
 
 export function DietConsultationBanner() {
   return (
@@ -15,24 +14,24 @@ export function DietConsultationBanner() {
           {/* Left Text Content (7 cols) */}
           <div className="lg:col-span-7">
             <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 mb-1.5 sm:mb-2">
-              Free Nutrition Consultation
+              Fresh Stone-Ground Quality
             </div>
 
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight text-white leading-tight">
-              Customized Diet Plan &amp; Health Guidance by Usman&apos;s Pure
+              Fresh Stone-Ground Grains &amp; Pure Spices
             </h2>
 
             <p className="mt-2.5 sm:mt-4 text-emerald-100/90 text-xs sm:text-base leading-relaxed">
-              In response to thousands of customer requests, our clinical nutrition team offers personalized dietary guidance for <strong>Weight Loss</strong>, <strong>Diabetes Glycemic Management</strong>, <strong>PCOS</strong>, and <strong>Digestive Wellness</strong> using pure stone-ground grains and organic herbal infusions.
+              100% natural, whole-grain chakki flour and pure organic spices milled traditionally with zero preservatives, zero maida, and zero artificial additives.
             </p>
 
             {/* Checklist */}
             <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {[
-                "Personalized meal plan matched to your target weight & BMI",
-                "Diabetic carb counting & sugar spike reduction techniques",
-                "Daily brewing schedule for organic herbal teas",
-                "Direct WhatsApp support with dedicated wellness advisors",
+                "Freshly stone-ground on order to preserve natural nutrients",
+                "Special multigrain blends for diabetes and healthy weight",
+                "Pure, caffeine-free herbal teas and whole cold-pounded spices",
+                "Quick WhatsApp support for custom grain orders and inquiries",
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-emerald-100">
                   <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
@@ -44,18 +43,18 @@ export function DietConsultationBanner() {
             {/* WhatsApp CTA Button */}
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <a
-                href="https://wa.me/923000000000?text=Hi%20Usman's%20Pure,%20I%20would%20like%20a%20Customized%20Diet%20Plan%20consultation."
+                href="https://wa.me/923000000000?text=Hi%20Usman's%20Pure,%20I%20would%20like%20to%20order%20fresh%20stone-ground%20flour%20and%20pure%20spices."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition shadow-ambient shadow-amber-400/20 active:scale-98"
               >
                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                <span>Get Customized Diet Plan on WhatsApp</span>
+                <span>Order on WhatsApp</span>
               </a>
 
               <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-emerald-300 font-medium">
-                <UserCheck className="w-4 h-4 text-amber-400" />
-                <span>Over 12,000+ Diet Plans Delivered</span>
+                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <span>Freshly Milled On Order &bull; Cash on Delivery Across Pakistan</span>
               </div>
             </div>
           </div>
@@ -68,8 +67,8 @@ export function DietConsultationBanner() {
                   UP
                 </div>
                 <div>
-                  <h4 className="text-sm sm:text-base font-bold text-white">Clinical Nutrition Protocol</h4>
-                  <p className="text-[11px] sm:text-xs text-emerald-300">Certified Holistic Diet Guidance</p>
+                  <h4 className="text-sm sm:text-base font-bold text-white">How We Deliver Pure Quality</h4>
+                  <p className="text-[11px] sm:text-xs text-emerald-300">Traditional Chakki Process</p>
                 </div>
               </div>
 
@@ -80,10 +79,10 @@ export function DietConsultationBanner() {
                     <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
                       1
                     </span>
-                    <h5 className="text-xs font-bold text-white">Share Health Goals</h5>
+                    <h5 className="text-xs font-bold text-white">Select Your Blend</h5>
                   </div>
                   <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
-                    Tell our team on WhatsApp your current weight, fasting sugar, or digestive symptoms.
+                    Choose from whole wheat, multigrain diet flour, or organic teas.
                   </p>
                 </div>
 
@@ -92,10 +91,10 @@ export function DietConsultationBanner() {
                     <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
                       2
                     </span>
-                    <h5 className="text-xs font-bold text-white">Receive Routine</h5>
+                    <h5 className="text-xs font-bold text-white">Fresh Stone-Milling</h5>
                   </div>
                   <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
-                    Get exact roti portions, tea brewing times, and healthy daily habits.
+                    Slowly ground in traditional stone chakkis to retain all bran and nutrients.
                   </p>
                 </div>
 
@@ -104,10 +103,10 @@ export function DietConsultationBanner() {
                     <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
                       3
                     </span>
-                    <h5 className="text-xs font-bold text-white">WhatsApp Check-ins</h5>
+                    <h5 className="text-xs font-bold text-white">Delivered To Your Door</h5>
                   </div>
                   <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
-                    Weekly progress tracking to ensure you reach your target feeling energetic.
+                    Packed fresh and delivered straight to your home across Pakistan.
                   </p>
                 </div>
               </div>
