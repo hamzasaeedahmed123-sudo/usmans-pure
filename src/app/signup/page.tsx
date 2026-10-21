@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAuth, UserRole } from "@/context/AuthContext";
 import { motion } from "framer-motion";
-import { Lock, Mail, ArrowRight, User as UserIcon, Sparkles, Eye, EyeOff, CheckCircle2, AlertCircle, Phone } from "lucide-react";
+import { Lock, Mail, ArrowRight, User as UserIcon, Eye, EyeOff, CheckCircle2, AlertCircle, Phone } from "lucide-react";
 
 function SignupForm() {
   const router = useRouter();
@@ -63,7 +63,7 @@ function SignupForm() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#FAF6F0]">
+    <div className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center py-8 pb-32 px-4 sm:px-6 overflow-hidden bg-[#FAF6F0]">
       {/* 1. Atmospheric Luxury Organic Background Visuals */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         <div className="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-[#E5D2BA]/70 blur-3xl opacity-80" />
@@ -111,7 +111,7 @@ function SignupForm() {
             </div>
           </Link>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/70 border border-emerald-200/80 text-emerald-950 text-[11px] font-bold tracking-wide">
-            <Sparkles className="w-3 h-3 text-emerald-700" />
+            <CheckCircle2 className="w-3 h-3 text-emerald-700" />
             <span>Join the Pure Living Community</span>
           </div>
           <h1 className="text-2xl font-black text-stone-900 tracking-tight mt-2.5">
@@ -288,7 +288,7 @@ function SignupForm() {
 
 export default function SignupPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-[100dvh] bg-[#FAF6F0] flex items-center justify-center">Loading...</div>}>
       <SignupForm />
     </Suspense>
   );

@@ -357,16 +357,17 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
       {/* Quick View Modal */}
       {quickViewProduct && (
         <div
-          className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-stone-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto"
           onClick={() => setQuickViewProduct(null)}
         >
           <div
-            className="bg-white rounded-sm max-w-xl w-full p-6 sm:p-8 relative shadow-ambient animate-in fade-in zoom-in-95 duration-200"
+            className="bg-white rounded-2xl max-w-xl w-full p-5 sm:p-8 relative shadow-ambient animate-in fade-in zoom-in-95 duration-200 max-h-[90dvh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setQuickViewProduct(null)}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer"
+              className="sticky top-0 float-right -mt-2 -mr-2 sm:mt-0 sm:mr-0 w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer z-50 shadow-xs"
+              aria-label="Close modal"
             >
               <X className="w-5 h-5" />
             </button>

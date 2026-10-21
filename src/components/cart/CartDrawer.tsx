@@ -86,12 +86,12 @@ export function CartDrawer() {
       {/* Slide-over Drawer Panel */}
       <aside
         aria-label="Shopping Cart Drawer"
-        className={`fixed inset-y-0 right-0 z-50 w-full max-w-md bg-[#FAF7F2] shadow-2xl flex flex-col transition-transform duration-300 ease-out transform ${
+        className={`fixed inset-y-0 right-0 z-50 w-full max-w-md h-[100dvh] max-h-[100dvh] bg-[#FAF7F2] shadow-2xl flex flex-col overflow-hidden transition-transform duration-300 ease-out transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         {/* Drawer Header */}
-        <div className="p-5 sm:p-6 bg-white border-b border-[#1E1510]/10 flex items-center justify-between">
+        <div className="p-4 sm:p-6 bg-white border-b border-[#1E1510]/10 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-full bg-[#1E1510] text-[#F6F1E9] flex items-center justify-center">
               <ShoppingBag className="w-4 h-4" />
@@ -233,7 +233,7 @@ export function CartDrawer() {
 
         {/* Pricing Summary & Actions Footer */}
         {items.length > 0 && (
-          <div className="p-5 sm:p-6 bg-white border-t border-[#1E1510]/10 space-y-4 shadow-lg">
+          <div className="p-4 sm:p-6 pb-24 sm:pb-6 bg-white border-t border-[#1E1510]/10 space-y-3.5 sm:space-y-4 shadow-lg shrink-0">
             {/* Price breakdown */}
             <div className="space-y-2 text-xs">
               <div className="flex justify-between text-[#6B5D52]">

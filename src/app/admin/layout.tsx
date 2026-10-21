@@ -20,7 +20,6 @@ import {
   Search,
   ChevronRight,
   ShieldAlert,
-  Sparkles,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -99,7 +98,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* 2. Sidebar Navigation */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-72 bg-[#1C1613] text-stone-200 flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-72 h-[100dvh] max-h-[100dvh] overflow-y-auto bg-[#1C1613] text-stone-200 flex flex-col justify-between transition-transform duration-300 lg:translate-x-0 ${
           sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         }`}
       >

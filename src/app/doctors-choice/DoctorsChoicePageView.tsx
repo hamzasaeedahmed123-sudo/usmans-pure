@@ -14,7 +14,6 @@ import {
   Check,
   ShoppingBag,
   Truck,
-  Sparkles,
   Heart,
   MessageCircle,
   HelpCircle,
@@ -230,7 +229,7 @@ export function DoctorsChoicePageView() {
                 <span>100% Preservative-Free</span>
               </div>
               <div className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
+                <ShieldCheck className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
                 <span>Cold Stone-Milled &lt;40&deg;C</span>
               </div>
             </div>

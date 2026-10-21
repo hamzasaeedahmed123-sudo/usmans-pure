@@ -14,7 +14,6 @@ import {
   Check,
   ShoppingBag,
   ArrowRight,
-  Sparkles,
   ShieldCheck,
   Truck,
   Heart,

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Stethoscope, Sparkles } from "lucide-react";
+import { ArrowRight, ShieldCheck, Stethoscope, CheckCircle2 } from "lucide-react";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function DoctorsChoiceBanner() {
@@ -46,7 +46,7 @@ export function DoctorsChoiceBanner() {
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
+                <CheckCircle2 className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
                 Low Glycemic Index (&lt;50)
               </span>
               <span className="text-white/20">•</span>

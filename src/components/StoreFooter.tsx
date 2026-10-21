@@ -15,7 +15,7 @@ import {
 
 export function StoreFooter() {
   return (
-    <footer className="bg-[#1C1613] text-[#EDE4D8] border-t border-[#3A2D25] pt-0 pb-8">
+    <footer className="bg-[#1C1613] text-[#EDE4D8] border-t border-[#3A2D25] pt-0 pb-20 sm:pb-12">
       {/* Top Trust & Value Feature Strip */}
       <div className="border-b border-[#3A2D25] py-4 sm:py-5 bg-[#16110E]/80">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">

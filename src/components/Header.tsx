@@ -302,8 +302,8 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
           {/* Mobile Slide-down Drawer */}
           {mobileMenuOpen && (
-            <div className="lg:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/95 rounded-2xl p-4 shadow-xl">
-              <div className="px-2 pb-2.5 mb-2 border-b border-black/10 flex items-center justify-between">
+            <div className="lg:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
+              <div className="px-2 pb-2.5 mb-2 border-b border-black/10 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-20 -mt-1 pt-1">
                 <div className="relative w-36 h-9 flex items-center">
                   <Image
                     src="/logo.png"
@@ -319,7 +319,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                   </span>
                   <button
                     onClick={() => setMobileMenuOpen(false)}
-                    className="p-1 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors cursor-pointer"
+                    className="p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 transition-colors cursor-pointer min-w-[36px] min-h-[36px] flex items-center justify-center z-50 shadow-xs"
                     aria-label="Close Menu"
                   >
                     <X className="w-4 h-4" />
@@ -462,11 +462,11 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
       {/* Quick Search Modal Dialog */}
       {searchModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-24 px-3 sm:px-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
           onClick={() => setSearchModalOpen(false)}
         >
           <div
-            className="w-full max-w-lg rounded-2xl border border-white/70 bg-white/95 backdrop-blur-2xl p-5 shadow-2xl text-stone-900"
+            className="w-full max-w-lg rounded-2xl border border-white/70 bg-white/98 backdrop-blur-2xl p-4 sm:p-5 shadow-2xl text-stone-900 max-h-[85dvh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center gap-3 pb-3 border-b border-stone-200">

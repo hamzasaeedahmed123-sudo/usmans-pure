@@ -229,8 +229,8 @@ export default function AdminOrdersPage() {
 
       {/* 4. Order Details Modal */}
       {selectedOrder && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto text-stone-900">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl max-h-[90dvh] overflow-y-auto text-stone-900">
             <div className="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
               <div>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900">

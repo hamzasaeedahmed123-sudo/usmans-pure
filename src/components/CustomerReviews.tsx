@@ -6,6 +6,7 @@ import Image from "next/image";
 import {
   CheckCircle,
   Quote,
+  Star,
   ChevronLeft,
   ChevronRight,
   ArrowRight,
@@ -171,7 +172,12 @@ export function CustomerReviews() {
             <div className="flex items-center gap-2 mb-2">
               <span className="eyebrow">Verified Customer Stories</span>
               <span className="text-[#1E1510]/20">&bull;</span>
-              <span className="text-xs font-semibold text-stone-700">850+ Verified Orders</span>
+              <div className="flex items-center text-amber-500">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                ))}
+              </div>
+              <span className="text-xs font-semibold text-stone-700">4.9 / 5.0 Rating</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1510] leading-tight">
@@ -224,12 +230,16 @@ export function CustomerReviews() {
                 >
                   <div className="bg-white rounded-sm border border-[#1E1510]/10 p-5 sm:p-6 h-full flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300">
                     <div>
-                      {/* Top Bar: Verified Badge */}
+                      {/* Top Bar: Stars + Verified Badge */}
                       <div className="flex items-center justify-between gap-2 mb-3">
-                        <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-xs flex items-center gap-1">
-                          <CheckCircle className="w-3 h-3 text-emerald-600" /> Verified Buyer
+                        <div className="flex items-center text-amber-500">
+                          {[...Array(r.rating)].map((_, i) => (
+                            <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
+                        <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-xs">
+                          Verified Buyer
                         </span>
-                        <span className="text-[11px] text-stone-400 font-medium">Verified Household</span>
                       </div>
 
                       {/* Product Tag */}
@@ -343,16 +353,17 @@ export function CustomerReviews() {
       {/* Quick Review Submission Modal */}
       {isModalOpen && (
         <div
-          className="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-stone-950/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-in fade-in duration-200"
           onClick={() => setIsModalOpen(false)}
         >
           <div
-            className="bg-white rounded-sm max-w-lg w-full p-6 sm:p-8 relative shadow-xl border border-stone-200 animate-in zoom-in-95 duration-200"
+            className="bg-white rounded-2xl max-w-lg w-full p-5 sm:p-8 relative shadow-xl border border-stone-200 animate-in zoom-in-95 duration-200 max-h-[90dvh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer"
+              className="sticky top-0 float-right -mt-2 -mr-2 sm:mt-0 sm:mr-0 w-9 h-9 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer z-50 shadow-xs"
+              aria-label="Close review dialog"
             >
               <X className="w-4 h-4" />
             </button>
@@ -379,27 +390,32 @@ export function CustomerReviews() {
                   {/* Rating Selector */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-1">
-                      Experience:
+                      Overall Rating:
                     </label>
-                    <div className="flex items-center gap-2">
-                      {["Excellent Purity", "Very Good", "Good"].map((exp, idx) => {
-                        const val = 5 - idx;
-                        const isSelected = modalRating === val;
-                        return (
-                          <button
-                            key={exp}
-                            type="button"
-                            onClick={() => setModalRating(val)}
-                            className={`px-3 py-1.5 rounded-md text-xs font-semibold transition cursor-pointer border ${
-                              isSelected
-                                ? "bg-stone-900 text-white border-stone-900"
-                                : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
+                    <div className="flex items-center gap-1.5">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                          key={star}
+                          type="button"
+                          onClick={() => setModalRating(star)}
+                          className="p-1 cursor-pointer transition-transform hover:scale-110"
+                        >
+                          <Star
+                            className={`w-6 h-6 ${
+                              star <= modalRating
+                                ? "fill-amber-400 text-amber-400"
+                                : "text-stone-300"
                             }`}
-                          >
-                            {exp}
-                          </button>
-                        );
-                      })}
+                          />
+                        </button>
+                      ))}
+                      <span className="ml-2 text-xs font-semibold text-stone-700">
+                        {modalRating === 5
+                          ? "5 Stars (Excellent)"
+                          : modalRating === 4
+                          ? "4 Stars (Very Good)"
+                          : `${modalRating} Stars`}
+                      </span>
                     </div>
                   </div>
 

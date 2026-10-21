@@ -18,7 +18,7 @@ export function TickerMarquee() {
             <span className="text-xs sm:text-sm font-medium uppercase tracking-widest text-amber-400">
               {text}
             </span>
-            <span className="text-stone-600 text-xs font-bold">✦</span>
+            <span className="text-stone-600 text-xs font-bold">•</span>
           </div>
         ))}
       </div>

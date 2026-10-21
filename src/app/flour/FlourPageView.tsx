@@ -235,16 +235,17 @@ export function FlourPageView() {
         {/* Quick View Modal */}
         {quickViewProduct && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/70 backdrop-blur-sm animate-fadeIn"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-stone-900/70 backdrop-blur-sm animate-fadeIn overflow-y-auto"
             onClick={() => setQuickViewProduct(null)}
           >
             <div
-              className="relative w-full max-w-2xl bg-white rounded-sm shadow-ambient overflow-hidden p-6 sm:p-8"
+              className="relative w-full max-w-2xl bg-white rounded-2xl shadow-ambient overflow-hidden p-5 sm:p-8 max-h-[90dvh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setQuickViewProduct(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-stone-100 text-stone-500 hover:bg-stone-200 hover:text-stone-900 transition cursor-pointer"
+                className="sticky top-0 float-right -mt-2 -mr-2 sm:mt-0 sm:mr-0 p-2.5 rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition cursor-pointer z-50 shadow-xs"
+                aria-label="Close modal"
               >
                 <X className="w-5 h-5" />
               </button>

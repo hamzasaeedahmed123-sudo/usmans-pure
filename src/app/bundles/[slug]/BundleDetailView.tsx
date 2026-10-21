@@ -16,7 +16,6 @@ import {
   MessageCircle,
   ShieldCheck,
   Clock,
-  Sparkles,
   ChevronDown,
   RotateCcw,
   ArrowRight,
