@@ -12,7 +12,6 @@ import {
   Search,
   HelpCircle,
   MessageCircle,
-  Sparkles,
   ShieldCheck,
   Truck,
   ArrowRight,

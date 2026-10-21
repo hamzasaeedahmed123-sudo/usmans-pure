@@ -10,6 +10,7 @@ import {
   Leaf,
   Droplet,
   ShoppingBag,
+  Star,
   Award,
 } from "lucide-react";
 
@@ -329,6 +330,9 @@ export function Hero() {
                   <div className="pt-3 mt-3 border-t border-zinc-800/60 flex items-center justify-between">
                     <div className="flex items-center gap-1.5">
                       <span className="font-bold text-white text-sm">{prod.price}</span>
+                      <span className="text-amber-400 flex items-center text-[10px] gap-0.5 ml-1">
+                        <Star className="w-3 h-3 fill-amber-400" /> {prod.rating}
+                      </span>
                     </div>
 
                     <button

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth, DEMO_USERS, UserRole } from "@/context/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, Mail, ArrowRight, ShieldCheck, UserCheck, Sparkles, Eye, EyeOff, CheckCircle2, AlertCircle } from "lucide-react";
+import { Lock, Mail, ArrowRight, ShieldCheck, UserCheck, Eye, EyeOff, CheckCircle2, AlertCircle } from "lucide-react";
 
 function LoginForm() {
   const router = useRouter();
@@ -68,7 +68,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center p-4 sm:p-6 overflow-hidden bg-[#FAF6F0]">
+    <div className="relative min-h-[100dvh] w-full flex flex-col justify-center items-center py-8 pb-32 px-4 sm:px-6 overflow-hidden bg-[#FAF6F0]">
       {/* 1. Atmospheric Luxury Organic Background Visuals */}
       <div className="absolute inset-0 pointer-events-none select-none overflow-hidden">
         {/* Soft Radial Ambient Lighting */}
@@ -125,7 +125,7 @@ function LoginForm() {
             </div>
           </Link>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/70 border border-amber-200/80 text-amber-950 text-[11px] font-bold tracking-wide">
-            <Sparkles className="w-3 h-3 text-amber-700" />
+            <ShieldCheck className="w-3 h-3 text-amber-700" />
             <span>Secure Access Portal</span>
           </div>
           <h1 className="text-2xl font-black text-stone-900 tracking-tight mt-2.5">
@@ -285,7 +285,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#FAF6F0] flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={<div className="min-h-[100dvh] bg-[#FAF6F0] flex items-center justify-center">Loading...</div>}>
       <LoginForm />
     </Suspense>
   );

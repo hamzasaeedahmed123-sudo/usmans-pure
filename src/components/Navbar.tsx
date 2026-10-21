@@ -306,21 +306,30 @@ export function Navbar({
       {/* Mobile Navigation Drawer Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-            className="fixed inset-x-4 top-20 z-50 md:hidden bg-white/95 backdrop-blur-md border border-stone-200 rounded-3xl p-5 shadow-2xl text-stone-900 relative"
-          >
-            {/* Explicit Mobile Menu Close (X) Button */}
-            <button
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="absolute top-4 right-4 p-2 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 transition-colors z-50 cursor-pointer shadow-2xs"
-              aria-label="Close Menu"
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs md:hidden"
+              aria-hidden="true"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: -15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="fixed inset-x-3 sm:inset-x-4 top-20 z-50 md:hidden bg-white/98 backdrop-blur-xl border border-stone-200/90 rounded-3xl p-5 shadow-2xl text-stone-900 max-h-[calc(100dvh-6rem)] overflow-y-auto pb-8"
             >
-              <X className="w-5 h-5" />
-            </button>
+              {/* Explicit Mobile Menu Close (X) Button */}
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="absolute top-4 right-4 p-2.5 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-800 transition-colors z-50 cursor-pointer shadow-xs min-w-[40px] min-h-[40px] flex items-center justify-center"
+                aria-label="Close Menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
 
             <div className="flex flex-col gap-2 font-semibold text-sm pt-2">
               <Link
@@ -407,6 +416,7 @@ export function Navbar({
               <AuthHeaderButton isMobile />
             </div>
           </motion.div>
+        </>
         )}
       </AnimatePresence>
     </>

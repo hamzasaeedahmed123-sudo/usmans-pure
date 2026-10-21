@@ -126,7 +126,7 @@ export default function RootLayout({
         <AuthProvider>
           <StoreDataProvider>
             <CartProvider>
-              <main className="flex-1 w-full max-w-full overflow-x-hidden">{children}</main>
+              <main className="flex-1 w-full max-w-full overflow-x-hidden pb-28 sm:pb-24">{children}</main>
               <CartDrawer />
               <FloatingActions />
             </CartProvider>

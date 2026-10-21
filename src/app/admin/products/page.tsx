@@ -319,8 +319,8 @@ export default function AdminProductsPage() {
 
       {/* 4. Add Product Modal */}
       {addModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-5 sm:p-8 shadow-2xl max-h-[90dvh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
               <div>
                 <h3 className="text-xl font-black text-stone-900 tracking-tight">Add New Product</h3>

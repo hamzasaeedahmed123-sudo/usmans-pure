@@ -6,7 +6,6 @@ import { useStoreData } from "@/context/StoreDataContext";
 import {
   Save,
   RotateCcw,
-  Sparkles,
   CheckCircle2,
   ExternalLink,
   Eye,

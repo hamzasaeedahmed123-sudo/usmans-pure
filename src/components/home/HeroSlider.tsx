@@ -250,7 +250,7 @@ export function HeroSlider() {
     <motion.section
       animate={{ backgroundColor: currentSlide.bgColor }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      className="relative w-full h-screen min-h-[640px] max-h-[1080px] overflow-hidden select-none flex flex-col justify-between"
+      className="relative w-full h-[100dvh] min-h-[600px] max-h-[1080px] overflow-hidden select-none flex flex-col justify-between"
       style={{ color: currentSlide.textColor }}
     >
       {/* 1. Dynamic Top Announcement Bar (Sync with Active Slide using Framer Motion 0.6s) */}

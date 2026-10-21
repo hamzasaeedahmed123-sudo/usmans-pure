@@ -8,6 +8,7 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 import {
+  Star,
   CheckCircle,
   Camera,
   Upload,
@@ -18,7 +19,6 @@ import {
   Check,
   ShieldCheck,
   Award,
-  Sparkles,
   ArrowRight,
   PenLine,
   AlertCircle,
@@ -318,9 +318,11 @@ export function ReviewsPageView() {
                 <div className="bg-white rounded-sm border border-[#1E1510]/10 p-6 sm:p-8 shadow-xs">
                   <div className="flex items-center justify-between pb-6 border-b border-stone-100">
                     <div>
-                      <div className="text-4xl sm:text-5xl font-serif font-bold text-stone-900">98%</div>
-                      <div className="text-xs font-semibold text-emerald-800 mt-1 flex items-center gap-1">
-                        <CheckCircle className="w-3.5 h-3.5 text-emerald-600" /> Exceptional Satisfaction
+                      <div className="text-4xl sm:text-5xl font-serif font-bold text-stone-900">4.9</div>
+                      <div className="flex items-center text-amber-400 mt-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400" />
+                        ))}
                       </div>
                       <div className="text-xs text-stone-500 mt-1">Based on 524 verified orders</div>
                     </div>
@@ -335,33 +337,33 @@ export function ReviewsPageView() {
                   {/* Rating Breakdown Bars */}
                   <div className="mt-5 space-y-2 text-xs">
                     <div className="flex items-center gap-2">
-                      <span className="w-20 text-stone-600 font-medium">Excellent</span>
+                      <span className="w-12 text-stone-600 font-medium">5 Star</span>
                       <div className="flex-1 h-2 rounded-full bg-stone-100 overflow-hidden">
-                        <div className="h-full bg-emerald-600 rounded-full" style={{ width: "92%" }} />
+                        <div className="h-full bg-amber-400 rounded-full" style={{ width: "92%" }} />
                       </div>
                       <span className="w-8 text-right text-stone-500">92%</span>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="w-20 text-stone-600 font-medium">Very Good</span>
+                      <span className="w-12 text-stone-600 font-medium">4 Star</span>
                       <div className="flex-1 h-2 rounded-full bg-stone-100 overflow-hidden">
-                        <div className="h-full bg-emerald-600 rounded-full" style={{ width: "6%" }} />
+                        <div className="h-full bg-amber-400 rounded-full" style={{ width: "6%" }} />
                       </div>
                       <span className="w-8 text-right text-stone-500">6%</span>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="w-20 text-stone-600 font-medium">Good</span>
+                      <span className="w-12 text-stone-600 font-medium">3 Star</span>
                       <div className="flex-1 h-2 rounded-full bg-stone-100 overflow-hidden">
-                        <div className="h-full bg-emerald-600 rounded-full" style={{ width: "2%" }} />
+                        <div className="h-full bg-amber-400 rounded-full" style={{ width: "2%" }} />
                       </div>
                       <span className="w-8 text-right text-stone-500">2%</span>
                     </div>
 
                     <div className="flex items-center gap-2">
-                      <span className="w-20 text-stone-600 font-medium">Fair</span>
+                      <span className="w-12 text-stone-600 font-medium">2 Star</span>
                       <div className="flex-1 h-2 rounded-full bg-stone-100 overflow-hidden">
-                        <div className="h-full bg-emerald-600 rounded-full" style={{ width: "0%" }} />
+                        <div className="h-full bg-amber-400 rounded-full" style={{ width: "0%" }} />
                       </div>
                       <span className="w-8 text-right text-stone-500">0%</span>
                     </div>
@@ -421,12 +423,16 @@ export function ReviewsPageView() {
                     className="bg-white rounded-md border border-[#1E1510]/10 overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 flex flex-col justify-between"
                   >
                     <div className="p-6">
-                      {/* Verified Buyer Tag */}
+                      {/* Rating & Verified Buyer Tag */}
                       <div className="flex items-center justify-between gap-2 mb-2">
+                        <div className="flex items-center text-amber-500">
+                          {[...Array(story.rating)].map((_, i) => (
+                            <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                          ))}
+                        </div>
                         <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-xs flex items-center gap-1">
                           <CheckCircle className="w-3 h-3" /> Verified Buyer
                         </span>
-                        <span className="text-[11px] text-stone-400 font-medium">Verified Household</span>
                       </div>
 
                       <div className="text-[11px] font-bold text-[#8B3A22] uppercase tracking-wider mb-2">
@@ -541,30 +547,37 @@ export function ReviewsPageView() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmitReview} className="space-y-6">
-                  {/* Satisfaction Selector */}
+                  {/* Interactive Star Rating */}
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-[0.14em] text-stone-800 mb-2">
-                      Overall Satisfaction: *
+                      Overall Rating (Select 1 to 5 Stars): *
                     </label>
-                    <div className="flex flex-wrap items-center gap-2">
-                      {[
-                        { label: "Outstanding Purity", val: 5 },
-                        { label: "Very Good", val: 4 },
-                        { label: "Good Quality", val: 3 },
-                      ].map((item) => (
+                    <div className="flex items-center gap-2">
+                      {[1, 2, 3, 4, 5].map((star) => (
                         <button
-                          key={item.label}
+                          key={star}
                           type="button"
-                          onClick={() => setRating(item.val)}
-                          className={`px-3.5 py-2 rounded-md text-xs font-bold transition cursor-pointer border ${
-                            rating === item.val
-                              ? "bg-stone-900 text-white border-stone-900"
-                              : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
-                          }`}
+                          onMouseEnter={() => setHoverRating(star)}
+                          onMouseLeave={() => setHoverRating(0)}
+                          onClick={() => setRating(star)}
+                          className="p-1 cursor-pointer transition-transform hover:scale-115"
                         >
-                          {item.label}
+                          <Star
+                            className={`w-7 h-7 ${
+                              star <= (hoverRating || rating)
+                                ? "fill-amber-400 text-amber-400"
+                                : "text-stone-300"
+                            }`}
+                          />
                         </button>
                       ))}
+                      <span className="ml-3 text-xs font-bold text-[#8B3A22] uppercase tracking-wider">
+                        {rating === 5
+                          ? "5 Stars — Outstanding Purity"
+                          : rating === 4
+                          ? "4 Stars — Very Good"
+                          : `${rating} Stars`}
+                      </span>
                     </div>
                   </div>
 
@@ -822,11 +835,11 @@ export function ReviewsPageView() {
       {/* Image Preview Modal / Lightbox */}
       {lightboxPhoto && (
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto animate-in fade-in duration-200"
           onClick={() => setLightboxPhoto(null)}
         >
           <div
-            className="relative max-w-3xl w-full bg-stone-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl animate-in zoom-in-95 duration-200"
+            className="relative max-w-3xl w-full bg-stone-900 rounded-2xl overflow-hidden border border-white/10 shadow-2xl animate-in zoom-in-95 duration-200 max-h-[92dvh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Lightbox Header / Close button */}

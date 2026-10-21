@@ -18,7 +18,6 @@ import {
   CheckCircle2,
   MapPin,
   ArrowRight,
-  Sparkles,
   Heart,
   Eye,
   Check,

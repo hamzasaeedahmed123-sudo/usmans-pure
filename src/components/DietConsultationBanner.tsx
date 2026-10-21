@@ -1,6 +1,7 @@
 "use client";
 
-import { MessageCircle, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import { MessageCircle, CheckCircle2, Truck } from "lucide-react";
 
 export function DietConsultationBanner() {
   return (
@@ -49,11 +50,11 @@ export function DietConsultationBanner() {
                 className="py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition shadow-ambient shadow-amber-400/20 active:scale-98"
               >
                 <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
-                <span>Order on WhatsApp</span>
+                <span>Order Freshly Milled on WhatsApp</span>
               </a>
 
               <div className="flex items-center justify-center sm:justify-start gap-2 text-xs text-emerald-300 font-medium">
-                <CheckCircle2 className="w-4 h-4 text-amber-400 shrink-0" />
+                <Truck className="w-4 h-4 text-amber-400 shrink-0" />
                 <span>Freshly Milled On Order &bull; Cash on Delivery Across Pakistan</span>
               </div>
             </div>
