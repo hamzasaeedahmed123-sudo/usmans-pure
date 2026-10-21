@@ -32,65 +32,20 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://usmanspure.com"),
-  title: {
-    default: "Usman's Pure | 100% Stone-Ground Chakki Atta & Organics Pakistan",
-    template: "%s | Usman's Pure",
-  },
-  description:
-    "Buy 100% pure stone-ground whole wheat atta, diabetic flour, multigrain flour, and chemical-free organic spices in Pakistan. Doorstep Cash on Delivery.",
+export const metadata = {
+  title: "Usman's Pure - Chakki Atta, Flour & Spices",
+  description: "Fresh stone-ground chakki atta, pure flour, whole grains, and organic spices in Pakistan.",
   keywords: [
-    "pure chakki atta",
-    "stone ground flour pakistan",
-    "whole wheat atta lahore",
-    "diabetic atta",
-    "multigrain flour for weight loss",
-    "unadulterated organic flour",
-    "cold milled chakki atta",
-    "rosella tea pakistan",
-    "lakadong turmeric pakistan",
-    "chakki atta karachi",
-    "chakki atta islamabad",
+    "atta",
+    "flour",
+    "chakki atta",
+    "chakki flour",
+    "grains",
+    "wheat",
+    "organic spices",
+    "herbal tea",
+    "usman pure"
   ],
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Usman's Pure | 100% Stone-Ground Chakki Atta & Organics Pakistan",
-    description:
-      "Buy 100% pure stone-ground whole wheat atta, diabetic flour, multigrain flour, and chemical-free organic spices in Pakistan. Doorstep Cash on Delivery.",
-    url: "https://usmanspure.com",
-    siteName: "Usman's Pure Products",
-    locale: "en_PK",
-    type: "website",
-    images: [
-      {
-        url: "/images/products/prod-3.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Usman's Pure Products - Stone-Ground Chakki Flours & Organics",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Usman's Pure | 100% Stone-Ground Chakki Atta & Organics Pakistan",
-    description:
-      "Buy 100% pure stone-ground whole wheat atta, diabetic flour, multigrain flour, and chemical-free organic spices in Pakistan.",
-    images: ["/images/products/prod-3.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
 };
 
 const organizationSchema = {
