@@ -433,7 +433,7 @@ export function FaqsPageView() {
 
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
               <a
-                href="https://wa.me/923000000000?text=Hello%20Usman%27s%20Pure%2C%20I%20have%20a%20question%20regarding%20your%20products."
+                href="https://wa.me/923008472910?text=Hello%20Usman%27s%20Pure%2C%20I%20have%20a%20question%20regarding%20your%20products."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-md bg-[#25D366] hover:bg-[#20ba5a] text-[#1E1510] text-xs font-bold uppercase tracking-[0.16em] transition-all shadow-md hover:shadow-lg cursor-pointer"

@@ -17,7 +17,7 @@ export function FloatingActions() {
   const isCart = pathname === "/cart";
 
   const whatsappHref =
-    "https://wa.me/923000000000?text=Assalam-o-Alaikum%20Usman's%20Pure%20Products!%20I%20have%20an%20inquiry%20about%20your%20pure%20chakki%20flours%20and%20spices.";
+    "https://wa.me/923008472910?text=Assalam-o-Alaikum%20Usman's%20Pure%20Products!%20I%20have%20an%20inquiry%20about%20your%20pure%20chakki%20flours%20and%20spices.";
 
   return (
     <div

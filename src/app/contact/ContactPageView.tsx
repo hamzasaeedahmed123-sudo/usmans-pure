@@ -41,7 +41,7 @@ export function ContactPageView() {
     )}%0ACity: ${encodeURIComponent(formData.city)}%0ATopic: ${encodeURIComponent(
       formData.topic
     )}%0AMessage: ${encodeURIComponent(formData.message)}`;
-    window.open(`https://wa.me/923000000000?text=${text}`, "_blank");
+    window.open(`https://wa.me/923008472910?text=${text}`, "_blank");
   };
 
   const faqs = [
@@ -125,7 +125,7 @@ export function ContactPageView() {
                 <div className="space-y-6">
                   {/* WhatsApp Support */}
                   <a
-                    href="https://wa.me/923000000000"
+                    href="https://wa.me/923008472910"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-4 rounded-sm bg-emerald-50 border border-emerald-200 flex items-start gap-4 hover:bg-emerald-100 transition group"
@@ -153,7 +153,7 @@ export function ContactPageView() {
                     </div>
                     <div>
                       <div className="text-xs font-bold text-stone-500 uppercase">Customer Helpline</div>
-                      <div className="text-sm font-bold text-stone-900 mt-0.5">+92 300 0000000</div>
+                      <div className="text-sm font-bold text-stone-900 mt-0.5">+92 300 8472910</div>
                       <div className="text-xs text-stone-500">Toll-free / Regular call rates</div>
                     </div>
                   </div>

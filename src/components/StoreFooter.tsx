@@ -87,11 +87,11 @@ export function StoreFooter() {
                 {/* Phone / UAN - Large, bold and tap-to-call */}
                 <div>
                   <a
-                    href="tel:+923000000000"
+                    href="tel:+923008472910"
                     className="flex items-center gap-3 text-lg sm:text-xl font-bold text-white hover:text-[#D8B486] transition-colors group"
                   >
                     <Phone className="w-6 h-6 text-[#D8B486] shrink-0 group-hover:scale-110 transition-transform" />
-                    <span>+92 300 0000000</span>
+                    <span>+92 300 8472910</span>
                   </a>
                   <span className="text-xs text-[#A89887] ml-9 block mt-0.5">
                     Toll-Free UAN &amp; Order Helpline
@@ -124,7 +124,7 @@ export function StoreFooter() {
 
               {/* Direct WhatsApp CTA Button */}
               <a
-                href="https://wa.me/923000000000"
+                href="https://wa.me/923008472910"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3 px-5 rounded-xl font-bold text-sm bg-[#25D366] text-white flex items-center gap-2.5 shadow-md hover:bg-[#20ba59] hover:shadow-lg transition-all duration-200 w-fit mt-5 cursor-pointer"

@@ -26,7 +26,7 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
   const { cmsContent } = useStoreData();
 
   const primaryText = cmsContent?.announcementBarText || "100% Traditional Stone-Ground • Zero Maida • Freshly Milled";
-  const subText = cmsContent?.announcementSubText || "Free Nationwide Shipping on Orders Rs 2,000+ • Cash on Delivery";
+  const subText = cmsContent?.announcementSubText || "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery";
 
   return (
     <motion.div
@@ -42,7 +42,7 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
         {subText}
       </span>
       <span className="font-semibold sm:hidden">
-        • Free Shipping Rs 2,000+
+        • Free Shipping Rs 10,000+
       </span>
     </motion.div>
   );

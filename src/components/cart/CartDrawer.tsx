@@ -53,7 +53,7 @@ export function CartDrawer() {
     };
   }, [isOpen]);
 
-  const freeShippingThreshold = 2000;
+  const freeShippingThreshold = 10000;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
   const progressPercent = Math.min(100, Math.round((subtotal / freeShippingThreshold) * 100));
 
@@ -69,7 +69,7 @@ export function CartDrawer() {
       deliveryFee === 0 ? "FREE Nationwide" : `Rs ${deliveryFee}`
     }%0A*Final Total:* Rs ${finalTotal.toLocaleString()}%0A%0APlease confirm availability and delivery details. JazakAllah!`;
 
-    return `https://wa.me/923000000000?text=${text}`;
+    return `https://wa.me/923008472910?text=${text}`;
   };
 
   return (

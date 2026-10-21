@@ -149,75 +149,76 @@ function SignupForm() {
         )}
 
         {/* Form Fields */}
-        <form onSubmit={handleSubmit} className="space-y-3.5">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
               Full Name
             </label>
             <div className="relative">
-              <UserIcon className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <UserIcon className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Usman Malik"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Mail className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@domain.com"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
               Phone Number (Optional)
             </label>
             <div className="relative">
-              <Phone className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Phone className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="tel"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="0300 1234567"
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white/90 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
+            <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
               Password
             </label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Lock className="w-4 h-4 text-stone-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type={showPassword ? "text" : "password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="At least 6 characters"
-                className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/90 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                className="w-full pl-10 pr-11 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword((p) => !p)}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 cursor-pointer"
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-700 cursor-pointer p-1"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -228,11 +229,11 @@ function SignupForm() {
             <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1.5">
               Account Type
             </label>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2.5">
               <button
                 type="button"
                 onClick={() => setRole("customer")}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition border cursor-pointer ${
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition border cursor-pointer ${
                   role === "customer"
                     ? "bg-[#1C1613] text-white border-black shadow-xs"
                     : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
@@ -243,7 +244,7 @@ function SignupForm() {
               <button
                 type="button"
                 onClick={() => setRole("admin")}
-                className={`py-2 px-3 rounded-xl text-xs font-bold transition border cursor-pointer ${
+                className={`py-2.5 px-3 rounded-xl text-xs font-bold transition border cursor-pointer ${
                   role === "admin"
                     ? "bg-[#1C1613] text-white border-black shadow-xs"
                     : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
@@ -254,34 +255,36 @@ function SignupForm() {
             </div>
           </div>
 
-          <div className="pt-1">
-            <label className="flex items-start gap-2 cursor-pointer select-none text-xs font-medium text-stone-700">
+          <div className="pt-1.5 pb-1">
+            <label className="flex items-start gap-2.5 cursor-pointer select-none text-xs font-medium text-stone-700">
               <input
                 type="checkbox"
                 checked={agreed}
                 onChange={(e) => setAgreed(e.target.checked)}
-                className="w-4 h-4 rounded text-amber-900 focus:ring-amber-900/40 border-stone-300 mt-0.5"
+                className="w-4 h-4 rounded text-amber-900 focus:ring-amber-900/40 border-stone-300 mt-0.5 shrink-0"
               />
-              <span>
-                I agree to the <span className="underline">Terms of Service</span> and acknowledge Usman&apos;s Pure guarantee.
+              <span className="leading-relaxed">
+                I agree to the <span className="underline font-semibold">Terms of Service</span> and acknowledge Usman&apos;s Pure guarantee.
               </span>
             </label>
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full py-3 px-4 rounded-xl font-bold text-sm bg-[#1C1613] hover:bg-black text-white transition-all shadow-md active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed mt-3"
-          >
-            {loading ? (
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <>
-                <span>Create Pure Account</span>
-                <ArrowRight className="w-4 h-4" />
-              </>
-            )}
-          </button>
+          <div className="pt-2">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3.5 px-4 rounded-xl font-bold text-sm bg-[#1C1613] hover:bg-black text-white transition-all shadow-md active:scale-98 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+            >
+              {loading ? (
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : (
+                <>
+                  <span>Create Pure Account</span>
+                  <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
+          </div>
         </form>
 
         {/* Footer Link */}
