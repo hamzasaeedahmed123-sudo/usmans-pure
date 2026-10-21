@@ -127,17 +127,28 @@ export function Navbar({
           </span>
         </div>
 
-        {/* Center Section: Navigation Pill Menu (wrapped in requested pill container) */}
-        <nav className="hidden md:flex items-center gap-1 sm:gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-stone-200/60 shadow-sm">
-          {/* Item 1: Home */}
+        {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
+        <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 bg-[#ede8e1]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink-0">
+          {/* 1. Home */}
           <Link
             href="/"
-            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             Home
           </Link>
 
-          {/* Item 2: Shop with Hover / Click Dropdown */}
+          {/* 2. Doctor's Choice with Verified Badge */}
+          <Link
+            href="/doctors-choice"
+            className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+          >
+            <span>Doctor&apos;s Choice</span>
+            <span className="bg-emerald-700 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+              Verified
+            </span>
+          </Link>
+
+          {/* 3. All Products Dropdown */}
           <div
             ref={dropdownRef}
             className="relative"
@@ -146,19 +157,21 @@ export function Navbar({
           >
             <button
               onClick={() => setProductsDropdownOpen((prev) => !prev)}
-              className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
+              className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition cursor-pointer whitespace-nowrap"
             >
-              <span>Shop</span>
+              <span>All Products</span>
               <svg
-                className={`w-3 h-3 transition-transform duration-200 ${
+                className={`w-3.5 h-3.5 transition-transform duration-200 ${
                   productsDropdownOpen ? "rotate-180" : ""
                 }`}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
+                viewBox="0 0 20 20"
+                fill="currentColor"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
               </svg>
             </button>
 
@@ -213,33 +226,36 @@ export function Navbar({
             </AnimatePresence>
           </div>
 
-          {/* Item 3: Doctor's Choice / Bundles */}
+          {/* 4. Mega Bundles with Save Badge */}
           <Link
             href="/bundles"
-            className="hidden lg:inline-flex items-center px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+            className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
-            <span>Bundles</span>
+            <span>Mega Bundles</span>
+            <span className="bg-amber-600 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+              Save
+            </span>
           </Link>
 
-          {/* Item 4: About Us */}
+          {/* 5. About Us */}
           <Link
             href="/about"
-            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             About Us
           </Link>
 
-          {/* Item 5: Contact */}
+          {/* 6. Contact */}
           <Link
             href="/contact"
-            className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+            className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             Contact
           </Link>
         </nav>
 
-        {/* Right Section: Action flex container strictly outside nav pill */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        {/* Right Section: Expanded Spacing (ml-auto lg:ml-6 shrink-0) with zero overlap */}
+        <div className="flex items-center gap-3 ml-auto lg:ml-6 shrink-0">
           {/* Quick Cart Trigger */}
           <button
             onClick={() => {
@@ -248,10 +264,10 @@ export function Navbar({
               }
             }}
             aria-label="Open Basket"
-            className={`w-10 h-10 rounded-full backdrop-blur-md border flex items-center justify-center shadow-xs cursor-pointer transition-colors duration-500 ease-in-out ${themeConfig.cartBtn}`}
+            className="w-10 h-10 rounded-full bg-[#ede8e1] backdrop-blur-md border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer"
           >
             <svg
-              className="w-4 h-4"
+              className="w-4 h-4 text-stone-800"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -272,14 +288,14 @@ export function Navbar({
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Open navigation menu"
-            className={`md:hidden w-10 h-10 rounded-full backdrop-blur-md border flex items-center justify-center shadow-xs cursor-pointer transition-colors duration-500 ease-in-out ${themeConfig.cartBtn}`}
+            className="lg:hidden w-10 h-10 rounded-full bg-[#ede8e1] backdrop-blur-md border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer"
           >
             {mobileMenuOpen ? (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -296,7 +312,7 @@ export function Navbar({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs md:hidden"
+              className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs lg:hidden"
               aria-hidden="true"
             />
             <motion.div
@@ -304,7 +320,7 @@ export function Navbar({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className="fixed inset-x-3 sm:inset-x-4 top-20 z-50 md:hidden bg-white/98 backdrop-blur-xl border border-stone-200/90 rounded-3xl p-5 shadow-2xl text-stone-900 max-h-[calc(100dvh-6rem)] overflow-y-auto pb-8"
+              className="fixed inset-x-3 sm:inset-x-4 top-20 z-50 lg:hidden bg-white/98 backdrop-blur-xl border border-stone-200/90 rounded-3xl p-5 shadow-2xl text-stone-900 max-h-[calc(100dvh-6rem)] overflow-y-auto pb-8"
             >
               {/* Explicit Mobile Menu Close (X) Button */}
               <button
