@@ -16,6 +16,9 @@ import {
   AlertCircle,
   CheckCircle2,
   ExternalLink,
+  UploadCloud,
+  Image as ImageIcon,
+  Link as LinkIcon,
 } from "lucide-react";
 
 export default function AdminProductsPage() {
@@ -37,10 +40,32 @@ export default function AdminProductsPage() {
   const [newTagline, setNewTagline] = useState("100% Pure & Stone-Ground");
   const [newDescription, setNewDescription] = useState("");
   const [newBenefits, setNewBenefits] = useState("Stone-Ground Chakki\nZero Preservatives\n100% Pure Organics");
+  const [newImage, setNewImage] = useState<string>("");
+  const [imageUrlInput, setImageUrlInput] = useState<string>("");
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(""), 3000);
+  };
+
+  const handleFileProcess = (file: File) => {
+    if (!file.type.match(/^image\/(png|jpeg|webp)$/)) {
+      alert("Please upload a PNG, JPG, or WEBP image file.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image file size should be less than 5MB.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      if (typeof event.target?.result === "string") {
+        setNewImage(event.target.result);
+      }
+    };
+    reader.readAsDataURL(file);
   };
 
   const filteredProducts = products.filter((p) => {
@@ -89,6 +114,14 @@ export default function AdminProductsPage() {
       spices: "Cold Stone-Pounded Spices",
     };
 
+    const finalImage =
+      newImage.trim() ||
+      (newCategory === "flours"
+        ? "/images/products/prod-1.jpg"
+        : newCategory === "teas"
+        ? "/images/products/prod-2.jpg"
+        : "/images/products/prod-4.jpg");
+
     const newProd: Omit<Product, "id"> = {
       title: newTitle.trim(),
       category: newCategory,
@@ -98,12 +131,7 @@ export default function AdminProductsPage() {
       priceFormatted: `₨${Number(newPrice).toLocaleString()}`,
       originalPriceFormatted: `₨${Number(newOriginalPrice).toLocaleString()}`,
       discountBadge: "Fresh Batch",
-      image:
-        newCategory === "flours"
-          ? "/images/products/prod-1.jpg"
-          : newCategory === "teas"
-          ? "/images/products/prod-2.jpg"
-          : "/images/products/prod-4.jpg",
+      image: finalImage,
       link: "/products",
       rating: 5.0,
       reviewCount: 1,
@@ -121,6 +149,8 @@ export default function AdminProductsPage() {
     // Reset form
     setNewTitle("");
     setNewDescription("");
+    setNewImage("");
+    setImageUrlInput("");
   };
 
   return (
@@ -222,6 +252,7 @@ export default function AdminProductsPage() {
                             src={p.image}
                             alt={p.title}
                             fill
+                            unoptimized={p.image.startsWith("data:") || p.image.startsWith("http")}
                             className="object-contain p-0.5"
                           />
                         </div>
@@ -335,6 +366,147 @@ export default function AdminProductsPage() {
             </div>
 
             <form onSubmit={handleCreateProduct} className="space-y-4">
+              {/* Product Image Upload Field (Above Product Title) */}
+              <div>
+                <label className="block text-xs font-bold text-stone-700 mb-1.5 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <ImageIcon className="w-3.5 h-3.5 text-amber-800" />
+                    <span>Product Image</span>
+                  </span>
+                  <span className="text-[11px] font-normal text-stone-500">
+                    PNG, JPG, or WEBP (Max 5MB)
+                  </span>
+                </label>
+
+                {newImage ? (
+                  /* Live Preview Thumbnail with Remove / Change Action */
+                  <div className="relative p-3 rounded-2xl bg-stone-50 border border-stone-200 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="relative w-14 h-14 rounded-xl bg-white border border-stone-200 overflow-hidden shrink-0 shadow-2xs">
+                        <Image
+                          src={newImage}
+                          alt="Product Preview"
+                          fill
+                          unoptimized={newImage.startsWith("data:") || newImage.startsWith("http")}
+                          className="object-contain p-1"
+                        />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold text-stone-900 truncate">Image Attached</p>
+                        <p className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                          <CheckCircle2 className="w-3 h-3 shrink-0" /> Ready for catalog
+                        </p>
+                        <p className="text-[10px] text-stone-400 truncate max-w-xs mt-0.5">
+                          {newImage.startsWith("data:") ? "Local file (Base64 data URL)" : newImage}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        className="px-2.5 py-1.5 rounded-lg bg-stone-200 hover:bg-stone-300 text-stone-700 text-[11px] font-bold transition cursor-pointer"
+                      >
+                        Change
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setNewImage("");
+                          if (fileInputRef.current) fileInputRef.current.value = "";
+                        }}
+                        className="p-1.5 rounded-lg hover:bg-red-50 text-red-600 transition cursor-pointer"
+                        title="Remove Image"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  /* Dropzone & File Picker */
+                  <div className="space-y-2">
+                    <div
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDragging(true);
+                      }}
+                      onDragLeave={() => setIsDragging(false)}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setIsDragging(false);
+                        const file = e.dataTransfer.files?.[0];
+                        if (file) handleFileProcess(file);
+                      }}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`border-2 border-dashed rounded-2xl p-4 sm:p-5 text-center transition cursor-pointer flex flex-col items-center justify-center gap-2 ${
+                        isDragging
+                          ? "border-amber-700 bg-amber-50/50"
+                          : "border-stone-300 hover:border-amber-800 bg-stone-50/60 hover:bg-stone-50"
+                      }`}
+                    >
+                      <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center">
+                        <UploadCloud className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-bold text-stone-800">
+                          Click to Browse or Drag &amp; Drop Image
+                        </p>
+                        <p className="text-[11px] text-stone-500 mt-0.5">
+                          Supports high-resolution PNG, JPG, or WEBP
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Alternative URL Input */}
+                    <div className="flex items-center gap-2">
+                      <div className="relative flex-1">
+                        <LinkIcon className="w-3.5 h-3.5 text-stone-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="text"
+                          placeholder="Or enter direct Image URL (e.g. /images/products/prod-1.jpg or https://...)"
+                          value={imageUrlInput}
+                          onChange={(e) => setImageUrlInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                              e.preventDefault();
+                              if (imageUrlInput.trim()) {
+                                setNewImage(imageUrlInput.trim());
+                                setImageUrlInput("");
+                              }
+                            }
+                          }}
+                          className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (imageUrlInput.trim()) {
+                            setNewImage(imageUrlInput.trim());
+                            setImageUrlInput("");
+                          }
+                        }}
+                        className="px-3 py-1.5 rounded-xl bg-stone-200 hover:bg-stone-300 text-stone-800 text-xs font-bold transition cursor-pointer shrink-0"
+                      >
+                        Set URL
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) handleFileProcess(file);
+                  }}
+                  className="hidden"
+                />
+              </div>
+
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-1">Product Title</label>
                 <input

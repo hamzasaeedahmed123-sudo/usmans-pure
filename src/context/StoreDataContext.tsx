@@ -30,6 +30,27 @@ export interface Order {
   notes?: string;
 }
 
+export interface CustomPromoBanner {
+  id: string;
+  badge: string;
+  title: string;
+  discountTag: string;
+  description: string;
+  link: string;
+  buttonText: string;
+  bgColor: string;
+  enabled: boolean;
+}
+
+export interface SaleBannerConfig {
+  enabled: boolean;
+  badgeTitle: string;
+  discountTag: string;
+  subtext: string;
+  buttonText?: string;
+  link?: string;
+}
+
 export interface CMSContent {
   announcementBarText: string;
   announcementSubText: string;
@@ -66,6 +87,8 @@ export interface CMSContent {
     megaBundlesEnabled: boolean;
     consultationBannerEnabled: boolean;
   };
+  saleBanner: SaleBannerConfig;
+  customBanners: CustomPromoBanner[];
 }
 
 export const DEFAULT_CMS: CMSContent = {
@@ -104,6 +127,27 @@ export const DEFAULT_CMS: CMSContent = {
     megaBundlesEnabled: true,
     consultationBannerEnabled: true,
   },
+  saleBanner: {
+    enabled: true,
+    badgeTitle: "Grand Opening Sale",
+    discountTag: "Flat 15% OFF on Multigrain Flour",
+    subtext: "Fresh stone-milled chakki flour packed with 100% natural wheat germ. Use code PURE15 at checkout.",
+    buttonText: "Shop Flash Sale",
+    link: "/products",
+  },
+  customBanners: [
+    {
+      id: "banner-custom-1",
+      badge: "Limited Batch",
+      title: "Hand-Harvested Desi Wheat",
+      discountTag: "Special 10% Bundle Discount",
+      description: "Direct from traditional farmers with zero bleaching and zero processing chemicals.",
+      link: "/products",
+      buttonText: "Explore Grains",
+      bgColor: "#2A1F17",
+      enabled: true,
+    },
+  ],
 };
 
 export const INITIAL_ORDERS: Order[] = [];
@@ -170,7 +214,12 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       if (storedCMS) {
         const parsed = JSON.parse(storedCMS);
         if (parsed && parsed.heroSlides) {
-          setCmsContent(parsed);
+          setCmsContent({
+            ...DEFAULT_CMS,
+            ...parsed,
+            saleBanner: { ...DEFAULT_CMS.saleBanner, ...(parsed.saleBanner || {}) },
+            customBanners: parsed.customBanners || DEFAULT_CMS.customBanners,
+          });
         }
       }
     } catch (e) {
@@ -331,6 +380,11 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
         ...prev.promotions,
         ...(updates.promotions || {}),
       },
+      saleBanner: {
+        ...prev.saleBanner,
+        ...(updates.saleBanner || {}),
+      },
+      customBanners: updates.customBanners !== undefined ? updates.customBanners : prev.customBanners,
     }));
   };
 
