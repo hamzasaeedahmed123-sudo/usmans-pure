@@ -38,7 +38,9 @@ export default function AdminOrdersPage() {
       o.orderNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
       o.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
       o.phone.includes(searchQuery) ||
-      o.city.toLowerCase().includes(searchQuery.toLowerCase());
+      o.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (o.transactionId && o.transactionId.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (o.senderAccountTitle && o.senderAccountTitle.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const matchesStatus = statusFilter === "all" || o.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -182,7 +184,17 @@ export default function AdminOrdersPage() {
                     </td>
 
                     <td className="py-4 px-6">
-                      <span className="text-[11px] text-stone-600 font-medium">{order.paymentMethod}</span>
+                      <span className="text-[11px] text-stone-700 font-semibold block">{order.paymentMethod}</span>
+                      {order.transactionId && (
+                        <div className="text-[10px] font-mono font-bold text-amber-900 bg-amber-50 border border-amber-200/80 px-1.5 py-0.5 rounded mt-1 inline-block">
+                          TID: {order.transactionId}
+                        </div>
+                      )}
+                      {order.senderAccountTitle && (
+                        <p className="text-[10px] text-stone-500 mt-0.5">
+                          From: <span className="font-medium text-stone-700">{order.senderAccountTitle}</span>
+                        </p>
+                      )}
                     </td>
 
                     <td className="py-4 px-6">
@@ -268,9 +280,33 @@ export default function AdminOrdersPage() {
                 <MapPin className="w-3.5 h-3.5 text-stone-400 mt-0.5 shrink-0" />
                 <span>{selectedOrder.address}, {selectedOrder.city}</span>
               </div>
-              <div className="pt-1 text-[11px] text-stone-500 border-t border-stone-200/60">
-                <span>Payment: </span>
-                <span className="font-bold text-stone-800">{selectedOrder.paymentMethod}</span>
+              <div className="pt-2 text-[11px] text-stone-600 border-t border-stone-200/60 space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-stone-500">Payment Gateway:</span>
+                  <span className="font-bold text-stone-800">{selectedOrder.paymentMethod}</span>
+                </div>
+                {selectedOrder.senderAccountTitle && (
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-stone-500">Sender Account:</span>
+                    <span className="font-bold text-stone-900">{selectedOrder.senderAccountTitle}</span>
+                  </div>
+                )}
+                {selectedOrder.transactionId && (
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-stone-500">Transaction ID (TID):</span>
+                    <span className="font-mono font-black text-amber-950 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300">
+                      {selectedOrder.transactionId}
+                    </span>
+                  </div>
+                )}
+                {selectedOrder.receiptImage && (
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-stone-500">Receipt Attached:</span>
+                    <span className="font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 text-[10px]">
+                      {selectedOrder.receiptImage}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
 

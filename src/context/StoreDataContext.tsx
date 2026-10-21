@@ -28,6 +28,9 @@ export interface Order {
   paymentMethod: "Cash on Delivery (COD)" | "JazzCash" | "Easypaisa" | "Bank Transfer";
   date: string;
   notes?: string;
+  transactionId?: string;
+  senderAccountTitle?: string;
+  receiptImage?: string;
 }
 
 export interface CustomPromoBanner {
@@ -150,12 +153,65 @@ export const DEFAULT_CMS: CMSContent = {
   ],
 };
 
+export interface PaymentCredentials {
+  bankName: string;
+  bankAccountTitle: string;
+  bankIban: string;
+  raastId: string;
+  jazzCashNumber: string;
+  jazzCashTitle: string;
+  easyPaisaNumber: string;
+  easyPaisaTitle: string;
+  paymentInstructions: string;
+}
+
+export interface StoreSettings {
+  storeName: string;
+  storePhone: string;
+  storeEmail: string;
+  storeAddress: string;
+  freeShippingThreshold: number;
+  standardDeliveryFee: number;
+  codEnabled: boolean;
+  jazzCashEnabled: boolean;
+  easyPaisaEnabled: boolean;
+  bankTransferEnabled: boolean;
+  paymentCredentials: PaymentCredentials;
+}
+
+export const DEFAULT_PAYMENT_CREDENTIALS: PaymentCredentials = {
+  bankName: "Meezan Bank Ltd",
+  bankAccountTitle: "Usman's Pure Products",
+  bankIban: "PK36MEZN0001098472910101",
+  raastId: "0300-8472910",
+  jazzCashNumber: "0300-8472910",
+  jazzCashTitle: "Usman's Pure Products",
+  easyPaisaNumber: "0345-1234567",
+  easyPaisaTitle: "Usman's Pure Products",
+  paymentInstructions: "Please transfer the total order amount using Raast, Online Banking, or Mobile Wallet. Enter your Transaction ID (TID) or sender account title below for instant automated verification.",
+};
+
+export const DEFAULT_STORE_SETTINGS: StoreSettings = {
+  storeName: "Usman's Pure Products",
+  storePhone: "+92 300 8472910",
+  storeEmail: "support@usmanspure.com",
+  storeAddress: "Milling Facility, G.T. Road, Lahore, Punjab, Pakistan",
+  freeShippingThreshold: 2000,
+  standardDeliveryFee: 250,
+  codEnabled: true,
+  jazzCashEnabled: true,
+  easyPaisaEnabled: true,
+  bankTransferEnabled: true,
+  paymentCredentials: DEFAULT_PAYMENT_CREDENTIALS,
+};
+
 export const INITIAL_ORDERS: Order[] = [];
 
 interface StoreDataContextType {
   products: Product[];
   orders: Order[];
   cmsContent: CMSContent;
+  storeSettings: StoreSettings;
   isLoaded: boolean;
   addProduct: (product: Omit<Product, "id">) => void;
   updateProduct: (id: string, updates: Partial<Product>) => void;
@@ -164,6 +220,7 @@ interface StoreDataContextType {
   updateOrderStatus: (orderId: string, status: OrderStatus) => void;
   deleteOrder: (orderId: string) => void;
   updateCMS: (updates: Partial<CMSContent>) => void;
+  updateStoreSettings: (updates: Partial<StoreSettings>) => void;
   resetToDefaults: () => void;
 }
 
@@ -173,12 +230,14 @@ const STORAGE_KEYS = {
   PRODUCTS: "usman_admin_products",
   ORDERS: "usman_admin_orders",
   CMS: "usman_admin_cms",
+  SETTINGS: "usman_admin_settings",
 };
 
 export function StoreDataProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
   const [cmsContent, setCmsContent] = useState<CMSContent>(DEFAULT_CMS);
+  const [storeSettings, setStoreSettings] = useState<StoreSettings>(DEFAULT_STORE_SETTINGS);
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Load persisted store data on mount
@@ -219,6 +278,21 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
             ...parsed,
             saleBanner: { ...DEFAULT_CMS.saleBanner, ...(parsed.saleBanner || {}) },
             customBanners: parsed.customBanners || DEFAULT_CMS.customBanners,
+          });
+        }
+      }
+
+      const storedSettings = localStorage.getItem(STORAGE_KEYS.SETTINGS);
+      if (storedSettings) {
+        const parsed = JSON.parse(storedSettings);
+        if (parsed) {
+          setStoreSettings({
+            ...DEFAULT_STORE_SETTINGS,
+            ...parsed,
+            paymentCredentials: {
+              ...DEFAULT_PAYMENT_CREDENTIALS,
+              ...(parsed.paymentCredentials || {}),
+            },
           });
         }
       }
@@ -388,13 +462,38 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     }));
   };
 
+  useEffect(() => {
+    if (!isLoaded) return;
+    try {
+      localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(storeSettings));
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("usman-settings-updated", { detail: storeSettings }));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [storeSettings, isLoaded]);
+
+  const updateStoreSettings = (updates: Partial<StoreSettings>) => {
+    setStoreSettings((prev) => ({
+      ...prev,
+      ...updates,
+      paymentCredentials: {
+        ...prev.paymentCredentials,
+        ...(updates.paymentCredentials || {}),
+      },
+    }));
+  };
+
   const resetToDefaults = () => {
     setProducts(DEFAULT_PRODUCTS);
     setOrders(INITIAL_ORDERS);
     setCmsContent(DEFAULT_CMS);
+    setStoreSettings(DEFAULT_STORE_SETTINGS);
     localStorage.removeItem(STORAGE_KEYS.PRODUCTS);
     localStorage.removeItem(STORAGE_KEYS.ORDERS);
     localStorage.removeItem(STORAGE_KEYS.CMS);
+    localStorage.removeItem(STORAGE_KEYS.SETTINGS);
   };
 
   return (
@@ -403,6 +502,7 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
         products,
         orders,
         cmsContent,
+        storeSettings,
         isLoaded,
         addProduct,
         updateProduct,
@@ -411,6 +511,7 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
         updateOrderStatus,
         deleteOrder,
         updateCMS,
+        updateStoreSettings,
         resetToDefaults,
       }}
     >
