@@ -94,6 +94,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                     alt={item.title}
                     fill
                     sizes={isFullWidthMobile ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 768px) 50vw, 33vw"}
+                    loading="lazy"
                     className="w-full h-full object-cover brightness-105 contrast-105 transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

@@ -23,8 +23,16 @@ import {
   Redo2,
   FolderOpen,
 } from "lucide-react";
-import { RichTextEditor } from "../components/RichTextEditor";
-import { MediaLibraryModal } from "../components/MediaLibraryModal";
+import dynamic from "next/dynamic";
+
+const RichTextEditor = dynamic(
+  () => import("../components/RichTextEditor").then((m) => m.RichTextEditor),
+  { ssr: false }
+);
+const MediaLibraryModal = dynamic(
+  () => import("../components/MediaLibraryModal").then((m) => m.MediaLibraryModal),
+  { ssr: false }
+);
 
 export default function AdminProductsPage() {
   const { products, addProduct, updateProduct, deleteProduct } = useStoreData();

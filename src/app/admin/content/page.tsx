@@ -30,8 +30,17 @@ import {
   Image as ImageIcon,
   Check,
 } from "lucide-react";
-import { RichTextEditor } from "../components/RichTextEditor";
-import { MediaLibraryModal, MediaItem } from "../components/MediaLibraryModal";
+import dynamic from "next/dynamic";
+import type { MediaItem } from "../components/MediaLibraryModal";
+
+const RichTextEditor = dynamic(
+  () => import("../components/RichTextEditor").then((m) => m.RichTextEditor),
+  { ssr: false }
+);
+const MediaLibraryModal = dynamic(
+  () => import("../components/MediaLibraryModal").then((m) => m.MediaLibraryModal),
+  { ssr: false }
+);
 
 export type BlockType = "announcement" | "promo_banner" | "sale_spotlight" | "faq_item";
 

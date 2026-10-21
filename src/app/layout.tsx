@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Jost, Geist_Mono } from "next/font/google";
+import dynamic from "next/dynamic";
 import "./globals.css";
 
 const jost = Jost({
   variable: "--font-jost",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
@@ -13,18 +15,20 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { StoreDataProvider } from "@/context/StoreDataContext";
-import { CartDrawer } from "@/components/cart/CartDrawer";
-import { FloatingActions } from "@/components/layout/FloatingActions";
+
+import { ClientLayoutWidgets } from "@/components/layout/ClientLayoutWidgets";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -131,8 +135,7 @@ export default function RootLayout({
           <StoreDataProvider>
             <CartProvider>
               <main className="flex-1 w-full max-w-full overflow-x-hidden pb-28 sm:pb-24">{children}</main>
-              <CartDrawer />
-              <FloatingActions />
+              <ClientLayoutWidgets />
             </CartProvider>
           </StoreDataProvider>
         </AuthProvider>

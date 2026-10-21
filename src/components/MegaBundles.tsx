@@ -74,6 +74,7 @@ export function MegaBundles() {
                         alt={bundle.title}
                         fill
                         sizes="(max-width: 768px) 50vw, 25vw"
+                        loading="lazy"
                         className="w-full h-full object-contain max-h-56 transition-transform duration-300 group-hover:scale-105 drop-shadow-sm"
                       />
                     </Link>
