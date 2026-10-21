@@ -131,26 +131,14 @@ export const DEFAULT_CMS: CMSContent = {
     consultationBannerEnabled: true,
   },
   saleBanner: {
-    enabled: true,
+    enabled: false,
     badgeTitle: "Grand Opening Sale",
     discountTag: "Flat 15% OFF on Multigrain Flour",
     subtext: "Fresh stone-milled chakki flour packed with 100% natural wheat germ. Use code PURE15 at checkout.",
     buttonText: "Shop Flash Sale",
     link: "/products",
   },
-  customBanners: [
-    {
-      id: "banner-custom-1",
-      badge: "Limited Batch",
-      title: "Hand-Harvested Desi Wheat",
-      discountTag: "Special 10% Bundle Discount",
-      description: "Direct from traditional farmers with zero bleaching and zero processing chemicals.",
-      link: "/products",
-      buttonText: "Explore Grains",
-      bgColor: "#2A1F17",
-      enabled: true,
-    },
-  ],
+  customBanners: [],
 };
 
 export interface PaymentCredentials {
