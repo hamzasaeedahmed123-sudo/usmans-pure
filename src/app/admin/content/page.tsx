@@ -60,7 +60,7 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
     id: "block-1",
     type: "announcement",
     title: "Nationwide Free Delivery",
-    content: "Free express dispatch across Pakistan on all stone-ground chakki flour orders above ₨2,000.",
+    content: "Free express dispatch across Pakistan on all stone-ground chakki flour orders above ₨10,000.",
     badge: "Free Shipping",
     status: "published",
     link: "/products",

@@ -18,6 +18,8 @@ import {
   Star,
   Award,
   CheckCircle2,
+  Plus,
+  Minus,
 } from "lucide-react";
 
 interface ProductDetailViewProps {
@@ -34,6 +36,11 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedPack, setSelectedPack] = useState<"standard" | "large">("standard");
   const [isAdded, setIsAdded] = useState(false);
+  const [openSection, setOpenSection] = useState<string | null>("overview");
+
+  const toggleSection = (sec: string) => {
+    setOpenSection((prev) => (prev === sec ? null : sec));
+  };
 
   const packMultiplier = selectedPack === "large" ? 1.85 : 1;
   const unitPrice = Math.round(product.price * packMultiplier);
@@ -276,7 +283,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
                       {/* WhatsApp COD Order */}
                       <a
-                        href={`https://wa.me/923000000000?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
+                        href={`https://wa.me/923008472910?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
                           product.title
                         )}%20(${selectedPack}%20x%20${quantity}%20=%20₨${totalPrice})%20with%20Cash%20on%20Delivery.`}
                         target="_blank"
@@ -294,52 +301,120 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         </section>
 
         {/* =========================================================================
-            CONTINUOUS STACKED PRODUCT DETAILS SECTIONS (NO TABS, NO BLACK BOX)
+            COLLAPSIBLE PRODUCT DETAILS ACCORDION DROPDOWNS
             ========================================================================= */}
-        <div className="w-full max-w-5xl mx-auto px-4 py-16 space-y-24">
-          {/* 1. PRODUCT OVERVIEW */}
-          <section id="overview" className="scroll-mt-24 pt-8 border-t border-stone-200">
-            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-4">Product Overview</h2>
-            <div className="text-stone-700 leading-relaxed space-y-4 text-base">
-              <p>
-                {product.description ||
-                  "Proprietary cold-milled blend of roasted barley, oats, chickpeas, and chia grains. Helps maintain prolonged fullness, prevents insulin spikes, and turns stored fat into everyday sustained energy."}
-              </p>
-              <p>
-                Milled in traditional stone chakkis under 40°C. We guarantee zero maida mixing, zero chemical bleaching, and zero synthetic preservatives. Freshly packed in UV-shielded packaging to preserve aroma and living nutrients.
-              </p>
+        <div className="w-full max-w-4xl mx-auto px-4 py-12 sm:py-16">
+          <div className="border border-stone-200/90 rounded-2xl bg-white shadow-xs overflow-hidden divide-y divide-stone-200/80">
+            {/* 1. PRODUCT OVERVIEW ACCORDION */}
+            <div className="transition-colors">
+              <button
+                type="button"
+                onClick={() => toggleSection("overview")}
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                aria-expanded={openSection === "overview"}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-[#8B3A22]" />
+                  <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 tracking-tight">
+                    Product Overview
+                  </h2>
+                </div>
+                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                  {openSection === "overview" ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+              </button>
+              {openSection === "overview" && (
+                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base border-t border-stone-100">
+                  <p>
+                    {product.description ||
+                      "Proprietary cold-milled blend of traditional whole grains. Helps maintain prolonged fullness, prevents insulin spikes, and turns stored fat into everyday sustained energy."}
+                  </p>
+                  <p>
+                    Milled in traditional stone chakkis under 40°C. We guarantee zero maida mixing, zero chemical bleaching, and zero synthetic preservatives. Freshly packed in UV-shielded packaging to preserve aroma and living nutrients.
+                  </p>
+                </div>
+              )}
             </div>
-          </section>
 
-          {/* 2. NUTRITIONAL & CLINICAL BENEFITS */}
-          <section id="benefits" className="scroll-mt-24 pt-8 border-t border-stone-200">
-            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-4">Nutritional &amp; Clinical Benefits</h2>
-            <div className="text-stone-700 leading-relaxed space-y-4 text-base">
-              <ul className="list-disc pl-5 space-y-2">
-                <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents sugar spikes.</li>
-                <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you satiated for 5+ hours and promotes gut health.</li>
-                <li><strong>Cold Stone Milled (&lt;40°C):</strong> 100% vital nutrients, minerals, and enzymes intact.</li>
-                {product.benefits?.map((b, i) => (
-                  <li key={i}>{b}</li>
-                ))}
-              </ul>
+            {/* 2. HEALTH BENEFITS / USAGE ACCORDION */}
+            <div className="transition-colors">
+              <button
+                type="button"
+                onClick={() => toggleSection("benefits")}
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                aria-expanded={openSection === "benefits"}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600" />
+                  <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 tracking-tight">
+                    Health Benefits / Usage
+                  </h2>
+                </div>
+                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                  {openSection === "benefits" ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+              </button>
+              {openSection === "benefits" && (
+                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-4 text-sm sm:text-base border-t border-stone-100">
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents insulin spikes.</li>
+                    <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you full for 5+ hours and promotes digestion.</li>
+                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> 100% natural wheat germ and enzymes intact.</li>
+                    {product.benefits?.map((b, i) => (
+                      <li key={i}>{b}</li>
+                    ))}
+                  </ul>
+                  <div className="pt-2 text-xs sm:text-sm text-stone-600 bg-stone-50 p-4 rounded-xl border border-stone-200/60">
+                    <p className="font-bold text-stone-900 mb-1">Recommended Usage Guide:</p>
+                    <p><strong>For Flours / Rotis:</strong> Knead with lukewarm water and let rest for 15 minutes before rolling for extra softness.</p>
+                    <p className="mt-1"><strong>For Teas:</strong> Steep 1 teaspoon in 90°C hot water for 4–5 minutes. Strain and enjoy pure without additives.</p>
+                  </div>
+                </div>
+              )}
             </div>
-          </section>
 
-          {/* 3. PREPARATION & BREWING GUIDE */}
-          <section id="guide" className="scroll-mt-24 pt-8 border-t border-stone-200">
-            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-4">Preparation &amp; Brewing Guide</h2>
-            <div className="text-stone-700 leading-relaxed space-y-4 text-base">
-              <p><strong>For Flours / Rotis:</strong> Knead with lukewarm water and let rest for 15 minutes before rolling. Rotis stay extremely soft and pliable all day.</p>
-              <p><strong>For Teas:</strong> Steep 1 teaspoon in 90°C hot water for 4–5 minutes. Strain and enjoy pure without additives.</p>
+            {/* 3. STORAGE & PURITY GUARANTEE ACCORDION */}
+            <div className="transition-colors">
+              <button
+                type="button"
+                onClick={() => toggleSection("storage")}
+                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                aria-expanded={openSection === "storage"}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="w-2 h-2 rounded-full bg-amber-600" />
+                  <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 tracking-tight">
+                    Storage &amp; Purity Guarantee
+                  </h2>
+                </div>
+                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                  {openSection === "storage" ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+              </button>
+              {openSection === "storage" && (
+                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base border-t border-stone-100">
+                  <p>
+                    <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and spices contain zero preservatives or chemical anti-caking agents, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
+                  </p>
+                  <p>
+                    <strong>100% Purity &amp; Money-Back Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a no-hassle replacement or full refund.
+                  </p>
+                </div>
+              )}
             </div>
-          </section>
-
-          {/* 4. CUSTOMER REVIEWS */}
-          <section id="reviews" className="scroll-mt-24 pt-8 border-t border-stone-200">
-            <h2 className="text-2xl font-serif font-bold text-stone-900 mb-4">Customer Reviews</h2>
-            <p className="text-stone-600">Rated {product.rating}/5 by {product.reviewCount}+ verified health-conscious families across Pakistan.</p>
-          </section>
+          </div>
         </div>
 
         {/* Related Products Section */}

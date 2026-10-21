@@ -58,7 +58,7 @@ export default function CartPage() {
   const [orderPlaced, setOrderPlaced] = useState(false);
 
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const freeShippingThreshold = 2500;
+  const freeShippingThreshold = 10000;
   const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 200;
   const grandTotal = subtotal + shippingFee;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
@@ -99,7 +99,7 @@ export default function CartPage() {
       checkoutForm.city
     )}%0AAddress: ${encodeURIComponent(checkoutForm.address || "N/A")}`;
 
-    window.open(`https://wa.me/923000000000?text=${message}`, "_blank");
+    window.open(`https://wa.me/923008472910?text=${message}`, "_blank");
   };
 
   return (

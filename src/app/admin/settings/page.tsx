@@ -146,7 +146,7 @@ export default function AdminSettingsPage() {
         storePhone: "+92 300 8472910",
         storeEmail: "support@usmanspure.com",
         storeAddress: "Milling Facility, G.T. Road, Lahore, Punjab, Pakistan",
-        freeShippingThreshold: 2000,
+        freeShippingThreshold: 10000,
         standardDeliveryFee: 250,
         codEnabled: true,
         jazzCashEnabled: true,

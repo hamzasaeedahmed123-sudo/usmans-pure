@@ -34,6 +34,7 @@ import {
   AlertCircle,
   FileText,
   Zap,
+  ChevronDown,
 } from "lucide-react";
 
 interface OrderItem {
@@ -157,7 +158,7 @@ export function CheckoutView() {
   };
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const freeShippingThreshold = 2000;
+  const freeShippingThreshold = 10000;
   const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 199;
   const grandTotal = subtotal + shippingFee;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
@@ -255,7 +256,7 @@ export function CheckoutView() {
       paymentLabel
     )}`;
 
-    return `https://wa.me/923000000000?text=${text}`;
+    return `https://wa.me/923008472910?text=${text}`;
   };
 
   if (!isLoaded) {
@@ -665,7 +666,7 @@ export function CheckoutView() {
                                       Online Payment / Bank Transfer
                                     </span>
                                   </div>
-                                  {/* Badges */}
+                                  {/* Badges + Accordion Chevron Indicator */}
                                   <div className="flex items-center gap-1.5 flex-wrap">
                                     <span className="px-2 py-0.5 rounded text-[10px] font-black bg-[#105238] text-white tracking-tight shadow-xs flex items-center gap-1">
                                       <Zap className="w-2.5 h-2.5 text-emerald-300" />
@@ -680,6 +681,11 @@ export function CheckoutView() {
                                     <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-[#009E49] text-white tracking-tight shadow-xs">
                                       easypaisa
                                     </span>
+                                    <ChevronDown
+                                      className={`w-4 h-4 text-stone-500 transition-transform duration-300 ml-1 ${
+                                        formData.paymentMethod === "wallet" ? "rotate-180 text-stone-900" : ""
+                                      }`}
+                                    />
                                   </div>
                                 </div>
                                 <p className="text-xs text-stone-600 mt-1">

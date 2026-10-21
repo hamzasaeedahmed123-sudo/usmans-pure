@@ -96,7 +96,7 @@ export interface CMSContent {
 
 export const DEFAULT_CMS: CMSContent = {
   announcementBarText: "100% Traditional Stone-Ground • Zero Maida • Freshly Milled",
-  announcementSubText: "Free Nationwide Shipping on Orders Rs 2,000+ • Cash on Delivery",
+  announcementSubText: "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery",
   announcementBg: "#2A1F17",
   heroSlides: {
     flour: {
@@ -184,7 +184,7 @@ export const DEFAULT_STORE_SETTINGS: StoreSettings = {
   storePhone: "+92 300 8472910",
   storeEmail: "support@usmanspure.com",
   storeAddress: "Milling Facility, G.T. Road, Lahore, Punjab, Pakistan",
-  freeShippingThreshold: 2000,
+  freeShippingThreshold: 10000,
   standardDeliveryFee: 250,
   codEnabled: true,
   jazzCashEnabled: true,

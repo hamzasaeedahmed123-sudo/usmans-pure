@@ -255,7 +255,7 @@ export function DoctorsChoicePageView() {
                 </div>
 
                 <a
-                  href="https://wa.me/923000000000?text=Hello%20Dr.%20Advisory%2C%20I%20would%20like%20guidance%20on%20choosing%20the%20right%20Doctor%27s%20Choice%20food%20plan."
+                  href="https://wa.me/923008472910?text=Hello%20Dr.%20Advisory%2C%20I%20would%20like%20guidance%20on%20choosing%20the%20right%20Doctor%27s%20Choice%20food%20plan."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="self-start sm:self-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-md bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-[0.16em] transition-colors shadow-xs"
@@ -471,7 +471,7 @@ export function DoctorsChoicePageView() {
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://wa.me/923000000000?text=Hello%20Dr.%20Advisory%2C%20I%20would%20like%20a%20free%20clinical%20food%20consultation%20for%20my%20health%20needs."
+                href="https://wa.me/923008472910?text=Hello%20Dr.%20Advisory%2C%20I%20would%20like%20a%20free%20clinical%20food%20consultation%20for%20my%20health%20needs."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-md bg-[#25D366] hover:bg-[#20ba5a] text-[#1E1510] text-xs font-bold uppercase tracking-[0.16em] transition-all shadow-lg hover:shadow-xl cursor-pointer"
