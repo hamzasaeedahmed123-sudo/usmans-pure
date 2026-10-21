@@ -15,16 +15,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const product = PRODUCTS.find((p) => p.id === id) || PRODUCTS[0];
 
   return {
-    title: `${product.title} | Usman's Pure Products`,
-    description:
-      product.description ||
-      `Buy 100% pure stone-ground ${product.title} in Pakistan. Fresh cold-milled with zero maida and free doorstep delivery.`,
+    title: `${product.title} - 100% Pure | Usman's Pure`,
+    description: `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, stone-ground chakki flour and pure essentials.`,
     alternates: {
       canonical: `/product/${product.id}`,
     },
     openGraph: {
-      title: `${product.title} | Usman's Pure Products`,
-      description: product.description,
+      title: `${product.title} | Usman's Pure`,
+      description: product.description || `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, stone-ground chakki flour and pure essentials.`,
       url: `https://usmanspure.com/product/${product.id}`,
       type: "website",
       images: [
@@ -36,8 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: product.title,
-      description: product.description,
+      title: `${product.title} - 100% Pure | Usman's Pure`,
+      description: product.description || `Buy authentic ${product.title} in Pakistan.`,
       images: [product.image],
     },
   };

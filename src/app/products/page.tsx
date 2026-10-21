@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { ProductsPageView } from "./ProductsPageView";
 
 export const metadata: Metadata = {
-  title: "All Products | Stone-Ground Flours, Spices & Organic Teas",
+  title: "Shop Pure Chakki Flour, Multigrain Blends & Spices - Usman's Pure",
   description:
-    "Explore 100% pure stone-ground chakki flours, spices, and herbal teas from Usman's Pure. Freshly milled wheat, diabetic atta, cold-pounded spices, and natural herbal teas.",
+    "Explore our range of 100% pure whole wheat chakki flour, diabetic multigrain blends, caffeine-free herbal teas, and cold-pounded spices.",
   alternates: {
     canonical: "/products",
   },
   openGraph: {
-    title: "All Products | Stone-Ground Flours, Spices & Organic Teas",
+    title: "Shop Pure Chakki Flour, Multigrain Blends & Spices - Usman's Pure",
     description:
-      "Explore 100% pure stone-ground chakki flours, spices, and herbal teas from Usman's Pure. Freshly milled wheat, diabetic atta, cold-pounded spices, and natural herbal teas.",
+      "Explore our range of 100% pure whole wheat chakki flour, diabetic multigrain blends, caffeine-free herbal teas, and cold-pounded spices.",
     url: "https://usmanspure.com/products",
     type: "website",
     images: [

@@ -32,8 +32,12 @@ export const viewport: Viewport = {
   maximumScale: 5,
 };
 
-export const metadata = {
-  title: "Usman's Pure - Chakki Atta, Flour & Spices",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://usmanspure.com"),
+  title: {
+    default: "Usman's Pure - Chakki Atta, Flour & Spices",
+    template: "%s | Usman's Pure",
+  },
   description: "Fresh stone-ground chakki atta, pure flour, whole grains, and organic spices in Pakistan.",
   keywords: [
     "atta",
@@ -44,7 +48,7 @@ export const metadata = {
     "wheat",
     "organic spices",
     "herbal tea",
-    "usman pure"
+    "usman pure",
   ],
 };
 
