@@ -71,7 +71,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 w-full">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 w-full">
           {collections.map((item, index) => {
             const isFullWidthMobile = index === 2;
 
@@ -81,10 +81,10 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                 id={item.id}
                 data-ambient-theme={item.id}
                 href={item.href}
-                className={`group relative rounded-2xl overflow-hidden border border-stone-200/60 shadow-sm hover:shadow-md transition duration-500 flex flex-col justify-end p-5 sm:p-6 md:p-8 w-full max-w-full min-h-[320px] sm:min-h-[360px] md:h-96 ${
+                className={`group relative rounded-2xl overflow-hidden border border-stone-200/60 shadow-sm hover:shadow-md transition duration-500 flex flex-col justify-end p-3.5 sm:p-5 md:p-8 w-full max-w-full ${
                   isFullWidthMobile
-                    ? "col-span-1 sm:col-span-2 md:col-span-1"
-                    : "col-span-1"
+                    ? "col-span-2 md:col-span-1 min-h-[220px] sm:min-h-[260px] md:h-96"
+                    : "col-span-1 min-h-[280px] sm:min-h-[320px] md:h-96"
                 }`}
               >
                 {/* Product Background Image */}
@@ -93,7 +93,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes={isFullWidthMobile ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 768px) 50vw, 33vw"}
                     className="brightness-100 contrast-100 object-cover w-full h-full transition duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -105,7 +105,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
 
                 {/* Top Badge positioned at top-left */}
                 <div className="absolute top-3 left-3 z-20">
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/90 text-stone-800 shadow-sm backdrop-blur-xs">
+                  <span className="px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold bg-white/90 text-stone-800 shadow-sm backdrop-blur-xs">
                     {item.badge}
                   </span>
                 </div>
@@ -115,15 +115,21 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                   <div className="text-[10px] sm:text-xs uppercase font-bold tracking-wider text-amber-300 mb-1">
                     {item.itemCount}
                   </div>
-                  <h3 className="font-serif font-bold tracking-tight text-white mb-1.5 text-lg sm:text-xl md:text-2xl leading-snug group-hover:text-amber-200 transition line-clamp-2">
+                  <h3
+                    className={`font-serif font-bold tracking-tight text-white mb-1 leading-snug group-hover:text-amber-200 transition ${
+                      isFullWidthMobile
+                        ? "text-base sm:text-xl md:text-2xl"
+                        : "text-sm sm:text-lg md:text-2xl line-clamp-2"
+                    }`}
+                  >
                     {item.title}
                   </h3>
-                  <p className="text-xs text-stone-200 line-clamp-2 mb-3 leading-relaxed max-w-sm">
+                  <p className="text-[11px] sm:text-xs text-stone-200 line-clamp-2 mb-2 sm:mb-3 leading-relaxed max-w-sm">
                     {item.subtitle}
                   </p>
 
-                  <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white group-hover:translate-x-1 transition duration-300">
-                    <span>Explore {item.id === "flour" ? "Flour Range" : item.id === "spices" ? "Spices Range" : "Herbal Teas"}</span>
+                  <div className="inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold uppercase tracking-wider text-white group-hover:translate-x-1 transition duration-300">
+                    <span>Explore {item.id === "flour" ? "Flours" : item.id === "spices" ? "Spices" : "Teas"}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
                   </div>
                 </div>
