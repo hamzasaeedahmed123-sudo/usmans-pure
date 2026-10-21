@@ -26,7 +26,8 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
   const { cmsContent } = useStoreData();
 
   const primaryText = cmsContent?.announcementBarText || "100% Traditional Stone-Ground • Zero Maida • Freshly Milled";
-  const subText = cmsContent?.announcementSubText || "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery";
+  const rawSubText = cmsContent?.announcementSubText || "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery";
+  const subText = rawSubText.replace(/2,?000/g, "10,000");
 
   return (
     <motion.div

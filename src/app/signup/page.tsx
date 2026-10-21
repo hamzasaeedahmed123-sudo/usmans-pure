@@ -162,7 +162,8 @@ function SignupForm() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Usman Malik"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                style={{ paddingLeft: "3rem" }}
+                className="w-full pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
@@ -179,7 +180,8 @@ function SignupForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@domain.com"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                style={{ paddingLeft: "3rem" }}
+                className="w-full pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
@@ -195,7 +197,8 @@ function SignupForm() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="0300 1234567"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                style={{ paddingLeft: "3rem" }}
+                className="w-full pr-4 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
             </div>
           </div>
@@ -212,7 +215,8 @@ function SignupForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="At least 6 characters"
-                className="w-full pl-10 pr-11 py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
+                style={{ paddingLeft: "3rem", paddingRight: "2.75rem" }}
+                className="w-full py-3 rounded-xl bg-white/95 border border-stone-200 text-stone-900 text-sm placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-amber-900/40 focus:border-amber-900/60 transition shadow-2xs"
               />
               <button
                 type="button"
