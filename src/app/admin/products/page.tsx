@@ -19,7 +19,12 @@ import {
   UploadCloud,
   Image as ImageIcon,
   Link as LinkIcon,
+  Undo2,
+  Redo2,
+  FolderOpen,
 } from "lucide-react";
+import { RichTextEditor } from "../components/RichTextEditor";
+import { MediaLibraryModal } from "../components/MediaLibraryModal";
 
 export default function AdminProductsPage() {
   const { products, addProduct, updateProduct, deleteProduct } = useStoreData();
@@ -29,7 +34,10 @@ export default function AdminProductsPage() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editPrice, setEditPrice] = useState<number>(0);
   const [addModalOpen, setAddModalOpen] = useState(false);
+  const [mediaModalOpen, setMediaModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string>("");
+  const [past, setPast] = useState<Product[][]>([]);
+  const [future, setFuture] = useState<Product[][]>([]);
 
   // New product form state
   const [newTitle, setNewTitle] = useState("");
@@ -49,6 +57,44 @@ export default function AdminProductsPage() {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(""), 3000);
   };
+
+  const handleUndo = React.useCallback(() => {
+    if (past.length === 0) return;
+    const previous = past[past.length - 1];
+    const newPast = past.slice(0, past.length - 1);
+    setFuture((prev) => [products, ...prev]);
+    setPast(newPast);
+    showToast("Undo applied");
+  }, [past, products]);
+
+  const handleRedo = React.useCallback(() => {
+    if (future.length === 0) return;
+    const next = future[0];
+    const newFuture = future.slice(1);
+    setPast((prev) => [...prev, products]);
+    setFuture(newFuture);
+    showToast("Redo applied");
+  }, [future, products]);
+
+  // Keyboard shortcuts Ctrl+Z / Ctrl+Y
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
+        if (e.shiftKey) {
+          e.preventDefault();
+          handleRedo();
+        } else {
+          e.preventDefault();
+          handleUndo();
+        }
+      } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "y") {
+        e.preventDefault();
+        handleRedo();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleUndo, handleRedo]);
 
   const handleFileProcess = (file: File) => {
     if (!file.type.match(/^image\/(png|jpeg|webp)$/)) {
@@ -174,13 +220,52 @@ export default function AdminProductsPage() {
           </p>
         </div>
 
-        <button
-          onClick={() => setAddModalOpen(true)}
-          className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer self-start sm:self-auto"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Product</span>
-        </button>
+        {/* Action Controls: Undo, Redo, Media Library, Add Product */}
+        <div className="flex items-center flex-wrap gap-2">
+          {/* Undo Button */}
+          <button
+            type="button"
+            onClick={handleUndo}
+            disabled={past.length === 0}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 transition cursor-pointer"
+            title="Undo last change (Ctrl+Z / Cmd+Z)"
+          >
+            <Undo2 className="w-3.5 h-3.5" />
+            <span>Undo</span>
+          </button>
+
+          {/* Redo Button */}
+          <button
+            type="button"
+            onClick={handleRedo}
+            disabled={future.length === 0}
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 transition cursor-pointer"
+            title="Redo change (Ctrl+Y / Ctrl+Shift+Z)"
+          >
+            <Redo2 className="w-3.5 h-3.5" />
+            <span>Redo</span>
+          </button>
+
+          {/* Open Media Library */}
+          <button
+            type="button"
+            onClick={() => setMediaModalOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-stone-200 bg-white text-stone-800 hover:bg-stone-50 text-xs font-semibold transition cursor-pointer"
+          >
+            <ImageIcon className="w-3.5 h-3.5 text-amber-800" />
+            <span>Media Library</span>
+          </button>
+
+          {/* Add Product Button */}
+          <button
+            type="button"
+            onClick={() => setAddModalOpen(true)}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Add New Product</span>
+          </button>
+        </div>
       </div>
 
       {/* 2. Filters & Search Bar */}
@@ -457,16 +542,29 @@ export default function AdminProductsPage() {
                           Accepts PNG, JPG, or WEBP (Max 5MB)
                         </p>
                       </div>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          fileInputRef.current?.click();
-                        }}
-                        className="px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-bold transition shadow-xs mt-1 cursor-pointer"
-                      >
-                        Upload Image / Browse Files
-                      </button>
+                      <div className="flex items-center gap-2 mt-1">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            fileInputRef.current?.click();
+                          }}
+                          className="px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer"
+                        >
+                          Upload Image / Browse Files
+                        </button>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setMediaModalOpen(true);
+                          }}
+                          className="px-3.5 py-1.5 rounded-xl bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold transition shadow-xs flex items-center gap-1.5 cursor-pointer"
+                        >
+                          <ImageIcon className="w-3.5 h-3.5" />
+                          <span>Open Media Manager</span>
+                        </button>
+                      </div>
                     </div>
 
                     {/* WordPress-Style Media Library Quick Picker */}
@@ -610,16 +708,14 @@ export default function AdminProductsPage() {
                 </div>
               </div>
 
-              <div>
-                <label className="block text-xs font-bold text-stone-700 mb-1">Product Description</label>
-                <textarea
-                  rows={2}
-                  value={newDescription}
-                  onChange={(e) => setNewDescription(e.target.value)}
-                  placeholder="Detailed description of process, purity, and organic stone-ground benefits..."
-                  className="w-full px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs"
-                />
-              </div>
+              {/* WordPress-Style Gutenberg Rich Text Description Editor */}
+              <RichTextEditor
+                label="Product Description (Visual Gutenberg Editor)"
+                value={newDescription}
+                onChange={setNewDescription}
+                placeholder="Write detailed product description, stone-ground milling benefits, and pure organic attributes..."
+                onOpenMediaLibrary={() => setMediaModalOpen(true)}
+              />
 
               <div>
                 <label className="block text-xs font-bold text-stone-700 mb-1">
@@ -652,6 +748,17 @@ export default function AdminProductsPage() {
           </div>
         </div>
       )}
+
+      {/* WordPress-Style Media Library Modal */}
+      <MediaLibraryModal
+        isOpen={mediaModalOpen}
+        onClose={() => setMediaModalOpen(false)}
+        onSelectMedia={(media) => {
+          setNewImage(media.url);
+          showToast(`Selected "${media.name}" as featured product image.`);
+        }}
+        title="Select Product Featured Image"
+      />
     </div>
   );
 }

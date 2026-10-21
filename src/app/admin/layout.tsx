@@ -20,6 +20,7 @@ import {
   Search,
   ChevronRight,
   ShieldAlert,
+  Image as ImageIcon,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -46,6 +47,12 @@ const NAV_ITEMS = [
     href: "/admin/content",
     icon: FileText,
     badge: "Editor",
+  },
+  {
+    name: "Media Library",
+    href: "/admin/media",
+    icon: ImageIcon,
+    badge: "WP Media",
   },
   {
     name: "Store Settings",
