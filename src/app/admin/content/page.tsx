@@ -547,14 +547,14 @@ export default function AdminContentPage() {
           </div>
         </div>
 
-        {/* 4. Sale & Promotional Banners Section (Requirement 2) */}
+        {/* 4. Promotional Banners & Sale Engine (WordPress-Style CMS) */}
         <div className="bg-white/80 backdrop-blur-md p-6 rounded-3xl border border-stone-200/80 shadow-xs space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-stone-100 pb-4">
             <div className="flex items-center gap-2">
               <Flame className="w-5 h-5 text-amber-600" />
               <div>
                 <h2 className="text-base font-bold text-stone-900 tracking-tight">
-                  Sale &amp; Promotional Banners
+                  Promotional Banners &amp; Sale Engine
                 </h2>
                 <p className="text-xs text-stone-500">
                   Configure flash discounts, sale ribbons, and promotional teasers on the storefront
@@ -562,9 +562,9 @@ export default function AdminContentPage() {
               </div>
             </div>
 
-            {/* Toggle Switch: Enable Flash Sale Banner */}
+            {/* Flash Sale Toggle: [Enable / Disable] */}
             <div className="flex items-center gap-2.5 bg-stone-50 p-2 px-3.5 rounded-2xl border border-stone-200 self-start sm:self-auto">
-              <span className="text-xs font-bold text-stone-800">Enable Flash Sale Banner:</span>
+              <span className="text-xs font-bold text-stone-800">Flash Sale Banner:</span>
               <button
                 type="button"
                 onClick={() => updateField("saleBannerEnabled", !formData.saleBannerEnabled)}
@@ -579,13 +579,13 @@ export default function AdminContentPage() {
                 />
               </button>
               <span className={`text-xs font-bold ${formData.saleBannerEnabled ? "text-amber-800" : "text-stone-400"}`}>
-                {formData.saleBannerEnabled ? "ON" : "OFF"}
+                {formData.saleBannerEnabled ? "[Enabled]" : "[Disabled]"}
               </span>
             </div>
           </div>
 
-          {/* Editable Fields: Sale Badge Title, Discount Tag, Subtext */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* WordPress-Style Sale Badge & Text Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
                 Sale Badge Title
@@ -601,20 +601,33 @@ export default function AdminContentPage() {
 
             <div>
               <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
-                Discount Tag / Headline
+                Sale Tag (Discount)
               </label>
               <input
                 type="text"
                 value={formData.saleDiscountTag}
                 onChange={(e) => updateField("saleDiscountTag", e.target.value)}
-                placeholder="e.g. Flat 15% OFF on Multigrain Flour"
+                placeholder="e.g. Flat 15% Off"
                 className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs font-semibold focus:ring-2 focus:ring-amber-900/40"
               />
             </div>
 
-            <div className="md:col-span-2">
+            <div>
               <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
-                Sale Banner Subtext
+                Target Link
+              </label>
+              <input
+                type="text"
+                value={formData.saleLink}
+                onChange={(e) => updateField("saleLink", e.target.value)}
+                placeholder="e.g. /products or /category/flours"
+                className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs font-semibold focus:ring-2 focus:ring-amber-900/40"
+              />
+            </div>
+
+            <div className="md:col-span-3">
+              <label className="block text-xs font-bold text-stone-700 uppercase tracking-wider mb-1">
+                Heading &amp; Subtext Description
               </label>
               <textarea
                 rows={2}
@@ -693,13 +706,13 @@ export default function AdminContentPage() {
                 className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold transition shadow-xs cursor-pointer self-start sm:self-auto"
               >
                 <Plus className="w-3.5 h-3.5" />
-                <span>Add Custom Banner Section</span>
+                <span>+ Add Custom Announcement Bar / Promo Card</span>
               </button>
             </div>
 
             {formData.customBanners.length === 0 ? (
               <div className="p-4 rounded-2xl border border-dashed border-stone-200 text-center text-xs text-stone-500">
-                No custom promo banners created yet. Click &quot;Add Custom Banner Section&quot; to configure one.
+                No custom promo banners created yet. Click &quot;+ Add Custom Announcement Bar / Promo Card&quot; to configure one.
               </div>
             ) : (
               <div className="space-y-3">
