@@ -144,7 +144,7 @@ export function DoctorsChoicePageView() {
   });
 
   const [addedIds, setAddedIds] = useState<Record<string, boolean>>({});
-  const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [openFaqs, setOpenFaqs] = useState<Record<number, boolean>>({ 0: true });
 
   const handleAddToCart = (product: DoctorProduct, option: DoctorProductPackOption, e: React.MouseEvent) => {
     e.preventDefault();
@@ -411,37 +411,37 @@ export function DoctorsChoicePageView() {
 
         {/* Clinical FAQ / Doctor Q&A Section */}
         <section className="py-16 sm:py-20 bg-[#F5EFE6] border-t border-[#1E1510]/10">
-          <div className="max-w-4xl mx-auto px-5 sm:px-8">
-            <div className="text-center mb-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
               <span className="eyebrow">Medical &amp; Nutritional Clarity</span>
               <h2 className="mt-3 text-3xl sm:text-4xl font-serif text-[#1E1510]">
                 Frequently Asked <em className="italic font-normal text-[#8B3A22]">Clinical Questions</em>
               </h2>
             </div>
 
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 items-start max-w-6xl mx-auto w-full px-4">
               {CLINICAL_FAQS.map((faq, index) => {
-                const isOpen = openFaq === index;
+                const isOpen = !!openFaqs[index];
                 return (
                   <div
                     key={index}
-                    className="rounded-sm bg-white border border-[#1E1510]/10 overflow-hidden transition-all duration-200"
+                    className="rounded-xl bg-white border border-[#1E1510]/10 overflow-hidden transition-all duration-200 shadow-2xs"
                   >
                     <button
-                      onClick={() => setOpenFaq(isOpen ? null : index)}
-                      className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer hover:bg-stone-50"
+                      onClick={() => setOpenFaqs((prev) => ({ ...prev, [index]: !prev[index] }))}
+                      className="w-full py-3.5 px-4 text-left flex items-center justify-between gap-3 text-sm sm:text-base font-medium cursor-pointer hover:bg-stone-50"
                     >
-                      <span className="font-serif text-lg sm:text-xl text-[#1E1510] leading-snug">
+                      <span className="font-serif text-sm sm:text-base font-medium text-[#1E1510] leading-snug">
                         {faq.q}
                       </span>
                       <ChevronDown
-                        className={`w-5 h-5 text-[#8B3A22] shrink-0 transition-transform duration-300 ${
+                        className={`w-4 h-4 text-[#8B3A22] shrink-0 transition-transform duration-300 ${
                           isOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                     {isOpen && (
-                      <div className="px-6 pb-6 text-sm sm:text-base text-[#5A4E45] leading-relaxed border-t border-stone-100 pt-4">
+                      <div className="px-4 pb-4 pt-1 text-xs sm:text-sm leading-relaxed text-stone-600 border-t border-stone-100">
                         {faq.a}
                       </div>
                     )}
