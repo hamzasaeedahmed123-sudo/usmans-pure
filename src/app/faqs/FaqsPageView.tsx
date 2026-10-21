@@ -302,7 +302,7 @@ export function FaqsPageView() {
         </section>
 
         {/* Content Section with Category Tabs & Accordion */}
-        <section className="py-12 sm:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section className="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Quick Filter Category Tabs */}
           <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
             <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 w-full sm:w-auto">
@@ -351,44 +351,44 @@ export function FaqsPageView() {
             )}
           </div>
 
-          {/* Accordion List */}
+          {/* Accordion List - 2-Column Balanced Grid */}
           {filteredFaqs.length > 0 ? (
-            <div className="space-y-3.5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6 items-start max-w-6xl mx-auto w-full">
               {filteredFaqs.map((faq) => {
                 const isOpen = !!openIds[faq.id];
                 return (
                   <article
                     key={faq.id}
-                    className="rounded-sm bg-white border border-[#1E1510]/10 overflow-hidden shadow-2xs transition-all duration-200 hover:border-[#1E1510]/20"
+                    className="rounded-xl bg-white border border-[#1E1510]/10 overflow-hidden shadow-2xs transition-all duration-200 hover:border-[#1E1510]/20"
                   >
                     <button
                       onClick={() => toggleAccordion(faq.id)}
-                      className="w-full text-left p-5 sm:p-6 flex items-start justify-between gap-4 cursor-pointer focus:outline-hidden"
+                      className="w-full text-left py-3.5 px-4 text-sm sm:text-base font-medium flex items-start justify-between gap-3 cursor-pointer focus:outline-hidden hover:bg-stone-50"
                       aria-expanded={isOpen}
                     >
-                      <div className="space-y-1.5 flex-1 pr-2">
+                      <div className="space-y-1 flex-1 pr-1">
                         <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8B3A22]">
                           {faq.categoryLabel} &bull; Q{faq.id}
                         </span>
-                        <h3 className="font-serif text-base sm:text-lg text-[#1E1510] leading-snug font-bold">
+                        <h3 className="font-serif text-sm sm:text-base text-[#1E1510] leading-snug font-bold">
                           {faq.q}
                         </h3>
                       </div>
 
                       <div
-                        className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 border border-stone-200 mt-0.5 ${
+                        className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 border border-stone-200 mt-0.5 ${
                           isOpen
                             ? "rotate-180 bg-[#1E1510] text-white border-[#1E1510]"
                             : "bg-[#FAF7F2] text-stone-600 hover:bg-stone-100"
                         }`}
                       >
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-3.5 h-3.5" />
                       </div>
                     </button>
 
                     {/* Smooth Accordion Body */}
                     {isOpen && (
-                      <div className="px-5 sm:px-6 pb-6 pt-1 border-t border-stone-100 text-stone-700 text-sm sm:text-base leading-relaxed bg-[#FAF7F2]/40 animate-fade-in">
+                      <div className="px-4 pb-4 pt-1 border-t border-stone-100 text-stone-600 text-xs sm:text-sm leading-relaxed bg-[#FAF7F2]/40 animate-fade-in">
                         <p>{faq.a}</p>
                       </div>
                     )}
