@@ -226,16 +226,11 @@ export default function AdminSettingsPage() {
             type="button"
             onClick={handleUndo}
             disabled={past.length === 0}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition ${
-              past.length > 0
-                ? "bg-stone-100 hover:bg-stone-200 text-stone-800 cursor-pointer shadow-2xs"
-                : "bg-stone-100/50 text-stone-400 cursor-not-allowed opacity-50"
-            }`}
-            title="Undo last change (Ctrl+Z)"
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 transition cursor-pointer"
+            title="Undo last change (Ctrl+Z / Cmd+Z)"
           >
             <Undo2 className="w-3.5 h-3.5" />
             <span>Undo</span>
-            <span className="text-[10px] opacity-60 hidden md:inline font-mono">⌘Z</span>
           </button>
 
           {/* Redo Button */}
@@ -243,16 +238,11 @@ export default function AdminSettingsPage() {
             type="button"
             onClick={handleRedo}
             disabled={future.length === 0}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition ${
-              future.length > 0
-                ? "bg-stone-100 hover:bg-stone-200 text-stone-800 cursor-pointer shadow-2xs"
-                : "bg-stone-100/50 text-stone-400 cursor-not-allowed opacity-50"
-            }`}
-            title="Redo change (Ctrl+Y)"
+            className="px-3 py-1.5 text-xs font-medium rounded-lg border border-stone-200 bg-white text-stone-700 hover:bg-stone-50 disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-1.5 transition cursor-pointer"
+            title="Redo change (Ctrl+Y / Ctrl+Shift+Z)"
           >
             <Redo2 className="w-3.5 h-3.5" />
             <span>Redo</span>
-            <span className="text-[10px] opacity-60 hidden md:inline font-mono">⌘Y</span>
           </button>
 
           {/* Reset Button */}
