@@ -286,8 +286,20 @@ export function HeroSlider() {
       />
 
       {/* 4. Top Category Switcher Pills: Prominently displayed in hero header section (Strictly hidden on mobile, md:flex on desktop/tablet) */}
-      <div className="hidden md:flex relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-1.5 sm:pt-2 items-center justify-center shrink-0">
-        <div className="hidden md:flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white/35 backdrop-blur-md border border-white/50 px-3.5 sm:px-5 py-1.5 rounded-full shadow-xs">
+      <div className="pure-categories-wrapper hidden md:flex max-md:!hidden relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-1.5 sm:pt-2 items-center justify-center shrink-0">
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (max-width: 767px) {
+            .pure-categories-wrapper {
+              display: none !important;
+              visibility: hidden !important;
+              height: 0 !important;
+              max-height: 0 !important;
+              overflow: hidden !important;
+              pointer-events: none !important;
+            }
+          }
+        `}} />
+        <div className="hidden md:flex max-md:!hidden flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white/35 backdrop-blur-md border border-white/50 px-3.5 sm:px-5 py-1.5 rounded-full shadow-xs">
           <span className="text-[10px] sm:text-xs font-bold tracking-wider uppercase opacity-75 text-stone-900 select-none">
             PURE CATEGORIES:
           </span>
