@@ -27,32 +27,32 @@ export function DoctorsChoiceBanner() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B869]/15 border border-[#E5B869]/30 text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.18em] mb-5">
               <Stethoscope className="w-3.5 h-3.5" strokeWidth={2} />
-              <span>Doctor Recommended &bull; Food As Medicine</span>
+              <span>Doctor Recommended &bull; 100% Whole Grains</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#F9F6F0] leading-[1.12]">
-              Looking for Doctor-Formulated Diabetic &amp; Weight-Loss Flours?
+              Looking for Diabetic &amp; Weight-Loss Flours?
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#D5CEBF] font-light leading-relaxed">
-              Explore therapeutic stone-ground blends backed by clinical nutritionists to naturally regulate insulin spikes, stimulate sustained fat metabolism, and nurture heart health.
+              Explore stone-ground multigrain blends designed to help manage blood sugar, support healthy weight loss, and keep you full longer with high natural fiber.
             </p>
 
-            {/* Quick Clinical Trust Badges */}
+            {/* Quick Trust Badges */}
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-[#E8DFD0]">
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Doctor Approved
+                Doctor Recommended
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Low Glycemic Index (&lt;50)
+                Low Sugar Spikes
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Lab Verified Purity
+                100% Whole Grain
               </span>
             </div>
           </div>
@@ -73,7 +73,7 @@ export function DoctorsChoiceBanner() {
               rel="noopener noreferrer"
               className="text-xs text-[#D5CEBF] hover:text-[#E5B869] underline underline-offset-4 decoration-[#E5B869]/40 transition-colors"
             >
-              Have medical questions? WhatsApp Our Nutritionist &rarr;
+              Have flour questions? Ask us on WhatsApp &rarr;
             </a>
           </div>
         </div>

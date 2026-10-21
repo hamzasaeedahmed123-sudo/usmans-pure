@@ -28,7 +28,7 @@ export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
     pillBg: "bg-[#EFE2CE]",
     pillText: "text-[#54361C]",
     label: "Organic Pantry",
-    subtext: "100% Unadulterated Essentials",
+    subtext: "100% Pure Stone-Ground Chakki Products",
   },
   flour: {
     bg: "bg-[#F7F3EB]",

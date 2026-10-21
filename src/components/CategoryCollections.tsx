@@ -13,33 +13,33 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
   const collections = [
     {
       id: "flour",
-      title: "Diet & Chakki Flours",
+      title: "Traditional Whole Wheat & Multigrain Diet Atta",
       subtitle: "Weight Loss, Diabetic Care & Kids Nutrition",
       itemCount: "5 Specialized Blends",
       image: "/images/products/prod-3.jpg",
-      badge: "Best Seller",
+      badge: "Pure Chakki Flour",
       href: "/flour",
       color: "from-amber-950/85 via-stone-900/60 to-transparent",
       watermark: "wheat" as const,
     },
     {
       id: "spices",
-      title: "Cold Stone-Pounded Spices",
+      title: "Cold-Pounded Desi Spices (Mirch, Haldi, Dhania)",
       subtitle: "Kashmiri Chili, Turmeric & Whole Garam Masala",
       itemCount: "6 Pure Spices",
       image: "/spices-jar.png",
-      badge: "100% Zero Dyes",
+      badge: "Traditional Spices",
       href: "/spices",
       color: "from-[#661D0F]/90 via-stone-900/60 to-transparent",
       watermark: "spices" as const,
     },
     {
       id: "herbals",
-      title: "Pure Organic Herbal Teas",
+      title: "Pure Caffeine-Free Herbal Teas",
       subtitle: "Rosella, Chamomile, Olive Leaf & Wild Botanicals",
       itemCount: "6 Pure Infusions",
       image: "/images/products/prod-9.jpg",
-      badge: "100% Caffeine Free",
+      badge: "Herbal Infusions",
       href: "/herbals",
       color: "from-emerald-950/85 via-stone-900/60 to-transparent",
       watermark: "herbal" as const,
@@ -70,7 +70,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
-            Wholesome, unadulterated essentials slow-ground in natural stone chakkis and hand-packed with zero chemical additives.
+            100% pure stone-ground chakki atta, freshly milled grains, and authentic organic spices. Delivered fresh to your home across Pakistan.
           </p>
         </div>
 
@@ -154,7 +154,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                   </p>
 
                   <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white group-hover:translate-x-1 transition duration-300">
-                    <span>Explore {item.title}</span>
+                    <span>Explore {item.id === "flour" ? "Flour Range" : item.id === "spices" ? "Spices Range" : "Herbal Teas"}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-amber-400" />
                   </div>
                 </div>

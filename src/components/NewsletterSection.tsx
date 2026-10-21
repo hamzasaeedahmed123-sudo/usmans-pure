@@ -29,7 +29,7 @@ export function NewsletterSection() {
         </h2>
 
         <p className="mt-3 text-stone-400 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-          Get <strong>10% OFF</strong> your next order, seasonal harvest alerts, and clinical wellness tips straight to your inbox.
+          Get <strong>10% OFF</strong> your next order, seasonal harvest alerts, and healthy diet &amp; cooking tips straight to your inbox.
         </p>
 
         {isSubmitted ? (

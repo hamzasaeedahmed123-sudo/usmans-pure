@@ -184,7 +184,7 @@ export function CustomerReviews() {
               Loved by 50,000+ <em className="italic font-normal text-[#8B3A22]">Homes</em>
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
-              Real experiences from families across Pakistan who upgraded to unadulterated stone-ground nutrition.
+              Real experiences from families across Pakistan who upgraded to 100% pure stone-ground chakki flour.
             </p>
           </div>
 
@@ -383,7 +383,7 @@ export function CustomerReviews() {
                 <span className="eyebrow">Share Your Experience</span>
                 <h3 className="mt-1 text-2xl font-serif text-stone-900">Write a Customer Review</h3>
                 <p className="mt-1 text-xs text-stone-600">
-                  Help other Pakistani families discover wholesome, unadulterated pure foods.
+                  Help other Pakistani families discover authentic, pure stone-ground foods.
                 </p>
 
                 <form onSubmit={handleModalSubmit} noValidate className="mt-5 space-y-4">

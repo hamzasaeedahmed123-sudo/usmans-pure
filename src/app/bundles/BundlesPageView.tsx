@@ -88,12 +88,12 @@ export function BundlesPageView() {
           />
 
           <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-10 text-center relative z-10">
-            <span className="eyebrow mb-3">Holistic Lifestyle Synergy</span>
+            <span className="eyebrow mb-3">Pantry &amp; Family Packs</span>
             <h1 className="text-4xl sm:text-6xl font-serif text-[#1E1510] leading-tight">
-              Curated Wellness <em className="italic font-normal text-[#8B3A22]">Bundles</em>
+              Curated Value <em className="italic font-normal text-[#8B3A22]">Bundles</em>
             </h1>
             <p className="mt-5 text-base sm:text-lg text-[#6B5D52] max-w-2xl mx-auto leading-relaxed">
-              Formulated by clinical dietitians and master millers. Each combo pairs cold stone-ground flours with targeted shade-dried botanicals to deliver compounding wellness results at bundle savings of up to ₨800.
+              Carefully paired by our master millers. Each value pack combines fresh stone-ground flours with pure herbal teas and spices to give your family wholesome nutrition at bundle savings of up to ₨800.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-[#6B5D52]">

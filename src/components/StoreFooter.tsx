@@ -8,6 +8,7 @@ import {
   MapPin,
   Clock,
   ShieldCheck,
+  CheckCircle2,
   Truck,
   RotateCcw,
   MessageCircle,
@@ -19,39 +20,51 @@ export function StoreFooter() {
       {/* Top Trust & Value Feature Strip */}
       <div className="border-b border-[#3A2D25] py-4 sm:py-5 bg-[#16110E]/80">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 divide-x divide-[#3A2D25] text-center">
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
-              <div className="text-center sm:text-left">
-                <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
-                  Nationwide COD
-                </h5>
-                <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  Pay at doorstep
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <RotateCcw className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
-              <div className="text-center sm:text-left">
-                <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
-                  14-Day Return
-                </h5>
-                <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  Zero Hassle
-                </p>
-              </div>
-            </div>
-
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#3A2D25] text-center gap-y-3 sm:gap-y-0">
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
               <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
-                  100% Pure
+                  100% Khalis Chakki Atta
                 </h5>
                 <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  Cold-Milled
+                  Freshly Stone-Ground
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
+              <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+              <div className="text-center sm:text-left">
+                <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
+                  Zero Maida &amp; Zero Chemicals
+                </h5>
+                <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
+                  100% Pure Grains
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
+              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+              <div className="text-center sm:text-left">
+                <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
+                  Cash on Delivery Available
+                </h5>
+                <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
+                  Doorstep Delivery
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
+              <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+              <div className="text-center sm:text-left">
+                <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
+                  Direct WhatsApp Support
+                </h5>
+                <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
+                  Fast Help &amp; Orders
                 </p>
               </div>
             </div>
@@ -140,7 +153,7 @@ export function StoreFooter() {
               Reviving pure stone-ground culinary traditions across Pakistan. Fresh whole-grain chakki flours, raw botanical herbal teas, and cold stone-pounded masalas milled under 40°C with zero additives.
             </p>
             <p className="text-xs text-[#8C7D6F] mt-3">
-              100% Unadulterated &bull; Chemical-Free &bull; Tested for Purity
+              100% Khalis Chakki Atta &bull; Zero Maida &bull; Cash on Delivery Available
             </p>
           </div>
 

@@ -20,7 +20,7 @@ export const FAQS_DATA: FaqItem[] = [
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
-    a: "Absolutely zero. We guarantee 100% unadulterated whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
+    a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,
@@ -153,7 +153,7 @@ export const FAQS_DATA: FaqItem[] = [
     id: 20,
     category: "orders",
     categoryLabel: "Orders & Delivery",
-    q: "Can I speak directly with a nutritionist before placing an order?",
-    a: "Yes, you can click our \"Ask a Nutritionist\" or WhatsApp advisory button anytime to discuss your specific dietary goals, lab reports, or family health needs with our clinical support team for free.",
+    q: "Can I speak directly with your team before placing an order?",
+    a: "Yes, you can click our WhatsApp button anytime to discuss your specific dietary preferences, flour recommendations, or family order requirements with our team for free.",
   },
 ];
