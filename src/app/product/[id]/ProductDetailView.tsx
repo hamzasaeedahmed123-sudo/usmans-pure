@@ -16,7 +16,6 @@ import {
   MessageCircle,
   ShieldCheck,
   Sparkles,
-  Star,
   Award,
   CheckCircle2,
 } from "lucide-react";
@@ -144,14 +143,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   </h1>
 
                   {/* Rating Strip */}
-                  <div className="mt-3 flex items-center gap-3">
-                    <div className="flex items-center text-amber-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <span className="text-xs font-semibold text-stone-800">
-                      {product.rating} &bull; {product.reviewCount} Verified Household Reviews
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 text-xs font-semibold">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                      {product.reviewCount} Verified Household Reviews
                     </span>
                   </div>
 

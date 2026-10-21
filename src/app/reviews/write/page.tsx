@@ -8,7 +8,6 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import {
   ChevronRight,
-  Star,
   Camera,
   UploadCloud,
   X,
@@ -43,12 +42,10 @@ const REVIEW_PRODUCTS = [
   "Royal Organic Spice Kitchen Box",
 ];
 
-const RATING_LABELS: Record<number, string> = {
-  1: "1 Star — Disappointed / Unsatisfactory",
-  2: "2 Stars — Needs Significant Improvement",
-  3: "3 Stars — Average / Met Basic Expectations",
-  4: "4 Stars — Very Good / Highly Recommended",
-  5: "5 Stars — Outstanding / Transformative Quality",
+const SATISFACTION_LABELS: Record<number, string> = {
+  3: "Good / Met Expectations",
+  4: "Very Good / Highly Recommended",
+  5: "Outstanding / Exceptional Quality",
 };
 
 export default function WriteReviewPage() {
@@ -172,34 +169,33 @@ export default function WriteReviewPage() {
                 noValidate
                 className="bg-white rounded-md border border-[#1E1510]/10 p-6 sm:p-10 shadow-xs space-y-7"
               >
-                {/* 1. Star Rating Picker */}
+                {/* 1. Satisfaction Selector */}
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-[0.14em] text-[#1E1510] mb-2">
-                    Overall Experience Rating <span className="text-[#8B3A22]">*</span>
+                    Overall Experience <span className="text-[#8B3A22]">*</span>
                   </label>
-                  <div className="flex items-center gap-2">
-                    {[1, 2, 3, 4, 5].map((star) => (
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    {[
+                      { val: 5, label: "Outstanding Purity" },
+                      { val: 4, label: "Very Good" },
+                      { val: 3, label: "Good Quality" },
+                    ].map((item) => (
                       <button
                         type="button"
-                        key={star}
-                        onClick={() => setRating(star)}
-                        onMouseEnter={() => setHoverRating(star)}
-                        onMouseLeave={() => setHoverRating(0)}
-                        className="p-1 focus:outline-hidden group cursor-pointer transition-transform hover:scale-110"
-                        aria-label={`Rate ${star} star`}
+                        key={item.val}
+                        onClick={() => setRating(item.val)}
+                        className={`px-4 py-2.5 rounded-md text-xs font-bold transition cursor-pointer border ${
+                          rating === item.val
+                            ? "bg-[#1E1510] text-[#FAF7F2] border-[#1E1510] shadow-xs"
+                            : "bg-white text-stone-700 border-stone-200 hover:bg-stone-50"
+                        }`}
                       >
-                        <Star
-                          className={`w-7 h-7 sm:w-8 sm:h-8 transition-colors ${
-                            star <= activeRating
-                              ? "fill-amber-400 text-amber-400 drop-shadow-xs"
-                              : "text-stone-300 hover:text-amber-200"
-                          }`}
-                        />
+                        {item.label}
                       </button>
                     ))}
                   </div>
                   <div className="mt-2 text-xs font-medium text-[#8B3A22]">
-                    {RATING_LABELS[activeRating]}
+                    {SATISFACTION_LABELS[rating] || "Outstanding / Exceptional Quality"}
                   </div>
                 </div>
 
@@ -521,12 +517,10 @@ export default function WriteReviewPage() {
                   <span className="font-semibold text-stone-900">{selectedProduct}</span>
                 </div>
                 <div className="flex justify-between items-center pb-2 border-b border-[#1E1510]/10">
-                  <span className="text-stone-500 font-medium">Rating</span>
-                  <div className="flex text-amber-400">
-                    {[...Array(rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
-                    ))}
-                  </div>
+                  <span className="text-stone-500 font-medium">Experience</span>
+                  <span className="font-semibold text-emerald-800">
+                    {rating === 5 ? "Outstanding Purity" : rating === 4 ? "Very Good" : "Good"}
+                  </span>
                 </div>
                 {photos.length > 0 && (
                   <div className="flex justify-between items-center">
