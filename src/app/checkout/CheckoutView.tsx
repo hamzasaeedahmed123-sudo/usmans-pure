@@ -33,6 +33,7 @@ import {
   Lock,
   AlertCircle,
   FileText,
+  Zap,
 } from "lucide-react";
 
 interface OrderItem {
@@ -62,7 +63,8 @@ export function CheckoutView() {
     address: "",
     notes: "",
     paymentMethod: "cod" as "cod" | "wallet" | "card",
-    walletProvider: "jazzcash" as "jazzcash" | "easypaisa",
+    sendingBank: "Meezan Bank",
+    senderAccountTitle: "",
     transactionId: "",
     screenshotFileName: "",
     cardHolderName: "",
@@ -161,7 +163,19 @@ export function CheckoutView() {
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
   const { clearCart } = useCart();
-  const { addOrder } = useStoreData();
+  const { addOrder, storeSettings } = useStoreData();
+  const creds = storeSettings?.paymentCredentials || {
+    bankName: "Meezan Bank Ltd",
+    bankAccountTitle: "Usman's Pure Products",
+    bankIban: "PK36MEZN0001098472910101",
+    raastId: "0300-8472910",
+    jazzCashNumber: "0300-8472910",
+    jazzCashTitle: "Usman's Pure Products",
+    easyPaisaNumber: "0345-1234567",
+    easyPaisaTitle: "Usman's Pure Products",
+    paymentInstructions:
+      "Please transfer the total order amount using Raast, Online Banking, or Mobile Wallet. Enter your Transaction ID (TID) or sender account title below for instant automated verification.",
+  };
 
   const handleSubmitOrder = (e: React.FormEvent) => {
     e.preventDefault();
@@ -173,8 +187,6 @@ export function CheckoutView() {
     const paymentMethodLabel =
       formData.paymentMethod === "cod"
         ? "Cash on Delivery (COD)"
-        : formData.paymentMethod === "wallet"
-        ? (formData.walletProvider === "jazzcash" ? "JazzCash" : "Easypaisa")
         : "Bank Transfer";
 
     addOrder({
@@ -197,9 +209,17 @@ export function CheckoutView() {
       totalAmount: grandTotal,
       status: "Pending",
       paymentMethod: paymentMethodLabel,
-      notes:
-        formData.notes ||
-        (formData.transactionId ? `TID: ${formData.transactionId}` : undefined),
+      transactionId: formData.transactionId ? formData.transactionId.trim() : undefined,
+      senderAccountTitle: formData.senderAccountTitle ? formData.senderAccountTitle.trim() : undefined,
+      receiptImage: formData.screenshotFileName || undefined,
+      notes: [
+        formData.notes,
+        formData.paymentMethod === "wallet" ? `Bank/App: ${formData.sendingBank}` : null,
+        formData.senderAccountTitle ? `Sender: ${formData.senderAccountTitle}` : null,
+        formData.transactionId ? `TID: ${formData.transactionId}` : null,
+      ]
+        .filter(Boolean)
+        .join(" | ") || undefined,
     });
 
     setOrderConfirmed(true);
@@ -220,7 +240,7 @@ export function CheckoutView() {
       formData.paymentMethod === "cod"
         ? "Cash on Delivery (COD) - Payable at Doorstep"
         : formData.paymentMethod === "wallet"
-        ? `JazzCash / Easypaisa ${formData.transactionId ? `(TID: ${formData.transactionId})` : "(Transfer Slip / Screenshot Attached)"}`
+        ? `Online Payment / Bank Transfer (${formData.sendingBank}) ${formData.transactionId ? `(TID: ${formData.transactionId})` : ""} ${formData.senderAccountTitle ? `(Sender: ${formData.senderAccountTitle})` : ""}`
         : "Debit / Credit Card (Direct Gateway)";
 
     const text = `Hello Usman's Pure Products,%0A%0A*Order Booking Request:*%0A${
@@ -614,7 +634,7 @@ export function CheckoutView() {
                             </div>
                           </div>
 
-                          {/* Option 2: JazzCash / Easypaisa */}
+                          {/* Option 2: Online Payment / Bank Transfer */}
                           <div
                             onClick={() => setFormData({ ...formData, paymentMethod: "wallet" })}
                             className={`border-2 rounded-xl p-4 cursor-pointer transition-all ${
@@ -640,54 +660,112 @@ export function CheckoutView() {
                               <div className="flex-1 min-w-0">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                   <div className="flex items-center gap-2">
-                                    <Smartphone className="w-4 h-4 text-amber-800 shrink-0" />
+                                    <Building className="w-4 h-4 text-amber-800 shrink-0" />
                                     <span className="text-sm font-bold text-stone-900">
-                                      JazzCash / Easypaisa
+                                      Online Payment / Bank Transfer
                                     </span>
                                   </div>
-                                  {/* Mobile wallet badges */}
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="px-2 py-0.5 rounded text-[11px] font-black bg-[#ED1C24] text-white tracking-tight shadow-xs">
+                                  {/* Badges */}
+                                  <div className="flex items-center gap-1.5 flex-wrap">
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-black bg-[#105238] text-white tracking-tight shadow-xs flex items-center gap-1">
+                                      <Zap className="w-2.5 h-2.5 text-emerald-300" />
+                                      <span>Raast</span>
+                                    </span>
+                                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-900 text-white tracking-tight shadow-xs">
+                                      IBAN
+                                    </span>
+                                    <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-[#ED1C24] text-white tracking-tight shadow-xs">
                                       JazzCash
                                     </span>
-                                    <span className="px-2 py-0.5 rounded text-[11px] font-black bg-[#009E49] text-white tracking-tight shadow-xs">
+                                    <span className="px-1.5 py-0.5 rounded text-[10px] font-black bg-[#009E49] text-white tracking-tight shadow-xs">
                                       easypaisa
                                     </span>
                                   </div>
                                 </div>
                                 <p className="text-xs text-stone-600 mt-1">
-                                  Direct mobile wallet transfer or QR pay with instant confirmation.
+                                  Transfer via Raast, Mobile App, IBAN, JazzCash, or Easypaisa with instant payment verification.
                                 </p>
 
                                 {formData.paymentMethod === "wallet" && (
                                   <div
-                                    className="mt-3.5 pt-3.5 border-t border-stone-200 space-y-3"
+                                    className="mt-3.5 pt-3.5 border-t border-stone-200 space-y-4"
                                     onClick={(e) => e.stopPropagation()}
                                   >
-                                    <div className="bg-white rounded-lg border border-stone-200/90 p-3.5 space-y-2.5">
-                                      <div className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
-                                        Official Store Accounts:
+                                    {/* 1. Pre-filled exact amount banner */}
+                                    <div className="p-3.5 rounded-xl bg-amber-50/90 border border-amber-200 flex flex-wrap items-center justify-between gap-2">
+                                      <div>
+                                        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900 block">
+                                          Total Payable Amount (Pre-filled):
+                                        </span>
+                                        <span className="text-lg sm:text-xl font-mono font-black text-amber-950">
+                                          ₨{grandTotal.toLocaleString()}
+                                        </span>
+                                      </div>
+                                      <span className="px-2.5 py-1 rounded-full bg-amber-200/90 text-amber-950 text-[10px] font-bold shadow-2xs">
+                                        ✓ Exact Total (No Manual Math Needed)
+                                      </span>
+                                    </div>
+
+                                    {/* 2. Sending Method / Bank Selection Dropdown */}
+                                    <div>
+                                      <label className="block text-xs font-bold text-stone-800 mb-1">
+                                        Select Your Sending Bank / Payment Method <span className="text-rose-600">*</span>
+                                      </label>
+                                      <select
+                                        value={formData.sendingBank}
+                                        onChange={(e) => setFormData({ ...formData, sendingBank: e.target.value })}
+                                        className="w-full py-2.5 px-3.5 rounded-xl border border-stone-300 text-xs font-semibold text-stone-900 bg-white focus:outline-none focus:border-amber-700 shadow-2xs cursor-pointer"
+                                      >
+                                        <option value="Raast Instant Transfer">Raast Instant Pay (From Any Pakistani Banking App)</option>
+                                        <option value="Meezan Bank">Meezan Bank Ltd</option>
+                                        <option value="Bank Alfalah">Bank Alfalah</option>
+                                        <option value="HBL (Habib Bank)">HBL (Habib Bank Ltd)</option>
+                                        <option value="Faysal Bank">Faysal Bank</option>
+                                        <option value="UBL (United Bank)">UBL (United Bank Ltd)</option>
+                                        <option value="MCB Bank">MCB Bank</option>
+                                        <option value="Allied Bank (ABL)">Allied Bank (ABL)</option>
+                                        <option value="Standard Chartered">Standard Chartered Pakistan</option>
+                                        <option value="JazzCash Wallet">JazzCash Mobile Wallet</option>
+                                        <option value="Easypaisa Wallet">Easypaisa Mobile Wallet</option>
+                                        <option value="SadaPay">SadaPay</option>
+                                        <option value="NayaPay">NayaPay</option>
+                                        <option value="Other Bank">Other Pakistani Bank / Microfinance</option>
+                                      </select>
+                                    </div>
+
+                                    {/* 3. Official Store Account Credentials Card with 1-Click Copy */}
+                                    <div className="bg-white rounded-2xl border border-stone-200 p-4 space-y-3 shadow-xs">
+                                      <div className="flex items-center justify-between border-b border-stone-100 pb-2">
+                                        <div className="flex items-center gap-1.5 text-xs font-bold text-stone-900 uppercase tracking-wide">
+                                          <Building className="w-3.5 h-3.5 text-amber-900" />
+                                          <span>Official Store Accounts (Copy Details):</span>
+                                        </div>
+                                        <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                                          Verified Merchant
+                                        </span>
                                       </div>
 
-                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                                        {/* JazzCash account box */}
-                                        <div className="p-2.5 rounded-md border border-red-100 bg-red-50/50 flex items-center justify-between gap-2">
-                                          <div>
-                                            <div className="text-[10px] font-bold text-red-800 flex items-center gap-1">
-                                              <span>JazzCash Mobile Account</span>
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                                        {/* Bank Account */}
+                                        <div className="p-3 rounded-xl border border-amber-200/80 bg-amber-50/40 flex items-start justify-between gap-2">
+                                          <div className="min-w-0">
+                                            <div className="text-[10px] font-bold text-amber-900 uppercase tracking-wide">
+                                              {creds.bankName || "Meezan Bank Ltd"}
                                             </div>
-                                            <div className="font-mono font-bold text-stone-900 text-xs sm:text-sm">
-                                              0300-7654321
+                                            <div className="font-mono font-black text-stone-900 text-xs sm:text-sm tracking-tight break-all">
+                                              {creds.bankIban || "PK36MEZN0001098472910101"}
                                             </div>
-                                            <div className="text-[10px] text-stone-500">Title: Usman Pure Products</div>
+                                            <div className="text-[10px] text-stone-600 mt-0.5 truncate">
+                                              Title: <span className="font-semibold text-stone-900">{creds.bankAccountTitle || "Usman's Pure Products"}</span>
+                                            </div>
                                           </div>
                                           <button
                                             type="button"
-                                            onClick={() => handleCopy("03007654321", "jazzcash")}
-                                            className="px-2 py-1 rounded bg-white hover:bg-red-100 text-stone-700 hover:text-red-800 border border-red-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer"
-                                            title="Copy Account Number"
+                                            onClick={() => handleCopy(creds.bankIban || "PK36MEZN0001098472910101", "bankIban")}
+                                            className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-amber-100 text-stone-800 hover:text-amber-950 border border-amber-300 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0 shadow-2xs"
+                                            title="Copy Bank IBAN"
                                           >
-                                            {copiedKey === "jazzcash" ? (
+                                            {copiedKey === "bankIban" ? (
                                               <>
                                                 <Check className="w-3 h-3 text-emerald-600" />
                                                 <span className="text-emerald-700">Copied</span>
@@ -695,30 +773,33 @@ export function CheckoutView() {
                                             ) : (
                                               <>
                                                 <Copy className="w-3 h-3" />
-                                                <span>Copy</span>
+                                                <span>Copy IBAN</span>
                                               </>
                                             )}
                                           </button>
                                         </div>
 
-                                        {/* Easypaisa account box */}
-                                        <div className="p-2.5 rounded-md border border-emerald-100 bg-emerald-50/50 flex items-center justify-between gap-2">
-                                          <div>
-                                            <div className="text-[10px] font-bold text-emerald-800 flex items-center gap-1">
-                                              <span>Easypaisa Mobile Account</span>
+                                        {/* Raast Instant Pay */}
+                                        <div className="p-3 rounded-xl border border-emerald-200/80 bg-emerald-50/40 flex items-start justify-between gap-2">
+                                          <div className="min-w-0">
+                                            <div className="text-[10px] font-bold text-emerald-900 uppercase tracking-wide flex items-center gap-1">
+                                              <Zap className="w-3 h-3 text-emerald-600" />
+                                              <span>Raast Instant ID</span>
                                             </div>
-                                            <div className="font-mono font-bold text-stone-900 text-xs sm:text-sm">
-                                              0345-1234567
+                                            <div className="font-mono font-black text-stone-900 text-xs sm:text-sm">
+                                              {creds.raastId || "0300-8472910"}
                                             </div>
-                                            <div className="text-[10px] text-stone-500">Title: Usman Pure Products</div>
+                                            <div className="text-[10px] text-stone-600 mt-0.5 truncate">
+                                              Instant fee-free transfer
+                                            </div>
                                           </div>
                                           <button
                                             type="button"
-                                            onClick={() => handleCopy("03451234567", "easypaisa")}
-                                            className="px-2 py-1 rounded bg-white hover:bg-emerald-100 text-stone-700 hover:text-emerald-800 border border-emerald-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer"
-                                            title="Copy Account Number"
+                                            onClick={() => handleCopy(creds.raastId || "03008472910", "raastId")}
+                                            className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-emerald-100 text-stone-800 hover:text-emerald-950 border border-emerald-300 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0 shadow-2xs"
+                                            title="Copy Raast ID"
                                           >
-                                            {copiedKey === "easypaisa" ? (
+                                            {copiedKey === "raastId" ? (
                                               <>
                                                 <Check className="w-3 h-3 text-emerald-600" />
                                                 <span className="text-emerald-700">Copied</span>
@@ -726,62 +807,132 @@ export function CheckoutView() {
                                             ) : (
                                               <>
                                                 <Copy className="w-3 h-3" />
-                                                <span>Copy</span>
+                                                <span>Copy Raast</span>
                                               </>
                                             )}
                                           </button>
                                         </div>
+
+                                        {/* JazzCash */}
+                                        <div className="p-2.5 rounded-xl border border-red-200/70 bg-red-50/30 flex items-start justify-between gap-2">
+                                          <div className="min-w-0">
+                                            <div className="text-[10px] font-bold text-red-800 uppercase tracking-wide">
+                                              JazzCash Mobile Account
+                                            </div>
+                                            <div className="font-mono font-black text-stone-900 text-xs">
+                                              {creds.jazzCashNumber || "0300-8472910"}
+                                            </div>
+                                            <div className="text-[10px] text-stone-500 truncate">
+                                              Title: {creds.jazzCashTitle || "Usman's Pure Products"}
+                                            </div>
+                                          </div>
+                                          <button
+                                            type="button"
+                                            onClick={() => handleCopy(creds.jazzCashNumber || "03008472910", "jazzcash")}
+                                            className="px-2 py-1 rounded-lg bg-white hover:bg-red-50 text-stone-700 border border-red-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0"
+                                          >
+                                            {copiedKey === "jazzcash" ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                                            <span>{copiedKey === "jazzcash" ? "Copied" : "Copy"}</span>
+                                          </button>
+                                        </div>
+
+                                        {/* Easypaisa */}
+                                        <div className="p-2.5 rounded-xl border border-emerald-200/70 bg-emerald-50/30 flex items-start justify-between gap-2">
+                                          <div className="min-w-0">
+                                            <div className="text-[10px] font-bold text-emerald-800 uppercase tracking-wide">
+                                              Easypaisa Mobile Account
+                                            </div>
+                                            <div className="font-mono font-black text-stone-900 text-xs">
+                                              {creds.easyPaisaNumber || "0345-1234567"}
+                                            </div>
+                                            <div className="text-[10px] text-stone-500 truncate">
+                                              Title: {creds.easyPaisaTitle || "Usman's Pure Products"}
+                                            </div>
+                                          </div>
+                                          <button
+                                            type="button"
+                                            onClick={() => handleCopy(creds.easyPaisaNumber || "03451234567", "easypaisa")}
+                                            className="px-2 py-1 rounded-lg bg-white hover:bg-emerald-50 text-stone-700 border border-emerald-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0"
+                                          >
+                                            {copiedKey === "easypaisa" ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                                            <span>{copiedKey === "easypaisa" ? "Copied" : "Copy"}</span>
+                                          </button>
+                                        </div>
                                       </div>
 
-                                      <div className="text-[11px] text-stone-500 italic">
-                                        💡 Transfer exactly <strong>₨{grandTotal.toLocaleString()}</strong> to either account. Then provide the TID or slip below:
+                                      {/* Instructions Notice from Admin */}
+                                      <div className="p-3 rounded-xl bg-amber-50/60 border border-amber-200/60 text-xs text-stone-700 leading-relaxed flex items-start gap-2">
+                                        <span className="text-amber-700 font-bold shrink-0 mt-0.5">💡 Notice:</span>
+                                        <span>{creds.paymentInstructions}</span>
                                       </div>
                                     </div>
 
-                                    {/* Transaction ID & Screenshot inputs */}
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                    {/* 4. Customer Only Enters: Sender Title & Transaction ID */}
+                                    <div className="space-y-3 pt-1">
                                       <div>
-                                        <label className="block text-xs font-bold text-stone-700 mb-1">
-                                          Transaction ID / TID (Optional)
+                                        <label className="block text-xs font-bold text-stone-800 mb-1">
+                                          1. Sender Account Title / Name <span className="text-rose-600">*</span>
                                         </label>
                                         <input
                                           type="text"
-                                          placeholder="e.g. 1029485736"
-                                          value={formData.transactionId}
+                                          required
+                                          placeholder="e.g. Muhammad Usman (Name on your sending bank account or wallet)"
+                                          value={formData.senderAccountTitle}
                                           onChange={(e) =>
-                                            setFormData({ ...formData, transactionId: e.target.value })
+                                            setFormData({ ...formData, senderAccountTitle: e.target.value })
                                           }
-                                          className="w-full py-3 px-4 rounded-xl border border-stone-300 text-base font-medium text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-700 bg-white shadow-2xs"
+                                          className="w-full py-3 px-4 rounded-xl border border-stone-300 text-xs sm:text-sm font-medium text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-700 bg-white shadow-2xs"
                                         />
-                                        <span className="text-[10px] text-stone-400 mt-0.5 block">
-                                          10-12 digit code from SMS or confirmation screen
+                                        <span className="text-[10px] text-stone-500 mt-0.5 block">
+                                          Allows our finance team to quickly match your bank deposit
                                         </span>
                                       </div>
 
-                                      <div>
-                                        <label className="block text-xs font-bold text-stone-700 mb-1">
-                                          Upload Payment Screenshot / Slip (Optional)
-                                        </label>
-                                        <label className="flex items-center gap-2 px-3 py-2 rounded-md border border-dashed border-stone-300 hover:border-stone-400 bg-white cursor-pointer transition">
-                                          <Upload className="w-4 h-4 text-stone-500 shrink-0" />
-                                          <span className="text-xs text-stone-600 truncate">
-                                            {formData.screenshotFileName || "Choose receipt screenshot..."}
-                                          </span>
+                                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <div>
+                                          <label className="block text-xs font-bold text-stone-800 mb-1">
+                                            2. Transaction ID / Reference (TID) <span className="text-rose-600">*</span>
+                                          </label>
                                           <input
-                                            type="file"
-                                            accept="image/*"
-                                            className="hidden"
-                                            onChange={(e) => {
-                                              const file = e.target.files?.[0];
-                                              if (file) {
-                                                setFormData({ ...formData, screenshotFileName: file.name });
-                                              }
-                                            }}
+                                            type="text"
+                                            required
+                                            placeholder="e.g. 1029485736"
+                                            value={formData.transactionId}
+                                            onChange={(e) =>
+                                              setFormData({ ...formData, transactionId: e.target.value })
+                                            }
+                                            className="w-full py-3 px-4 rounded-xl border border-stone-300 text-xs sm:text-sm font-mono font-bold text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-700 bg-white shadow-2xs"
                                           />
-                                        </label>
-                                        <span className="text-[10px] text-stone-400 mt-0.5 block">
-                                          PNG, JPG or JPEG from mobile gallery
-                                        </span>
+                                          <span className="text-[10px] text-stone-500 mt-0.5 block">
+                                            Code from SMS or mobile app confirmation screen
+                                          </span>
+                                        </div>
+
+                                        <div>
+                                          <label className="block text-xs font-bold text-stone-800 mb-1">
+                                            Receipt Screenshot (Optional)
+                                          </label>
+                                          <label className="flex items-center gap-2 px-3 py-2.5 rounded-xl border border-dashed border-stone-300 hover:border-amber-700 bg-white cursor-pointer transition">
+                                            <Upload className="w-4 h-4 text-stone-500 shrink-0" />
+                                            <span className="text-xs text-stone-600 truncate">
+                                              {formData.screenshotFileName || "Choose receipt screenshot..."}
+                                            </span>
+                                            <input
+                                              type="file"
+                                              accept="image/*"
+                                              className="hidden"
+                                              onChange={(e) => {
+                                                const file = e.target.files?.[0];
+                                                if (file) {
+                                                  setFormData({ ...formData, screenshotFileName: file.name });
+                                                }
+                                              }}
+                                            />
+                                          </label>
+                                          <span className="text-[10px] text-stone-500 mt-0.5 block">
+                                            PNG or JPG proof of transfer
+                                          </span>
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
