@@ -126,9 +126,9 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
         <div
           className={`mx-auto transition-all duration-300 backdrop-blur-xl border-b ${themeClasses.glass}`}
         >
-          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between overflow-x-hidden relative z-50">
-            {/* Left Section (Logo + Stone-Ground Badge) */}
-            <div className="flex items-center gap-3 shrink-0">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 overflow-hidden relative z-50">
+            {/* Left Section (Logo): Clean without redundant badge */}
+            <div className="flex items-center shrink-0">
               <Link
                 href="/"
                 className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
@@ -146,10 +146,6 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 </div>
                 <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
               </Link>
-
-              <span className={`hidden xl:inline-flex px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap uppercase tracking-wider backdrop-blur-md shadow-2xs border transition-colors duration-500 ease-in-out ${themeClasses.badge}`}>
-                {themeClasses.tag}
-              </span>
             </div>
 
             {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
