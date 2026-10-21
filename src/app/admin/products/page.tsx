@@ -368,10 +368,10 @@ export default function AdminProductsPage() {
             <form onSubmit={handleCreateProduct} className="space-y-4">
               {/* Product Image Upload Field (Above Product Title) */}
               <div>
-                <label className="block text-xs font-bold text-stone-700 mb-1.5 flex items-center justify-between">
+                <label className="block text-xs font-bold text-stone-800 mb-1.5 flex items-center justify-between">
                   <span className="flex items-center gap-1.5">
                     <ImageIcon className="w-3.5 h-3.5 text-amber-800" />
-                    <span>Product Image</span>
+                    <span>Product Featured Image</span>
                   </span>
                   <span className="text-[11px] font-normal text-stone-500">
                     PNG, JPG, or WEBP (Max 5MB)
@@ -408,7 +408,7 @@ export default function AdminProductsPage() {
                         onClick={() => fileInputRef.current?.click()}
                         className="px-2.5 py-1.5 rounded-lg bg-stone-200 hover:bg-stone-300 text-stone-700 text-[11px] font-bold transition cursor-pointer"
                       >
-                        Change
+                        Replace Image
                       </button>
                       <button
                         type="button"
@@ -416,10 +416,11 @@ export default function AdminProductsPage() {
                           setNewImage("");
                           if (fileInputRef.current) fileInputRef.current.value = "";
                         }}
-                        className="p-1.5 rounded-lg hover:bg-red-50 text-red-600 transition cursor-pointer"
+                        className="px-2.5 py-1.5 rounded-lg hover:bg-red-50 text-red-600 border border-red-200/60 text-[11px] font-bold transition cursor-pointer flex items-center gap-1"
                         title="Remove Image"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Remove</span>
                       </button>
                     </div>
                   </div>
@@ -450,11 +451,54 @@ export default function AdminProductsPage() {
                       </div>
                       <div>
                         <p className="text-xs font-bold text-stone-800">
-                          Click to Browse or Drag &amp; Drop Image
+                          Drag &amp; drop product photography here
                         </p>
                         <p className="text-[11px] text-stone-500 mt-0.5">
-                          Supports high-resolution PNG, JPG, or WEBP
+                          Accepts PNG, JPG, or WEBP (Max 5MB)
                         </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          fileInputRef.current?.click();
+                        }}
+                        className="px-3.5 py-1.5 rounded-xl bg-stone-900 hover:bg-black text-white text-xs font-bold transition shadow-xs mt-1 cursor-pointer"
+                      >
+                        Upload Image / Browse Files
+                      </button>
+                    </div>
+
+                    {/* WordPress-Style Media Library Quick Picker */}
+                    <div className="pt-2 border-t border-stone-200/60">
+                      <p className="text-[11px] font-bold text-stone-700 mb-1.5 flex items-center gap-1">
+                        <ImageIcon className="w-3.5 h-3.5 text-amber-800" />
+                        <span>Media Library (Pick existing photo):</span>
+                      </p>
+                      <div className="grid grid-cols-6 gap-1.5">
+                        {[
+                          { src: "/images/products/prod-1.jpg", name: "Chakki Atta" },
+                          { src: "/images/products/prod-2.jpg", name: "Herbal Tea" },
+                          { src: "/images/products/prod-3.jpg", name: "Multigrain Atta" },
+                          { src: "/images/products/prod-4.jpg", name: "Pure Haldi" },
+                          { src: "/images/products/prod-5.jpg", name: "Kashmiri Kahwa" },
+                          { src: "/images/products/prod-6.jpg", name: "Organic Ajwain" },
+                        ].map((media) => (
+                          <button
+                            key={media.src}
+                            type="button"
+                            onClick={() => setNewImage(media.src)}
+                            title={`Select ${media.name}`}
+                            className="relative aspect-square rounded-lg border-2 border-stone-200 hover:border-amber-700 overflow-hidden bg-white group transition cursor-pointer"
+                          >
+                            <Image
+                              src={media.src}
+                              alt={media.name}
+                              fill
+                              className="object-cover group-hover:scale-110 transition duration-200"
+                            />
+                          </button>
+                        ))}
                       </div>
                     </div>
 
