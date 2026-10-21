@@ -152,15 +152,28 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               </span>
             </div>
 
-            {/* Center Section: Navigation Pill (wrapped in requested pill container) */}
-            <nav className="hidden md:flex items-center gap-1 sm:gap-2 px-3 py-1.5 rounded-full bg-white/70 backdrop-blur-md border border-stone-200/60 shadow-sm">
+            {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
+            <nav className="hidden lg:flex items-center gap-1.5 xl:gap-2.5 bg-[#ede8e1]/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink-0">
+              {/* 1. Home */}
               <Link
                 href="/"
-                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
               >
                 Home
               </Link>
 
+              {/* 2. Doctor's Choice with Verified Badge */}
+              <Link
+                href="/doctors-choice"
+                className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+              >
+                <span>Doctor&apos;s Choice</span>
+                <span className="bg-emerald-700 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                  Verified
+                </span>
+              </Link>
+
+              {/* 3. All Products Dropdown */}
               <div
                 className="relative"
                 onMouseEnter={() => setProductsDropdownOpen(true)}
@@ -168,14 +181,22 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               >
                 <button
                   onClick={() => setProductsDropdownOpen((prev) => !prev)}
-                  className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap"
+                  className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition cursor-pointer whitespace-nowrap"
                 >
-                  <span>Shop</span>
-                  <ChevronDown
-                    className={`w-3.5 h-3.5 opacity-60 transition-transform duration-200 ${
+                  <span>All Products</span>
+                  <svg
+                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
                       productsDropdownOpen ? "rotate-180" : ""
                     }`}
-                  />
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </button>
 
                 {productsDropdownOpen && (
@@ -217,35 +238,41 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 )}
               </div>
 
+              {/* 4. Mega Bundles with Save Badge */}
               <Link
                 href="/bundles"
-                className="hidden lg:inline-flex items-center px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+                className="flex items-center gap-1 px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
               >
-                <span>Bundles</span>
+                <span>Mega Bundles</span>
+                <span className="bg-amber-600 text-white text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                  Save
+                </span>
               </Link>
 
+              {/* 5. About Us */}
               <Link
                 href="/about"
-                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
               >
                 About Us
               </Link>
 
+              {/* 6. Contact */}
               <Link
                 href="/contact"
-                className="px-2.5 py-1 text-xs font-semibold text-stone-800 hover:text-stone-950 hover:bg-black/5 rounded-full transition-colors whitespace-nowrap"
+                className="px-2.5 py-1 text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
               >
                 Contact
               </Link>
             </nav>
 
-            {/* Right Section: Separate Action Flex Container strictly outside nav pill */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            {/* Right Section: Expanded Spacing (ml-auto lg:ml-6 shrink-0) with zero overlap */}
+            <div className="flex items-center gap-3 ml-auto lg:ml-6 shrink-0">
               {/* Quick Search Trigger */}
               <button
                 onClick={() => setSearchModalOpen(true)}
                 aria-label="Search Pure Products"
-                className="cursor-pointer hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/60 border border-white/80 hover:bg-white text-xs font-medium shadow-xs transition"
+                className="cursor-pointer hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ede8e1] border border-stone-200/80 hover:bg-stone-200 text-xs font-medium shadow-xs transition"
               >
                 <Search className="w-3.5 h-3.5 opacity-70" />
                 <span className="opacity-80">Search</span>
@@ -257,10 +284,10 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Shopping Cart Button */}
               <button
                 onClick={() => openCart()}
-                className={`cursor-pointer relative w-10 h-10 rounded-full border shadow-xs flex items-center justify-center transition-colors duration-500 ease-in-out ${themeClasses.cartBtn}`}
+                className="cursor-pointer relative w-10 h-10 rounded-full bg-[#ede8e1] border border-stone-200/80 shadow-xs flex items-center justify-center hover:bg-stone-200 transition"
                 aria-label="View Shopping Cart"
               >
-                <ShoppingBag className="w-4 h-4" />
+                <ShoppingBag className="w-4 h-4 text-stone-800" />
                 <span
                   id="cart-badge-count"
                   className={`absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-bold shadow-xs ${themeClasses.badge}`}
@@ -275,13 +302,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Mobile Hamburger Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`md:hidden w-10 h-10 rounded-full border flex items-center justify-center transition-colors duration-500 ease-in-out cursor-pointer ${themeClasses.cartBtn}`}
+                className="lg:hidden w-10 h-10 rounded-full bg-[#ede8e1] border border-stone-200/80 flex items-center justify-center hover:bg-stone-200 transition cursor-pointer"
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? (
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 text-stone-800" />
                 ) : (
-                  <Menu className="w-5 h-5" />
+                  <Menu className="w-5 h-5 text-stone-800" />
                 )}
               </button>
             </div>
@@ -289,7 +316,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
           {/* Mobile Slide-down Drawer */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
+            <div className="lg:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
               <div className="px-2 pb-2.5 mb-2 border-b border-black/10 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-20 -mt-1 pt-1">
                 <div className="relative w-36 h-9 flex items-center">
                   <Image
