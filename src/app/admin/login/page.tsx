@@ -62,6 +62,22 @@ function AdminLoginContent() {
       return;
     }
 
+    try {
+      const apiRes = await fetch("/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, role }),
+      });
+      const data = await apiRes.json();
+      if (!apiRes.ok) {
+        setLoading(false);
+        setErrorMsg(data.error || "Authentication failed. Invalid admin credentials.");
+        return;
+      }
+    } catch {
+      // allow fallback
+    }
+
     const res = await login(email, password, role);
     setLoading(false);
 

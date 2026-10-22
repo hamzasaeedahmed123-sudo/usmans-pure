@@ -20,6 +20,11 @@ import {
   HelpCircle,
   FileText,
   Zap,
+  Lock,
+  KeyRound,
+  AlertCircle,
+  X,
+  Mail,
 } from "lucide-react";
 
 interface SettingsFormData {
@@ -88,6 +93,96 @@ export default function AdminSettingsPage() {
   const showToast = (msg: string) => {
     setToastMessage(msg);
     setTimeout(() => setToastMessage(""), 3000);
+  };
+
+  // OTP Admin Profile Security State
+  const [showCredModal, setShowCredModal] = useState(false);
+  const [newAdminEmail, setNewAdminEmail] = useState("");
+  const [newAdminPassword, setNewAdminPassword] = useState("");
+  const [otpStep, setOtpStep] = useState<"idle" | "requested" | "verified">("idle");
+  const [otpCode, setOtpCode] = useState("");
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpError, setOtpError] = useState("");
+  const [otpSuccess, setOtpSuccess] = useState("");
+
+  const handleRequestOtp = async () => {
+    setOtpLoading(true);
+    setOtpError("");
+    setOtpSuccess("");
+    try {
+      const res = await fetch("/api/admin/otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ action: "request", email: user?.email || "admin@usmanspure.com" }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setOtpStep("requested");
+        setOtpSuccess(data.message || "OTP code dispatched to your registered email.");
+      } else {
+        setOtpError(data.error || "Failed to dispatch OTP code.");
+      }
+    } catch {
+      setOtpError("Network error while requesting OTP.");
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    setOtpLoading(true);
+    setOtpError("");
+    try {
+      const res = await fetch("/api/admin/otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "verify",
+          email: user?.email || "admin@usmanspure.com",
+          otp: otpCode,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.verified) {
+        setOtpStep("verified");
+        setOtpSuccess("OTP verified! Applying credential updates...");
+        await handleApplyCredentials();
+      } else {
+        setOtpError(data.error || "Invalid verification code.");
+      }
+    } catch {
+      setOtpError("Verification failed.");
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleApplyCredentials = async () => {
+    try {
+      const res = await fetch("/api/admin/otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "apply",
+          email: user?.email || "admin@usmanspure.com",
+          newEmail: newAdminEmail,
+          newPassword: newAdminPassword,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        showToast("Admin credentials updated and locked with OTP security!");
+        setShowCredModal(false);
+        setOtpStep("idle");
+        setOtpCode("");
+        setNewAdminEmail("");
+        setNewAdminPassword("");
+      } else {
+        setOtpError(data.error || "Failed to update credentials.");
+      }
+    } catch {
+      setOtpError("Failed to apply new credentials.");
+    }
   };
 
   const updateField = <K extends keyof SettingsFormData>(key: K, value: SettingsFormData[K]) => {
@@ -618,15 +713,147 @@ export default function AdminSettingsPage() {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80">
-            <div className="w-10 h-10 rounded-full bg-amber-900 text-white flex items-center justify-center font-bold text-sm">
-              {user?.name.charAt(0).toUpperCase()}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-amber-900 text-white flex items-center justify-center font-bold text-sm">
+                {user?.name.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p className="text-xs font-bold text-stone-900">{user?.name}</p>
+                <p className="text-[11px] text-stone-500">{user?.email} • Role: {user?.role}</p>
+              </div>
             </div>
-            <div>
-              <p className="text-xs font-bold text-stone-900">{user?.name}</p>
-              <p className="text-[11px] text-stone-500">{user?.email} • Role: {user?.role}</p>
-            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                setShowCredModal(true);
+                setOtpStep("idle");
+                setOtpError("");
+                setOtpSuccess("");
+                setNewAdminEmail(user?.email || "");
+              }}
+              className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-stone-300 hover:border-amber-800 text-stone-800 hover:text-amber-900 text-xs font-bold transition shadow-2xs cursor-pointer w-fit"
+            >
+              <KeyRound className="w-3.5 h-3.5 text-amber-800" />
+              <span>Update Login Credentials (OTP Enforced)</span>
+            </button>
           </div>
+
+          {/* Mandatory OTP Verification Modal */}
+          {showCredModal && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+              <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-stone-200 space-y-4">
+                <div className="flex items-center justify-between border-b border-stone-100 pb-3">
+                  <div className="flex items-center gap-2">
+                    <ShieldCheck className="w-5 h-5 text-amber-800" />
+                    <h3 className="text-base font-bold text-stone-900">Admin Security Verification</h3>
+                  </div>
+                  <button
+                    onClick={() => setShowCredModal(false)}
+                    className="p-1.5 rounded-full hover:bg-stone-100 text-stone-500 cursor-pointer"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                <p className="text-xs text-stone-600 leading-relaxed">
+                  As part of Usman&apos;s Pure high-security protocol, any changes to administrator credentials require mandatory 6-digit OTP verification sent to your current registered email.
+                </p>
+
+                {otpError && (
+                  <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-xs text-rose-800 flex items-center gap-2 font-medium">
+                    <AlertCircle className="w-4 h-4 text-rose-600 shrink-0" />
+                    <span>{otpError}</span>
+                  </div>
+                )}
+
+                {otpSuccess && (
+                  <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-xs text-emerald-800 flex items-center gap-2 font-medium">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                    <span>{otpSuccess}</span>
+                  </div>
+                )}
+
+                {otpStep === "idle" && (
+                  <div className="space-y-3">
+                    <div>
+                      <label className="block text-xs font-bold text-stone-800 mb-1">
+                        New Admin Email Address
+                      </label>
+                      <input
+                        type="email"
+                        value={newAdminEmail}
+                        onChange={(e) => setNewAdminEmail(e.target.value)}
+                        placeholder="admin@usmanspure.com"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-amber-800"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-stone-800 mb-1">
+                        New Master Password
+                      </label>
+                      <input
+                        type="password"
+                        value={newAdminPassword}
+                        onChange={(e) => setNewAdminPassword(e.target.value)}
+                        placeholder="Enter robust new password"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-amber-800"
+                      />
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleRequestOtp}
+                      disabled={otpLoading}
+                      className="w-full py-3 rounded-xl bg-[#1C1613] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer disabled:opacity-50 mt-2 shadow-md"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>{otpLoading ? "Sending OTP via Namecheap SMTP..." : "Send 6-Digit Verification Code"}</span>
+                    </button>
+                  </div>
+                )}
+
+                {otpStep === "requested" && (
+                  <div className="space-y-3">
+                    <div className="text-center p-3 rounded-2xl bg-stone-50 border border-stone-200">
+                      <span className="text-[11px] text-stone-500 block mb-1">Sent to {user?.email}</span>
+                      <input
+                        type="text"
+                        maxLength={6}
+                        value={otpCode}
+                        onChange={(e) => setOtpCode(e.target.value.replace(/[^0-9]/g, ""))}
+                        placeholder="123456"
+                        className="w-48 mx-auto text-center font-mono text-2xl font-black tracking-widest py-2 rounded-xl border border-stone-300 text-stone-900 bg-white focus:outline-none focus:border-amber-800"
+                      />
+                      <span className="text-[10px] text-stone-400 block mt-1">Valid for 10 minutes</span>
+                    </div>
+
+                    <div className="flex gap-2">
+                      <button
+                        type="button"
+                        onClick={handleRequestOtp}
+                        disabled={otpLoading}
+                        className="py-2.5 px-3 rounded-xl border border-stone-300 hover:bg-stone-50 text-stone-700 text-xs font-semibold cursor-pointer"
+                      >
+                        Resend Code
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleVerifyOtp}
+                        disabled={otpLoading || otpCode.length !== 6}
+                        className="flex-1 py-2.5 px-4 rounded-xl bg-emerald-800 hover:bg-emerald-900 text-white text-xs font-bold transition cursor-pointer disabled:opacity-50 flex items-center justify-center gap-1.5 shadow-md"
+                      >
+                        <ShieldCheck className="w-4 h-4" />
+                        <span>{otpLoading ? "Verifying..." : "Verify OTP & Update"}</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Submit Button */}

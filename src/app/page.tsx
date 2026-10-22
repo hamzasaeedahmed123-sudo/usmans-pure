@@ -41,10 +41,16 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/products/prod-3.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Usman's Pure - 100% Pure Chakki Atta Online Pakistan",
+        url: "/images/products/multigrain-flagship-family.jpg",
+        width: 1024,
+        height: 824,
+        alt: "Usman's Pure Products - 100% Pure Stone-Ground Chakki Atta Online Pakistan",
+      },
+      {
+        url: "/logo.png",
+        width: 1024,
+        height: 292,
+        alt: "Usman's Pure Products",
       },
     ],
   },

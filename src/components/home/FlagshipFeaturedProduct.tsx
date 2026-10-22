@@ -83,7 +83,7 @@ const GALLERY_IMAGES = [
   },
 ];
 
-const WHATSAPP_PHONE = "923004099430";
+const WHATSAPP_PHONE = "923008472910";
 
 export function FlagshipFeaturedProduct() {
   const { addItem, openCart } = useCart();
