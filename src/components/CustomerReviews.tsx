@@ -224,6 +224,7 @@ export function CustomerReviews() {
                                 alt={`${r.name} meal photo`}
                                 fill
                                 sizes="(max-width: 768px) 80px, 96px"
+                                loading="lazy"
                                 className="w-20 h-20 md:w-24 md:h-24 object-cover"
                               />
                               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center">

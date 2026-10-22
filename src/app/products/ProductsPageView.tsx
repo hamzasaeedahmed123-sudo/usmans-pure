@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -8,6 +8,7 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { TrustBadges } from "@/components/TrustBadges";
 import { PRODUCTS, Product } from "@/data/products";
+import { useStoreData } from "@/context/StoreDataContext";
 import {
   ShoppingBag,
   Check,
@@ -22,13 +23,16 @@ import {
 } from "lucide-react";
 
 export function ProductsPageView() {
+  const { products: storeProducts } = useStoreData();
+  const allCatalogProducts = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS;
+
   const [selectedCategory, setSelectedCategory] = useState<"all" | "flours" | "teas" | "spices">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
 
-  const handleAddToCart = (product: Product, e?: React.MouseEvent) => {
+  const handleAddToCart = useCallback((product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
     const cartEl = document.getElementById("cart-badge-count");
@@ -39,21 +43,27 @@ export function ProductsPageView() {
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
-  };
+  }, []);
 
-  const filteredProducts = PRODUCTS.filter((p) => {
-    const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
-    const matchesSearch =
-      p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.description.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  }).sort((a, b) => {
-    if (sortBy === "price-asc") return a.price - b.price;
-    if (sortBy === "price-desc") return b.price - a.price;
-    if (sortBy === "rating") return b.rating - a.rating;
-    return 0;
-  });
+  const filteredProducts = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return allCatalogProducts
+      .filter((p) => {
+        const matchesCategory = selectedCategory === "all" || p.category === selectedCategory;
+        const matchesSearch =
+          !query ||
+          p.title.toLowerCase().includes(query) ||
+          p.categoryLabel.toLowerCase().includes(query) ||
+          p.description.toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => {
+        if (sortBy === "price-asc") return a.price - b.price;
+        if (sortBy === "price-desc") return b.price - a.price;
+        if (sortBy === "rating") return (b.rating || 5) - (a.rating || 5);
+        return 0;
+      });
+  }, [allCatalogProducts, selectedCategory, searchQuery, sortBy]);
 
   return (
     <div className="min-h-screen bg-stone-50 flex flex-col justify-between">
