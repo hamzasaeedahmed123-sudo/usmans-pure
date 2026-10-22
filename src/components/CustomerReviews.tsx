@@ -17,17 +17,7 @@ import {
   Camera,
   AlertCircle,
 } from "lucide-react";
-
-interface ReviewItem {
-  id: number;
-  name: string;
-  city: string;
-  product: string;
-  rating: number;
-  date: string;
-  text: string;
-  photos?: string[];
-}
+import { useStoreData, Review, DEFAULT_REVIEWS } from "@/context/StoreDataContext";
 
 interface LightboxPhotoData {
   url: string;
@@ -37,68 +27,11 @@ interface LightboxPhotoData {
   rating?: number;
 }
 
-const REVIEWS: ReviewItem[] = [
-  {
-    id: 1,
-    name: "Tariq Mahmood",
-    city: "Lahore, Punjab",
-    product: "Fat2Fuel Weight Loss Flour",
-    rating: 5,
-    date: "Verified Buyer • 1 week ago",
-    text: "After 3 weeks of eating Fat2Fuel rotis, I've lost 3.8 kgs without feeling hungry or weak. My digestion has never been smoother. Even my wife and mother love the rotis!",
-    photos: ["/images/products/prod-3.jpg", "/images/products/prod-1.jpg"],
-  },
-  {
-    id: 2,
-    name: "Dr. Farzana Akhtar",
-    city: "Islamabad, Capital",
-    product: "FENUGREEK Plus Diabetic Flour",
-    rating: 5,
-    date: "Verified Buyer • 2 weeks ago",
-    text: "As a physician and diabetic patient, I monitor my fasting sugar daily. Fenugreek Plus flour has eliminated my 2-hour post-meal spikes. Handles just like regular chakki atta and tastes great.",
-    photos: ["/images/products/prod-4.png"],
-  },
-  {
-    id: 3,
-    name: "Ayesha Imran",
-    city: "Karachi, Sindh",
-    product: "Rosella Ruby Tea & Chamomile",
-    rating: 5,
-    date: "Verified Buyer • 3 weeks ago",
-    text: "The Rosella tea has this amazing tart hibiscus flavor and I drink it chilled with raw honey. It reduced my water bloating in just 5 days. Chamomile tea at night gives me restful sleep.",
-    photos: ["/images/products/prod-9.jpg"],
-  },
-  {
-    id: 4,
-    name: "Muhammad Bilal",
-    city: "Faisalabad, Punjab",
-    product: "Giggly Grains (Kids Immunity Blend)",
-    rating: 5,
-    date: "Verified Buyer • 1 month ago",
-    text: "My 6-year-old was a very picky eater and used to complain about stomach aches with white bread. With Giggly Grains, rotis are super soft and he finishes his plate with a smile!",
-  },
-  {
-    id: 5,
-    name: "Begum Shahnaz",
-    city: "Rawalpindi, Punjab",
-    product: "Pure Lakadong Turmeric (>7% Curcumin)",
-    rating: 5,
-    date: "Verified Buyer • 1 month ago",
-    text: "The color and deep earthy fragrance are completely unlike grocery store turmeric. My knee stiffness has significantly reduced drinking golden milk every night. Truly 100% pure.",
-    photos: ["/images/spices-product.jpg"],
-  },
-  {
-    id: 6,
-    name: "Usman Rafique",
-    city: "Multan, Punjab",
-    product: "Olive Leaf Cardiac Herbal Tea",
-    rating: 5,
-    date: "Verified Buyer • 1 month ago",
-    text: "Doctor recommended olive leaf extract for blood pressure. Drinking Usman's pure whole-leaf infusion has helped stabilize my systolic readings naturally. Clean, calming taste.",
-  },
-];
-
 export function CustomerReviews() {
+  const { reviews, addReview } = useStoreData();
+  const publishedReviews = reviews.filter((r) => r.status === "Published");
+  const displayReviews: Review[] = publishedReviews.length > 0 ? publishedReviews : DEFAULT_REVIEWS;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -115,7 +48,7 @@ export function CustomerReviews() {
   const [modalTouched, setModalTouched] = useState(false);
 
   // Responsive slide step: 1 card on mobile, 2 on tablet, 3 on desktop
-  const totalSlides = REVIEWS.length;
+  const totalSlides = displayReviews.length;
 
   useEffect(() => {
     if (isHovered || isModalOpen || lightboxPhoto) return;
@@ -152,6 +85,18 @@ export function CustomerReviews() {
     }
 
     setModalError(null);
+
+    // Save directly to StoreDataContext & Admin Panel as Pending
+    addReview({
+      name: modalName.trim(),
+      city: modalCity.trim(),
+      product: modalProduct,
+      rating: modalRating,
+      review: modalReview.trim(),
+      verified: false,
+      status: "Pending",
+    });
+
     setIsSubmitted(true);
     setTimeout(() => {
       setIsSubmitted(false);
@@ -190,19 +135,20 @@ export function CustomerReviews() {
 
           {/* Action CTAs Next to Heading */}
           <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link
-              href="/reviews/write"
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-[0.14em] transition-colors cursor-pointer shadow-xs"
             >
               <PenLine className="w-3.5 h-3.5" />
-              <span>Write a Review</span>
-            </Link>
+              <span>+ Write a Review</span>
+            </button>
 
             <Link
               href="/reviews"
               className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#8B3A22] hover:text-[#1E1510] transition-colors py-2 px-2"
             >
-              <span>View All 500+ Stories</span>
+              <span>View All Verified Stories</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
@@ -222,7 +168,7 @@ export function CustomerReviews() {
                 transform: `translateX(-${currentIndex * 100}%)`,
               }}
             >
-              {REVIEWS.map((r) => (
+              {displayReviews.map((r) => (
                 <div
                   key={r.id}
                   className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2.5"
@@ -233,13 +179,15 @@ export function CustomerReviews() {
                       {/* Top Bar: Stars + Verified Badge */}
                       <div className="flex items-center justify-between gap-2 mb-3">
                         <div className="flex items-center text-amber-500">
-                          {[...Array(r.rating)].map((_, i) => (
+                          {[...Array(r.rating || 5)].map((_, i) => (
                             <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                           ))}
                         </div>
-                        <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-xs">
-                          Verified Buyer
-                        </span>
+                        {r.verified && (
+                          <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded-xs font-semibold">
+                            Verified Buyer
+                          </span>
+                        )}
                       </div>
 
                       {/* Product Tag */}
@@ -249,10 +197,10 @@ export function CustomerReviews() {
 
                       {/* Review Quote text */}
                       <p className="text-[15px] sm:text-base text-stone-800 leading-relaxed font-normal">
-                        &ldquo;{r.text}&rdquo;
+                        &ldquo;{r.review || (r as any).text}&rdquo;
                       </p>
 
-                      {/* Customer Photo Gallery Row (Directly below review quote) */}
+                      {/* Customer Photo Gallery Row */}
                       {r.photos && r.photos.length > 0 && (
                         <div className="flex gap-3 mt-4 overflow-x-auto pb-1 scrollbar-thin">
                           {r.photos.map((photoUrl, pIdx) => (
@@ -299,7 +247,7 @@ export function CustomerReviews() {
                             <CheckCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                           </div>
                           <div className="text-xs sm:text-sm text-stone-600 truncate mt-0.5">
-                            {r.city} &bull; {r.date.split("•")[1]?.trim() || "Verified Buyer"}
+                            {r.city} &bull; {r.date}
                           </div>
                         </div>
                       </div>
@@ -315,7 +263,7 @@ export function CustomerReviews() {
           <div className="mt-6 flex items-center justify-between">
             {/* Pagination Dots */}
             <div className="flex items-center gap-1.5">
-              {REVIEWS.map((_, i) => (
+              {displayReviews.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentIndex(i)}

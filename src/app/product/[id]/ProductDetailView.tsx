@@ -20,14 +20,20 @@ import {
   CheckCircle2,
   Plus,
   Minus,
+  PenLine,
+  X,
+  AlertCircle,
+  BadgeCheck,
 } from "lucide-react";
+import { useStoreData } from "@/context/StoreDataContext";
 
 interface ProductDetailViewProps {
   id: string;
 }
 
 export function ProductDetailView({ id }: ProductDetailViewProps) {
-  const product = PRODUCTS.find((p) => p.id === id);
+  const { products: storeProducts, reviews, addReview } = useStoreData();
+  const product = storeProducts.find((p) => p.id === id) || PRODUCTS.find((p) => p.id === id);
 
   if (!product) {
     return notFound();
@@ -37,6 +43,51 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
   const [selectedPack, setSelectedPack] = useState<"standard" | "large">("standard");
   const [isAdded, setIsAdded] = useState(false);
   const [openSection, setOpenSection] = useState<string | null>("overview");
+
+  // Review modal state
+  const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+  const [revName, setRevName] = useState("");
+  const [revCity, setRevCity] = useState("");
+  const [revRating, setRevRating] = useState(5);
+  const [revText, setRevText] = useState("");
+  const [revSuccess, setRevSuccess] = useState(false);
+  const [revError, setRevError] = useState<string | null>(null);
+
+  // Filter published reviews matching product
+  const publishedReviews = reviews.filter((r) => r.status === "Published");
+  const productSpecificReviews = publishedReviews.filter(
+    (r) =>
+      r.product.toLowerCase().includes(product.title.toLowerCase()) ||
+      product.title.toLowerCase().includes(r.product.toLowerCase())
+  );
+  const reviewsToDisplay =
+    productSpecificReviews.length > 0 ? productSpecificReviews : publishedReviews.slice(0, 4);
+
+  const handleWriteReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!revName.trim() || !revText.trim()) {
+      setRevError("Please enter your name and review message.");
+      return;
+    }
+    setRevError(null);
+    addReview({
+      name: revName.trim(),
+      city: revCity.trim() || "Pakistan",
+      product: product.title,
+      rating: revRating,
+      review: revText.trim(),
+      verified: false,
+      status: "Pending",
+    });
+    setRevSuccess(true);
+    setTimeout(() => {
+      setRevSuccess(false);
+      setIsReviewModalOpen(false);
+      setRevName("");
+      setRevCity("");
+      setRevText("");
+    }, 2200);
+  };
 
   const toggleSection = (sec: string) => {
     setOpenSection((prev) => (prev === sec ? null : sec));
@@ -416,6 +467,212 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
             </div>
           </div>
         </div>
+
+        {/* Verified Household Customer Reviews Section */}
+        <section className="bg-[#FAF7F2] py-14 sm:py-16 border-t border-stone-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8B3A22]">
+                    Verified Household Reviews
+                  </span>
+                  <span className="text-stone-300">•</span>
+                  <div className="flex items-center text-amber-500">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <span className="text-xs font-semibold text-stone-700">4.9 / 5.0 Rating</span>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight">
+                  What Families Say About <em className="italic font-normal text-[#8B3A22]">{product.title}</em>
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-3 shrink-0">
+                <button
+                  type="button"
+                  onClick={() => setIsReviewModalOpen(true)}
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
+                >
+                  <PenLine className="w-3.5 h-3.5" />
+                  <span>+ Write a Review</span>
+                </button>
+                <Link
+                  href="/reviews"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8B3A22] hover:text-stone-900 transition-colors py-2"
+                >
+                  <span>All Reviews</span>
+                  <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Review Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+              {reviewsToDisplay.map((r) => (
+                <div
+                  key={r.id}
+                  className="bg-white rounded-md p-5 border border-stone-200/80 shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <div className="flex items-center text-amber-400">
+                        {[...Array(r.rating || 5)].map((_, i) => (
+                          <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      {r.verified && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                          <BadgeCheck className="w-3 h-3 text-emerald-600" />
+                          Verified Buyer
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="text-[11px] font-bold text-[#8B3A22] uppercase tracking-wider mb-2 truncate">
+                      {r.product}
+                    </div>
+
+                    <p className="text-xs sm:text-sm text-stone-700 leading-relaxed italic">
+                      &ldquo;{r.review}&rdquo;
+                    </p>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+                    <div>
+                      <div className="text-xs font-bold text-stone-900">{r.name}</div>
+                      <div className="text-[11px] text-stone-500 mt-0.5">
+                        {r.city} • {r.date}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Write a Review Modal */}
+        {isReviewModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fade-in">
+            <div className="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border border-stone-200 relative">
+              <button
+                onClick={() => setIsReviewModalOpen(false)}
+                className="absolute top-4 right-4 p-1.5 rounded-lg text-stone-400 hover:text-stone-700 hover:bg-stone-100"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {revSuccess ? (
+                <div className="text-center py-8">
+                  <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center mx-auto mb-3">
+                    <Check className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-xl font-serif font-bold text-stone-900">Thank You!</h3>
+                  <p className="text-xs text-stone-600 mt-2">
+                    Your review for {product.title} has been submitted and will be verified by our admin team.
+                  </p>
+                </div>
+              ) : (
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#8B3A22] block mb-1">
+                    Verified Customer Voice
+                  </span>
+                  <h3 className="text-xl font-serif font-bold text-stone-900">
+                    Write a Review for {product.title}
+                  </h3>
+                  <p className="text-xs text-stone-500 mt-1">
+                    Share your experience with aroma, freshness, cooking results, or health benefits.
+                  </p>
+
+                  {revError && (
+                    <div className="mt-3 p-2.5 rounded bg-red-50 border border-red-200 text-xs text-red-700 font-semibold flex items-center gap-1.5">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{revError}</span>
+                    </div>
+                  )}
+
+                  <form onSubmit={handleWriteReview} className="mt-4 space-y-3.5">
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-xs font-bold text-stone-700 mb-1">Your Name *</label>
+                        <input
+                          type="text"
+                          required
+                          value={revName}
+                          onChange={(e) => setRevName(e.target.value)}
+                          placeholder="e.g. Fatima Zahra"
+                          className="w-full px-3 py-2 text-xs rounded border border-stone-200 bg-stone-50 text-stone-900 focus:outline-hidden focus:border-[#8B3A22] focus:bg-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-stone-700 mb-1">City / Location</label>
+                        <input
+                          type="text"
+                          value={revCity}
+                          onChange={(e) => setRevCity(e.target.value)}
+                          placeholder="e.g. Lahore, Punjab"
+                          className="w-full px-3 py-2 text-xs rounded border border-stone-200 bg-stone-50 text-stone-900 focus:outline-hidden focus:border-[#8B3A22] focus:bg-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-stone-700 mb-1">Rating</label>
+                      <div className="flex items-center gap-2">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <button
+                            type="button"
+                            key={s}
+                            onClick={() => setRevRating(s)}
+                            className="p-1 cursor-pointer transition-transform hover:scale-110"
+                          >
+                            <Star
+                              className={`w-6 h-6 ${
+                                s <= revRating ? "fill-amber-400 text-amber-400" : "fill-stone-200 text-stone-200"
+                              }`}
+                            />
+                          </button>
+                        ))}
+                        <span className="text-xs font-bold text-stone-600 ml-2">{revRating} of 5 Stars</span>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-stone-700 mb-1">Review Feedback *</label>
+                      <textarea
+                        rows={3}
+                        required
+                        value={revText}
+                        onChange={(e) => setRevText(e.target.value)}
+                        placeholder="Tell others how this product worked for your family..."
+                        className="w-full px-3 py-2 text-xs rounded border border-stone-200 bg-stone-50 text-stone-900 focus:outline-hidden focus:border-[#8B3A22] focus:bg-white"
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-end gap-2 pt-3 border-t border-stone-100">
+                      <button
+                        type="button"
+                        onClick={() => setIsReviewModalOpen(false)}
+                        className="px-4 py-2 rounded text-xs font-bold text-stone-600 hover:bg-stone-100"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        type="submit"
+                        className="px-5 py-2 rounded bg-[#1E1510] hover:bg-[#8B3A22] text-white text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                      >
+                        Submit for Verification
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Related Products Section */}
         <section className="bg-white py-16 border-t border-stone-200">

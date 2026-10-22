@@ -193,11 +193,155 @@ export const DEFAULT_STORE_SETTINGS: StoreSettings = {
   paymentCredentials: DEFAULT_PAYMENT_CREDENTIALS,
 };
 
+export type ReviewStatus = "Published" | "Pending" | "Hidden";
+
+export interface Review {
+  id: string;
+  name: string;
+  city: string;
+  product: string;
+  rating: number; // 1 to 5
+  date: string;
+  review: string;
+  verified: boolean;
+  status: ReviewStatus;
+  photos?: string[];
+  helpfulCount?: number;
+}
+
+export const DEFAULT_REVIEWS: Review[] = [
+  {
+    id: "rev-1",
+    name: "Tariq Mahmood",
+    city: "Lahore, Punjab",
+    product: "Fat2Fuel Advance Multigrain Flour",
+    rating: 5,
+    date: "4 days ago",
+    review: "After 3 weeks of eating Fat2Fuel rotis, I've lost 3.8 kgs without feeling hungry or weak. My digestion has never been smoother. Even my wife and mother love the rotis!",
+    verified: true,
+    status: "Published",
+    photos: ["/images/products/prod-3.jpg", "/images/products/prod-1.jpg"],
+    helpfulCount: 38,
+  },
+  {
+    id: "rev-2",
+    name: "Dr. Farzana Akhtar",
+    city: "Islamabad, Capital",
+    product: "FENUGREEK Plus – Diabetic Care Flour",
+    rating: 5,
+    date: "1 week ago",
+    review: "As a physician and diabetic patient, I monitor my fasting sugar daily. Fenugreek Plus flour has eliminated my 2-hour post-meal spikes. Handles just like regular chakki atta and tastes great.",
+    verified: true,
+    status: "Published",
+    photos: ["/images/products/prod-4.png"],
+    helpfulCount: 52,
+  },
+  {
+    id: "rev-3",
+    name: "Ayesha Imran",
+    city: "Karachi, Sindh",
+    product: "Wild Rosella Herbal Tea (Hibiscus)",
+    rating: 5,
+    date: "2 weeks ago",
+    review: "The Rosella tea has this amazing tart hibiscus flavor and I drink it chilled with raw honey. It reduced my water bloating in just 5 days. Chamomile tea at night gives me restful sleep.",
+    verified: true,
+    status: "Published",
+    photos: ["/images/products/prod-9.jpg"],
+    helpfulCount: 29,
+  },
+  {
+    id: "rev-4",
+    name: "Muhammad Bilal",
+    city: "Faisalabad, Punjab",
+    product: "Kids Giggly Grains Immunity Flour",
+    rating: 5,
+    date: "3 weeks ago",
+    review: "My 6-year-old was a very picky eater and used to complain about stomach aches with white bread. With Giggly Grains, rotis are super soft and he finishes his plate with a smile!",
+    verified: true,
+    status: "Published",
+    helpfulCount: 19,
+  },
+  {
+    id: "rev-5",
+    name: "Begum Shahnaz",
+    city: "Rawalpindi, Punjab",
+    product: "Pure Lakadong High-Curcumin Turmeric",
+    rating: 5,
+    date: "1 month ago",
+    review: "The color and deep earthy fragrance are completely unlike grocery store turmeric. My knee stiffness has significantly reduced drinking golden milk every night. Truly 100% pure.",
+    verified: true,
+    status: "Published",
+    photos: ["/images/spices-product.jpg"],
+    helpfulCount: 44,
+  },
+  {
+    id: "rev-6",
+    name: "Usman Rafique",
+    city: "Multan, Punjab",
+    product: "Olive Leaf Cardiac Herbal Tea",
+    rating: 5,
+    date: "1 month ago",
+    review: "Doctor recommended olive leaf extract for blood pressure. Drinking Usman's pure whole-leaf infusion has helped stabilize my systolic readings naturally. Clean, calming taste.",
+    verified: true,
+    status: "Published",
+    helpfulCount: 16,
+  },
+  {
+    id: "rev-7",
+    name: "Fatima Zahra",
+    city: "Gujranwala, Punjab",
+    product: "Basic Stone-Ground Whole Wheat Atta",
+    rating: 5,
+    date: "1 month ago",
+    review: "The aroma of freshly milled wheat when opening the pack took me straight back to our village chakki. Phulkas remain soft till evening without any chemicals.",
+    verified: true,
+    status: "Published",
+    helpfulCount: 23,
+  },
+  {
+    id: "rev-8",
+    name: "Zeeshan Haider",
+    city: "Peshawar, KPK",
+    product: "Cold-Pounded Kashmiri Red Chili",
+    rating: 5,
+    date: "1 month ago",
+    review: "Zero artificial colors. Gives our handi a rich, natural scarlet sheen and gentle warmth without burning the stomach. Superb quality!",
+    verified: true,
+    status: "Published",
+    helpfulCount: 12,
+  },
+  {
+    id: "rev-9",
+    name: "Sadia Naveed",
+    city: "Sialkot, Punjab",
+    product: "Royal Stone-Pounded Garam Masala",
+    rating: 5,
+    date: "2 months ago",
+    review: "You only need half a pinch because it's slow-ground without losing essential oils. The fragrance fills the whole kitchen!",
+    verified: true,
+    status: "Published",
+    helpfulCount: 31,
+  },
+  {
+    id: "rev-10",
+    name: "Kamran Siddiqui",
+    city: "Karachi, Sindh",
+    product: "Fat Loss Transformation Combo",
+    rating: 5,
+    date: "2 months ago",
+    review: "Ordering again for the 3rd time. Fast delivery to Karachi in 48 hours, proper seal packaging, and authentic taste.",
+    verified: true,
+    status: "Published",
+    helpfulCount: 27,
+  },
+];
+
 export const INITIAL_ORDERS: Order[] = [];
 
 interface StoreDataContextType {
   products: Product[];
   orders: Order[];
+  reviews: Review[];
   cmsContent: CMSContent;
   storeSettings: StoreSettings;
   isLoaded: boolean;
@@ -207,6 +351,10 @@ interface StoreDataContextType {
   addOrder: (order: Omit<Order, "id" | "date"> & { id?: string; date?: string; orderNumber?: string }) => Order;
   updateOrderStatus: (orderId: string, status: OrderStatus) => void;
   deleteOrder: (orderId: string) => void;
+  addReview: (review: Omit<Review, "id" | "date"> & { id?: string; date?: string }) => Review;
+  updateReview: (id: string, updates: Partial<Review>) => void;
+  deleteReview: (id: string) => void;
+  toggleReviewStatus: (id: string) => void;
   updateCMS: (updates: Partial<CMSContent>) => void;
   updateStoreSettings: (updates: Partial<StoreSettings>) => void;
   resetToDefaults: () => void;
@@ -217,6 +365,7 @@ const StoreDataContext = createContext<StoreDataContextType | undefined>(undefin
 const STORAGE_KEYS = {
   PRODUCTS: "usman_admin_products",
   ORDERS: "usman_admin_orders",
+  REVIEWS: "usman_admin_reviews",
   CMS: "usman_admin_cms",
   SETTINGS: "usman_admin_settings",
 };
@@ -224,6 +373,7 @@ const STORAGE_KEYS = {
 export function StoreDataProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
+  const [reviews, setReviews] = useState<Review[]>(DEFAULT_REVIEWS);
   const [cmsContent, setCmsContent] = useState<CMSContent>(DEFAULT_CMS);
   const [storeSettings, setStoreSettings] = useState<StoreSettings>(DEFAULT_STORE_SETTINGS);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -299,6 +449,14 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
           });
         }
       }
+
+      const storedReviews = localStorage.getItem(STORAGE_KEYS.REVIEWS);
+      if (storedReviews) {
+        const parsed = JSON.parse(storedReviews);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setReviews(parsed);
+        }
+      }
     } catch (e) {
       console.error("Error reading stored admin data", e);
     } finally {
@@ -341,6 +499,41 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  // Listen for real-time reviews submitted across storefront and tabs
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleReviewAdded = (e: Event) => {
+      const customEvent = e as CustomEvent<Review>;
+      if (customEvent.detail && customEvent.detail.id) {
+        setReviews((prev) => {
+          if (prev.some((r) => r.id === customEvent.detail.id)) return prev;
+          return [customEvent.detail, ...prev];
+        });
+      }
+    };
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEYS.REVIEWS && e.newValue) {
+        try {
+          const parsed = JSON.parse(e.newValue);
+          if (Array.isArray(parsed)) {
+            setReviews(parsed);
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    };
+
+    window.addEventListener("usman-review-added", handleReviewAdded);
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("usman-review-added", handleReviewAdded);
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   // Sync to localStorage
   useEffect(() => {
     if (!isLoaded) return;
@@ -359,6 +552,18 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       console.error(e);
     }
   }, [orders, isLoaded]);
+
+  useEffect(() => {
+    if (!isLoaded) return;
+    try {
+      localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("usman-reviews-updated", { detail: reviews }));
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }, [reviews, isLoaded]);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -445,6 +650,58 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     setOrders((prev) => prev.filter((o) => o.id !== orderId));
   };
 
+  const addReview = (reviewData: Omit<Review, "id" | "date"> & { id?: string; date?: string; status?: ReviewStatus }): Review => {
+    const id = reviewData.id || `rev-${Date.now().toString(36)}`;
+    const newReview: Review = {
+      ...reviewData,
+      id,
+      date: reviewData.date || "Just now",
+      verified: reviewData.verified !== undefined ? reviewData.verified : false,
+      status: reviewData.status || "Pending",
+      helpfulCount: reviewData.helpfulCount || 0,
+    };
+
+    setReviews((prev) => {
+      const updated = [newReview, ...prev.filter((r) => r.id !== id)];
+      if (typeof window !== "undefined") {
+        try {
+          localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(updated));
+        } catch (e) {
+          console.error(e);
+        }
+      }
+      return updated;
+    });
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("usman-review-added", { detail: newReview }));
+    }
+
+    return newReview;
+  };
+
+  const updateReview = (id: string, updates: Partial<Review>) => {
+    setReviews((prev) =>
+      prev.map((r) => (r.id === id ? { ...r, ...updates } : r))
+    );
+  };
+
+  const deleteReview = (id: string) => {
+    setReviews((prev) => prev.filter((r) => r.id !== id));
+  };
+
+  const toggleReviewStatus = (id: string) => {
+    setReviews((prev) =>
+      prev.map((r) => {
+        if (r.id === id) {
+          const nextStatus: ReviewStatus = r.status === "Published" ? "Hidden" : "Published";
+          return { ...r, status: nextStatus };
+        }
+        return r;
+      })
+    );
+  };
+
   const updateCMS = (updates: Partial<CMSContent>) => {
     setCmsContent((prev) => ({
       ...prev,
@@ -491,10 +748,12 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
   const resetToDefaults = () => {
     setProducts(DEFAULT_PRODUCTS);
     setOrders(INITIAL_ORDERS);
+    setReviews(DEFAULT_REVIEWS);
     setCmsContent(DEFAULT_CMS);
     setStoreSettings(DEFAULT_STORE_SETTINGS);
     localStorage.removeItem(STORAGE_KEYS.PRODUCTS);
     localStorage.removeItem(STORAGE_KEYS.ORDERS);
+    localStorage.removeItem(STORAGE_KEYS.REVIEWS);
     localStorage.removeItem(STORAGE_KEYS.CMS);
     localStorage.removeItem(STORAGE_KEYS.SETTINGS);
   };
@@ -504,6 +763,7 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       value={{
         products,
         orders,
+        reviews,
         cmsContent,
         storeSettings,
         isLoaded,
@@ -513,6 +773,10 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
         addOrder,
         updateOrderStatus,
         deleteOrder,
+        addReview,
+        updateReview,
+        deleteReview,
+        toggleReviewStatus,
         updateCMS,
         updateStoreSettings,
         resetToDefaults,

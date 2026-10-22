@@ -18,6 +18,7 @@ import {
   PenLine,
   AlertCircle,
 } from "lucide-react";
+import { useStoreData } from "@/context/StoreDataContext";
 
 interface UploadedPhoto {
   id: string;
@@ -51,6 +52,7 @@ const RATING_LABELS: Record<number, string> = {
 };
 
 export default function WriteReviewPage() {
+  const { addReview } = useStoreData();
   const [rating, setRating] = useState<number>(5);
   const [hoverRating, setHoverRating] = useState<number>(0);
   const [selectedProduct, setSelectedProduct] = useState<string>(REVIEW_PRODUCTS[0]);
@@ -118,6 +120,18 @@ export default function WriteReviewPage() {
 
     setErrorMessage(null);
     setIsSubmitting(true);
+
+    // Save directly to centralized StoreDataContext & Admin Panel as Pending
+    addReview({
+      name: name.trim(),
+      city: city.trim(),
+      product: selectedProduct,
+      rating,
+      review: review.trim(),
+      verified: false,
+      status: "Pending",
+      photos: photos.map((p) => p.url),
+    });
 
     setTimeout(() => {
       setIsSubmitting(false);
