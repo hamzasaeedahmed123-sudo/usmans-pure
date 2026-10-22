@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { HeroSlider } from "@/components/home/HeroSlider";
+import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { CategoryCollections } from "@/components/CategoryCollections";
 import { ProductCatalog } from "@/components/ProductCatalog";
@@ -61,7 +62,10 @@ export default function Home() {
       {/* 2. Scrolling Marquee Ticker */}
       <TickerMarquee />
 
-      {/* 3. Category Collections ("Our Collections") */}
+      {/* 3. Flagship Featured Product (Multigrain Diet & Diabetic Care Flour) */}
+      <FlagshipFeaturedProduct />
+
+      {/* 4. Category Collections ("Our Collections") */}
       <CategoryCollections />
 
       {/* 4. Featured Products (Fresh Stone-Milled Whole Wheat Flour & Multi-Grain Blends) */}
