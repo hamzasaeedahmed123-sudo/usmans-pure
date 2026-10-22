@@ -39,10 +39,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://usmanspure.com"),
   title: {
-    default: "Usman's Pure - Chakki Atta, Flour & Spices",
-    template: "%s | Usman's Pure",
+    default: "Usman's Pure Products | 100% Traditional Stone-Ground Chakki Atta & Organics",
+    template: "%s | Usman's Pure Products",
   },
-  description: "Fresh stone-ground chakki atta, pure flour, whole grains, and organic spices in Pakistan.",
+  description:
+    "100% pure stone-ground chakki atta, diabetic care multigrain flours, cold-pounded masalas, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "flour",
@@ -50,10 +51,41 @@ export const metadata: Metadata = {
     "chakki flour",
     "grains",
     "wheat",
+    "diabetic atta",
+    "multigrain flour",
     "organic spices",
     "herbal tea",
     "usman pure",
   ],
+  openGraph: {
+    title: "Usman's Pure Products | 100% Traditional Stone-Ground Chakki Atta",
+    description:
+      "Ghar ke dastarkhwan ke liye 100% khalis pathar ki chakki ka taaza atta, diabetic care flours, aur cold-pounded organic masalay. Doorstep Cash on Delivery Pakistan.",
+    url: "https://usmanspure.com",
+    siteName: "Usman's Pure Products",
+    images: [
+      {
+        url: "https://usmanspure.com/images/products/multigrain-flagship-family.jpg",
+        width: 1024,
+        height: 824,
+        alt: "Usman's Pure Products - 100% Pure Stone-Ground Chakki Atta",
+      },
+      {
+        url: "https://usmanspure.com/logo.png",
+        width: 1024,
+        height: 292,
+        alt: "Usman's Pure Products Logo",
+      },
+    ],
+    locale: "en_PK",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Usman's Pure Products | 100% Pure Chakki Atta",
+    description: "100% stone-ground chakki flour, zero maida, diabetic care flours in Pakistan.",
+    images: ["https://usmanspure.com/images/products/multigrain-flagship-family.jpg"],
+  },
 };
 
 const organizationSchema = {
@@ -75,7 +107,7 @@ const organizationSchema = {
         "Authentic stone-milled whole grain chakki flours, diabetic nutritional blends, cold-pounded spices, and pure herbal teas in Pakistan.",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+92-300-0000000",
+        telephone: "+92-300-8472910",
         contactType: "Customer Support",
         areaServed: "PK",
         availableLanguage: ["English", "Urdu"],

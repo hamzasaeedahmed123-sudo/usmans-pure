@@ -159,9 +159,11 @@ export function CheckoutView() {
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const freeShippingThreshold = 10000;
-  const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 199;
+  const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 250;
   const grandTotal = subtotal + shippingFee;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [backendWhatsappUrl, setBackendWhatsappUrl] = useState<string | null>(null);
 
   const { clearCart } = useCart();
   const { addOrder, storeSettings } = useStoreData();
@@ -178,19 +180,28 @@ export function CheckoutView() {
       "Please transfer the total order amount using Raast, Online Banking, or Mobile Wallet. Enter your Transaction ID (TID) or sender account title below for instant automated verification.",
   };
 
-  const handleSubmitOrder = (e: React.FormEvent) => {
+  const handleSubmitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
     const randomNum = Math.floor(10000 + Math.random() * 90000);
     const orderId = `UPP-${randomNum}`;
     setGeneratedOrderId(orderId);
 
     // Save to real StoreDataContext
-    const paymentMethodLabel =
+    const paymentMethodLabel: "Cash on Delivery (COD)" | "JazzCash" | "Easypaisa" | "Bank Transfer" =
       formData.paymentMethod === "cod"
         ? "Cash on Delivery (COD)"
+        : formData.paymentMethod === "wallet"
+        ? formData.sendingBank.includes("JazzCash")
+          ? "JazzCash"
+          : formData.sendingBank.includes("Easypaisa")
+          ? "Easypaisa"
+          : "Bank Transfer"
         : "Bank Transfer";
 
-    addOrder({
+    const orderPayload = {
       orderNumber: orderId,
       customerName: formData.name || "Customer",
       customerEmail: formData.phone
@@ -207,8 +218,10 @@ export function CheckoutView() {
         quantity: item.quantity,
         image: item.image,
       })),
+      subtotal,
+      shippingFee,
       totalAmount: grandTotal,
-      status: "Pending",
+      status: "Pending" as const,
       paymentMethod: paymentMethodLabel,
       transactionId: formData.transactionId ? formData.transactionId.trim() : undefined,
       senderAccountTitle: formData.senderAccountTitle ? formData.senderAccountTitle.trim() : undefined,
@@ -221,18 +234,35 @@ export function CheckoutView() {
       ]
         .filter(Boolean)
         .join(" | ") || undefined,
-    });
+    };
 
-    setOrderConfirmed(true);
+    // 1. Client Memory Store Sync
+    addOrder(orderPayload);
 
-    // Clear cart in context and storage
-    clearCart();
-
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // 2. Triple-Channel Backend Sync (Server JSON + Google Sheets + Namecheap SMTP Email)
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+      const data = await res.json();
+      if (data?.whatsappUrl) {
+        setBackendWhatsappUrl(data.whatsappUrl);
+      }
+    } catch (err) {
+      console.warn("Backend order sync fallback:", err);
+    } finally {
+      setIsSubmitting(false);
+      setOrderConfirmed(true);
+      clearCart();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const generateWhatsAppLink = () => {
+    if (backendWhatsappUrl) return backendWhatsappUrl;
+
     const itemsText = orderItems
       .map((i) => `• ${i.name} (${i.pack}) x ${i.quantity} = ₨${(i.price * i.quantity).toLocaleString()}`)
       .join("%0A");
@@ -244,10 +274,10 @@ export function CheckoutView() {
         ? `Online Payment / Bank Transfer (${formData.sendingBank}) ${formData.transactionId ? `(TID: ${formData.transactionId})` : ""} ${formData.senderAccountTitle ? `(Sender: ${formData.senderAccountTitle})` : ""}`
         : "Debit / Credit Card (Direct Gateway)";
 
-    const text = `Hello Usman's Pure Products,%0A%0A*Order Booking Request:*%0A${
+    const text = `Assalam-o-Alaikum Usman's Pure Products! 🌿%0A%0A*Order Booking Request:*%0A${
       generatedOrderId ? `*Order ID:* ${generatedOrderId}%0A` : ""
-    }${itemsText}%0A%0A*Subtotal:* ₨${subtotal.toLocaleString()}%0A*Delivery:* ${
-      shippingFee === 0 ? "FREE" : "₨199"
+    }${itemsText}%0A%0A*Subtotal:* ₨${subtotal.toLocaleString()}%0A*Delivery Charges:* ${
+      shippingFee === 0 ? "FREE (Orders Rs 10,000+)" : "₨250"
     }%0A*Grand Total:* ₨${grandTotal.toLocaleString()}%0A%0A*Delivery Details:*%0AName: ${encodeURIComponent(
       formData.name || "Customer"
     )}%0APhone: ${encodeURIComponent(formData.phone || "N/A")}%0ACity: ${encodeURIComponent(
@@ -1279,6 +1309,25 @@ export function CheckoutView() {
             </div>
           )}
         </div>
+
+        {/* Mobile Sticky Floating Place Order Bar (Always Accessible over Keyboard) */}
+        {!orderConfirmed && orderItems.length > 0 && (
+          <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-stone-200 px-4 py-3 z-40 shadow-2xl flex items-center justify-between gap-3">
+            <div>
+              <div className="text-[10px] text-stone-500 uppercase tracking-wider font-bold">Total (Payable)</div>
+              <div className="text-base font-black text-[#8B3A22]">₨{grandTotal.toLocaleString()}</div>
+            </div>
+            <button
+              type="submit"
+              form="checkout-form"
+              disabled={isSubmitting}
+              className="flex-1 py-3 px-4 rounded-xl bg-[#1E1510] hover:bg-[#8B3A22] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md cursor-pointer disabled:opacity-50 min-h-[48px]"
+            >
+              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+              <span>{isSubmitting ? "Placing Order..." : "Place Order Now"}</span>
+            </button>
+          </div>
+        )}
       </main>
 
       <StoreFooter />

@@ -172,6 +172,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     persistUser(null);
+    if (typeof window !== "undefined") {
+      fetch("/api/admin/logout", { method: "POST" }).catch(() => {});
+    }
   };
 
   const isAuthenticated = !!user;
