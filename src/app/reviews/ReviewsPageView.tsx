@@ -23,6 +23,7 @@ import {
   PenLine,
   AlertCircle,
 } from "lucide-react";
+import { useStoreData } from "@/context/StoreDataContext";
 
 interface CustomerStory {
   id: string;
@@ -144,10 +145,41 @@ const INITIAL_STORIES: CustomerStory[] = [
 ];
 
 export function ReviewsPageView() {
-  const [stories, setStories] = useState<CustomerStory[]>(INITIAL_STORIES);
+  const { reviews, addReview } = useStoreData();
+  const publishedReviews = reviews.filter((r) => r.status === "Published");
+
+  const displayStories: CustomerStory[] = publishedReviews.map((r) => {
+    const isTea = /tea|rosella|chamomile|olive/i.test(r.product);
+    const isSpice = /turmeric|chili|masala|haldi/i.test(r.product);
+    const cat: "flours" | "teas" | "spices" = isTea ? "teas" : isSpice ? "spices" : "flours";
+
+    return {
+      id: r.id,
+      name: r.name,
+      city: r.city || "Pakistan",
+      product: r.product,
+      category: cat,
+      rating: r.rating || 5,
+      date: r.date.includes("Verified") ? r.date : `Verified Purchase &bull; ${r.date}`,
+      title: r.product,
+      review: r.review,
+      image: r.photos?.[0],
+      photos: r.photos || [],
+      verified: r.verified,
+      helpfulCount: r.helpfulCount || 15,
+    };
+  });
+
   const [activeFilter, setActiveFilter] = useState<"all" | "flours" | "teas" | "spices" | "photos">("all");
   const [helpfulClicked, setHelpfulClicked] = useState<Record<string, boolean>>({});
+  const [helpfulCounts, setHelpfulCounts] = useState<Record<string, number>>({});
   const [lightboxPhoto, setLightboxPhoto] = useState<LightboxPhotoData | null>(null);
+
+  const baseStories = displayStories.length > 0 ? displayStories : INITIAL_STORIES;
+  const stories = baseStories.map((s) => ({
+    ...s,
+    helpfulCount: s.helpfulCount + (helpfulCounts[s.id] || 0),
+  }));
 
   // Form State
   const [rating, setRating] = useState(5);
@@ -198,23 +230,18 @@ export function ReviewsPageView() {
 
     setBottomFormError(null);
 
-    const newStory: CustomerStory = {
-      id: `rev-${Date.now()}`,
+    // Save directly to StoreDataContext & Admin Panel as Pending
+    addReview({
       name: authorName.trim(),
       city: city.trim(),
       product: productName,
-      category,
       rating,
-      date: "Verified Purchase &bull; Just now",
-      title: title.trim() || `${productName} Review`,
       review: reviewText.trim(),
-      image: photoPreview || undefined,
+      verified: false,
+      status: "Pending",
       photos: photoPreview ? [photoPreview] : [],
-      verified: true,
-      helpfulCount: 1,
-    };
+    });
 
-    setStories([newStory, ...stories]);
     setSubmittedSuccess(true);
 
     // Reset Form
@@ -234,9 +261,7 @@ export function ReviewsPageView() {
   const handleHelpfulVote = (id: string) => {
     if (helpfulClicked[id]) return;
     setHelpfulClicked((prev) => ({ ...prev, [id]: true }));
-    setStories((prev) =>
-      prev.map((s) => (s.id === id ? { ...s, helpfulCount: s.helpfulCount + 1 } : s))
-    );
+    setHelpfulCounts((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
   };
 
   const filteredStories = stories.filter((s) => {

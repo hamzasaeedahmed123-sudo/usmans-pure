@@ -21,6 +21,7 @@ import {
   ChevronRight,
   ShieldAlert,
   Image as ImageIcon,
+  Star,
 } from "lucide-react";
 
 const NAV_ITEMS = [
@@ -41,6 +42,12 @@ const NAV_ITEMS = [
     href: "/admin/orders",
     icon: ShoppingBag,
     badge: "Live",
+  },
+  {
+    name: "Customer Reviews",
+    href: "/admin/reviews",
+    icon: Star,
+    badge: "Feedback",
   },
   {
     name: "Website Text & CMS",
