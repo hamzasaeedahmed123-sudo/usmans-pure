@@ -534,48 +534,59 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  // Sync to localStorage
+  // Debounced Sync to localStorage for 60FPS UI thread responsiveness
   useEffect(() => {
     if (!isLoaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
-    } catch (e) {
-      console.error(e);
-    }
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
+      } catch (e) {
+        console.error(e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [products, isLoaded]);
 
   useEffect(() => {
     if (!isLoaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
-    } catch (e) {
-      console.error(e);
-    }
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+      } catch (e) {
+        console.error(e);
+      }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [orders, isLoaded]);
 
   useEffect(() => {
     if (!isLoaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
-      if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("usman-reviews-updated", { detail: reviews }));
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("usman-reviews-updated", { detail: reviews }));
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [reviews, isLoaded]);
 
   useEffect(() => {
     if (!isLoaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(cmsContent));
-      // Dispatch custom event so live components can react immediately
-      if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("usman-cms-updated", { detail: cmsContent }));
+    const timer = setTimeout(() => {
+      try {
+        localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(cmsContent));
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("usman-cms-updated", { detail: cmsContent }));
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
+    }, 100);
+    return () => clearTimeout(timer);
   }, [cmsContent, isLoaded]);
 
   const addProduct = (newProd: Omit<Product, "id">) => {

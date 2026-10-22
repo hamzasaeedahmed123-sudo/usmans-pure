@@ -143,6 +143,7 @@ export function StoreFooter() {
                 alt="Usman's Pure Products"
                 fill
                 sizes="192px"
+                loading="lazy"
                 className="object-contain object-left invert brightness-200"
               />
             </div>

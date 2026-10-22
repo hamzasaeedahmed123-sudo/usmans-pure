@@ -380,6 +380,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
+                  loading="lazy"
                   className="object-cover"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9]/95 text-[#8B3A22] backdrop-blur-xs">

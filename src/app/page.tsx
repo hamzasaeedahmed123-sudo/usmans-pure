@@ -68,25 +68,39 @@ export default function Home() {
       <ProductCatalog />
 
       {/* 5. Prominent Doctor's Choice / Clinical Wellness Editorial CTA Banner */}
-      <DoctorsChoiceBanner />
+      <div className="content-visibility-auto">
+        <DoctorsChoiceBanner />
+      </div>
 
       {/* 6. Curated Mega Bundles Section */}
-      <MegaBundles />
+      <div className="content-visibility-auto">
+        <MegaBundles />
+      </div>
 
       {/* 7. Personalized Diet Plan & Health Guidance Banner */}
-      <DietConsultationBanner />
+      <div className="content-visibility-auto">
+        <DietConsultationBanner />
+      </div>
 
       {/* 8. 14-Day Guarantee & Nationwide COD Multi-column */}
-      <TrustGuarantee />
+      <div className="content-visibility-auto">
+        <TrustGuarantee />
+      </div>
 
       {/* 9. Customer Voices & Testimonials */}
-      <CustomerReviews />
+      <div className="content-visibility-auto">
+        <CustomerReviews />
+      </div>
 
       {/* 10. Email Newsletter Subscription */}
-      <NewsletterSection />
+      <div className="content-visibility-auto">
+        <NewsletterSection />
+      </div>
 
       {/* 11. E-Commerce Footer */}
-      <StoreFooter />
+      <div className="content-visibility-footer">
+        <StoreFooter />
+      </div>
     </AmbientThemeWrapper>
   );
 }

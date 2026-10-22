@@ -122,7 +122,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jost.variable} ${cormorant.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${jost.variable} ${cormorant.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         <script

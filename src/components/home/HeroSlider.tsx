@@ -745,7 +745,7 @@ export function HeroSlider() {
                 width={1920}
                 height={1080}
                 quality={85}
-                priority
+                loading="lazy"
               />
               <Image
                 src={slide.image}
@@ -753,7 +753,7 @@ export function HeroSlider() {
                 width={400}
                 height={400}
                 quality={85}
-                priority
+                loading="lazy"
               />
             </React.Fragment>
           );
