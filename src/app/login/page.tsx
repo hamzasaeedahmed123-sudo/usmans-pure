@@ -130,8 +130,8 @@ function LoginForm() {
         {/* Brand Header */}
         <div className="flex flex-col items-center text-center mb-6">
           <Link href="/" className="inline-block transition-transform hover:scale-105 mb-3">
-            <div className="relative w-40 h-10">
-              <Image src="/logo.png" alt="Usman's Pure Products" fill className="object-contain" priority />
+            <div className="relative w-40 h-10 flex items-center justify-center">
+              <Image src="/logo.png" alt="Usman's Pure Products" width={160} height={45} className="w-auto h-9 object-contain" priority />
             </div>
           </Link>
           <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100/70 border border-amber-200/80 text-amber-950 text-[11px] font-bold tracking-wide">

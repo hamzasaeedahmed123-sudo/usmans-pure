@@ -134,13 +134,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
                 aria-label="USMAN'S PURE PRODUCTS"
               >
-                <div className="relative w-32 sm:w-40 h-8 sm:h-9 flex items-center">
+                <div className="relative w-36 sm:w-40 h-9 sm:h-[45px] flex items-center">
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
-                    fill
-                    sizes="(max-width: 640px) 128px, 160px"
-                    className="object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
+                    width={160}
+                    height={45}
+                    className="w-auto h-8 sm:h-9 object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
                     priority
                   />
                 </div>
@@ -318,9 +318,9 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
-                    fill
-                    sizes="150px"
-                    className="object-contain object-left"
+                    width={160}
+                    height={45}
+                    className="w-auto h-8 object-contain object-left"
                   />
                 </div>
                 <div className="flex items-center gap-2">

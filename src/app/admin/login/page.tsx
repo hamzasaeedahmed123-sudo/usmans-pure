@@ -119,12 +119,13 @@ function AdminLoginContent() {
             className="inline-block transition-transform hover:scale-105 mb-3 group focus:outline-none"
             title="Return to Storefront"
           >
-            <div className="relative w-44 sm:w-48 h-10 sm:h-11 brightness-110 drop-shadow-md">
+            <div className="relative w-44 sm:w-48 h-10 sm:h-11 flex items-center justify-center drop-shadow-md">
               <Image
                 src="/logo.png"
                 alt="Usman's Pure Products"
-                fill
-                className="object-contain"
+                width={160}
+                height={45}
+                className="w-auto h-9 sm:h-10 object-contain invert brightness-200"
                 priority
               />
             </div>

@@ -137,14 +137,14 @@ export function StoreFooter() {
 
           {/* Column 2 (Middle Left - Brand Story & About) */}
           <div className="lg:col-span-3">
-            <div className="relative w-48 h-12 mb-3">
+            <div className="relative w-40 sm:w-48 h-10 sm:h-12 mb-3 flex items-center">
               <Image
                 src="/logo.png"
                 alt="Usman's Pure Products"
-                fill
-                sizes="192px"
+                width={160}
+                height={45}
                 loading="lazy"
-                className="object-contain object-left invert brightness-200"
+                className="w-auto h-9 sm:h-10 object-contain object-left invert brightness-200"
               />
             </div>
             <h5 className="font-serif font-bold text-base text-white">
