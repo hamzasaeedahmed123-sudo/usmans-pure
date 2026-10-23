@@ -329,9 +329,9 @@ export function HeroSlider() {
       <div className="relative flex-1 flex items-center justify-center w-full max-w-full px-2 sm:px-6 py-1 md:py-2 overflow-hidden">
         
         {/* ========================================================================= */}
-        {/* MOBILE VIEW (< md): Detached 3-Tier Vertical Flow with Zero Overlap       */}
+        {/* MOBILE VIEW (< md): Tightly Clustered Vertical Flow (Herbal & All Slides)  */}
         {/* ========================================================================= */}
-        <div className="md:hidden relative w-full h-full flex flex-col justify-between py-1 z-10 overflow-hidden">
+        <div className="md:hidden relative w-full h-full flex flex-col items-center justify-center py-1 z-10 overflow-hidden">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`mobile-stage-${currentSlide.id}`}
@@ -339,43 +339,43 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.45, ease: "easeInOut" }}
-              className="relative w-full h-full flex flex-col transform-gpu will-change-transform"
+              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2 sm:gap-2.5 px-3 max-w-sm mx-auto"
             >
-              {/* Upper Tier: Giant Category Title Cleanly Placed in Upper Canvas */}
-              <div className="w-full text-center px-4 pt-1 sm:pt-2 shrink-0 z-10 select-none">
+              {/* 1. Category Title: Scaled & Placed Snugly Above Product */}
+              <div className="w-full text-center shrink-0 z-10 select-none">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[11vw] sm:text-[9.5vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-[8.5vw] sm:text-[7vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[9vw] sm:text-[7.5vw] font-black tracking-tight mt-0.5">{currentSlide.subtitle}</span>
+                  <span className="block text-[7vw] sm:text-[5.5vw] font-black tracking-tight mt-0.5">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
-              {/* Center Tier: Main Product Pouch Shifted Upward (top-[34%] -translate-y-1/2) to Guarantee Zero Card Overlap */}
-              <div className="absolute top-[34%] -translate-y-1/2 inset-x-0 flex items-center justify-center max-h-[32vh] sm:max-h-[36vh] pointer-events-none z-10">
+              {/* 2. Main Product Cutout Visual: Snug Height to Prevent Scatter */}
+              <div className="relative w-full h-[22vh] min-h-[150px] max-h-[210px] flex items-center justify-center pointer-events-none z-10 my-0.5">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
-                <div className="absolute -bottom-2 inset-x-14 h-4 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
+                <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
                 {/* Product Glow Aura */}
                 <div
-                  className="absolute inset-4 rounded-full blur-xl opacity-35 pointer-events-none -z-10"
+                  className="absolute inset-2 rounded-full blur-xl opacity-35 pointer-events-none -z-10"
                   style={{ backgroundColor: currentSlide.bgColor }}
                 />
 
                 {/* Main Product Cutout Image with Gentle Idle Float Animation */}
                 <motion.div
-                  animate={{ y: [0, -6, 0], rotate: [0, 0.8, -0.8, 0] }}
+                  animate={{ y: [0, -5, 0], rotate: [0, 0.7, -0.7, 0] }}
                   transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  className="relative w-full h-[30vh] sm:h-[34vh] max-h-[32vh] sm:max-h-[36vh] flex items-center justify-center pointer-events-none transform-gpu will-change-transform"
+                  className="relative w-full h-full flex items-center justify-center pointer-events-none transform-gpu will-change-transform"
                 >
                   <Image
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 60vw, 400px"
+                    sizes="(max-width: 768px) 60vw, 360px"
                     quality={85}
-                    className="object-contain p-1 mix-blend-multiply max-h-[32vh] sm:max-h-[36vh] w-auto drop-shadow-md"
+                    className="object-contain p-1 mix-blend-multiply w-auto drop-shadow-md"
                     priority
                   />
                 </motion.div>
@@ -385,13 +385,13 @@ export function HeroSlider() {
                   <motion.div
                     animate={{ y: [-4, 4, -4], rotate: [-4, 4, -4] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-1 left-4 w-11 h-11 pointer-events-none z-20 transform-gpu will-change-transform"
+                    className="absolute -top-1 left-2 w-9 h-9 pointer-events-none z-20 transform-gpu will-change-transform"
                   >
                     <Image
                       src={currentSlide.floating[0]}
                       alt="ingredient"
                       fill
-                      sizes="44px"
+                      sizes="36px"
                       className="object-contain mix-blend-multiply"
                     />
                   </motion.div>
@@ -402,18 +402,85 @@ export function HeroSlider() {
                   <motion.div
                     animate={{ y: [4, -4, 4], rotate: [4, -4, 4] }}
                     transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -bottom-1 right-4 w-11 h-11 pointer-events-none z-20 transform-gpu will-change-transform"
+                    className="absolute -bottom-1 right-2 w-9 h-9 pointer-events-none z-20 transform-gpu will-change-transform"
                   >
                     <Image
                       src={currentSlide.floating[1]}
                       alt="ingredient"
                       fill
-                      sizes="44px"
+                      sizes="36px"
                       className="object-contain mix-blend-multiply"
                     />
                   </motion.div>
                 )}
               </div>
+
+              {/* 3. Glassmorphism Info Card: Hugs the Pouch without Large Gaps */}
+              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/40 border border-white/50 rounded-2xl p-2.5 shadow-lg w-full pointer-events-auto">
+                {/* Left Mini Badges */}
+                <div className="flex flex-col gap-1 border-r border-white/30 pr-2 shrink-0 self-center">
+                  {currentSlide.miniStats.map((stat, i) => (
+                    <span
+                      key={i}
+                      className="px-1.5 py-0.5 rounded-full text-[8.5px] font-bold tracking-tight bg-white/50 text-stone-900 border border-white/50 whitespace-nowrap text-center"
+                    >
+                      {stat}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Product Thumbnail */}
+                <div className="relative w-10 h-10 rounded-xl bg-white/50 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
+                  <Image
+                    src={currentSlide.image}
+                    alt={currentSlide.fullTitle}
+                    fill
+                    className="object-contain p-0.5"
+                    sizes="40px"
+                  />
+                </div>
+
+                {/* Title & Description */}
+                <div className="flex flex-col justify-center min-w-0 flex-1">
+                  <h3 className="text-sm font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
+                    {currentSlide.fullTitle}
+                  </h3>
+                  <p className="text-[11px] text-stone-800/90 leading-tight mt-0.5 font-medium line-clamp-2">
+                    {currentSlide.benefit}
+                  </p>
+                </div>
+              </div>
+
+              {/* 4. Bottom Price/CTA Button Bar: Compact, Cohesive Mobile Unit */}
+              <div className="flex items-center gap-2 w-full pointer-events-auto">
+                <div className="px-3 py-2 rounded-xl text-xs font-black bg-white/70 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
+                  <span>{currentSlide.price}</span>
+                </div>
+
+                <button
+                  onClick={handleAddToCart}
+                  className="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  {isAdded ? (
+                    <>
+                      <svg className="w-3.5 h-3.5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Added!</span>
+                    </>
+                  ) : (
+                    <span>Add to Cart</span>
+                  )}
+                </button>
+
+                <Link
+                  href={currentSlide.detailUrl}
+                  className="py-2 px-3 rounded-xl text-xs font-semibold border border-current/30 hover:bg-white/40 transition-all cursor-pointer shrink-0"
+                >
+                  <span>Details</span>
+                </Link>
+              </div>
+
             </motion.div>
           </AnimatePresence>
         </div>
@@ -584,7 +651,7 @@ export function HeroSlider() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex items-center gap-3 sm:gap-3.5 md:gap-4 backdrop-blur-md bg-white/35 border border-white/45 rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-4.5 shadow-xl w-[92%] max-w-[360px] md:max-w-[420px] absolute bottom-[90px] sm:bottom-[100px] md:bottom-[110px] lg:bottom-[120px] left-1/2 md:left-8 -translate-x-1/2 md:translate-x-0 z-20 pointer-events-auto transform-gpu will-change-transform"
+            className="hidden md:flex items-center gap-3 sm:gap-3.5 md:gap-4 backdrop-blur-md bg-white/35 border border-white/45 rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-4.5 shadow-xl w-[92%] max-w-[360px] md:max-w-[420px] absolute bottom-[90px] sm:bottom-[100px] md:bottom-[110px] lg:bottom-[120px] left-1/2 md:left-8 -translate-x-1/2 md:translate-x-0 z-20 pointer-events-auto transform-gpu will-change-transform"
           >
             {/* Left 3-Badge Stack: Scaled up & Vertically Centered */}
             <div className="flex flex-col gap-1.5 border-r border-white/30 pr-2.5 md:pr-3.5 shrink-0 self-center">
