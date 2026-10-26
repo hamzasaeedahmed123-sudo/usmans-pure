@@ -10,6 +10,9 @@ import {
   Truck,
   BadgeCheck,
   ChevronRight,
+  Wheat,
+  ShieldCheck,
+  CheckCircle2,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
@@ -142,9 +145,9 @@ export function FlagshipFeaturedProduct() {
             </p>
 
             {/* 3 Natural Desi Family Points */}
-            <div className="space-y-3.5 mb-6">
+            <div className="space-y-3 mb-5">
               <div className="flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <Wheat className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   <strong className="text-stone-900 font-bold">Ghar Ke Walidain Ke Liye:</strong>{" "}
                   Low GI anaj jo sugar aur pait ke bhari-pan ko control mein rakhe.
@@ -152,7 +155,7 @@ export function FlagshipFeaturedProduct() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <ShieldCheck className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   <strong className="text-stone-900 font-bold">Bacchon Ki Sehat:</strong>{" "}
                   Sabut anaj ka qudrati iron aur calcium jo bacchon ki nashonuma ke liye zaroori hai.
@@ -160,7 +163,7 @@ export function FlagshipFeaturedProduct() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <CheckCircle2 className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   <strong className="text-stone-900 font-bold">Maa Ki Tasalli:</strong>{" "}
                   100% pathar ki chakki ka pisa hua, bina kisi maida ya chemical bleach ke narm phulka roti.
@@ -170,8 +173,8 @@ export function FlagshipFeaturedProduct() {
 
             {/* 8 Traditional Grains Single Elegant Sentence */}
             <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed">
-              <span className="font-semibold text-stone-800">Prepared using 8 traditional grains:</span>{" "}
-              Whole Wheat, Oats, Barley, Jowar, Bajra, Kala Chana, Flaxseeds, and Methi Dana.
+              <span className="font-semibold text-stone-800">8 Khalis Anaj:</span>{" "}
+              Gandum, Jau, Jowar, Bajra, Kala Chana, Oats, Alsi (Flaxseeds) aur Methi Dana.
             </p>
 
             {/* Pack Size Selector */}

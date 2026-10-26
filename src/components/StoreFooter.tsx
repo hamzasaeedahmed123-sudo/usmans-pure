@@ -9,6 +9,7 @@ import {
   Clock,
   Wheat,
   BadgeCheck,
+  ShieldCheck,
   Truck,
   RotateCcw,
 } from "lucide-react";
@@ -22,9 +23,8 @@ export function StoreFooter() {
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#3A2D25] text-center gap-y-3 sm:gap-y-0">
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#8C6D46] to-[#4A321E] text-[#FAF5EC] flex flex-col items-center justify-center shadow-xs border border-[#C5A059]/40 shrink-0">
-                <span className="text-[12px] font-black leading-none font-serif">100%</span>
-                <span className="text-[7px] font-bold uppercase tracking-tighter text-[#E5D2BA] mt-0.5">CHAKKI</span>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#D8B486] border border-[#8C6D46]/40 flex items-center justify-center shrink-0">
+                <Wheat className="w-5 h-5 text-[#D8B486]" strokeWidth={1.75} />
               </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
@@ -37,9 +37,8 @@ export function StoreFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#1E5D38] to-[#0E381C] text-[#D4F0DF] flex flex-col items-center justify-center shadow-xs border border-[#48A36C]/40 shrink-0">
-                <span className="text-[12px] font-black leading-none font-serif">0%</span>
-                <span className="text-[7px] font-bold uppercase tracking-tighter text-[#A3D2B7] mt-0.5">MAIDA</span>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#88D4A6] border border-[#1E5D38]/50 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-[#88D4A6]" strokeWidth={1.75} />
               </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
@@ -52,9 +51,8 @@ export function StoreFooter() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-[#2D241E] to-[#18110D] text-[#E5D2BA] flex flex-col items-center justify-center shadow-xs border border-[#8C6D46]/40 shrink-0">
-                <span className="text-[11px] font-black leading-none font-sans tracking-tight">COD</span>
-                <span className="text-[7px] font-bold uppercase tracking-tighter text-[#C2A37E] mt-0.5">PAKISTAN</span>
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#D8B486] border border-[#8C6D46]/40 flex items-center justify-center shrink-0">
+                <Truck className="w-5 h-5 text-[#D8B486]" strokeWidth={1.75} />
               </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
