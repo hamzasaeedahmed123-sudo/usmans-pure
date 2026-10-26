@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ShoppingCart,
-  Star,
   Minus,
   Plus,
   Truck,
@@ -53,37 +52,13 @@ const PACK_OPTIONS: PackOption[] = [
   },
 ];
 
-const GRAIN_PILLS = [
-  "Whole Wheat",
-  "Oats",
-  "Barley",
-  "Jowar (Sorghum)",
-  "Bajra (Pearl Millet)",
-  "Kala Chana",
-  "Flaxseeds",
-  "Fenugreek (Methi)",
-];
-
-const GALLERY_IMAGES = [
-  {
-    src: "/images/products/multigrain-diet.jpg",
-    alt: "Usman's Pure Multigrain Flour 100% Stone-Ground Packaging",
-    label: "Studio Pouch",
-  },
-  {
-    src: "/images/products/multigrain-flagship-family.jpg",
-    alt: "Healthy Family Enjoying Fresh Multigrain Roti at Dining Table",
-    label: "Family Lifestyle",
-  },
-];
-
+const PRODUCT_IMAGE = "/images/products/multigrain-diet.jpg";
 const WHATSAPP_PHONE = "923008472910";
 
 export function FlagshipFeaturedProduct() {
   const { addItem, openCart } = useCart();
   const [selectedPack, setSelectedPack] = useState<PackOption>(PACK_OPTIONS[1]); // default to 5kg
   const [quantity, setQuantity] = useState(1);
-  const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
@@ -93,12 +68,11 @@ export function FlagshipFeaturedProduct() {
         name: "Multigrain Diet & Diabetic Care Flour",
         pack: selectedPack.weight,
         price: selectedPack.price,
-        image: GALLERY_IMAGES[0].src,
+        image: PRODUCT_IMAGE,
       },
       quantity
     );
 
-    // Provide instant visual micro-interaction & open cart
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
     openCart();
@@ -111,7 +85,7 @@ export function FlagshipFeaturedProduct() {
             name: "Multigrain Diet & Diabetic Care Flour",
             pack: selectedPack.weight,
             price: selectedPack.price,
-            image: GALLERY_IMAGES[0].src,
+            image: PRODUCT_IMAGE,
             quantity,
           },
         })
@@ -127,83 +101,35 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full bg-gradient-to-b from-[#FAF7F2] via-[#F4ECE1]/60 to-[#FAF7F2] py-12 md:py-20 border-b border-stone-200/80 overflow-hidden"
+      className="relative w-full bg-[#FAF7F2] py-12 md:py-20 border-b border-[#E5DACB]"
     >
-      {/* Decorative ambient grain aura */}
-      <div
-        className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-amber-500/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-10 -right-32 w-96 h-96 rounded-full bg-emerald-600/10 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
-          {/* ================= COLUMN 1: VISUAL SHOWCASE (LEFT) ================= */}
+          {/* ================= COLUMN 1: CLEAN PACKAGING (LEFT) ================= */}
           <div className="lg:col-span-6 flex flex-col items-center">
-            {/* Main Image Frame - Clean & Uncluttered (No text covering packaging) */}
-            <div className="relative w-full max-w-[500px] aspect-square sm:aspect-[4/3] lg:aspect-square bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-stone-200/90 flex items-center justify-center overflow-hidden group">
-              
-              {/* Authentic Artisan Packaging Seal (Real Food Brand Style) */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181310] text-[#F5EFE6] border border-[#C5A059]/60 shadow-lg backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-[#C5A059] shadow-[0_0_8px_#C5A059]" />
-                <span className="text-[10px] sm:text-[11px] font-black tracking-widest uppercase font-sans">
-                  100% Pathar Ki Chakki &bull; Zero Maida
-                </span>
-              </div>
-
-              {/* Active Product Image */}
-              <div className="relative w-full h-[260px] sm:h-[340px] lg:h-[380px] transition-transform duration-500 group-hover:scale-[1.03]">
+            {/* Main Image Frame - Grounded, Clean, No Artificial Status Badges */}
+            <div className="relative w-full max-w-[480px] aspect-square bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-[280px] sm:h-[360px]">
                 <Image
-                  src={GALLERY_IMAGES[activeImageIdx].src}
-                  alt={GALLERY_IMAGES[activeImageIdx].alt}
+                  src={PRODUCT_IMAGE}
+                  alt="Usman's Pure Multigrain Flour 100% Stone-Ground Packaging"
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-                  loading="lazy"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
+                  priority
                   className="object-contain"
                 />
               </div>
-
-              {/* Verified Fresh Milled Stamp (Bottom Right) */}
-              <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#18392B]/95 text-white backdrop-blur-md shadow-md border border-emerald-400/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[9.5px] font-bold tracking-wider uppercase font-mono">
-                  COLD-MILLED &lt;40&deg;C
-                </span>
-              </div>
-            </div>
-
-            {/* Thumbnail switcher between Pouch & Family Table */}
-            <div className="flex items-center gap-3 mt-4">
-              {GALLERY_IMAGES.map((img, idx) => (
-                <button
-                  key={img.label}
-                  onClick={() => setActiveImageIdx(idx)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer border ${
-                    activeImageIdx === idx
-                      ? "bg-[#1E1510] text-white border-[#1E1510] shadow-sm scale-105"
-                      : "bg-white/90 text-stone-700 border-stone-200 hover:bg-stone-100"
-                  }`}
-                  aria-label={`View ${img.label}`}
-                >
-                  <span className="w-2 h-2 rounded-full bg-amber-500" />
-                  <span>{img.label}</span>
-                </button>
-              ))}
             </div>
           </div>
 
-          {/* ================= COLUMN 2: INFORMATION & BENEFITS (RIGHT) ================= */}
+          {/* ================= COLUMN 2: AUTHENTIC FAMILY STORY & BENEFITS (RIGHT) ================= */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             
-            {/* Pill Label */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-amber-950 text-xs font-bold tracking-wide w-fit mb-4 shadow-2xs">
-              <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-              <span>⭐ HAR MAA KI PEHLI PASAND • GHAR KE DASTARKHWAN KE LIYE</span>
-            </div>
+            {/* Brand Heritage Tagline */}
+            <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
+              ⭐ Har Maa Ki Pehli Pasand &bull; Asli Chakki Atta
+            </span>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-[1.25] mb-3">
@@ -215,111 +141,38 @@ export function FlagshipFeaturedProduct() {
               Pathar ki chakki pe pisa asli qudrati anaj—bina chemical bleaching aur bina maida. Walidain ki sugar, bacchon ki haddiyon aur parivaar ke dastarkhwan ke liye narm phulka roti jo har niwala sehatmand banaye.
             </p>
 
-            {/* 2x2 Key Health Benefits Grid - 4 Desi Pillars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              
-              {/* Pillar 1: Walidain Ki Fikar */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
-                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
-                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">01</span>
-                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Walidain Ki Fikar
-                    </h4>
-                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
-                      SUGAR CONTROL
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Diabetic &amp; BP Friendly, pait par halka aur khane ke baad sugar spike se pak.
-                  </p>
-                </div>
+            {/* 3 Natural Desi Family Points */}
+            <div className="space-y-3.5 mb-6">
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  <strong className="text-stone-900 font-bold">Ghar Ke Walidain Ke Liye:</strong>{" "}
+                  Low GI anaj jo sugar aur pait ke bhari-pan ko control mein rakhe.
+                </p>
               </div>
 
-              {/* Pillar 2: Bacchon Ki Nashonuma */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
-                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
-                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">02</span>
-                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Bacchon Ki Nashonuma
-                    </h4>
-                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#3E2514] text-[#E5B888] font-mono">
-                      MAZBOOT HADDIYAN
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Asli chana, jowar aur bajray ka qudrati fiber &amp; minerals bacchon ki haddiyan mazboot kare.
-                  </p>
-                </div>
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  <strong className="text-stone-900 font-bold">Bacchon Ki Sehat:</strong>{" "}
+                  Sabut anaj ka qudrati iron aur calcium jo bacchon ki nashonuma ke liye zaroori hai.
+                </p>
               </div>
 
-              {/* Pillar 3: Maa Ki Tasalli */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
-                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
-                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">03</span>
-                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Maa Ki Tasalli
-                    </h4>
-                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#4A3218] text-[#E8C88A] font-mono">
-                      ZERO MAIDA
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    100% Maida-Free Pure Whole Grain, zero factory chemical bleach aur zero milawat.
-                  </p>
-                </div>
-              </div>
-
-              {/* Pillar 4: Narm Phulka Guarantee */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
-                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
-                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">04</span>
-                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
-                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Narm Phulka Guarantee
-                    </h4>
-                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
-                      NARM ROTI
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Subah se shaam tak narm phulka roti jo har umar ke afrad asani se hazam karein.
-                  </p>
-                </div>
-              </div>
-
-            </div>
-
-            {/* 8 Traditional Grains Pills */}
-            <div className="mb-6">
-              <span className="text-[11px] font-bold text-stone-500 uppercase tracking-wider block mb-2">
-                Crafted With 8 Nutrient-Dense Grains:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {GRAIN_PILLS.map((grain) => (
-                  <span
-                    key={grain}
-                    className="text-[11px] font-medium bg-[#ECE5DA] text-stone-800 px-2.5 py-1 rounded-full border border-stone-300/60"
-                  >
-                    {grain}
-                  </span>
-                ))}
+              <div className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#8B3A22] mt-2 shrink-0" />
+                <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
+                  <strong className="text-stone-900 font-bold">Maa Ki Tasalli:</strong>{" "}
+                  100% pathar ki chakki ka pisa hua, bina kisi maida ya chemical bleach ke narm phulka roti.
+                </p>
               </div>
             </div>
+
+            {/* 8 Traditional Grains Single Elegant Sentence */}
+            <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed">
+              <span className="font-semibold text-stone-800">Prepared using 8 traditional grains:</span>{" "}
+              Whole Wheat, Oats, Barley, Jowar, Bajra, Kala Chana, Flaxseeds, and Methi Dana.
+            </p>
 
             {/* Pack Size Selector */}
             <div className="mb-6">
@@ -368,7 +221,7 @@ export function FlagshipFeaturedProduct() {
             {/* Quantity Selector & Action CTAs Group */}
             <div className="flex flex-col sm:flex-row items-stretch gap-3">
               
-              {/* Stepper Quantity Counter (48px Touch Target) */}
+              {/* Stepper Quantity Counter */}
               <div className="flex items-center justify-between bg-white border border-stone-300 rounded-2xl px-3 py-1.5 shrink-0 h-12 shadow-2xs">
                 <button
                   onClick={() => setQuantity((q) => Math.max(1, q - 1))}
