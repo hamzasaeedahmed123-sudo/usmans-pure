@@ -65,11 +65,11 @@ export default function Home() {
       {/* 1. Hero Section Slider */}
       <HeroSlider />
 
-      {/* 2. Scrolling Marquee Ticker */}
-      <TickerMarquee />
-
-      {/* 3. Flagship Featured Product (Multigrain Diet & Diabetic Care Flour) */}
+      {/* 2. Flagship Featured Product (Multigrain Diet & Diabetic Care Flour) */}
       <FlagshipFeaturedProduct />
+
+      {/* 3. Scrolling Marquee Ticker */}
+      <TickerMarquee />
 
       {/* 4. Category Collections ("Our Collections") */}
       <CategoryCollections />

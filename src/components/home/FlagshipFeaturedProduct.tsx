@@ -150,7 +150,7 @@ export function FlagshipFeaturedProduct() {
               <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181310] text-[#F5EFE6] border border-[#C5A059]/60 shadow-lg backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-[#C5A059] shadow-[0_0_8px_#C5A059]" />
                 <span className="text-[10px] sm:text-[11px] font-black tracking-widest uppercase font-sans">
-                  100% Stone-Pounded &bull; Zero Maida
+                  100% Pathar Ki Chakki &bull; Zero Maida
                 </span>
               </div>
 
@@ -201,23 +201,23 @@ export function FlagshipFeaturedProduct() {
             {/* Pill Label */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-100/80 border border-amber-300/80 text-amber-950 text-xs font-bold tracking-wide w-fit mb-4 shadow-2xs">
               <Star className="w-3.5 h-3.5 fill-amber-500 text-amber-500" />
-              <span>STORE FLAGSHIP • MOST LOVED BY FAMILIES</span>
+              <span>⭐ HAR MAA KI PEHLI PASAND • GHAR KE DASTARKHWAN KE LIYE</span>
             </div>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-[1.25] mb-3">
-              What If Your Daily Roti Could Become Your Family&apos;s Healthiest Meal?
+              Kash Rozana Ki Roti Sirf Pait Na Bhare, Balke Parivaar Ki Sehat Bhi Banaye
             </h2>
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-stone-600 leading-relaxed mb-6">
-              Slow stone-ground with traditional grains—formulated to nourish parents, diabetics, and growing kids without compromising on softness or authentic desi taste.
+              Pathar ki chakki pe pisa asli qudrati anaj—bina chemical bleaching aur bina maida. Walidain ki sugar, bacchon ki haddiyon aur parivaar ke dastarkhwan ke liye narm phulka roti jo har niwala sehatmand banaye.
             </p>
 
-            {/* 2x2 Key Health Benefits Grid */}
+            {/* 2x2 Key Health Benefits Grid - 4 Desi Pillars */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               
-              {/* Benefit 1 */}
+              {/* Pillar 1: Walidain Ki Fikar */}
               <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
                 <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
                   <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">01</span>
@@ -226,19 +226,19 @@ export function FlagshipFeaturedProduct() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                     <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Diabetic &amp; Sugar Balance
+                      Walidain Ki Fikar
                     </h4>
                     <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
-                      LOW GI
+                      SUGAR CONTROL
                     </span>
                   </div>
                   <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Low GI slow-carb release prevents post-meal glucose spikes.
+                    Diabetic &amp; BP Friendly, pait par halka aur khane ke baad sugar spike se pak.
                   </p>
                 </div>
               </div>
 
-              {/* Benefit 2 */}
+              {/* Pillar 2: Bacchon Ki Nashonuma */}
               <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
                 <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
                   <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">02</span>
@@ -247,19 +247,19 @@ export function FlagshipFeaturedProduct() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                     <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Weight Management
+                      Bacchon Ki Nashonuma
                     </h4>
                     <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#3E2514] text-[#E5B888] font-mono">
-                      5H+ FULL
+                      MAZBOOT HADDIYAN
                     </span>
                   </div>
                   <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    High fiber keeps you satisfied 5+ hours, curbing snacking.
+                    Asli chana, jowar aur bajray ka qudrati fiber &amp; minerals bacchon ki haddiyan mazboot kare.
                   </p>
                 </div>
               </div>
 
-              {/* Benefit 3 */}
+              {/* Pillar 3: Maa Ki Tasalli */}
               <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
                 <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
                   <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">03</span>
@@ -268,19 +268,19 @@ export function FlagshipFeaturedProduct() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                     <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      100% Whole Grain
+                      Maa Ki Tasalli
                     </h4>
                     <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#4A3218] text-[#E8C88A] font-mono">
-                      100% BRAN
+                      ZERO MAIDA
                     </span>
                   </div>
                   <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Zero bleached maida, zero starch diluters, 100% vital bran.
+                    100% Maida-Free Pure Whole Grain, zero factory chemical bleach aur zero milawat.
                   </p>
                 </div>
               </div>
 
-              {/* Benefit 4 */}
+              {/* Pillar 4: Narm Phulka Guarantee */}
               <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
                 <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
                   <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">04</span>
@@ -289,14 +289,14 @@ export function FlagshipFeaturedProduct() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5 flex-wrap">
                     <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                      Easy Digestion &amp; Gut Health
+                      Narm Phulka Guarantee
                     </h4>
                     <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
-                      PREBIOTIC
+                      NARM ROTI
                     </span>
                   </div>
                   <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
-                    Rich in natural prebiotic bran for light, bloat-free comfort.
+                    Subah se shaam tak narm phulka roti jo har umar ke afrad asani se hazam karein.
                   </p>
                 </div>
               </div>

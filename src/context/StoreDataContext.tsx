@@ -102,24 +102,24 @@ export const DEFAULT_CMS: CMSContent = {
     flour: {
       title: "MULTIGRAIN",
       subtitle: "FLOUR",
-      fullTitle: "Chakki Multigrain Flour",
-      benefit: "Cold-milled under 40°C with 100% vital dietary fiber & zero maida.",
+      fullTitle: "Chakki Multigrain Atta",
+      benefit: "Maa ke haath ki narm phulka roti — 100% pathar ki chakki ka qudrati fiber, zero maida.",
       price: "Rs 2,450",
       weight: "10kg",
     },
     herbals: {
       title: "HERBAL",
       subtitle: "TEAS",
-      fullTitle: "Organic Herbal Tea",
-      benefit: "Hand-harvested blossoms & olive leaf for daily caffeine-free detox.",
+      fullTitle: "Desi Herbal Qehwa",
+      benefit: "Buzurgo ke blood pressure aur sukoon ke liye asli zaitoon patti aur chamomile ka qehwa.",
       price: "Rs 1,250",
       weight: "250g",
     },
     spices: {
       title: "ORGANIC",
       subtitle: "SPICES",
-      fullTitle: "Organic Spices",
-      benefit: "Slow stone-pounded aroma lock with zero dyes and zero additives.",
+      fullTitle: "Sil-Batta Pure Masalay",
+      benefit: "Sil-batte aur pathar pe pise masalay — bina kisi rang ya chemical ke asli khushboo aur zaiqa.",
       price: "Rs 950",
       weight: "500g",
     },
@@ -210,6 +210,19 @@ export interface Review {
 }
 
 export const DEFAULT_REVIEWS: Review[] = [
+  {
+    id: "rev-farhan",
+    name: "Mrs. Farhan",
+    city: "Lahore, Punjab (Model Town)",
+    product: "Multigrain Diet & Diabetic Care Flour",
+    rating: 5,
+    date: "2 days ago",
+    review: "MashaAllah rozana ke dastarkhwan pe ab sakht roti ka sawal hi paida nahi hota. Bachay pehle adhi roti chorr dete the, ab shauq se poori plate khatam karte hain. Sab se bari tasalli mere diabetic sasur ji ke liye hai—khane ke baad bilkul pait bhari nahi hota aur sugar bilkul control rehti hai. Asli maa ki tasalli hai ye atta!",
+    verified: true,
+    status: "Published",
+    photos: ["/images/products/multigrain-flagship-family.jpg"],
+    helpfulCount: 56,
+  },
   {
     id: "rev-1",
     name: "Tariq Mahmood",
