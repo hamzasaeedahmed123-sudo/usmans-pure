@@ -104,46 +104,94 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full bg-gradient-to-b from-[#FAF7F2] via-[#F8F4ED] to-[#F4EFEA] py-8 sm:py-12 md:py-20 border-t border-amber-900/10 border-b border-[#E5DACB] overflow-hidden"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#F7F2EB] to-[#FAF6F0] py-8 sm:py-12 md:py-20 border-t border-amber-900/10 border-b border-[#E5DACB]"
     >
-      {/* 1. Subtle Warm Radial Ambient Glow Overlays */}
+      {/* 1. Subtle Low-Opacity Radial Ambient Glow */}
       <div
-        className="absolute -top-24 -left-24 w-[380px] sm:w-[540px] h-[380px] sm:h-[540px] rounded-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-amber-100/50 via-amber-50/20 to-transparent pointer-events-none -z-10 blur-3xl"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-24 -right-24 w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] rounded-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-amber-200/25 via-transparent to-transparent pointer-events-none -z-10 blur-3xl"
+        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-amber-100/40 via-transparent to-transparent pointer-events-none z-0"
         aria-hidden="true"
       />
 
-      {/* 2. Top-Right Decorative Wheat Stalk Motif (Muted Watermark Accent) */}
+      {/* 2. Top-Right: Soft Muted Wheat Stalk SVG Motif */}
       <div
-        className="hidden sm:block absolute -top-10 -right-10 w-72 h-72 sm:w-88 sm:h-88 lg:w-96 lg:h-96 pointer-events-none -z-10 select-none opacity-20 transform rotate-12"
+        className="absolute top-4 right-4 w-40 md:w-56 opacity-15 pointer-events-none select-none z-0 text-[#8B3A22]"
         aria-hidden="true"
       >
-        <Image
-          src="/images/watermarks/wheat-stalks.png"
-          alt=""
-          fill
-          sizes="(max-width: 1024px) 288px, 384px"
-          className="object-contain object-top-right filter saturate-75"
-          priority={false}
-        />
+        <svg
+          viewBox="0 0 200 260"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto"
+        >
+          <path
+            d="M100 250 C100 180, 100 120, 100 20"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          {/* Wheat kernels & awns */}
+          <path d="M100 120 C90 110, 80 115, 85 125 C95 130, 100 120, 100 120 Z" fill="currentColor" />
+          <path d="M100 120 C110 110, 120 115, 115 125 C105 130, 100 120, 100 120 Z" fill="currentColor" />
+          <path d="M100 100 C90 90, 80 95, 85 105 C95 110, 100 100, 100 100 Z" fill="currentColor" />
+          <path d="M100 100 C110 90, 120 95, 115 105 C105 110, 100 100, 100 100 Z" fill="currentColor" />
+          <path d="M100 80 C90 70, 80 75, 85 85 C95 90, 100 80, 100 80 Z" fill="currentColor" />
+          <path d="M100 80 C110 70, 120 75, 115 85 C105 90, 100 80, 100 80 Z" fill="currentColor" />
+          <path d="M100 60 C90 50, 80 55, 85 65 C95 70, 100 60, 100 60 Z" fill="currentColor" />
+          <path d="M100 60 C110 50, 120 55, 115 65 C105 70, 100 60, 100 60 Z" fill="currentColor" />
+          <path d="M100 40 C90 30, 80 35, 85 45 C95 50, 100 40, 100 40 Z" fill="currentColor" />
+          <path d="M100 40 C110 30, 120 35, 115 45 C105 50, 100 40, 100 40 Z" fill="currentColor" />
+          <path d="M100 20 C95 10, 105 10, 100 20 Z" fill="currentColor" />
+          {/* Delicate wheat awns (whiskers) */}
+          <path d="M85 125 L60 105" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M115 125 L140 105" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M85 105 L55 80" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M115 105 L145 80" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M85 85 L55 55" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M115 85 L145 55" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M85 65 L60 35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M115 65 L140 35" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M100 20 L100 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
       </div>
 
-      {/* 3. Bottom-Left Decorative Botanical Leaf Motif (Muted Watermark Accent) */}
+      {/* 3. Bottom-Left: Subtle Organic Grain / Wheat Watermark */}
       <div
-        className="hidden sm:block absolute -bottom-14 -left-12 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 pointer-events-none -z-10 select-none opacity-15"
+        className="absolute bottom-4 left-4 w-36 md:w-48 opacity-15 pointer-events-none select-none z-0 text-[#8B3A22]"
         aria-hidden="true"
       >
-        <Image
-          src="/images/watermarks/leaves-free-img.png"
-          alt=""
-          fill
-          sizes="(max-width: 1024px) 256px, 384px"
-          className="object-contain object-bottom-left filter saturate-75"
-          priority={false}
-        />
+        <svg
+          viewBox="0 0 200 200"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto"
+        >
+          <path
+            d="M30 170 C60 140, 100 110, 160 40"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+          <path
+            d="M70 125 C65 110, 50 105, 45 115 C55 125, 70 125, 70 125 Z"
+            fill="currentColor"
+          />
+          <path
+            d="M85 110 C95 95, 110 95, 112 105 C102 115, 85 110, 85 110 Z"
+            fill="currentColor"
+          />
+          <path
+            d="M105 85 C100 70, 85 65, 80 75 C90 85, 105 85, 105 85 Z"
+            fill="currentColor"
+          />
+          <path
+            d="M125 68 C135 55, 150 55, 152 65 C142 75, 125 68, 125 68 Z"
+            fill="currentColor"
+          />
+          <path
+            d="M150 45 C155 30, 170 30, 172 38 C165 48, 150 45, 150 45 Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
