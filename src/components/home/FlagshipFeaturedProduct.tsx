@@ -104,9 +104,49 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full bg-[#FAF7F2] py-8 sm:py-12 md:py-20 border-b border-[#E5DACB]"
+      className="relative w-full bg-gradient-to-b from-[#FAF7F2] via-[#F8F4ED] to-[#F4EFEA] py-8 sm:py-12 md:py-20 border-t border-amber-900/10 border-b border-[#E5DACB] overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* 1. Subtle Warm Radial Ambient Glow Overlays */}
+      <div
+        className="absolute -top-24 -left-24 w-[380px] sm:w-[540px] h-[380px] sm:h-[540px] rounded-full bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-amber-100/50 via-amber-50/20 to-transparent pointer-events-none -z-10 blur-3xl"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-24 -right-24 w-[360px] sm:w-[500px] h-[360px] sm:h-[500px] rounded-full bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-amber-200/25 via-transparent to-transparent pointer-events-none -z-10 blur-3xl"
+        aria-hidden="true"
+      />
+
+      {/* 2. Top-Right Decorative Wheat Stalk Motif (Muted Watermark Accent) */}
+      <div
+        className="hidden sm:block absolute -top-10 -right-10 w-72 h-72 sm:w-88 sm:h-88 lg:w-96 lg:h-96 pointer-events-none -z-10 select-none opacity-20 transform rotate-12"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/watermarks/wheat-stalks.png"
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 288px, 384px"
+          className="object-contain object-top-right filter saturate-75"
+          priority={false}
+        />
+      </div>
+
+      {/* 3. Bottom-Left Decorative Botanical Leaf Motif (Muted Watermark Accent) */}
+      <div
+        className="hidden sm:block absolute -bottom-14 -left-12 w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 pointer-events-none -z-10 select-none opacity-15"
+        aria-hidden="true"
+      >
+        <Image
+          src="/images/watermarks/leaves-free-img.png"
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 256px, 384px"
+          className="object-contain object-bottom-left filter saturate-75"
+          priority={false}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
           
           {/* ================= COLUMN 1: CLEAN PACKAGING (LEFT) ================= */}
