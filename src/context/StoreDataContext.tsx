@@ -95,7 +95,7 @@ export interface CMSContent {
 }
 
 export const DEFAULT_CMS: CMSContent = {
-  announcementBarText: "100% Traditional Stone-Ground • Zero Maida • Freshly Milled",
+  announcementBarText: "100% Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Lahore & Rawalpindi/Islamabad Mein Taaza Delivery",
   announcementSubText: "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery",
   announcementBg: "#2A1F17",
   heroSlides: {

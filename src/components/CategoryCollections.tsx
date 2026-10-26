@@ -32,7 +32,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
     {
       id: "herbals",
       title: "Pure Caffeine-Free Herbal Teas",
-      subtitle: "Rosella, Chamomile, Olive Leaf & Wild Botanicals for daily natural detox.",
+      subtitle: "Rosella, Chamomile, Olive Leaf & Qudrati Botanicals rozana zehni sukoon aur taazgi ke liye.",
       image: "/images/products/prod-9.jpg",
       badge: "Herbal Infusions",
       href: "/herbals",

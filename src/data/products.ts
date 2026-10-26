@@ -170,12 +170,12 @@ export const PRODUCTS: Product[] = [
     weight: "50g",
     tagline: "Calming Floral Infusion for Restful Sleep & Stress Relief",
     description:
-      "Hand-harvested whole chamomile flowers dried naturally under shade. Delivers an apple-like gentle aroma that eases anxiety, soothes upset stomachs, and supports deep, restorative sleep.",
+      "Saaf suthray aur qudrati sooraj mein sookhay chamomile ke phool. Halki meethi khushboo jo zehni thakawat door kare, pait ko araam pohanchaye, aur pur-sukoon neend mein madad de.",
     benefits: [
       "Naturally 100% Caffeine-Free",
-      "Promotes Deep, Restful Sleep",
-      "Soothes Digestive Discomfort",
-      "Natural Anti-Inflammatory Properties",
+      "Pur-Sukoon Neend Aur Zehni Araam",
+      "Pait Aur Hazmay Ke Liye Mufeed",
+      "100% Khalis Phool Bina Kisi Rang Ya Khushboo Ke",
     ],
     inStock: true,
   },
@@ -248,11 +248,11 @@ export const PRODUCTS: Product[] = [
     weight: "50g",
     tagline: "Tangy Ruby-Red Hibiscus Sabdariffa Loaded with Vitamin C & Antioxidants",
     description:
-      "Vibrant whole dried hibiscus (rosella) calyces. Brews into a gorgeous ruby-red tart beverage that accelerates lipid metabolism, detoxifies the liver, and refreshes the body whether hot or iced.",
+      "Qudrati soorkh rang ke khalis rosella (hibiscus) phool. Garam ya thanda dono tarah nihayat lazeez kehwa banta hai jo jigar ko taazgi bakshe aur blood pressure ko mutawazin rakhne mein madad kare.",
     benefits: [
       "High in Natural Vitamin C & Polyphenols",
-      "Natural Diuretic & Detox Support",
-      "Delicious Hot or Iced With Honey",
+      "Jigar Aur Pait Ke Liye Behtareen Taazgi",
+      "Laziz Garam Ya Thanda Sharbat/Kehwa",
       "Zero Artificial Colors or Additives",
     ],
     inStock: true,
@@ -496,7 +496,7 @@ export const MEGA_BUNDLES: BundleItem[] = [
       "Complimentary Diet & Meal Schedule",
     ],
     description:
-      "Our most popular weight loss combination. Replace commercial white atta with Fat2Fuel for all meals, and drink Rosella tea twice daily to boost metabolism and detox.",
+      "Ghar ke wazan kam karne walon ke liye behtareen jorha. Bazaar ke maiday walay aate ki jagah Fat2Fuel ka istemal karein aur rozana Rosella kehwa pi kar taaza-dam rahein.",
   },
   {
     id: "bundle-2",

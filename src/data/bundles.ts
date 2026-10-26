@@ -68,12 +68,12 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
       {
         name: "Pure Organic Rosella (Hibiscus) Herbal Tea",
         size: "50g UV-Shielded Aroma Pouch",
-        role: "Metabolic & Detox Catalyst",
+        role: "Metabolism Aur Taazgi",
         desc: "Whole wild-harvested shade-dried ruby calyces rich in organic anthocyanins, hibiscus acid, and vitamin C. 100% caffeine-free.",
         image: "/images/products/prod-9.jpg",
       },
       {
-        name: "Dietitian-Curated Roti & Hydration Schedule",
+        name: "Ghar Ka Roti & Hydration Schedule",
         size: "Printed Booklet + Digital PDF",
         role: "Actionable Daily Routine",
         desc: "Step-by-step guidance on meal timing, water intake, and proper dough hydration for soft, pliable multigrain rotis.",
@@ -222,7 +222,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F3E3DA]",
     includedTags: ["5kg Giggly Grains Atta", "5kg Basic Chakki Atta", "50g Chamomile Tea"],
     description:
-      "A complete monthly household staple pack for health-conscious families. Includes nutrient-dense multigrain flour formulated for growing kids' cognitive stamina, 100% stone-ground unbleached wheat for the household, and soothing Egyptian-variety chamomile blossoms for restorative sleep.",
+      "Ghar ke har fard ke liye mukammal mahana pack. Bacchon ki sehat aur taaqat ke liye makhsoos multigrain atta, ghar ke dastarkhwan ke liye 100% pathar ki chakki ka khalis atta, aur pur-sukoon neend ke liye qudrati chamomile kehwa.",
     whatsInTheBox: [
       {
         name: "Giggly Grains Growing-Kids Multigrain Flour",

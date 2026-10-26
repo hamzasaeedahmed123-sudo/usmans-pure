@@ -329,7 +329,7 @@ export function CheckoutView() {
                 {formData.paymentMethod === "card" && "Payment Successful — Debit / Credit Card"}
               </span>
 
-              <h1 className="text-2xl sm:text-4xl font-semibold text-stone-900 tracking-tight">
+              <h1 className="text-2xl sm:text-4xl font-serif font-bold text-[#1E3A2F] tracking-tight">
                 Shukriya, {formData.name || "Valued Customer"}!
               </h1>
 
@@ -460,7 +460,7 @@ export function CheckoutView() {
                 <div className="inline-flex items-center gap-1.5 mb-2 tag-quiet">
                   <Truck className="w-3.5 h-3.5 text-amber-800" /> Nationwide Delivery Across Pakistan
                 </div>
-                <h1 className="text-2xl sm:text-4xl font-semibold text-stone-900 tracking-tight">
+                <h1 className="text-2xl sm:text-4xl font-serif font-bold text-[#1E3A2F] tracking-tight">
                   Complete Your Pure Order
                 </h1>
                 <p className="mt-2 text-stone-600 text-xs sm:text-sm">

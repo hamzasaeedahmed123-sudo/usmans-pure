@@ -169,23 +169,23 @@ export function AboutPageView() {
               Our Heritage &amp; Philosophy
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-stone-900 tracking-tight leading-tight">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-[#1E3A2F] tracking-tight leading-tight">
               A Journey Back to Natural Living
             </h1>
 
-            <p className="mt-6 text-base sm:text-xl text-stone-700 leading-relaxed font-serif max-w-3xl mx-auto">
-              &ldquo;Born from a deep commitment to purity, health, and honest nourishment, Usman&apos;s Pure Products is more than a brand &mdash; it is a journey back to natural living.&rdquo;
+            <p className="mt-6 text-base sm:text-lg md:text-xl text-stone-700 leading-relaxed font-sans max-w-3xl mx-auto">
+              &ldquo;Usman&apos;s Pure kisi factory ka naam nahi, balki hamare apne dastarkhwan ki fikar se shuru hua tha. Jab bazaar ke chemical aur maiday walay aate ne ghar ke buzurgo ki tabiyat kharab karna shuru ki, toh humne khud chakki par khalis anaj peesna shuru kiya&mdash;taake jo hum apne ghar walon ko khilayein, wahi be-khauf hokar aap tak pohnchayein.&rdquo;
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-stone-600">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-semibold">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> 100% Stone-Ground Chakki
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> 100% Asli Pathar Ki Chakki
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-semibold">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Lab-Tested &amp; Verified Pure
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Khalis Aur Saaf Anaj
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-semibold">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Zero Chemical Bleach or Maida
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Zero Chemical Bleach Ya Maida
               </span>
             </div>
           </div>
@@ -204,11 +204,11 @@ export function AboutPageView() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 sm:p-10">
                 <div className="text-white">
-                  <span className="text-xs uppercase tracking-widest text-amber-300 font-bold">
+                  <span className="text-xs uppercase tracking-wider text-amber-300 font-semibold">
                     Usman&apos;s Pure Products Heritage
                   </span>
                   <h2 className="text-2xl sm:text-4xl font-serif font-bold text-white mt-1">
-                    Rooted in Nature, Harvested with Love
+                    Ghar Ke Dastarkhwan Se Aap Tak
                   </h2>
                 </div>
               </div>
@@ -237,13 +237,13 @@ export function AboutPageView() {
               {/* Left Column: Headings */}
               <div className="lg:col-span-4 space-y-14 sm:space-y-24">
                 <div>
-                  <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 tracking-tight">
-                    Our Vision
+                  <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#1E3A2F] tracking-tight">
+                    Hamari Soch
                   </h2>
                 </div>
                 <div>
-                  <h2 className="text-3xl sm:text-5xl font-serif font-bold text-stone-900 tracking-tight">
-                    Our Commitment
+                  <h2 className="text-3xl sm:text-5xl font-serif font-bold text-[#1E3A2F] tracking-tight">
+                    Hamara Waada
                   </h2>
                 </div>
               </div>
@@ -251,13 +251,13 @@ export function AboutPageView() {
               {/* Right Column: Paragraphs */}
               <div className="lg:col-span-8 space-y-12 sm:space-y-16">
                 <div>
-                  <p className="text-base sm:text-xl text-stone-700 leading-relaxed font-normal">
-                    In a world increasingly distant from nature, Usman&apos;s Pure Products envisions a future where pure, natural, and honest food becomes a daily choice for every household. We strive to reconnect people with nature&apos;s original goodness through products that nourish the body, respect the earth, and strengthen communities.
+                  <p className="text-base sm:text-lg text-stone-700 leading-relaxed font-sans">
+                    Usman&apos;s Pure kisi factory ka naam nahi, balki hamare apne dastarkhwan ki fikar se shuru hua tha. Jab bazaar ke chemical aur maiday walay aate ne ghar ke buzurgo ki tabiyat kharab karna shuru ki, toh humne khud chakki par khalis anaj peesna shuru kiya&mdash;taake jo hum apne ghar walon ko khilayein, wahi be-khauf hokar aap tak pohnchayein. Har ghar mein khalis aur be-aalaish khorak pohnchana hamara maqsad hai.
                   </p>
                 </div>
                 <div>
-                  <p className="text-base sm:text-xl text-stone-700 leading-relaxed font-normal">
-                    We are committed to purity without compromise. From carefully sourcing quality ingredients to minimal processing and responsible practices, every Usman&apos;s Pure Product reflects our promise of freshness, nutrition, and trust. Guided by integrity and community values, we remain dedicated to supporting healthier lifestyles, stronger families, and balanced living&mdash;just as nature intended.
+                  <p className="text-base sm:text-lg text-stone-700 leading-relaxed font-sans">
+                    Hum khalispan par kabhi samjhota nahi karte. Saaf suthra anaj, pathar ki thandi chakki ki peesai, aur bina kisi chemical ya maiday ki milawat ke taaza atta&mdash;yehi hamara har ghar se pakka waada hai. Taake buzurg aur bachay dono sehatmand rahein aur dastarkhwan par barkat barkarar rahe.
                   </p>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export function AboutPageView() {
               </div>
               <div className="border-t sm:border-t-0 sm:border-l border-white/10 pt-4 sm:pt-0 sm:pl-8">
                 <StatCounter target={5000} animate={statsInView} duration={2000} suffix="+" />
-                <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Curated Products Delivered</div>
+                <div className="text-xs sm:text-sm text-slate-300 font-medium mt-1">Gharon Tak Taaza Delivery</div>
               </div>
               <div className="border-t sm:border-t-0 sm:border-l border-white/10 pt-4 sm:pt-0 sm:pl-8">
                 <StatCounter target={800} animate={statsInView} duration={2000} suffix="+" />
