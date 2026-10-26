@@ -4,12 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Scale,
-  Wheat,
-  ShieldCheck,
-  CheckCircle2,
   ShoppingCart,
-  MessageCircle,
   Star,
   Minus,
   Plus,
@@ -151,11 +146,11 @@ export function FlagshipFeaturedProduct() {
             {/* Main Image Frame - Clean & Uncluttered (No text covering packaging) */}
             <div className="relative w-full max-w-[500px] aspect-square sm:aspect-[4/3] lg:aspect-square bg-white rounded-3xl p-4 sm:p-6 shadow-xl border border-stone-200/90 flex items-center justify-center overflow-hidden group">
               
-              {/* Subtle Floating Purity Badge */}
-              <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-stone-200 shadow-sm">
-                <Wheat className="w-3.5 h-3.5 text-amber-700" />
-                <span className="text-[11px] font-bold tracking-wide text-stone-800 uppercase">
-                  100% Stone-Pounded • Zero Maida
+              {/* Authentic Artisan Packaging Seal (Real Food Brand Style) */}
+              <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#181310] text-[#F5EFE6] border border-[#C5A059]/60 shadow-lg backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-[#C5A059] shadow-[0_0_8px_#C5A059]" />
+                <span className="text-[10px] sm:text-[11px] font-black tracking-widest uppercase font-sans">
+                  100% Stone-Pounded &bull; Zero Maida
                 </span>
               </div>
 
@@ -171,11 +166,11 @@ export function FlagshipFeaturedProduct() {
                 />
               </div>
 
-              {/* Verified Fresh Milled Badge (Bottom Right) */}
-              <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-emerald-900/90 text-white backdrop-blur-md shadow-sm">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                <span className="text-[10px] font-semibold tracking-wide">
-                  Milled Under 40°C
+              {/* Verified Fresh Milled Stamp (Bottom Right) */}
+              <div className="absolute bottom-4 right-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#18392B]/95 text-white backdrop-blur-md shadow-md border border-emerald-400/30">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[9.5px] font-bold tracking-wider uppercase font-mono">
+                  COLD-MILLED &lt;40&deg;C
                 </span>
               </div>
             </div>
@@ -223,60 +218,84 @@ export function FlagshipFeaturedProduct() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
               
               {/* Benefit 1 */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-stone-200/90 shadow-2xs">
-                <div className="p-2 rounded-xl bg-emerald-50 text-emerald-800 shrink-0 mt-0.5">
-                  <BadgeCheck className="w-4 h-4" />
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
+                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
+                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">01</span>
+                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
                 </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                    Diabetic &amp; Sugar Balance
-                  </h4>
-                  <p className="text-[11px] sm:text-xs text-stone-600 mt-0.5 leading-relaxed">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
+                      Diabetic &amp; Sugar Balance
+                    </h4>
+                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
+                      LOW GI
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                     Low GI slow-carb release prevents post-meal glucose spikes.
                   </p>
                 </div>
               </div>
 
               {/* Benefit 2 */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-stone-200/90 shadow-2xs">
-                <div className="p-2 rounded-xl bg-amber-50 text-amber-900 shrink-0 mt-0.5">
-                  <Scale className="w-4 h-4" />
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
+                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
+                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">02</span>
+                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
                 </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                    Weight Management
-                  </h4>
-                  <p className="text-[11px] sm:text-xs text-stone-600 mt-0.5 leading-relaxed">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
+                      Weight Management
+                    </h4>
+                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#3E2514] text-[#E5B888] font-mono">
+                      5H+ FULL
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                     High fiber keeps you satisfied 5+ hours, curbing snacking.
                   </p>
                 </div>
               </div>
 
               {/* Benefit 3 */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-stone-200/90 shadow-2xs">
-                <div className="p-2 rounded-xl bg-amber-50 text-amber-900 shrink-0 mt-0.5">
-                  <Wheat className="w-4 h-4" />
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
+                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
+                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">03</span>
+                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
                 </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                    100% Whole Grain
-                  </h4>
-                  <p className="text-[11px] sm:text-xs text-stone-600 mt-0.5 leading-relaxed">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
+                      100% Whole Grain
+                    </h4>
+                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#4A3218] text-[#E8C88A] font-mono">
+                      100% BRAN
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                     Zero bleached maida, zero starch diluters, 100% vital bran.
                   </p>
                 </div>
               </div>
 
               {/* Benefit 4 */}
-              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-stone-200/90 shadow-2xs">
-                <div className="p-2 rounded-xl bg-emerald-50 text-emerald-800 shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4" />
+              <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-[#FAF7F2] border border-[#E5DACB]/90 shadow-2xs">
+                <div className="flex flex-col items-center justify-center shrink-0 w-8 pt-0.5">
+                  <span className="font-serif text-base font-bold text-[#8B3A22] leading-none">04</span>
+                  <span className="w-3 h-0.5 bg-[#8B3A22]/30 mt-1 rounded-full" />
                 </div>
-                <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
-                    Easy Digestion &amp; Gut Health
-                  </h4>
-                  <p className="text-[11px] sm:text-xs text-stone-600 mt-0.5 leading-relaxed">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-0.5 flex-wrap">
+                    <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
+                      Easy Digestion &amp; Gut Health
+                    </h4>
+                    <span className="px-1.5 py-0.5 rounded text-[8.5px] font-black tracking-wider uppercase bg-[#18392B] text-[#88D4A6] font-mono">
+                      PREBIOTIC
+                    </span>
+                  </div>
+                  <p className="text-[11px] sm:text-xs text-stone-600 leading-relaxed">
                     Rich in natural prebiotic bran for light, bloat-free comfort.
                   </p>
                 </div>
@@ -385,9 +404,11 @@ export function FlagshipFeaturedProduct() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-12 px-5 rounded-2xl bg-emerald-800 hover:bg-emerald-900 active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                className="h-12 px-5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0"
               >
-                <MessageCircle className="w-4 h-4" />
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 01-5.82 2.41c-1.42 0-2.8-.37-4.03-1.07l-.29-.17-3.12.82.83-3.04-.19-.3a8.163 8.163 0 01-1.25-4.49c0-4.54 3.7-8.24 8.24-8.24zm4.84 11.64c-.26-.13-1.55-.76-1.79-.85-.24-.09-.42-.13-.59.13-.18.26-.68.85-.83 1.03-.15.18-.31.2-.57.07-.26-.13-1.1-.41-2.09-1.3-.77-.69-1.29-1.54-1.44-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.31.39-.46.13-.15.18-.26.26-.43.09-.18.04-.33-.02-.46-.07-.13-.59-1.43-.81-1.96-.22-.52-.44-.45-.61-.46h-.52c-.18 0-.46.07-.7.33-.24.26-.92.9-.92 2.19 0 1.3 1.02 2.55 1.16 2.74.15.18 2 3.05 4.84 4.28.68.29 1.21.46 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.55-.63 1.77-1.24.22-.61.22-1.13.15-1.24-.07-.11-.24-.18-.5-.31z" />
+                </svg>
                 <span>Order on WhatsApp</span>
               </a>
 
