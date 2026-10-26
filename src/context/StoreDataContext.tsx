@@ -427,10 +427,18 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
           // Auto-migrate legacy shipping threshold string in cached localStorage
           if (parsed.announcementSubText && /2,?000/.test(parsed.announcementSubText)) {
             parsed.announcementSubText = parsed.announcementSubText.replace(/2,?000/g, "10,000");
-            try {
-              localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(parsed));
-            } catch {}
           }
+          // Auto-migrate legacy robotic AI hero slide benefits if detected in cached storage
+          if (
+            parsed.heroSlides.herbals?.benefit?.includes("Hand-harvested") ||
+            parsed.heroSlides.flour?.benefit?.includes("Cold-milled under 40°C with 100%") ||
+            parsed.heroSlides.spices?.benefit?.includes("Slow stone-pounded aroma lock")
+          ) {
+            parsed.heroSlides = DEFAULT_CMS.heroSlides;
+          }
+          try {
+            localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(parsed));
+          } catch {}
           setCmsContent({
             ...DEFAULT_CMS,
             ...parsed,
@@ -467,7 +475,13 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       if (storedReviews) {
         const parsed = JSON.parse(storedReviews);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setReviews(parsed);
+          // Ensure Mrs. Farhan (rev-farhan) is present even if user has older cached reviews
+          const hasFarhan = parsed.some((r) => r.id === "rev-farhan");
+          const mergedReviews = hasFarhan ? parsed : [DEFAULT_REVIEWS[0], ...parsed];
+          setReviews(mergedReviews);
+          try {
+            localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mergedReviews));
+          } catch {}
         }
       }
     } catch (e) {
