@@ -52,7 +52,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       categoryKey: "teas",
       badge: "Herbal Infusions",
       description:
-        "Whole dried organic herbs hand-harvested from pesticide-free fields. Formulated to support natural energy, restful sleep, digestion, and daily wellness.",
+        "Saaf suthri qudrati bootiyan aur phool jinhein bina kisi chemical ya artificial rang ke mehfooz kiya gaya hai. Zehni sukoon, behtar hazmay aur pur-sukoon neend ke liye behtareen kehwa.",
       highlights: [
         "Naturally 100% Caffeine-Free",
         "Whole Dried Flower & Leaf Calyces",

@@ -165,8 +165,8 @@ export function StoreFooter() {
             <h5 className="font-serif font-bold text-base text-white">
               Usman&apos;s Pure Products
             </h5>
-            <p className="text-xs sm:text-sm text-[#C8BBAF] leading-relaxed max-w-sm mt-3">
-              Reviving pure stone-ground culinary traditions across Pakistan. Fresh whole-grain chakki flours, raw botanical herbal teas, and cold stone-pounded masalas milled under 40°C with zero additives.
+            <p className="text-xs sm:text-sm text-[#C8BBAF] leading-relaxed max-w-sm mt-3 font-sans">
+              Hamare dastarkhwan se aapke dastarkhwan tak—100% asli pathar ki chakki ka khalis atta, qudrati jari bootiyon ka kehwa, aur sil-batte pe pise masalay. Zero chemical, zero maida, aur har niwalay mein barkat.
             </p>
             <p className="text-xs text-[#8C7D6F] mt-3">
               100% Khalis Chakki Atta &bull; Zero Maida &bull; Cash on Delivery Available

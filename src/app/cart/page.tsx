@@ -125,14 +125,14 @@ export default function CartPage() {
         <TickerMarquee />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-          <h1 className="text-3xl sm:text-4xl font-semibold text-stone-900 tracking-tight mb-8">
+          <h1 className="text-3xl sm:text-4xl font-serif font-bold text-[#1E3A2F] tracking-tight mb-8">
             Shopping Cart &amp; Cash on Delivery Checkout
           </h1>
 
           {orderPlaced ? (
             <div className="bg-white rounded-sm border border-stone-200 p-8 sm:p-12 text-center max-w-2xl mx-auto shadow-sm">
               <CheckCircle2 className="w-16 h-16 text-emerald-600 mx-auto mb-4" />
-              <h2 className="text-2xl sm:text-3xl font-semibold text-stone-900">
+              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E3A2F]">
                 Order Confirmed with Cash on Delivery!
               </h2>
               <p className="mt-2 text-sm text-stone-600 leading-relaxed max-w-md mx-auto">
@@ -189,7 +189,7 @@ export default function CartPage() {
                         <span>Add ₨{amountToFreeShipping.toLocaleString()} more for FREE Delivery!</span>
                       )}
                     </span>
-                    <span className="text-stone-500">Free over ₨2,500</span>
+                    <span className="text-stone-500">Free over ₨10,000</span>
                   </div>
                   <div className="w-full bg-stone-100 rounded-full h-2 overflow-hidden">
                     <div

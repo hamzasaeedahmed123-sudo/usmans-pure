@@ -87,12 +87,12 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     title: "Chamomile & Mint Relax Tea",
     category: "teas",
     categoryBadge: "Herbal Tea",
-    highlight: "Calming Whole Blossom Detox",
+    highlight: "Sukoon Bakhsh Khalis Kehwa",
     image: "/images/products/prod-2.jpg",
     detailUrl: "/product/prod-2",
     checkoutUrl: "/checkout?product=prod-2",
     description:
-      "Hand-harvested whole chamomile blossoms paired with calming peppermint leaves. Delivers gentle herbal aromatics to ease evening stress and support sound, peaceful sleep.",
+      "Saaf suthray chamomile ke phool aur poodina. Shaam ke waqt zehni sukoon, behtar hazmay aur pur-sukoon neend ke liye nihayat mufeed aur khalis kehwa.",
     packOptions: [
       { size: "100g", price: 850, originalPrice: 1100 },
       { size: "200g", price: 1550, originalPrice: 1950 },

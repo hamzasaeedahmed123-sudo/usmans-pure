@@ -135,7 +135,7 @@ export function FlagshipFeaturedProduct() {
             </span>
 
             {/* Headline */}
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-[1.25] mb-3">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1E3A2F] tracking-tight leading-[1.25] mb-3">
               Kash Rozana Ki Roti Sirf Pait Na Bhare, Balke Poore Ghar Ki Sehat Bhi Banaye
             </h2>
 

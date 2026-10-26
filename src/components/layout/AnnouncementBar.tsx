@@ -25,25 +25,19 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
   const bgColor = customBg || THEME_COLORS[theme] || "#2A1F17";
   const { cmsContent } = useStoreData();
 
-  const primaryText = cmsContent?.announcementBarText || "100% Traditional Stone-Ground • Zero Maida • Freshly Milled";
-  const rawSubText = cmsContent?.announcementSubText || "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery";
-  const subText = rawSubText.replace(/2,?000/g, "10,000");
+  const defaultText = "100% Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Lahore & Rawalpindi/Islamabad Mein Taaza Delivery";
+  const primaryText = (!cmsContent?.announcementBarText || cmsContent.announcementBarText.includes("Traditional Stone-Ground"))
+    ? defaultText
+    : cmsContent.announcementBarText;
 
   return (
     <motion.div
       animate={{ backgroundColor: bgColor }}
       transition={{ duration: 0.6, ease: "easeInOut" }}
-      className={`relative z-40 w-full py-1.5 px-3 sm:px-4 text-center text-[10px] sm:text-[11px] md:text-xs font-medium text-white flex items-center justify-center gap-1.5 sm:gap-2 tracking-wide shadow-xs select-none ${className}`}
+      className={`relative z-40 w-full py-1.5 px-3 sm:px-4 text-center text-[11px] sm:text-xs font-medium text-white flex items-center justify-center gap-2 tracking-normal shadow-xs select-none ${className}`}
     >
       <span className="truncate sm:overflow-visible">
         {primaryText}
-      </span>
-      <span className="opacity-60 hidden sm:inline">|</span>
-      <span className="font-semibold hidden sm:inline">
-        {subText}
-      </span>
-      <span className="font-semibold sm:hidden">
-        • Free Shipping Rs 10,000+
       </span>
     </motion.div>
   );

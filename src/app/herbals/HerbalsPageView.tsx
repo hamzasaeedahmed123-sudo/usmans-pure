@@ -93,14 +93,14 @@ export function HerbalsPageView() {
                 Pure Organic Herbal Teas &amp; Infusions
               </h1>
               <p className="mt-3 text-emerald-100 text-sm sm:text-base leading-relaxed">
-                Hand-harvested whole dried herbs and flowers shade-dried naturally to retain essential volatile oils and polyphenols. Zero synthetic flavorings, zero artificial food coloring, and completely caffeine-free.
+                Saaf suthri qudrati jari bootiyan aur phool, jinhein saaye mein sukha kar unka asli zaiqa aur qudrati fawayed mehfooz rakhay gaye hain. Zero synthetic flavor ya artificial rang, aur mukammal taur par caffeine-free.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
                   "100% naturally caffeine-free",
                   "Whole dried calyces, flowers, and leaves",
-                  "Formulated for weight detox, sleep, and heart vitality",
+                  "Wazan mein kami, pur-sukoon neend aur dil ki sehat ke liye mufeed",
                   "Sealed in UV-shielded aroma-lock standing pouches",
                 ].map((item, idx) => (
                   <span

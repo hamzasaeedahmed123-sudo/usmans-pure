@@ -24,8 +24,10 @@
   --color-sand: var(--sand);
   --color-olive: var(--olive);
   --color-ink-muted: var(--ink-muted);
-  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-cormorant), "Times New Roman", Georgia, serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-heading: var(--font-serif), Georgia, serif;
   --font-mono: var(--font-geist-mono);
   --breakpoint-xs: 400px;
 }
@@ -33,9 +35,9 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-weight: 400;
-  letter-spacing: 0.005em;
+  line-height: 1.6;
   overflow-x: hidden;
   max-width: 100vw;
   width: 100%;
@@ -113,18 +115,29 @@ html {
   }
 }
 
-/* Editorial serif headings: lighter weight, tighter tracking */
+/* Editorial warm heritage serif headings */
 h1,
 h2,
-h3 {
-  letter-spacing: -0.01em;
-}
-.font-serif {
-  font-weight: 500;
-}
-.font-serif.font-bold,
-.font-serif.font-black {
+h3,
+h4 {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.02em;
+  color: #1E3A2F;
   font-weight: 600;
+}
+
+.font-serif,
+.font-heading {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-sans,
+.font-body {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+p {
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Soft, diffuse ambient shadow instead of harsh drop shadows */
@@ -143,15 +156,15 @@ h3 {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: var(--espresso);
   color: var(--cream);
   border: 1px solid var(--espresso);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
   transition: background-color 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
   cursor: pointer;
   &:hover {
@@ -166,15 +179,15 @@ h3 {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: var(--terracotta);
   color: var(--cream);
   border: 1px solid var(--terracotta);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
   transition: background-color 200ms ease-out, border-color 200ms ease-out;
   cursor: pointer;
   &:hover {
@@ -189,15 +202,15 @@ h3 {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 3px;
+  border-radius: 4px;
   background-color: transparent;
   color: var(--espresso);
   border: 1px solid rgba(30, 21, 16, 0.25);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  line-height: 1;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
   transition: border-color 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out;
   cursor: pointer;
   &:hover {
