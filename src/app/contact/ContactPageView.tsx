@@ -20,6 +20,7 @@ import {
   WheatStalkSvg,
   HerbalBranchSvg,
 } from "@/components/BotanicalWatermark";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export function ContactPageView() {
   const [formData, setFormData] = useState({
@@ -129,10 +130,8 @@ export function ContactPageView() {
                     rel="noopener noreferrer"
                     className="p-4 rounded-sm bg-[#FAF7F2] border border-[#E5DACB] flex items-start gap-4 hover:bg-[#F3EDE2] transition group"
                   >
-                    <div className="w-12 h-12 rounded-full bg-[#25D366] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
-                      <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                        <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm.01 1.67c4.54 0 8.24 3.7 8.24 8.24 0 2.2-.86 4.28-2.42 5.84a8.19 8.19 0 01-5.82 2.41c-1.42 0-2.8-.37-4.03-1.07l-.29-.17-3.12.82.83-3.04-.19-.3a8.163 8.163 0 01-1.25-4.49c0-4.54 3.7-8.24 8.24-8.24zm4.84 11.64c-.26-.13-1.55-.76-1.79-.85-.24-.09-.42-.13-.59.13-.18.26-.68.85-.83 1.03-.15.18-.31.2-.57.07-.26-.13-1.1-.41-2.09-1.3-.77-.69-1.29-1.54-1.44-1.8-.15-.26-.02-.4.11-.53.12-.12.26-.31.39-.46.13-.15.18-.26.26-.43.09-.18.04-.33-.02-.46-.07-.13-.59-1.43-.81-1.96-.22-.52-.44-.45-.61-.46h-.52c-.18 0-.46.07-.7.33-.24.26-.92.9-.92 2.19 0 1.3 1.02 2.55 1.16 2.74.15.18 2 3.05 4.84 4.28.68.29 1.21.46 1.62.6.68.22 1.3.19 1.79.11.55-.08 1.55-.63 1.77-1.24.22-.61.22-1.13.15-1.24-.07-.11-.24-.18-.5-.31z" />
-                      </svg>
+                    <div className="w-12 h-12 shrink-0 group-hover:scale-105 transition-transform flex items-center justify-center">
+                      <WhatsAppIcon className="w-12 h-12" variant="official" />
                     </div>
                     <div>
                       <div className="text-xs font-medium uppercase tracking-wider text-emerald-800">
