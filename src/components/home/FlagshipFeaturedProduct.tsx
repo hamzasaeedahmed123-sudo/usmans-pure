@@ -104,7 +104,7 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full overflow-hidden bg-gradient-to-b from-[#F7F2EB] to-[#FAF6F0] py-8 sm:py-12 md:py-20 border-t border-amber-900/10 border-b border-[#E5DACB]"
+      className="relative w-full overflow-hidden bg-[#F3EDE2] border-t border-[#E2D5C3] border-b border-[#E2D5C3]"
     >
       {/* 1. Subtle Low-Opacity Radial Ambient Glow */}
       <div
@@ -240,13 +240,13 @@ export function FlagshipFeaturedProduct() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center justify-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 py-12 md:py-16 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
         
-        {/* ================= COLUMN 1: CLEAN PACKAGING & HERITAGE SEAL (LEFT) ================= */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+        {/* ================= COLUMN 1: BLENDED PACKAGING & HERITAGE SEAL (LEFT) ================= */}
+        <div className="md:col-span-5 flex justify-center relative">
           
-          {/* Main Image Frame - Grounded, Clean, Compact on Mobile & Balanced on Desktop */}
-          <div className="relative w-full max-w-[300px] sm:max-w-[360px] lg:max-w-[390px] aspect-square bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center">
+          {/* Main Image Frame - Softer, Seamless Blended Card */}
+          <div className="relative w-full max-w-[300px] sm:max-w-[340px] md:max-w-[360px] aspect-square bg-[#FAF7F0] border border-[#E5DAC8] shadow-md rounded-3xl p-6 flex items-center justify-center">
             
             {/* Authentic Heritage Trust Seal Stamp */}
             <div className="absolute -top-3.5 -right-3.5 sm:-top-4 sm:-right-4 z-20 pointer-events-none select-none -rotate-6">
@@ -272,7 +272,7 @@ export function FlagshipFeaturedProduct() {
               </div>
             </div>
 
-            <div className="relative w-full h-[230px] sm:h-[280px] lg:h-[330px]">
+            <div className="relative w-full h-[220px] sm:h-[260px] md:h-[290px]">
               <Image
                 src={PRODUCT_IMAGE}
                 alt="Usman's Pure Multigrain Flour 100% Stone-Ground Packaging"
@@ -286,7 +286,7 @@ export function FlagshipFeaturedProduct() {
         </div>
 
         {/* ================= COLUMN 2: AUTHENTIC FAMILY STORY & BENEFITS (RIGHT) ================= */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
+        <div className="md:col-span-7 flex flex-col justify-center">
             
             {/* Brand Heritage Tagline */}
             <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
