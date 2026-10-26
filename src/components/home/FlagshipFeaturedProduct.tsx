@@ -194,28 +194,90 @@ export function FlagshipFeaturedProduct() {
         </svg>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 xl:gap-14">
+        
+        {/* ================= COLUMN 1: CLEAN PACKAGING & HERITAGE SEAL (LEFT) ================= */}
+        <div className="relative w-full lg:w-5/12 flex flex-col items-center justify-center shrink-0">
           
-          {/* ================= COLUMN 1: CLEAN PACKAGING (LEFT) ================= */}
-          <div className="lg:col-span-6 flex flex-col items-center">
-            {/* Main Image Frame - Grounded, Clean, Compact on Mobile & Balanced on Desktop */}
-            <div className="relative w-full max-w-[290px] sm:max-w-[380px] lg:max-w-[480px] aspect-square bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center overflow-hidden">
-              <div className="relative w-full h-[230px] sm:h-[300px] lg:h-[360px]">
-                <Image
-                  src={PRODUCT_IMAGE}
-                  alt="Usman's Pure Multigrain Flour 100% Stone-Ground Packaging"
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
-                  priority
-                  className="object-contain"
-                />
-              </div>
-            </div>
+          {/* Ambient Radial Glow Behind Card */}
+          <div
+            className="absolute -left-10 top-1/2 -translate-y-1/2 w-80 sm:w-96 h-80 sm:h-96 bg-amber-100/50 rounded-full blur-3xl -z-10 pointer-events-none"
+            aria-hidden="true"
+          />
+
+          {/* Far Left Organic Wheat Stalk / Botanical Watermark */}
+          <div
+            className="absolute -left-6 sm:-left-12 bottom-0 w-36 md:w-52 opacity-20 -z-10 pointer-events-none select-none text-[#8B3A22] transform -rotate-12"
+            aria-hidden="true"
+          >
+            <svg
+              viewBox="0 0 200 260"
+              fill="currentColor"
+              className="w-full h-auto drop-shadow-xs"
+            >
+              <path
+                d="M100 250 C100 180, 100 120, 100 20"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <path d="M100 120 C90 110, 80 115, 85 125 C95 130, 100 120, 100 120 Z" />
+              <path d="M100 120 C110 110, 120 115, 115 125 C105 130, 100 120, 100 120 Z" />
+              <path d="M100 100 C90 90, 80 95, 85 105 C95 110, 100 100, 100 100 Z" />
+              <path d="M100 100 C110 90, 120 95, 115 105 C105 110, 100 100, 100 100 Z" />
+              <path d="M100 80 C90 70, 80 75, 85 85 C95 90, 100 80, 100 80 Z" />
+              <path d="M100 80 C110 70, 120 75, 115 85 C105 90, 100 80, 100 80 Z" />
+              <path d="M100 60 C90 50, 80 55, 85 65 C95 70, 100 60, 100 60 Z" />
+              <path d="M100 60 C110 50, 120 55, 115 65 C105 70, 100 60, 100 60 Z" />
+              <path d="M100 40 C90 30, 80 35, 85 45 C95 50, 100 40, 100 40 Z" />
+              <path d="M100 40 C110 30, 120 35, 115 45 C105 50, 100 40, 100 40 Z" />
+              <path d="M100 20 C95 10, 105 10, 100 20 Z" />
+            </svg>
           </div>
 
-          {/* ================= COLUMN 2: AUTHENTIC FAMILY STORY & BENEFITS (RIGHT) ================= */}
-          <div className="lg:col-span-6 flex flex-col justify-center">
+          {/* Main Image Frame - Grounded, Clean, Compact on Mobile & Balanced on Desktop */}
+          <div className="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[430px] aspect-square bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center">
+            
+            {/* Authentic Heritage Trust Seal Stamp */}
+            <div className="absolute -top-3.5 -right-3.5 sm:-top-4 sm:-right-4 z-20 pointer-events-none select-none -rotate-6">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#1E3A2F] text-[#F3E3DA] p-1.5 shadow-md border-2 border-dashed border-[#D4A373]/70 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_24s_linear_infinite]">
+                  <path
+                    id="sealPath"
+                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                    fill="none"
+                  />
+                  <text className="text-[7.5px] font-bold uppercase tracking-[0.2em] fill-[#D4A373]">
+                    <textPath href="#sealPath" startOffset="0%">
+                      • 100% STONE GROUND • TAAZA CHAKKI ATTA • ZERO MAIDA
+                    </textPath>
+                  </text>
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-[#D4A373]" strokeWidth={2} />
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-white mt-0.5">
+                    KHALIS
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative w-full h-[230px] sm:h-[300px] lg:h-[350px]">
+              <Image
+                src={PRODUCT_IMAGE}
+                alt="Usman's Pure Multigrain Flour 100% Stone-Ground Packaging"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
+                priority
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* ================= COLUMN 2: AUTHENTIC FAMILY STORY & BENEFITS (RIGHT) ================= */}
+        <div className="w-full lg:w-7/12 flex flex-col justify-center max-w-xl">
             
             {/* Brand Heritage Tagline */}
             <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
@@ -379,7 +441,6 @@ export function FlagshipFeaturedProduct() {
           </div>
 
         </div>
-      </div>
-    </section>
-  );
-}
+      </section>
+    );
+  }
