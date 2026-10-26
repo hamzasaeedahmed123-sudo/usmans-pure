@@ -18,7 +18,6 @@ import {
   AlertCircle,
   X,
   KeyRound,
-  Sparkles,
   Server,
   Layers,
 } from "lucide-react";

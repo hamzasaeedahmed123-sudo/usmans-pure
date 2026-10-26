@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Activity,
   Scale,
   Wheat,
   ShieldCheck,
@@ -15,8 +14,7 @@ import {
   Minus,
   Plus,
   Truck,
-  HeartPulse,
-  Sparkles,
+  BadgeCheck,
   ChevronRight,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
@@ -155,7 +153,7 @@ export function FlagshipFeaturedProduct() {
               
               {/* Subtle Floating Purity Badge */}
               <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-stone-200 shadow-sm">
-                <Sparkles className="w-3.5 h-3.5 text-amber-700" />
+                <Wheat className="w-3.5 h-3.5 text-amber-700" />
                 <span className="text-[11px] font-bold tracking-wide text-stone-800 uppercase">
                   100% Stone-Pounded • Zero Maida
                 </span>
@@ -227,7 +225,7 @@ export function FlagshipFeaturedProduct() {
               {/* Benefit 1 */}
               <div className="flex items-start gap-3 p-3.5 rounded-2xl bg-white/90 border border-stone-200/90 shadow-2xs">
                 <div className="p-2 rounded-xl bg-emerald-50 text-emerald-800 shrink-0 mt-0.5">
-                  <Activity className="w-4 h-4" />
+                  <BadgeCheck className="w-4 h-4" />
                 </div>
                 <div>
                   <h4 className="text-xs sm:text-sm font-bold text-stone-900 leading-snug">
@@ -402,7 +400,7 @@ export function FlagshipFeaturedProduct() {
                 <span>Doorstep Cash on Delivery (All Pakistan)</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <HeartPulse className="w-3.5 h-3.5 text-rose-700" />
+                <BadgeCheck className="w-3.5 h-3.5 text-emerald-700" />
                 <span>Fresh Stone-Ground Every Morning</span>
               </div>
               <Link

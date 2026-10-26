@@ -7,8 +7,8 @@ import {
   Mail,
   MapPin,
   Clock,
-  ShieldCheck,
-  CheckCircle2,
+  Wheat,
+  BadgeCheck,
   Truck,
   RotateCcw,
   MessageCircle,
@@ -21,8 +21,10 @@ export function StoreFooter() {
       <div className="border-b border-[#3A2D25] py-4 sm:py-5 bg-[#16110E]/80">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#3A2D25] text-center gap-y-3 sm:gap-y-0">
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3 px-2 sm:px-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#2A1F17] border border-[#3D2B1F] text-[#E5D2BA] flex items-center justify-center shrink-0 shadow-2xs">
+                <Wheat className="w-5 h-5 text-[#D8B486]" />
+              </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
                   100% Khalis Chakki Atta
@@ -33,8 +35,10 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3 px-2 sm:px-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#142D1C] border border-[#1D4028] text-[#A3D2B7] flex items-center justify-center shrink-0 shadow-2xs">
+                <BadgeCheck className="w-5 h-5 text-[#88C69F]" />
+              </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
                   Zero Maida &amp; Zero Chemicals
@@ -45,8 +49,10 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3 px-2 sm:px-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#2A1F17] border border-[#3D2B1F] text-[#E5D2BA] flex items-center justify-center shrink-0 shadow-2xs">
+                <Truck className="w-5 h-5 text-[#D8B486]" />
+              </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
                   Cash on Delivery Available
@@ -57,8 +63,10 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-1.5 sm:gap-3 px-2 sm:px-4">
-              <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-[#D8B486] shrink-0" />
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2 sm:gap-3 px-2 sm:px-4">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#142D1C] border border-[#1D4028] text-[#A3D2B7] flex items-center justify-center shrink-0 shadow-2xs">
+                <MessageCircle className="w-5 h-5 text-[#88C69F]" />
+              </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
                   Direct WhatsApp Support
