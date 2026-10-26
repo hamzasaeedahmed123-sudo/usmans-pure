@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2, Truck } from "lucide-react";
+import { CheckCircle2, Truck, Wheat, Sparkles } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export function DietConsultationBanner() {
@@ -64,8 +64,8 @@ export function DietConsultationBanner() {
           <div className="lg:col-span-5">
             <div className="relative rounded-2xl bg-emerald-900/50 border border-emerald-800/80 p-4 sm:p-6 md:p-8 backdrop-blur-sm shadow-ambient">
               <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6 pb-3 sm:pb-5 border-b border-emerald-800/60">
-                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-amber-400 text-stone-950 font-bold text-base sm:text-lg flex items-center justify-center shadow-ambient shrink-0">
-                  UP
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl bg-amber-400 text-stone-950 flex items-center justify-center shadow-ambient shrink-0">
+                  <Wheat className="w-6 h-6 text-stone-950" strokeWidth={1.75} />
                 </div>
                 <div>
                   <h4 className="text-sm sm:text-base font-bold text-white">From Our Chakki To Your Kitchen</h4>
@@ -77,36 +77,36 @@ export function DietConsultationBanner() {
               <div className="flex flex-row overflow-x-auto snap-x snap-mandatory gap-3 pb-2 no-scrollbar md:flex-col md:space-y-3.5 md:overflow-visible">
                 <div className="min-w-[78%] sm:min-w-[260px] md:min-w-0 snap-center p-3.5 rounded-xl bg-emerald-950/70 border border-emerald-500/20 flex flex-col justify-center">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
-                      1
+                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
+                      <Wheat className="w-3.5 h-3.5" strokeWidth={1.75} />
                     </span>
                     <h5 className="text-xs font-bold text-white">Choose Your Flour &amp; Spices</h5>
                   </div>
-                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
+                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-8 leading-relaxed">
                     Pick your regular atta, multigrain blend, or spices.
                   </p>
                 </div>
 
                 <div className="min-w-[78%] sm:min-w-[260px] md:min-w-0 snap-center p-3.5 rounded-xl bg-emerald-950/70 border border-emerald-500/20 flex flex-col justify-center">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
-                      2
+                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
+                      <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
                     </span>
                     <h5 className="text-xs font-bold text-white">Fresh Stone Grinding</h5>
                   </div>
-                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
+                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-8 leading-relaxed">
                     We grind pure grains slowly to keep all natural bran and nutrients.
                   </p>
                 </div>
 
                 <div className="min-w-[78%] sm:min-w-[260px] md:min-w-0 snap-center p-3.5 rounded-xl bg-emerald-950/70 border border-emerald-500/20 flex flex-col justify-center">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-emerald-500/25 text-emerald-300 flex items-center justify-center text-xs font-bold shrink-0">
-                      3
+                    <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
+                      <Truck className="w-3.5 h-3.5" strokeWidth={1.75} />
                     </span>
                     <h5 className="text-xs font-bold text-white">Direct Delivery</h5>
                   </div>
-                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-7 leading-relaxed">
+                  <p className="text-[11px] text-emerald-200/80 mt-1 pl-8 leading-relaxed">
                     Packed clean and delivered straight to your doorstep.
                   </p>
                 </div>

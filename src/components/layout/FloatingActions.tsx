@@ -36,7 +36,7 @@ export function FloatingActions() {
             className="relative w-12 h-12 sm:w-14 sm:h-14 min-w-[48px] min-h-[48px] rounded-full bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8B3A22]/50"
             aria-label={`View pure basket (${totalCount} items)`}
           >
-            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" />
+            <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.75} />
 
             {/* Dynamic Item Badge Count */}
             {totalCount > 0 && (

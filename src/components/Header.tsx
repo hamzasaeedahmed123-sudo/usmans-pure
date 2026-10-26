@@ -270,7 +270,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 aria-label="Search Pure Products"
                 className="cursor-pointer hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ede8e1] border border-stone-200/80 hover:bg-stone-200 text-xs font-medium shadow-xs transition shrink-0"
               >
-                <Search className="w-3.5 h-3.5 opacity-70" />
+                <Search className="w-3.5 h-3.5 opacity-70" strokeWidth={1.75} />
                 <span className="opacity-80">Search</span>
                 <kbd className="font-mono text-[9px] bg-black/5 px-1 py-0.2 rounded">
                   ⌘K
@@ -283,7 +283,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 className="cursor-pointer relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm shrink-0"
                 aria-label="View Shopping Cart"
               >
-                <ShoppingBag className="w-4 h-4 text-stone-800" />
+                <ShoppingBag className="w-4 h-4 text-stone-800" strokeWidth={1.75} />
                 <span
                   id="cart-badge-count"
                   className={`absolute -top-1 -right-1 flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-bold shadow-xs ${themeClasses.badge}`}

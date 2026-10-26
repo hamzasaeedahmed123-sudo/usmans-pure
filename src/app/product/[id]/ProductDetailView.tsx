@@ -16,6 +16,7 @@ import {
   ShieldCheck,
   Star,
   Award,
+  Wheat,
   CheckCircle2,
   Plus,
   Minus,
@@ -172,7 +173,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   </span>
                   <span>&bull;</span>
                   <span className="flex items-center gap-1.5">
-                    <Award className="w-4 h-4 text-amber-700" />
+                    <Wheat className="w-4 h-4 text-amber-700" strokeWidth={1.75} />
                     Stone-Ground
                   </span>
                   <span>&bull;</span>
