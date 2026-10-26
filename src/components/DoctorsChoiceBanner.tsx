@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Stethoscope, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BadgeCheck, Stethoscope, CheckCircle2, Wheat } from "lucide-react";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function DoctorsChoiceBanner() {
@@ -41,7 +41,7 @@ export function DoctorsChoiceBanner() {
             {/* Quick Trust Badges */}
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-[#E8DFD0]">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
+                <BadgeCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
                 Doctor Recommended
               </span>
               <span className="text-white/20">•</span>
@@ -51,7 +51,7 @@ export function DoctorsChoiceBanner() {
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
+                <Wheat className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
                 100% Whole Grain
               </span>
             </div>

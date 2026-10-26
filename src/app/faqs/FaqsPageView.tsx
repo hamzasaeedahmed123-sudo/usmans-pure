@@ -16,8 +16,6 @@ import {
   Truck,
   ArrowRight,
   Wheat,
-  Activity,
-  Flame,
   CheckCircle2,
 } from "lucide-react";
 

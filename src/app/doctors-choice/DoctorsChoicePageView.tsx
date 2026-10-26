@@ -19,7 +19,7 @@ import {
   HelpCircle,
   ChevronDown,
   ArrowRight,
-  Activity,
+  CheckCircle2,
   Award,
 } from "lucide-react";
 
@@ -221,7 +221,7 @@ export function DoctorsChoicePageView() {
                 <span>Doctor Approved Formulations</span>
               </div>
               <div className="flex items-center gap-2">
-                <Activity className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
+                <CheckCircle2 className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
                 <span>Lab Verified Purity &bull; 0% Adulterants</span>
               </div>
               <div className="flex items-center gap-2">
@@ -305,7 +305,7 @@ export function DoctorsChoicePageView() {
                       />
                       {/* Problem Tag on Image Badge */}
                       <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-10 inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-md text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#18281E]/95 text-[#E5B869] backdrop-blur-xs shadow-xs max-w-[90%] truncate">
-                        <Activity className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#E5B869] shrink-0" />
+                        <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#E5B869] shrink-0" />
                         <span className="truncate">{product.problemTag}</span>
                       </span>
                     </div>

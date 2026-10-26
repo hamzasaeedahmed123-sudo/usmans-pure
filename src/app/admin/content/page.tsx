@@ -16,7 +16,6 @@ import {
   ShieldCheck,
   Megaphone,
   Flame,
-  Sparkles,
   Plus,
   Trash2,
   Tag,
@@ -834,7 +833,7 @@ export default function AdminContentPage() {
           <div className="rounded-2xl bg-gradient-to-r from-amber-950 via-stone-900 to-amber-900 p-4 sm:p-5 text-white shadow-md border border-amber-800/40">
             <div className="flex items-center justify-between mb-2">
               <span className="text-[10px] uppercase font-bold tracking-wider text-amber-400 flex items-center gap-1.5">
-                <Sparkles className="w-3 h-3" /> Live Banner Preview
+                <Eye className="w-3 h-3" /> Live Banner Preview
               </span>
               <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${formData.saleBannerEnabled ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" : "bg-white/10 text-stone-400"}`}>
                 {formData.saleBannerEnabled ? "Active on Storefront" : "Disabled (Hidden)"}
@@ -909,7 +908,7 @@ export default function AdminContentPage() {
                       onClick={() => handleAddBlock("promo_banner")}
                       className="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-bold text-stone-800 flex items-center gap-2 transition"
                     >
-                      <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
+                      <Tag className="w-4 h-4 text-amber-600 shrink-0" />
                       <div>
                         <p>Promotional Banner</p>
                         <p className="text-[10px] text-stone-500 font-normal">Featured promo card or teaser</p>

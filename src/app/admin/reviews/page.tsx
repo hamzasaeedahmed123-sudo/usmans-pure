@@ -16,7 +16,6 @@ import {
   X,
   BadgeCheck,
   MessageSquare,
-  Sparkles,
   AlertCircle,
   ThumbsUp,
 } from "lucide-react";
@@ -217,7 +216,7 @@ export default function AdminReviewsPage() {
             </div>
           </div>
           <div className="text-[11px] text-stone-500 mt-1 flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
+            <BadgeCheck className="w-3.5 h-3.5 text-emerald-600" />
             <span>High trust satisfaction score</span>
           </div>
         </div>

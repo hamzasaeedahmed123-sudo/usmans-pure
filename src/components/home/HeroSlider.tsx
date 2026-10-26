@@ -380,39 +380,6 @@ export function HeroSlider() {
                   />
                 </motion.div>
 
-                {/* Floating Element 1 (Upper Left) */}
-                {currentSlide.floating[0] && (
-                  <motion.div
-                    animate={{ y: [-4, 4, -4], rotate: [-4, 4, -4] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -top-1 left-2 w-9 h-9 pointer-events-none z-20 transform-gpu will-change-transform"
-                  >
-                    <Image
-                      src={currentSlide.floating[0]}
-                      alt="ingredient"
-                      fill
-                      sizes="36px"
-                      className="object-contain mix-blend-multiply"
-                    />
-                  </motion.div>
-                )}
-
-                {/* Floating Element 2 (Lower Right) */}
-                {currentSlide.floating[1] && (
-                  <motion.div
-                    animate={{ y: [4, -4, 4], rotate: [4, -4, 4] }}
-                    transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                    className="absolute -bottom-1 right-2 w-9 h-9 pointer-events-none z-20 transform-gpu will-change-transform"
-                  >
-                    <Image
-                      src={currentSlide.floating[1]}
-                      alt="ingredient"
-                      fill
-                      sizes="36px"
-                      className="object-contain mix-blend-multiply"
-                    />
-                  </motion.div>
-                )}
               </div>
 
               {/* 3. Glassmorphism Info Card: Hugs the Pouch without Large Gaps */}
@@ -585,55 +552,6 @@ export function HeroSlider() {
                     priority
                   />
                 </motion.div>
-
-                {/* Floating Element 1 (Upper Left / Bobbing Float Animation, zero box artifacts) */}
-                {currentSlide.floating[0] && (
-                  <motion.div
-                    animate={{
-                      y: [-8, 8, -8],
-                      rotate: [-4, 5, -4],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="absolute -top-4 -left-6 sm:-top-8 sm:-left-12 w-20 h-20 sm:w-28 sm:h-28 pointer-events-none z-20 transform-gpu will-change-transform"
-                  >
-                    <Image
-                      src={currentSlide.floating[0]}
-                      alt="floating ingredient"
-                      fill
-                      sizes="112px"
-                      className="object-contain mix-blend-multiply"
-                    />
-                  </motion.div>
-                )}
-
-                {/* Floating Element 2 (Lower Right / Delayed Bobbing Float Animation, zero box artifacts) */}
-                {currentSlide.floating[1] && (
-                  <motion.div
-                    animate={{
-                      y: [8, -8, 8],
-                      rotate: [4, -5, 4],
-                    }}
-                    transition={{
-                      duration: 3.2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.8,
-                    }}
-                    className="absolute -bottom-4 -right-6 sm:-bottom-8 sm:-right-12 w-20 h-20 sm:w-28 sm:h-28 pointer-events-none z-20 transform-gpu will-change-transform"
-                  >
-                    <Image
-                      src={currentSlide.floating[1]}
-                      alt="floating ingredient"
-                      fill
-                      sizes="112px"
-                      className="object-contain mix-blend-multiply"
-                    />
-                  </motion.div>
-                )}
               </motion.div>
             </AnimatePresence>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Check, X, ShieldAlert, Award } from "lucide-react";
+import { Check, X, Wheat } from "lucide-react";
 
 export function ChakkiProcessStory() {
   return (
@@ -33,7 +33,7 @@ export function ChakkiProcessStory() {
                 </h3>
               </div>
               <div className="w-12 h-12 rounded-sm bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
-                <Award className="w-6 h-6" />
+                <Wheat className="w-6 h-6" />
               </div>
             </div>
 
@@ -81,7 +81,7 @@ export function ChakkiProcessStory() {
                 </h3>
               </div>
               <div className="w-12 h-12 rounded-sm bg-rose-100 text-rose-700 flex items-center justify-center font-bold">
-                <ShieldAlert className="w-6 h-6" />
+                <X className="w-6 h-6 stroke-[2.5]" />
               </div>
             </div>
 
