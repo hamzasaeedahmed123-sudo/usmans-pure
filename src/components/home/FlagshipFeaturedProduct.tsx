@@ -104,16 +104,16 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full bg-[#FAF7F2] py-12 md:py-20 border-b border-[#E5DACB]"
+      className="relative w-full bg-[#FAF7F2] py-8 sm:py-12 md:py-20 border-b border-[#E5DACB]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-14 items-center">
           
           {/* ================= COLUMN 1: CLEAN PACKAGING (LEFT) ================= */}
           <div className="lg:col-span-6 flex flex-col items-center">
-            {/* Main Image Frame - Grounded, Clean, No Artificial Status Badges */}
-            <div className="relative w-full max-w-[480px] aspect-square bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center overflow-hidden">
-              <div className="relative w-full h-[280px] sm:h-[360px]">
+            {/* Main Image Frame - Grounded, Clean, Compact on Mobile & Balanced on Desktop */}
+            <div className="relative w-full max-w-[290px] sm:max-w-[380px] lg:max-w-[480px] aspect-square bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-sm border border-[#E5DACB] flex items-center justify-center overflow-hidden">
+              <div className="relative w-full h-[230px] sm:h-[300px] lg:h-[360px]">
                 <Image
                   src={PRODUCT_IMAGE}
                   alt="Usman's Pure Multigrain Flour 100% Stone-Ground Packaging"
@@ -131,17 +131,17 @@ export function FlagshipFeaturedProduct() {
             
             {/* Brand Heritage Tagline */}
             <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
-              ⭐ Har Maa Ki Pehli Pasand &bull; Asli Chakki Atta
+              ⭐ Har Ammi Ki Pehli Pasand &bull; Asli Chakki Atta
             </span>
 
             {/* Headline */}
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-[1.25] mb-3">
-              Kash Rozana Ki Roti Sirf Pait Na Bhare, Balke Parivaar Ki Sehat Bhi Banaye
+              Kash Rozana Ki Roti Sirf Pait Na Bhare, Balke Poore Ghar Ki Sehat Bhi Banaye
             </h2>
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-stone-600 leading-relaxed mb-6">
-              Pathar ki chakki pe pisa asli qudrati anaj—bina chemical bleaching aur bina maida. Walidain ki sugar, bacchon ki haddiyon aur parivaar ke dastarkhwan ke liye narm phulka roti jo har niwala sehatmand banaye.
+              Pathar ki chakki pe pisa asli qudrati anaj—bina chemical bleaching aur bina kisi maiday ke. Buzurgo ki sugar ka khayal, bacchon ki taaqat aur ghar ke dastarkhwan ke liye Ammi ke haath ki narm phulka roti jo har niwala sehatmand banaye.
             </p>
 
             {/* 3 Natural Desi Family Points */}
@@ -149,7 +149,7 @@ export function FlagshipFeaturedProduct() {
               <div className="flex items-start gap-3">
                 <Wheat className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  <strong className="text-stone-900 font-bold">Ghar Ke Walidain Ke Liye:</strong>{" "}
+                  <strong className="text-stone-900 font-bold">Ammi Abbu Aur Buzurgo Ke Liye:</strong>{" "}
                   Low GI anaj jo sugar aur pait ke bhari-pan ko control mein rakhe.
                 </p>
               </div>
@@ -157,16 +157,16 @@ export function FlagshipFeaturedProduct() {
               <div className="flex items-start gap-3">
                 <ShieldCheck className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  <strong className="text-stone-900 font-bold">Bacchon Ki Sehat:</strong>{" "}
-                  Sabut anaj ka qudrati iron aur calcium jo bacchon ki nashonuma ke liye zaroori hai.
+                  <strong className="text-stone-900 font-bold">Bacchon Ki Sehat Aur Taaqat:</strong>{" "}
+                  Sabut anaj ka qudrati iron aur calcium jo bacchon ki sehat aur haddiyon ki taaqat ke liye zaroori hai.
                 </p>
               </div>
 
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  <strong className="text-stone-900 font-bold">Maa Ki Tasalli:</strong>{" "}
-                  100% pathar ki chakki ka pisa hua, bina kisi maida ya chemical bleach ke narm phulka roti.
+                  <strong className="text-stone-900 font-bold">Ammi Ki Tasalli:</strong>{" "}
+                  100% pathar ki chakki ka pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
                 </p>
               </div>
             </div>
