@@ -56,12 +56,12 @@ export const CATEGORY_PILLS = [
 export const SLIDES: HeroSlide[] = [
   {
     id: "flour",
-    tag: "100% Stone-Ground",
+    tag: "100% Pathar Ki Chakki",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
-    fullTitle: "Chakki Multigrain Flour",
-    benefit: "Cold-milled under 40°C with 100% vital dietary fiber & zero maida.",
-    miniStats: ["100% Purity", "Cold-Milled", "Zero Maida"],
+    fullTitle: "Chakki Multigrain Atta",
+    benefit: "Maa ke haath ki narm phulka roti — 100% pathar ki chakki ka qudrati fiber, zero maida.",
+    miniStats: ["Maa Ki Pasand", "Zero Maida", "Pathar Ki Chakki"],
     price: "Rs 2,450",
     weight: "10kg",
     bgColor: "#E5D2BA",
@@ -78,12 +78,12 @@ export const SLIDES: HeroSlide[] = [
   },
   {
     id: "herbals",
-    tag: "Pure Botanical",
+    tag: "Qudrati Desi Qehwa",
     title: "HERBAL",
     subtitle: "TEAS",
-    fullTitle: "Organic Herbal Tea",
-    benefit: "Hand-harvested blossoms & olive leaf for daily caffeine-free detox.",
-    miniStats: ["100% Botanical", "Caffeine-Free", "Whole Leaf"],
+    fullTitle: "Desi Herbal Qehwa",
+    benefit: "Buzurgo ke blood pressure aur sukoon ke liye asli zaitoon patti aur chamomile ka qehwa.",
+    miniStats: ["100% Qudrati", "Caffeine-Free", "Zaitoon Patti"],
     price: "Rs 1,250",
     weight: "250g",
     bgColor: "#A3D2B7",
@@ -100,12 +100,12 @@ export const SLIDES: HeroSlide[] = [
   },
   {
     id: "spices",
-    tag: "Cold Stone-Pounded",
+    tag: "Sil-Batta Pisai",
     title: "ORGANIC",
     subtitle: "SPICES",
-    fullTitle: "Organic Spices",
-    benefit: "Slow stone-pounded aroma lock with zero dyes and zero additives.",
-    miniStats: ["Zero Sudan Dyes", "Cold-Pounded", "Aroma-Lock"],
+    fullTitle: "Sil-Batta Pure Masalay",
+    benefit: "Sil-batte aur pathar pe pise masalay — bina kisi rang ya chemical ke asli khushboo aur zaiqa.",
+    miniStats: ["Bina Chemical", "Sil-Batta Pisai", "Asli Khushboo"],
     price: "Rs 950",
     weight: "500g",
     bgColor: "#A73E24",
@@ -339,21 +339,21 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.45, ease: "easeInOut" }}
-              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2 sm:gap-2.5 px-3 max-w-sm mx-auto"
+              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-1.5 sm:gap-2 px-3 max-w-sm mx-auto"
             >
               {/* 1. Category Title: Scaled & Placed Snugly Above Product */}
               <div className="w-full text-center shrink-0 z-10 select-none">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[8.5vw] sm:text-[7vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-[8vw] sm:text-[6.5vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[7vw] sm:text-[5.5vw] font-black tracking-tight mt-0.5">{currentSlide.subtitle}</span>
+                  <span className="block text-[6.5vw] sm:text-[5vw] font-black tracking-tight mt-0.5">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
               {/* 2. Main Product Cutout Visual: Snug Height to Prevent Scatter */}
-              <div className="relative w-full h-[22vh] min-h-[150px] max-h-[210px] flex items-center justify-center pointer-events-none z-10 my-0.5">
+              <div className="relative w-full h-[20vh] min-h-[140px] max-h-[190px] flex items-center justify-center pointer-events-none z-10 my-0">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
