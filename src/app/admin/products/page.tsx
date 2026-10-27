@@ -53,9 +53,9 @@ export default function AdminProductsPage() {
   const [newPrice, setNewPrice] = useState(1200);
   const [newOriginalPrice, setNewOriginalPrice] = useState(1500);
   const [newWeight, setNewWeight] = useState("5kg");
-  const [newTagline, setNewTagline] = useState("100% Pure & Stone-Ground");
+  const [newTagline, setNewTagline] = useState("90% Pure & Stone-Ground");
   const [newDescription, setNewDescription] = useState("");
-  const [newBenefits, setNewBenefits] = useState("Stone-Ground Chakki\nZero Preservatives\n100% Pure Organics");
+  const [newBenefits, setNewBenefits] = useState("Stone-Ground Chakki\nZero Preservatives\n90% Pure Organics");
   const [newImage, setNewImage] = useState<string>("");
   const [imageUrlInput, setImageUrlInput] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
@@ -191,7 +191,7 @@ export default function AdminProductsPage() {
       reviewCount: 1,
       weight: newWeight,
       tagline: newTagline,
-      description: newDescription || "100% pure stone-milled product with zero chemical additives.",
+      description: newDescription || "90% pure stone-milled product with zero chemical additives.",
       benefits: benefitsArray,
       inStock: true,
     };

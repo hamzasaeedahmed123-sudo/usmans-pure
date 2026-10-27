@@ -69,7 +69,7 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
     id: "block-2",
     type: "sale_spotlight",
     title: "Diabetic-Care Multigrain Batch",
-    content: "Slow-milled whole grains with zero maida and 100% natural bran intact. Use code PURE10 at checkout.",
+    content: "Slow-milled whole grains with zero maida and 90% natural bran intact. Use code PURE10 at checkout.",
     badge: "Flat 10% OFF",
     status: "published",
     link: "/category/flours",
@@ -157,7 +157,7 @@ export default function AdminContentPage() {
       saleDiscountTag: cmsContent.saleBanner?.discountTag || "Flat 15% OFF on Multigrain Flour",
       saleBannerSubtext:
         cmsContent.saleBanner?.subtext ||
-        "Fresh stone-milled chakki flour packed with 100% natural wheat germ. Use code PURE15 at checkout.",
+        "Fresh stone-milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout.",
       saleButtonText: cmsContent.saleBanner?.buttonText || "Shop Flash Sale",
       saleLink: cmsContent.saleBanner?.link || "/products",
       customBanners: cmsContent.customBanners || [],
@@ -823,7 +823,7 @@ export default function AdminContentPage() {
                 rows={2}
                 value={formData.saleBannerSubtext}
                 onChange={(e) => updateField("saleBannerSubtext", e.target.value)}
-                placeholder="Fresh stone-milled chakki flour packed with 100% natural wheat germ. Use code PURE15 at checkout."
+                placeholder="Fresh stone-milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout."
                 className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs font-semibold focus:ring-2 focus:ring-amber-900/40 leading-relaxed"
               />
             </div>

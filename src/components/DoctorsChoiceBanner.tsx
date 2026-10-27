@@ -27,7 +27,7 @@ export function DoctorsChoiceBanner() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B869]/15 border border-[#E5B869]/30 text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.18em] mb-5">
               <Stethoscope className="w-3.5 h-3.5" strokeWidth={2} />
-              <span>Doctor Recommended &bull; 100% Whole Grains</span>
+              <span>Doctor Recommended &bull; 90% Whole Grains</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#F9F6F0] leading-[1.12]">
@@ -52,7 +52,7 @@ export function DoctorsChoiceBanner() {
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
                 <Wheat className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                100% Whole Grain
+                90% Whole Grain
               </span>
             </div>
           </div>

@@ -101,7 +101,7 @@ export function BundlesPageView() {
                 <Truck className="w-3.5 h-3.5 text-[#8B3A22]" /> Free Doorstep COD Available
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-[#EFE7DB] text-[#1E1510] font-medium tracking-wide">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#8B3A22]" /> 100% Lab-Verified Purity
+                <ShieldCheck className="w-3.5 h-3.5 text-[#8B3A22]" /> 90% Lab-Verified Purity
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-[#EFE7DB] text-[#1E1510] font-medium tracking-wide">
                 <Heart className="w-3.5 h-3.5 text-[#8B3A22]" /> Includes Daily Usage Schedule

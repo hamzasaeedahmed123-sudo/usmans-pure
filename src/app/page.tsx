@@ -14,9 +14,9 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
 
 export const metadata: Metadata = {
-  title: "Usman's Pure | 100% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
+  title: "Usman's Pure | 90% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
   description:
-    "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
+    "Buy fresh 90% pure stone-ground chakki atta online in Pakistan. Zero maida, 90% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "chakki atta",
@@ -34,9 +34,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Usman's Pure | 100% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
+    title: "Usman's Pure | 90% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",
     description:
-      "Buy fresh 100% pure stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
+      "Buy fresh 90% pure stone-ground chakki atta online in Pakistan. Zero maida, 90% whole wheat flour, diabetic atta & multigrain flour. Doorstep Cash on Delivery.",
     url: "https://usmanspure.com",
     type: "website",
     images: [
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
         url: "/images/products/multigrain-flagship-family.jpg",
         width: 1024,
         height: 824,
-        alt: "Usman's Pure Products - 100% Pure Stone-Ground Chakki Atta Online Pakistan",
+        alt: "Usman's Pure Products - 90% Pure Stone-Ground Chakki Atta Online Pakistan",
       },
       {
         url: "/logo.png",
@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <AmbientThemeWrapper className="min-h-screen selection:bg-amber-500/20 selection:text-amber-900">
       {/* Primary Semantic H1 for Googlebot Search Dominance */}
-      <h1 className="sr-only">100% Pure Stone-Ground Chakki Atta &amp; Organics in Pakistan</h1>
+      <h1 className="sr-only">90% Pure Stone-Ground Chakki Atta &amp; Organics in Pakistan</h1>
 
       {/* 1. Hero Section Slider */}
       <HeroSlider />

@@ -25,7 +25,7 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
   const bgColor = customBg || THEME_COLORS[theme] || "#2A1F17";
   const { cmsContent } = useStoreData();
 
-  const defaultText = "100% Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Lahore & Rawalpindi/Islamabad Mein Taaza Delivery";
+  const defaultText = "90% Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Lahore & Rawalpindi/Islamabad Mein Taaza Delivery";
   const primaryText = (!cmsContent?.announcementBarText || cmsContent.announcementBarText.includes("Traditional Stone-Ground"))
     ? defaultText
     : cmsContent.announcementBarText;

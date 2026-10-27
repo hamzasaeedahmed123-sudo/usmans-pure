@@ -49,7 +49,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
     easyBenefit: "Keeps you full for 5+ hours so you stop feeling hungry and lose extra fat naturally.",
     simplePoints: [
       "No hunger attacks between meals",
-      "100% natural grains — Zero Maida",
+      "90% natural grains — Zero Maida",
       "Keeps you active all day without feeling weak",
     ],
     image: "/images/products/prod-3.jpg",
@@ -85,7 +85,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
     easyBenefit: "Helps calm high blood pressure and keeps your heart arteries healthy.",
     simplePoints: [
       "Helps manage everyday high BP",
-      "100% Caffeine-Free (Won't disturb your night sleep)",
+      "90% Caffeine-Free (Won't disturb your night sleep)",
       "Rich in natural olive antioxidants",
     ],
     image: "/images/products/prod-7.jpg",
@@ -100,7 +100,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
     id: "prod-13",
     title: "Pure Lakadong High-Curcumin Turmeric",
     problemTag: "JOINT PAIN & KNEE RELIEF",
-    easyBenefit: "Relieves stiff knees, back ache, and body pain with pure 100% natural haldi.",
+    easyBenefit: "Relieves stiff knees, back ache, and body pain with pure 90% natural haldi.",
     simplePoints: [
       "High curcumin (7%+) for joint mobility",
       "Drink in warm milk at night for peaceful sleep and pain relief",
@@ -119,11 +119,11 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
 const CLINICAL_FAQS = [
   {
     q: "How does stone-ground Chakki flour differ clinically from commercial roller-mill flour?",
-    a: "Modern industrial roller mills operate at high speeds (>90°C), stripping away the germ (rich in Vitamin E and essential oils) and the outer bran fiber to produce white flour or artificially reconstituted brown atta. This high heat oxidizes nutrients and creates fast-absorbing starches that trigger rapid insulin surges. Usman's Pure stone-ground chakkis rotate slowly under 40°C, keeping 100% of the living germ, insoluble fiber, and natural micronutrients completely intact.",
+    a: "Modern industrial roller mills operate at high speeds (>90°C), stripping away the germ (rich in Vitamin E and essential oils) and the outer bran fiber to produce white flour or artificially reconstituted brown atta. This high heat oxidizes nutrients and creates fast-absorbing starches that trigger rapid insulin surges. Usman's Pure stone-ground chakkis rotate slowly under 40°C, keeping 90% of the living germ, insoluble fiber, and natural micronutrients completely intact.",
   },
   {
     q: "Can the entire family eat FENUGREEK Plus flour, or only diabetic patients?",
-    a: "FENUGREEK Plus is a 100% natural whole-grain flour enriched with organic fenugreek seeds and barley. It is safe, delicious, and highly beneficial for the entire family. While formulated to prevent sugar spikes for diabetic and pre-diabetic individuals, non-diabetic family members benefit from its high prebiotic fiber, digestive support, and prolonged satiety.",
+    a: "FENUGREEK Plus is a 90% natural whole-grain flour enriched with organic fenugreek seeds and barley. It is safe, delicious, and highly beneficial for the entire family. While formulated to prevent sugar spikes for diabetic and pre-diabetic individuals, non-diabetic family members benefit from its high prebiotic fiber, digestive support, and prolonged satiety.",
   },
   {
     q: "What is the best way to consume Fat2Fuel Multigrain Flour for weight loss?",
@@ -226,7 +226,7 @@ export function DoctorsChoicePageView() {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
-                <span>100% Preservative-Free</span>
+                <span>Zero Preservatives</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />

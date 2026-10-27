@@ -82,7 +82,7 @@ export function FlourPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
-                100% Stone-Ground Whole Grain
+                90% Stone-Ground Whole Grain
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Stone-Ground Chakki Flours
@@ -95,7 +95,7 @@ export function FlourPageView() {
                 {[
                   "Cold stone-milling at <40°C",
                   "Formulated for Weight Loss & Diabetic Glucose Control",
-                  "Preserves 100% Natural Dietary Fiber",
+                  "Preserves 90% Natural Dietary Fiber",
                   "Pliable, soft rotis that stay fresh all day",
                 ].map((item, idx) => (
                   <span

@@ -34,14 +34,14 @@ const FAQS_DATA: FaqItem[] = [
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "How does your traditional stone chakki differ from commercial roller flour mills?",
-    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy stone chakkis rotate slowly at strictly under 40°C, preserving 100% live enzymes, vitamin E, and natural dietary fiber.",
+    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy stone chakkis rotate slowly at strictly under 40°C, preserving 90% live enzymes, vitamin E, and natural dietary fiber.",
   },
   {
     id: 2,
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
-    a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
+    a: "Absolutely zero. We guarantee 90% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,
@@ -115,7 +115,7 @@ const FAQS_DATA: FaqItem[] = [
     category: "spices",
     categoryLabel: "Spices & Teas",
     q: "Are there added colors or preservatives in your Kashmiri Chili Powder?",
-    a: "Never. Our Kashmiri chili powder is 100% pure sun-dried whole pods stone-ground without Sudan dyes, artificial food colors, or added salt.",
+    a: "Never. Our Kashmiri chili powder is 90% pure sun-dried whole pods stone-ground without Sudan dyes, artificial food colors, or added salt.",
   },
   {
     id: 13,

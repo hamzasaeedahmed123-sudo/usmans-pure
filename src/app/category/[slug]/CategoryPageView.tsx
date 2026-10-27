@@ -43,7 +43,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       highlights: [
         "Cold stone-milling at <40°C",
         "Formulated for Weight Loss & Diabetic Sugar Management",
-        "Preserves 100% Natural Dietary Fiber",
+        "Preserves 90% Natural Dietary Fiber",
         "Pliable, aromatic rotis that stay soft for hours",
       ],
     },
@@ -54,7 +54,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       description:
         "Saaf suthri qudrati bootiyan aur phool jinhein bina kisi chemical ya artificial rang ke mehfooz kiya gaya hai. Zehni sukoon, behtar hazmay aur pur-sukoon neend ke liye behtareen kehwa.",
       highlights: [
-        "Naturally 100% Caffeine-Free",
+        "Naturally 90% Caffeine-Free",
         "Whole Dried Flower & Leaf Calyces",
         "Zero Artificial Flavors or Added Colors",
         "Packed in Freshness-Sealed Pouches",
@@ -65,7 +65,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       categoryKey: "spices",
       badge: "Traditional Spices",
       description:
-        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains 100% natural aroma, flavor, and color without artificial dyes.",
+        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains 90% natural aroma, flavor, and color without artificial dyes.",
       highlights: [
         "Cold Stone-Pounded (<35°C processing)",
         "Zero Dyes, Lead Chromate or Sawdust Fillers",

@@ -28,7 +28,7 @@ export interface MediaItem {
 const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   {
     id: "media-prod-1",
-    name: "100% Whole Wheat Chakki Atta",
+    name: "90% Whole Wheat Chakki Atta",
     url: "/images/products/prod-1.jpg",
     size: "420 KB",
     date: "2026-10-15",

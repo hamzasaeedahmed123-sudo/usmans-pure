@@ -11,12 +11,12 @@ interface PageProps {
 
 const CATEGORY_META: Record<string, { title: string; desc: string }> = {
   flours: {
-    title: "100% Stone-Ground Chakki Flours | Usman's Pure",
+    title: "90% Stone-Ground Chakki Flours | Usman's Pure",
     desc: "Shop slow-milled chakki atta, multigrain weight loss flour, and diabetic-safe grains milled fresh under 40°C.",
   },
   spices: {
     title: "Pure Cold-Pounded Organic Spices | Usman's Pure",
-    desc: "Single-origin Lakadong turmeric, stone-pounded garam masala, and 100% pure Kashmiri chili powder.",
+    desc: "Single-origin Lakadong turmeric, stone-pounded garam masala, and 90% pure Kashmiri chili powder.",
   },
   teas: {
     title: "Organic Whole Herbal Teas & Infusions | Usman's Pure",

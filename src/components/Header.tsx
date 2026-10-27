@@ -86,7 +86,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
       pill: "bg-[#F5EFE6]/70 border-[#E5DACB]/80 text-[#3D2817]",
       badge: "bg-[#EBDDCB]/70 border-[#DCC7AD]/80 text-[#3D2817]",
       cartBtn: "bg-[#F5EFE6]/70 hover:bg-[#F5EFE6] border-[#E5DACB]/80 text-[#3D2817]",
-      tag: "100% Stone-Ground",
+      tag: "90% Stone-Ground",
     },
     green: {
       bar: "bg-[#0E381C] text-white",

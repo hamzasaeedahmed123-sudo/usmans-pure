@@ -84,13 +84,13 @@ export function SpicesPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-amber-300 mb-2">
-                100% Zero Sudan Dyes &bull; Zero Lead Chromate
+                Zero Sudan Dyes &bull; Zero Lead Chromate
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Cold Stone-Pounded Organic Spices
               </h1>
               <p className="mt-3 text-[#FDECE5] text-sm sm:text-base leading-relaxed">
-                Hand-pounded in traditional stone mortars without friction heat. Preserves volatile essential oils, natural pigments, and aroma. Tested 100% free of artificial red dyes, chalk powders, and starch fillers.
+                Hand-pounded in traditional stone mortars without friction heat. Preserves volatile essential oils, natural pigments, and aroma. Tested 90% free of artificial red dyes, chalk powders, and starch fillers.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
