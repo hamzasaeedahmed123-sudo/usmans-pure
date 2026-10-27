@@ -74,35 +74,35 @@ export default function Home() {
       {/* 4. Category Collections ("Our Collections") */}
       <CategoryCollections />
 
-      {/* 4. Featured Products (Fresh Stone-Milled Whole Wheat Flour & Multi-Grain Blends) */}
+      {/* 5. Featured Products (Fresh Stone-Milled Whole Wheat Flour & Multi-Grain Blends) */}
       <ProductCatalog />
 
-      {/* 5. Customer Voices & Testimonials */}
+      {/* 6. Customer Voices & Testimonials (Repositioned Higher on Homepage) */}
       <div className="content-visibility-auto">
         <CustomerReviews />
       </div>
 
-      {/* 6. Prominent Doctor's Choice / Clinical Wellness Editorial CTA Banner */}
+      {/* 7. Prominent Doctor's Choice / Clinical Wellness Editorial CTA Banner */}
       <div className="content-visibility-auto">
         <DoctorsChoiceBanner />
       </div>
 
-      {/* 7. Curated Mega Bundles Section */}
+      {/* 8. Curated Mega Bundles Section */}
       <div className="content-visibility-auto">
         <MegaBundles />
       </div>
 
-      {/* 8. Personalized Diet Plan & Health Guidance Banner */}
+      {/* 9. Personalized Diet Plan & Health Guidance Banner */}
       <div className="content-visibility-auto">
         <DietConsultationBanner />
       </div>
 
-      {/* 9. 14-Day Guarantee & Nationwide COD Multi-column */}
+      {/* 10. 14-Day Guarantee & Nationwide COD Multi-column */}
       <div className="content-visibility-auto">
         <TrustGuarantee />
       </div>
 
-      {/* 10. Email Newsletter Subscription */}
+      {/* 11. Email Newsletter Subscription */}
       <div className="content-visibility-auto">
         <NewsletterSection />
       </div>
