@@ -106,13 +106,13 @@ export function Navbar({
             className="inline-block transition-transform hover:scale-105 shrink-0 focus:outline-none"
             aria-label="USMAN'S PURE PRODUCTS"
           >
-            <div className="relative w-36 sm:w-40 h-9 sm:h-[45px] drop-shadow-sm flex items-center">
+            <div className="relative w-44 sm:w-52 md:w-56 h-11 sm:h-12 md:h-13 drop-shadow-xs flex items-center py-0.5">
               <Image
                 src="/logo.png"
                 alt="Usman's Pure Products"
-                width={160}
-                height={45}
-                className="w-auto h-8 sm:h-9 object-contain object-left"
+                width={220}
+                height={60}
+                className="w-auto h-10 sm:h-11 md:h-12 object-contain object-left"
                 priority
               />
             </div>

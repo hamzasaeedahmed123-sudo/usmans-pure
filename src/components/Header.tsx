@@ -134,13 +134,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
                 aria-label="USMAN'S PURE PRODUCTS"
               >
-                <div className="relative w-36 sm:w-40 h-9 sm:h-[45px] flex items-center">
+                <div className="relative w-44 sm:w-52 md:w-56 h-11 sm:h-12 md:h-13 flex items-center py-0.5">
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
-                    width={160}
-                    height={45}
-                    className="w-auto h-8 sm:h-9 object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
+                    width={220}
+                    height={60}
+                    className="w-auto h-10 sm:h-11 md:h-12 object-contain object-left group-hover:scale-[1.02] transition-transform duration-300 drop-shadow-xs"
                     priority
                   />
                 </div>
@@ -322,13 +322,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
           {mobileMenuOpen && (
             <div className="lg:hidden mt-3 pt-3 border-t border-black/10 animate-in fade-in slide-in-from-top-2 duration-200 bg-white/98 backdrop-blur-xl rounded-2xl p-4 shadow-xl max-h-[calc(100dvh-5.5rem)] overflow-y-auto pb-24">
               <div className="px-2 pb-2.5 mb-2 border-b border-black/10 flex items-center justify-between sticky top-0 bg-white/90 backdrop-blur-sm z-20 -mt-1 pt-1">
-                <div className="relative w-36 h-9 flex items-center">
+                <div className="relative w-44 h-11 flex items-center">
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
-                    width={160}
-                    height={45}
-                    className="w-auto h-8 object-contain object-left"
+                    width={180}
+                    height={50}
+                    className="w-auto h-9 sm:h-10 object-contain object-left"
                   />
                 </div>
                 <div className="flex items-center gap-2">
