@@ -18,6 +18,7 @@ import {
   X,
   KeyRound,
   ShieldAlert,
+  Mail,
 } from "lucide-react";
 
 function AdminLoginContent() {
@@ -33,6 +34,20 @@ function AdminLoginContent() {
   const [errorMsg, setErrorMsg] = useState("");
   const [successToast, setSuccessToast] = useState("");
 
+  // Forgot Password Modal State
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [forgotLoading, setForgotLoading] = useState(false);
+  const [forgotError, setForgotError] = useState("");
+  const [forgotSuccess, setForgotSuccess] = useState("");
+
+  // Check URL params for reset success
+  React.useEffect(() => {
+    if (searchParams.get("reset") === "success") {
+      setSuccessToast("Password successfully reset. Please sign in with your new password.");
+    }
+  }, [searchParams]);
+
   // Forced Initial Password Change Modal State
   const [showForceChangeModal, setShowForceChangeModal] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -40,13 +55,43 @@ function AdminLoginContent() {
   const [changeError, setChangeError] = useState("");
   const [changeLoading, setChangeLoading] = useState(false);
 
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setForgotError("");
+    setForgotSuccess("");
+    setForgotLoading(true);
+
+    const emailToSend = (forgotEmail || username || "admin@usmanspure.com").trim();
+
+    try {
+      const res = await fetch("/api/admin/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: emailToSend }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setForgotLoading(false);
+        setForgotError(data.error || "Failed to dispatch reset email. Please verify SMTP configuration.");
+        return;
+      }
+
+      setForgotLoading(false);
+      setForgotSuccess(data.message || "A secure reset link has been dispatched to your email.");
+    } catch {
+      setForgotLoading(false);
+      setForgotError("Network error connecting to email service. Please retry.");
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
     setLoading(true);
 
     if (!username.trim()) {
-      setErrorMsg("Please provide your administrator username.");
+      setErrorMsg("Please provide your administrator email or username.");
       setLoading(false);
       return;
     }
@@ -212,7 +257,7 @@ function AdminLoginContent() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-xs font-semibold text-stone-300 mb-1.5 uppercase tracking-wider">
-                Administrator Username
+                Administrator Email or Username
               </label>
               <div className="relative">
                 <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
@@ -220,7 +265,7 @@ function AdminLoginContent() {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="usmanspure1947"
+                  placeholder="admin@usmanspure.com"
                   autoComplete="username"
                   required
                   className="w-full pl-10 pr-4 py-3 bg-stone-950/60 border border-white/15 rounded-xl text-sm text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all"
@@ -229,9 +274,23 @@ function AdminLoginContent() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-stone-300 mb-1.5 uppercase tracking-wider">
-                Administrator Password
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="block text-xs font-semibold text-stone-300 uppercase tracking-wider">
+                  Administrator Password
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setForgotEmail(username.includes("@") ? username : "admin@usmanspure.com");
+                    setForgotError("");
+                    setForgotSuccess("");
+                    setShowForgotModal(true);
+                  }}
+                  className="text-xs font-semibold text-amber-400 hover:text-amber-300 transition-colors cursor-pointer"
+                >
+                  Forgot Password?
+                </button>
+              </div>
               <div className="relative">
                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
                 <input
@@ -362,6 +421,116 @@ function AdminLoginContent() {
                   )}
                 </button>
               </form>
+            </motion.div>
+          </div>
+        )}
+
+        {/* Forgot Password Modal */}
+        {showForgotModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-md bg-stone-900 border border-amber-500/30 rounded-2xl p-6 sm:p-8 shadow-2xl text-stone-100"
+            >
+              <button
+                type="button"
+                onClick={() => setShowForgotModal(false)}
+                className="absolute top-4 right-4 p-2 text-stone-400 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                aria-label="Close modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex items-center gap-3 mb-4 text-amber-400">
+                <div className="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30">
+                  <KeyRound className="w-6 h-6 text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">Reset Admin Password</h3>
+                  <p className="text-xs text-stone-400">Secure Cryptographic Reset Link</p>
+                </div>
+              </div>
+
+              <p className="text-xs text-stone-300 mb-5 leading-relaxed">
+                Enter your registered administrator email address. We will dispatch a secure, single-use password reset link valid for 1 hour.
+              </p>
+
+              {forgotError && (
+                <div className="mb-4 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                  <span className="leading-snug">{forgotError}</span>
+                </div>
+              )}
+
+              {forgotSuccess && (
+                <div className="mb-4 p-3.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-emerald-400" />
+                  <span className="leading-snug">{forgotSuccess}</span>
+                </div>
+              )}
+
+              {!forgotSuccess ? (
+                <form onSubmit={handleForgotPassword} className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-semibold text-stone-300 mb-1.5 uppercase tracking-wider">
+                      Administrator Email Address
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-stone-400" />
+                      <input
+                        type="email"
+                        value={forgotEmail}
+                        onChange={(e) => setForgotEmail(e.target.value)}
+                        required
+                        placeholder="admin@usmanspure.com"
+                        className="w-full pl-10 pr-4 py-2.5 bg-stone-950 border border-white/20 rounded-xl text-sm text-white placeholder-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-2.5 pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowForgotModal(false)}
+                      className="w-1/3 py-2.5 px-3 rounded-xl border border-white/15 text-stone-300 hover:text-white hover:bg-white/5 text-xs font-bold transition-colors cursor-pointer"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={forgotLoading}
+                      className="flex-1 py-2.5 px-4 rounded-xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-stone-950 shadow-lg flex items-center justify-center gap-2 cursor-pointer transition-all disabled:opacity-50"
+                    >
+                      {forgotLoading ? (
+                        <>
+                          <div className="w-3.5 h-3.5 border-2 border-stone-950 border-t-transparent rounded-full animate-spin" />
+                          <span>Dispatching Link...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Mail className="w-3.5 h-3.5" />
+                          <span>Send Reset Link</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              ) : (
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowForgotModal(false);
+                      setForgotSuccess("");
+                    }}
+                    className="w-full py-2.5 px-4 rounded-xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-stone-950 text-center cursor-pointer transition-colors"
+                  >
+                    Return to Sign In
+                  </button>
+                </div>
+              )}
             </motion.div>
           </div>
         )}

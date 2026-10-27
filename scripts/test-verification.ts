@@ -9,6 +9,9 @@ import {
   verifyCustomerToken,
   getOrInitAdminRecord,
   updateAdminPassword,
+  createPasswordResetToken,
+  validatePasswordResetToken,
+  resetAdminPasswordWithToken,
 } from "../src/lib/auth";
 import {
   createCustomer,
@@ -45,26 +48,37 @@ async function runTests() {
   assert(!(await verifyPassword("wrongPass123", hash)), "Incorrect password is rejected");
 
   // TEST 2: Admin Bootstrap & Password Change Lifecycle
-  console.log("\nTest Suite 2: Admin Bootstrap Lifecycle");
+  console.log("\nTest Suite 2: Admin Bootstrap & Password Reset Lifecycle");
   const initialAdmin = await getOrInitAdminRecord();
-  assert(initialAdmin.username === "usmanspure1947", "Bootstrap admin username is 'usmanspure1947'");
-  assert(await verifyPassword("admin1947", initialAdmin.passwordHash), "Initial bootstrap password 'admin1947' matches hashed record");
+  assert(initialAdmin.username === "admin@usmanspure.com" || initialAdmin.email === "admin@usmanspure.com", "Bootstrap admin email is 'admin@usmanspure.com'");
+  assert(await verifyPassword("admin1122", initialAdmin.passwordHash), "Initial admin password 'admin1122' matches hashed record");
 
   // Test updating password
   const newPass = "NewSecureAdmin2026!#";
   const updatedAdmin = await updateAdminPassword(newPass);
   assert(updatedAdmin.mustChangePassword === false, "After password update, mustChangePassword is false");
   assert(await verifyPassword(newPass, updatedAdmin.passwordHash), "New password matches updated hash");
-  assert(!(await verifyPassword("admin1947", updatedAdmin.passwordHash)), "Old bootstrap password 'admin1947' is no longer valid");
+  assert(!(await verifyPassword("admin1122", updatedAdmin.passwordHash)), "Old password 'admin1122' is no longer valid");
 
-  // Revert back to bootstrap state for consistency
-  const resetAdmin = await updateAdminPassword("admin1947");
-  // Set mustChangePassword back to true for initial login requirement
-  assert(await verifyPassword("admin1947", resetAdmin.passwordHash), "Bootstrap credentials restored for live deployment test");
-  const adminFile = path.join(process.cwd(), "src", "data", "store", "admin_auth.json");
-  const storedJson = JSON.parse(fs.readFileSync(adminFile, "utf-8"));
-  storedJson.mustChangePassword = true;
-  fs.writeFileSync(adminFile, JSON.stringify(storedJson, null, 2), "utf-8");
+  // Test Password Reset Token Generation & Validation
+  const resetToken = await createPasswordResetToken("admin@usmanspure.com");
+  assert(typeof resetToken === "string" && resetToken.length === 64, "Generated 64-char crypto reset token");
+  const tokenCheck = await validatePasswordResetToken(resetToken);
+  assert(tokenCheck.valid === true, "Valid reset token is accepted");
+
+  // Test Invalid Reset Token
+  const badTokenCheck = await validatePasswordResetToken("invalid_fake_token_123456");
+  assert(badTokenCheck.valid === false, "Invalid reset token is rejected");
+
+  // Test resetting password using token
+  const resetResult = await resetAdminPasswordWithToken(resetToken, "admin1122");
+  assert(resetResult.success === true, "Password reset with valid token succeeds");
+  const reloadedAdmin = await getOrInitAdminRecord();
+  assert(await verifyPassword("admin1122", reloadedAdmin.passwordHash), "Restored admin credentials to 'admin1122'");
+
+  // Token is single-use: Reusing the same token must fail
+  const reuseCheck = await validatePasswordResetToken(resetToken);
+  assert(reuseCheck.valid === false, "Reset token is single-use and invalidated after reset");
 
   // TEST 3: Cryptographic JWT Verification & Role Tampering Guard
   console.log("\nTest Suite 3: Cryptographic JWT & Authorization Guard");

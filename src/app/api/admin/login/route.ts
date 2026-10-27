@@ -86,13 +86,16 @@ export async function POST(req: Request) {
     const inputPassword = parsed.data.password;
 
     const admin = await getOrInitAdminRecord();
-    const expectedUsername = admin.username.toLowerCase();
+    const expectedUsername = (admin.username || "").toLowerCase();
+    const expectedEmail = (admin.email || admin.username || "admin@usmanspure.com").toLowerCase();
 
     // Check username or admin email match
     const isUsernameMatch =
       inputIdentifier === expectedUsername ||
-      inputIdentifier === `${expectedUsername}@usmanspure.com` ||
-      inputIdentifier === "admin@usmanspure.com";
+      inputIdentifier === expectedEmail ||
+      inputIdentifier === "admin" ||
+      inputIdentifier === "admin@usmanspure.com" ||
+      inputIdentifier === "usmanspure1947";
 
     const isPasswordMatch = isUsernameMatch
       ? await verifyPassword(inputPassword, admin.passwordHash)
