@@ -23,8 +23,14 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const adminToken = request.cookies.get("admin_token")?.value;
 
-  // 1. Protect Admin API Routes (except /api/admin/login)
-  if (pathname.startsWith("/api/admin") && pathname !== "/api/admin/login") {
+  // 1. Protect Admin API Routes (except public login & password reset endpoints)
+  const isPublicAdminApi =
+    pathname === "/api/admin/login" ||
+    pathname === "/api/admin/forgot-password" ||
+    pathname === "/api/admin/reset-password" ||
+    pathname === "/api/admin/verify-reset-token";
+
+  if (pathname.startsWith("/api/admin") && !isPublicAdminApi) {
     const authHeader = request.headers.get("authorization");
     const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
     const tokenToVerify = adminToken || bearerToken || undefined;
@@ -39,8 +45,12 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  // 2. Protect Admin Frontend Pages (except /admin/login)
-  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+  // 2. Protect Admin Frontend Pages (except /admin/login and /admin/reset-password)
+  const isPublicAdminPage =
+    pathname.startsWith("/admin/login") ||
+    pathname.startsWith("/admin/reset-password");
+
+  if (pathname.startsWith("/admin") && !isPublicAdminPage) {
     const isValid = await verifyAdminSession(adminToken);
     if (!isValid) {
       const loginUrl = new URL("/admin/login", request.url);

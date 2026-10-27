@@ -79,5 +79,41 @@
     "phone": "03219876543",
     "createdAt": "2026-10-27T17:36:11.293Z",
     "updatedAt": "2026-10-27T17:36:11.293Z"
+  },
+  {
+    "id": "cust_1793125821399_u7x80",
+    "name": "Ahmad Raza",
+    "email": "test_1793125821080@example.pk",
+    "passwordHash": "$2b$10$IdjH3jfIpzHtmZn3Cms8u.3YqA8DIELD5ns5m.Zj8sW8Ja/Icdb/K",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T18:30:21.399Z",
+    "updatedAt": "2026-10-27T18:30:21.399Z"
+  },
+  {
+    "id": "cust_1793125865869_uhsik",
+    "name": "Fatima Noor",
+    "email": "live_cust_1793125864988@test.pk",
+    "passwordHash": "$2b$10$k0pIl7DhNzeMTwMF2eCEVODMMiUo.xSC4oHt9qicE78p4bEUVyl7e",
+    "phone": "03219876543",
+    "createdAt": "2026-10-27T18:31:05.869Z",
+    "updatedAt": "2026-10-27T18:31:05.869Z"
+  },
+  {
+    "id": "cust_1793126165975_s6fyl",
+    "name": "Ahmad Raza",
+    "email": "test_1793126165796@example.pk",
+    "passwordHash": "$2b$10$/GjK3OHZ4qcrobHh90sRPex36slkBCr8oxZPc9o/nPAfwUFb8gEf.",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T18:36:05.975Z",
+    "updatedAt": "2026-10-27T18:36:05.975Z"
+  },
+  {
+    "id": "cust_1793126188966_rtr90",
+    "name": "Fatima Noor",
+    "email": "live_cust_1793126188582@test.pk",
+    "passwordHash": "$2b$10$AZJkgZo1OvdvTVoqrXLkieTlB/E1QSEeEBZNazdzNzMYFWeTJcJLm",
+    "phone": "03219876543",
+    "createdAt": "2026-10-27T18:36:28.966Z",
+    "updatedAt": "2026-10-27T18:36:28.966Z"
   }
 ]

@@ -90,12 +90,17 @@ export async function verifyPassword(plainText: string, hash: string): Promise<b
 }
 
 // 3. Admin Bootstrap & Credentials Persistence
+import crypto from "crypto";
+
 export interface AdminRecord {
   username: string;
+  email: string;
   passwordHash: string;
   mustChangePassword: boolean;
   createdAt: string;
   updatedAt: string;
+  resetToken?: string;
+  resetTokenExpires?: number;
 }
 
 const STORE_DIR = path.join(process.cwd(), "src", "data", "store");
@@ -110,14 +115,18 @@ function ensureStoreDir() {
 export async function getOrInitAdminRecord(): Promise<AdminRecord> {
   ensureStoreDir();
 
-  const defaultUsername = (process.env.ADMIN_USERNAME || "usmanspure1947").trim();
-  const defaultPassword = process.env.ADMIN_PASSWORD || "admin1947";
+  const defaultUsername = (process.env.ADMIN_USERNAME || "admin@usmanspure.com").trim();
+  const defaultEmail = (process.env.ADMIN_EMAIL || "admin@usmanspure.com").trim();
+  const defaultPassword = process.env.ADMIN_PASSWORD || "admin1122";
 
   if (fs.existsSync(ADMIN_FILE_PATH)) {
     try {
       const raw = fs.readFileSync(ADMIN_FILE_PATH, "utf-8");
       const record = JSON.parse(raw) as AdminRecord;
       if (record && record.username && record.passwordHash) {
+        if (!record.email) {
+          record.email = defaultEmail;
+        }
         return record;
       }
     } catch (err) {
@@ -129,8 +138,9 @@ export async function getOrInitAdminRecord(): Promise<AdminRecord> {
   const initialHash = await hashPassword(defaultPassword);
   const newRecord: AdminRecord = {
     username: defaultUsername,
+    email: defaultEmail,
     passwordHash: initialHash,
-    mustChangePassword: true,
+    mustChangePassword: false,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   };
@@ -163,4 +173,90 @@ export async function updateAdminPassword(newPassword: string): Promise<AdminRec
   }
 
   return updated;
+}
+
+export async function createPasswordResetToken(email: string): Promise<string> {
+  ensureStoreDir();
+  const admin = await getOrInitAdminRecord();
+
+  const normalizedInput = email.trim().toLowerCase();
+  const adminEmail = (admin.email || admin.username || "admin@usmanspure.com").toLowerCase();
+
+  if (
+    normalizedInput !== adminEmail &&
+    normalizedInput !== "admin@usmanspure.com" &&
+    normalizedInput !== (admin.username || "").toLowerCase()
+  ) {
+    throw new Error("No administrator account associated with this email address.");
+  }
+
+  // Generate 32-byte cryptographically secure random token (64 hex characters)
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  const expiresAt = Date.now() + 60 * 60 * 1000; // 1-hour expiration
+
+  const updated: AdminRecord = {
+    ...admin,
+    resetToken,
+    resetTokenExpires: expiresAt,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+  } catch (err) {
+    console.warn("[Auth Warning] Could not persist resetToken in admin_auth.json:", err);
+  }
+
+  return resetToken;
+}
+
+export async function validatePasswordResetToken(
+  token: string
+): Promise<{ valid: boolean; reason?: string }> {
+  ensureStoreDir();
+  const admin = await getOrInitAdminRecord();
+
+  if (!token || typeof token !== "string" || !admin.resetToken || admin.resetToken !== token) {
+    return { valid: false, reason: "Invalid or already used password reset link." };
+  }
+
+  if (!admin.resetTokenExpires || Date.now() > admin.resetTokenExpires) {
+    return {
+      valid: false,
+      reason: "Password reset link has expired (1-hour validity window). Please request a new link.",
+    };
+  }
+
+  return { valid: true };
+}
+
+export async function resetAdminPasswordWithToken(
+  token: string,
+  newPassword: string
+): Promise<{ success: boolean; error?: string }> {
+  ensureStoreDir();
+  const validation = await validatePasswordResetToken(token);
+  if (!validation.valid) {
+    return { success: false, error: validation.reason || "Invalid reset token." };
+  }
+
+  const admin = await getOrInitAdminRecord();
+  const newHash = await hashPassword(newPassword);
+
+  const updated: AdminRecord = {
+    ...admin,
+    passwordHash: newHash,
+    mustChangePassword: false,
+    resetToken: undefined,
+    resetTokenExpires: undefined,
+    updatedAt: new Date().toISOString(),
+  };
+
+  try {
+    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
+  } catch (err) {
+    console.warn("[Auth Warning] Could not persist reset password in admin_auth.json:", err);
+  }
+
+  return { success: true };
 }

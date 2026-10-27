@@ -207,3 +207,75 @@ export async function sendAdminOtpEmail(targetEmail: string, code: string) {
     return { success: false, error: err };
   }
 }
+
+/**
+ * Dispatch secure password reset link to administrator email
+ */
+export async function sendPasswordResetEmail(
+  targetEmail: string,
+  resetLink: string
+): Promise<{ success: boolean; error?: string }> {
+  const transporter = getTransporter();
+
+  if (!transporter) {
+    const errorMsg =
+      "Email delivery failed: SMTP credentials are not configured in environment (SMTP_PASS is missing in .env.local).";
+    console.error("[SMTP Error]:", errorMsg);
+    return { success: false, error: errorMsg };
+  }
+
+  const safeEmail = escapeHtml(targetEmail);
+  const safeLink = escapeHtml(resetLink);
+  const senderEmail = process.env.SMTP_USER || "orders@usmanspure.com";
+
+  const emailHtml = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 540px; margin: 0 auto; background: #FAF7F2; padding: 28px; border-radius: 12px; border: 1px solid #EFEAE2;">
+      <div style="text-align: center; padding-bottom: 18px; border-bottom: 2px solid #8B3A22;">
+        <h1 style="color: #1E1510; font-size: 22px; margin: 0 0 6px 0; font-family: Georgia, serif;">Usman's Pure Products</h1>
+        <p style="color: #8B3A22; font-size: 12px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Cryptographic Admin Gateway</p>
+      </div>
+
+      <div style="padding: 24px 0;">
+        <h2 style="color: #1E1510; font-size: 18px; margin: 0 0 12px 0;">Password Reset Request</h2>
+        <p style="color: #55483D; font-size: 14px; line-height: 1.6; margin: 0 0 20px 0;">
+          A password reset was requested for the administrator account (<strong>${safeEmail}</strong>). Click the button below to establish a new password for your store management portal.
+        </p>
+
+        <div style="text-align: center; margin: 28px 0;">
+          <a href="${safeLink}" style="display: inline-block; background: #8B3A22; color: #FFFFFF; font-weight: bold; font-size: 14px; text-decoration: none; padding: 14px 28px; border-radius: 8px; box-shadow: 0 4px 12px rgba(139, 58, 34, 0.25);">
+            Reset Admin Password
+          </a>
+        </div>
+
+        <p style="color: #8C7D6F; font-size: 12px; line-height: 1.5; margin: 20px 0 0 0;">
+          This link will expire in <strong>1 hour</strong>. For security, it is single-use only.
+        </p>
+        <p style="color: #A09489; font-size: 11px; word-break: break-all; margin: 12px 0 0 0;">
+          Direct URL: <a href="${safeLink}" style="color: #8B3A22;">${safeLink}</a>
+        </p>
+        <p style="color: #A09489; font-size: 11px; margin: 16px 0 0 0;">
+          If you did not request this password reset, no action is required. Your current password remains active and secure.
+        </p>
+      </div>
+
+      <div style="border-top: 1px solid #EFEAE2; padding-top: 16px; text-align: center; font-size: 11px; color: #A09489;">
+        Usman's Pure &bull; Automated Security Service &bull; ${new Date().getFullYear()}
+      </div>
+    </div>
+  `;
+
+  try {
+    await transporter.sendMail({
+      from: `"Usman's Pure Security" <${senderEmail}>`,
+      to: targetEmail,
+      subject: "Password Reset Request - Usman's Pure Admin Portal",
+      html: emailHtml,
+    });
+    console.log(`[SMTP Success] Password reset link dispatched to ${targetEmail}`);
+    return { success: true };
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : String(err);
+    console.error("[SMTP Error] Failed to send password reset email:", errorMsg);
+    return { success: false, error: `SMTP server error: ${errorMsg}` };
+  }
+}

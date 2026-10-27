@@ -1,7 +1,10 @@
 {
-  "username": "usmanspure1947",
-  "passwordHash": "$2b$10$R6o0s5mkIRJPDQTGMRZCUuxlS2t/6AjjRZg2KLYeiO/KVh9ybZ9Ya",
-  "mustChangePassword": true,
+  "username": "admin@usmanspure.com",
+  "email": "admin@usmanspure.com",
+  "passwordHash": "$2b$10$6Fgbnf8tCID.j/upDlOFceFaNFIPJP98ZVonuaIwB4O9goDcQK3QS",
+  "mustChangePassword": false,
   "createdAt": "2026-10-27T16:40:20.936Z",
-  "updatedAt": "2026-10-27T17:35:39.951Z"
+  "updatedAt": "2026-10-27T18:36:27.939Z",
+  "resetToken": "a832dd04245e9fad5b30092c2df9b9d62d39a5c3b5be548b632144485c30b728",
+  "resetTokenExpires": 1793129787939
 }
