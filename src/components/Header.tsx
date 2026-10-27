@@ -245,7 +245,15 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 </span>
               </Link>
 
-              {/* 5. About Us */}
+              {/* 5. FAQs */}
+              <Link
+                href="/#faqs"
+                className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
+              >
+                FAQs
+              </Link>
+
+              {/* 6. About Us */}
               <Link
                 href="/about"
                 className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
@@ -253,7 +261,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 About Us
               </Link>
 
-              {/* 6. Contact */}
+              {/* 7. Contact */}
               <Link
                 href="/contact"
                 className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
@@ -415,7 +423,17 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                   <ChevronRight className="w-4 h-4 opacity-40" />
                 </Link>
 
-                {/* 5. About Us */}
+                {/* 5. FAQs */}
+                <Link
+                  href="/#faqs"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold hover:bg-stone-100 transition text-stone-900 min-h-[48px]"
+                >
+                  <span>FAQs</span>
+                  <ChevronRight className="w-4 h-4 opacity-40" />
+                </Link>
+
+                {/* 6. About Us */}
                 <Link
                   href="/about"
                   onClick={() => setMobileMenuOpen(false)}
@@ -425,7 +443,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                   <ChevronRight className="w-4 h-4 opacity-40" />
                 </Link>
 
-                {/* 6. Contact */}
+                {/* 7. Contact */}
                 <Link
                   href="/contact"
                   onClick={() => setMobileMenuOpen(false)}
