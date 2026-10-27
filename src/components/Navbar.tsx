@@ -232,7 +232,7 @@ export function Navbar({
 
           {/* 5. FAQs */}
           <Link
-            href="/#faqs"
+            href="/faqs"
             className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
           >
             FAQs
@@ -399,7 +399,7 @@ export function Navbar({
               </Link>
 
               <Link
-                href="/#faqs"
+                href="/faqs"
                 onClick={() => setMobileMenuOpen(false)}
                 className="py-2.5 px-3 rounded-xl hover:bg-stone-100 transition-colors flex items-center justify-between"
               >
