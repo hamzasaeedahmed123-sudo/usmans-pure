@@ -21,6 +21,16 @@ export interface OrderEmailPayload {
   date: string;
 }
 
+function escapeHtml(str: unknown): string {
+  if (typeof str !== "string") return "";
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function getTransporter() {
   const host = process.env.SMTP_HOST || "mail.usmanspure.com";
   const port = parseInt(process.env.SMTP_PORT || "465", 10);
@@ -28,7 +38,6 @@ function getTransporter() {
   const pass = process.env.SMTP_PASS;
 
   if (!pass) {
-    console.warn("[SMTP Notice] SMTP_PASS not set. Emails will be logged to console in development mode.");
     return null;
   }
 
@@ -41,24 +50,32 @@ function getTransporter() {
       pass,
     },
     tls: {
-      rejectUnauthorized: false,
+      rejectUnauthorized: process.env.NODE_ENV === "production",
     },
   });
 }
 
 /**
- * Dispatch automated customer receipt and store owner notification via Namecheap Business SMTP
+ * Dispatch automated customer receipt and store owner notification via Business SMTP
  */
 export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
   const adminEmail = process.env.ADMIN_NOTIFICATION_EMAIL || "orders@usmanspure.com";
   const senderEmail = process.env.SMTP_USER || "orders@usmanspure.com";
 
+  const safeCustomerName = escapeHtml(order.customerName);
+  const safeOrderId = escapeHtml(order.orderId);
+  const safeAddress = escapeHtml(order.address);
+  const safeCity = escapeHtml(order.city);
+  const safePhone = escapeHtml(order.phone);
+  const safePaymentMethod = escapeHtml(order.paymentMethod);
+  const safeNotes = order.notes ? escapeHtml(order.notes) : "";
+
   const itemsHtml = order.items
     .map(
       (item) => `
       <tr style="border-bottom: 1px solid #EFEAE2;">
-        <td style="padding: 10px 0; font-weight: 500; color: #1E1510;">${item.name} (${item.pack})</td>
-        <td style="padding: 10px 0; text-align: center; color: #55483D;">${item.quantity}</td>
+        <td style="padding: 10px 0; font-weight: 500; color: #1E1510;">${escapeHtml(item.name)} (${escapeHtml(item.pack)})</td>
+        <td style="padding: 10px 0; text-align: center; color: #55483D;">${Number(item.quantity)}</td>
         <td style="padding: 10px 0; text-align: right; font-weight: 600; color: #1E1510;">₨${(item.price * item.quantity).toLocaleString()}</td>
       </tr>
     `
@@ -69,15 +86,15 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F2; padding: 24px; border-radius: 16px; border: 1px solid #EFEAE2;">
       <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #8B3A22;">
         <h1 style="color: #1E1510; font-size: 24px; margin: 0 0 6px 0; font-family: Georgia, serif;">Usman's Pure Products</h1>
-        <p style="color: #8B3A22; font-size: 13px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">90% Traditional Stone-Ground • Order Confirmation</p>
+        <p style="color: #8B3A22; font-size: 13px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Traditional Stone-Ground • Order Confirmation</p>
       </div>
 
       <div style="padding: 20px 0;">
         <p style="font-size: 15px; color: #1E1510; margin-top: 0;">
-          Assalam-o-Alaikum <strong>${order.customerName}</strong>,
+          Assalam-o-Alaikum <strong>${safeCustomerName}</strong>,
         </p>
         <p style="font-size: 14px; color: #55483D; line-height: 1.6;">
-          Shukriya! Aapka order <strong>#${order.orderId}</strong> receive ho gaya hai. Hamari team aapke pure stone-ground essentials ko taaza chakki mill karke packing queue mein daal chuki hai.
+          Shukriya! Aapka order <strong>#${safeOrderId}</strong> receive ho gaya hai. Hamari team aapke pure stone-ground essentials ko taaza chakki mill karke packing queue mein daal chuki hai.
         </p>
 
         <div style="background: #FFFFFF; border-radius: 12px; padding: 18px; border: 1px solid #EFEAE2; margin: 18px 0;">
@@ -114,16 +131,16 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
 
         <div style="background: #FFFFFF; border-radius: 12px; padding: 16px; border: 1px solid #EFEAE2; font-size: 13px; color: #55483D; line-height: 1.6;">
           <h4 style="margin: 0 0 8px 0; color: #1E1510; font-size: 13px;">Shipping &amp; Payment Details</h4>
-          <div><strong>Address:</strong> ${order.address}, ${order.city}</div>
-          <div><strong>Phone:</strong> ${order.phone}</div>
-          <div><strong>Payment Method:</strong> ${order.paymentMethod}</div>
-          ${order.notes ? `<div><strong>Special Notes:</strong> ${order.notes}</div>` : ""}
+          <div><strong>Address:</strong> ${safeAddress}, ${safeCity}</div>
+          <div><strong>Phone:</strong> ${safePhone}</div>
+          <div><strong>Payment Method:</strong> ${safePaymentMethod}</div>
+          ${safeNotes ? `<div><strong>Special Notes:</strong> ${safeNotes}</div>` : ""}
         </div>
       </div>
 
       <div style="text-align: center; border-top: 1px solid #EFEAE2; padding-top: 16px; font-size: 12px; color: #8C7D6F;">
         <p style="margin: 0 0 6px 0;">Direct WhatsApp Support: <strong>+92 300 8472910</strong></p>
-        <p style="margin: 0;">Usman's Pure Products — 90% Stone-Ground Whole Wheat Atta &amp; Organic Spices, Pakistan.</p>
+        <p style="margin: 0;">Usman's Pure Products — Traditional Stone-Ground Whole Wheat Atta &amp; Organic Spices, Pakistan.</p>
       </div>
     </div>
   `;
@@ -131,8 +148,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
   const transporter = getTransporter();
 
   if (!transporter) {
-    console.log(`[Order Email Simulation] Order #${order.orderId} receipt created for ${order.customerName} (${order.phone}) -> Grand Total: ₨${order.grandTotal}`);
-    return { success: true, simulated: true };
+    return { success: true, simulated: true, reason: "SMTP_PASS not configured" };
   }
 
   const recipients = [adminEmail];
@@ -144,61 +160,50 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
     await transporter.sendMail({
       from: `"Usman's Pure Products" <${senderEmail}>`,
       to: recipients.join(", "),
-      subject: `Order Confirmation #${order.orderId} - Usman's Pure Products`,
+      subject: `Order Confirmation #${safeOrderId} - Usman's Pure Products`,
       html: emailHtml,
     });
     return { success: true, simulated: false };
-  } catch (error) {
-    console.error("[SMTP Error] Failed to send order email:", error);
-    return { success: false, error };
+  } catch (err) {
+    console.error("[SMTP Error] Failed to send order confirmation email:", err);
+    return { success: false, error: err };
   }
 }
 
 /**
- * Send 6-digit OTP verification email for admin profile credential changes
+ * Dispatch admin security verification code
  */
-export async function sendAdminOtpEmail(targetEmail: string, otpCode: string) {
-  const senderEmail = process.env.SMTP_USER || "orders@usmanspure.com";
+export async function sendAdminOtpEmail(targetEmail: string, code: string) {
+  const safeEmail = escapeHtml(targetEmail);
+  const safeCode = escapeHtml(code);
   const transporter = getTransporter();
+  const senderEmail = process.env.SMTP_USER || "security@usmanspure.com";
 
-  const otpEmailHtml = `
-    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 500px; margin: 0 auto; background: #FAF7F2; padding: 24px; border-radius: 16px; border: 1px solid #EFEAE2;">
-      <div style="text-align: center; padding-bottom: 16px; border-bottom: 2px solid #8B3A22;">
-        <h2 style="color: #1E1510; margin: 0; font-family: Georgia, serif;">Usman's Pure Admin Security</h2>
-        <p style="color: #8B3A22; font-size: 12px; font-weight: bold; margin: 4px 0 0 0; text-transform: uppercase;">Credential Change Verification</p>
+  const emailHtml = `
+    <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 500px; margin: 0 auto; background: #FAF7F2; padding: 24px; border-radius: 12px; border: 1px solid #EFEAE2;">
+      <h2 style="color: #1E1510; font-size: 20px; margin-top: 0;">Admin Security Verification</h2>
+      <p style="color: #55483D; font-size: 14px;">A credential change was requested for <strong>${safeEmail}</strong>.</p>
+      <div style="background: #FFFFFF; border: 2px dashed #8B3A22; border-radius: 8px; padding: 16px; text-align: center; margin: 20px 0;">
+        <div style="font-size: 32px; font-weight: bold; letter-spacing: 6px; color: #8B3A22;">${safeCode}</div>
       </div>
-
-      <div style="padding: 24px 0; text-align: center;">
-        <p style="font-size: 14px; color: #55483D; margin-top: 0;">
-          A request was initiated to update administrator credentials (email or password) for the Usman's Pure Master Portal.
-        </p>
-
-        <div style="display: inline-block; background: #1E1510; color: #FFFFFF; font-size: 32px; font-weight: 800; letter-spacing: 6px; padding: 14px 28px; border-radius: 12px; margin: 16px 0;">
-          ${otpCode}
-        </div>
-
-        <p style="font-size: 12px; color: #8C7D6F; margin: 12px 0 0 0;">
-          This single-use OTP is valid for <strong>10 minutes</strong>. If you did not request this change, please ignore this email immediately.
-        </p>
-      </div>
+      <p style="color: #8C7D6F; font-size: 12px; margin: 0;">This single-use code expires in 10 minutes. If you did not initiate this request, inspect your server logs immediately.</p>
     </div>
   `;
 
   if (!transporter) {
-    console.log(`[Admin OTP Simulation] Security OTP for ${targetEmail}: [${otpCode}] (Valid for 10 minutes)`);
-    return { success: true, simulated: true };
+    return { success: true, simulated: true, reason: "SMTP_PASS not configured" };
   }
 
   try {
     await transporter.sendMail({
       from: `"Usman's Pure Security" <${senderEmail}>`,
       to: targetEmail,
-      subject: `Your Admin Verification Code: ${otpCode}`,
-      html: otpEmailHtml,
+      subject: `Admin Security Verification Code`,
+      html: emailHtml,
     });
     return { success: true, simulated: false };
-  } catch (error) {
-    console.error("[SMTP Error] Failed to send OTP email:", error);
-    return { success: false, error };
+  } catch (err) {
+    console.error("[SMTP Error] Failed to send OTP email:", err);
+    return { success: false, error: err };
   }
 }

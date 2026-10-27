@@ -1,110 +1,155 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
+import {
+  getOrInitAdminRecord,
+  verifyPassword,
+  signAdminToken,
+  ADMIN_COOKIE_NAME,
+} from "@/lib/auth";
 
-interface LoginAttempt {
+interface AttemptTracker {
   count: number;
-  firstAttemptTime: number;
+  firstAttempt: number;
   lockedUntil?: number;
 }
 
-// In-memory brute-force rate limiter
-const attemptsMap = new Map<string, LoginAttempt>();
+const rateLimitMap = new Map<string, AttemptTracker>();
 const MAX_ATTEMPTS = 5;
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-const LOCKOUT_MS = 15 * 60 * 1000; // 15 minutes lockout
+const WINDOW_MS = 15 * 60 * 1000; // 15 min
+const LOCKOUT_MS = 15 * 60 * 1000; // 15 min lockout
 
-function cleanOldAttempts() {
+function checkRateLimit(ip: string): { allowed: boolean; remaining: number; waitSeconds?: number } {
   const now = Date.now();
-  for (const [ip, data] of attemptsMap.entries()) {
-    if (now - data.firstAttemptTime > WINDOW_MS && (!data.lockedUntil || now > data.lockedUntil)) {
-      attemptsMap.delete(ip);
-    }
+  const tracker = rateLimitMap.get(ip) || { count: 0, firstAttempt: now };
+
+  if (tracker.lockedUntil && now < tracker.lockedUntil) {
+    const waitSeconds = Math.ceil((tracker.lockedUntil - now) / 1000);
+    return { allowed: false, remaining: 0, waitSeconds };
   }
+
+  // Reset window if expired
+  if (now - tracker.firstAttempt > WINDOW_MS) {
+    tracker.count = 0;
+    tracker.firstAttempt = now;
+    tracker.lockedUntil = undefined;
+  }
+
+  return { allowed: true, remaining: Math.max(0, MAX_ATTEMPTS - tracker.count) };
 }
 
-export async function POST(req: Request) {
-  cleanOldAttempts();
+function recordFailedAttempt(ip: string) {
+  const now = Date.now();
+  const tracker = rateLimitMap.get(ip) || { count: 0, firstAttempt: now };
+  tracker.count += 1;
+  if (tracker.count >= MAX_ATTEMPTS) {
+    tracker.lockedUntil = now + LOCKOUT_MS;
+  }
+  rateLimitMap.set(ip, tracker);
+}
 
-  // Get client IP
+function clearRateLimit(ip: string) {
+  rateLimitMap.delete(ip);
+}
+
+const loginSchema = z.object({
+  username: z.string().min(1, "Username is required").optional(),
+  email: z.string().min(1, "Email is required").optional(),
+  password: z.string().min(1, "Password is required"),
+});
+
+export async function POST(req: Request) {
   const forwarded = req.headers.get("x-forwarded-for");
   const ip = forwarded ? forwarded.split(",")[0].trim() : "127.0.0.1";
-  const now = Date.now();
 
-  const attemptData = attemptsMap.get(ip) || { count: 0, firstAttemptTime: now };
-
-  // Check lockout status
-  if (attemptData.lockedUntil && now < attemptData.lockedUntil) {
-    const remainingSeconds = Math.ceil((attemptData.lockedUntil - now) / 1000);
+  const rateCheck = checkRateLimit(ip);
+  if (!rateCheck.allowed) {
     return NextResponse.json(
       {
-        error: `Too many failed login attempts. Security lockout active. Please retry in ${remainingSeconds} seconds.`,
+        error: `Too many failed login attempts. Account temporarily locked for security. Please retry in ${rateCheck.waitSeconds} seconds.`,
         locked: true,
-        remainingSeconds,
       },
       { status: 429 }
     );
   }
 
   try {
-    const { email, password, role } = await req.json();
+    const body = await req.json();
+    const parsed = loginSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid request payload. Username and password are required." },
+        { status: 400 }
+      );
+    }
 
-    const expectedAdminEmail = (process.env.ADMIN_EMAIL || "admin@usmanspure.com").toLowerCase();
-    const expectedAdminPass = process.env.ADMIN_PASSWORD || "admin123";
-    const expectedStaffEmail = "staff@usmanspure.com";
-    const expectedStaffPass = "staff123";
+    const inputIdentifier = (parsed.data.username || parsed.data.email || "").trim().toLowerCase();
+    const inputPassword = parsed.data.password;
 
-    const cleanEmail = (email || "").trim().toLowerCase();
+    const admin = await getOrInitAdminRecord();
+    const expectedUsername = admin.username.toLowerCase();
 
-    const isValidAdmin = cleanEmail === expectedAdminEmail && password === expectedAdminPass;
-    const isValidStaff = cleanEmail === expectedStaffEmail && password === expectedStaffPass;
+    // Check username or admin email match
+    const isUsernameMatch =
+      inputIdentifier === expectedUsername ||
+      inputIdentifier === `${expectedUsername}@usmanspure.com` ||
+      inputIdentifier === "admin@usmanspure.com";
 
-    if (!isValidAdmin && !isValidStaff) {
-      attemptData.count += 1;
-      if (attemptData.count >= MAX_ATTEMPTS) {
-        attemptData.lockedUntil = now + LOCKOUT_MS;
-      }
-      attemptsMap.set(ip, attemptData);
+    const isPasswordMatch = isUsernameMatch
+      ? await verifyPassword(inputPassword, admin.passwordHash)
+      : false;
 
-      const remainingAttempts = Math.max(0, MAX_ATTEMPTS - attemptData.count);
+    if (!isUsernameMatch || !isPasswordMatch) {
+      recordFailedAttempt(ip);
+      const remaining = Math.max(0, rateCheck.remaining - 1);
       return NextResponse.json(
         {
-          error: remainingAttempts === 0
-            ? "Account temporarily locked due to multiple failed attempts. Please retry in 15 minutes."
-            : `Invalid credentials. ${remainingAttempts} attempt(s) remaining before security lockout.`,
+          error:
+            remaining === 0
+              ? "Account locked due to multiple failed login attempts. Retry in 15 minutes."
+              : `Invalid administrator credentials. ${remaining} attempt(s) remaining.`,
         },
         { status: 401 }
       );
     }
 
-    // Reset attempts on successful login
-    attemptsMap.delete(ip);
+    // Reset rate limit on success
+    clearRateLimit(ip);
 
-    const authenticatedRole = isValidAdmin ? "admin" : "staff";
-    const sessionPayload = {
-      email: cleanEmail,
-      role: authenticatedRole,
-      loginTime: new Date().toISOString(),
-    };
+    // Sign cryptographic admin JWT token
+    const token = await signAdminToken({
+      username: admin.username,
+      role: "admin",
+      mustChangePassword: admin.mustChangePassword,
+    });
 
     const response = NextResponse.json({
       success: true,
-      role: authenticatedRole,
-      message: "Admin authentication successful",
+      role: "admin",
+      username: admin.username,
+      mustChangePassword: admin.mustChangePassword,
+      message: admin.mustChangePassword
+        ? "Initial bootstrap login successful. Administrator password change is required."
+        : "Administrator authentication successful.",
     });
 
-    // Set secure HTTP-only session cookie
+    // Set secure HttpOnly cookie
     response.cookies.set({
-      name: "admin_session",
-      value: encodeURIComponent(JSON.stringify(sessionPayload)),
-      httpOnly: false, // accessible to client auth context
+      name: ADMIN_COOKIE_NAME,
+      value: token,
+      httpOnly: true,
       secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: "/",
-      sameSite: "lax",
     });
 
+    // Invalidate legacy insecure cookies
+    response.cookies.delete("admin_session");
+    response.cookies.delete("usman_auth_token");
+
     return response;
-  } catch (err) {
-    console.error("[Admin Login Error]:", err);
+  } catch (error) {
+    console.error("[Admin Login Error]:", error);
     return NextResponse.json({ error: "Authentication system error" }, { status: 500 });
   }
 }
