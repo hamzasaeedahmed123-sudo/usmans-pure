@@ -30,7 +30,7 @@ export function DoctorsChoiceBanner() {
               <span>Doctor Recommended &bull; 90% Whole Grains</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#F9F6F0] leading-[1.12]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif !text-[#FAF7F0] leading-[1.12]">
               Looking for Diabetic &amp; Weight-Loss Flours?
             </h2>
 
