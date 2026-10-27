@@ -395,7 +395,10 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       if (storedProducts) {
         const parsed = JSON.parse(storedProducts);
         if (Array.isArray(parsed) && parsed.length > 0) {
-          setProducts(parsed);
+          // Avoid triggering cascading re-renders across product lists if data matches defaults
+          if (JSON.stringify(parsed) !== JSON.stringify(DEFAULT_PRODUCTS)) {
+            setProducts(parsed);
+          }
         }
       }
 

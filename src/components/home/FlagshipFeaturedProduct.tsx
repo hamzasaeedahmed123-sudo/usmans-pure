@@ -170,7 +170,6 @@ export function FlagshipFeaturedProduct() {
                 alt="Usman's Pure Multigrain Flour 90% Stone-Ground Packaging"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-                priority
                 className="object-contain"
               />
             </div>

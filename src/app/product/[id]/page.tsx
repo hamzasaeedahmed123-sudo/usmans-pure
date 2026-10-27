@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { ProductDetailView } from "./ProductDetailView";
 import { PRODUCTS } from "@/data/products";
 
+export const instant = false;
+
 export function generateStaticParams() {
   return PRODUCTS.map((p) => ({ id: p.id }));
 }
