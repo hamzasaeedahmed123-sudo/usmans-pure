@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from "react";
 
 export type UserRole = "admin" | "staff" | "customer";
 
@@ -9,9 +9,9 @@ export interface User {
   name: string;
   email: string;
   role: UserRole;
-  avatar?: string;
   phone?: string;
-  createdAt: string;
+  mustChangePassword?: boolean;
+  createdAt?: string;
 }
 
 interface AuthContextType {
@@ -20,166 +20,138 @@ interface AuthContextType {
   isAdmin: boolean;
   isStaff: boolean;
   isLoading: boolean;
-  login: (email: string, password?: string, role?: UserRole) => Promise<{ success: boolean; error?: string }>;
-  signup: (name: string, email: string, password?: string, role?: UserRole) => Promise<{ success: boolean; error?: string }>;
-  logout: () => void;
+  mustChangePassword?: boolean;
+  login: (email: string, password?: string) => Promise<{ success: boolean; error?: string }>;
+  signup: (name: string, email: string, password?: string, phone?: string) => Promise<{ success: boolean; error?: string }>;
+  logout: () => Promise<void>;
+  refreshSession: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-const AUTH_STORAGE_KEY = "usman_auth_user";
-const AUTH_COOKIE_NAME = "usman_auth_token";
-
-// Default seed users for immediate testing
-export const DEMO_USERS: Record<string, User> = {
-  admin: {
-    id: "usr-admin-01",
-    name: "Usman Malik (Owner)",
-    email: "admin@usmanspure.com",
-    role: "admin",
-    avatar: "/images/admin/admin-avatar.jpg",
-    phone: "+92 300 8472910",
-    createdAt: "2024-01-01",
-  },
-  staff: {
-    id: "usr-staff-01",
-    name: "Ahmad Raza (Operations)",
-    email: "staff@usmanspure.com",
-    role: "staff",
-    phone: "+92 321 4455667",
-    createdAt: "2024-03-15",
-  },
-  customer: {
-    id: "usr-cust-01",
-    name: "Dr. Fatima Zahra",
-    email: "customer@usmanspure.com",
-    role: "customer",
-    phone: "+92 333 9988776",
-    createdAt: "2024-06-10",
-  },
-};
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Initialize from localStorage or cookie on mount
-  useEffect(() => {
+  const refreshSession = useCallback(async () => {
     try {
-      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        if (parsed && parsed.email) {
-          setUser(parsed);
+      // 1. Check if an admin session is active
+      const adminRes = await fetch("/api/admin/me", { method: "GET" }).catch(() => null);
+      if (adminRes && adminRes.ok) {
+        const adminData = await adminRes.json();
+        if (adminData.authenticated) {
+          setUser({
+            id: "admin-master",
+            name: adminData.username || "Master Administrator",
+            email: `${adminData.username}@usmanspure.com`,
+            role: "admin",
+            mustChangePassword: adminData.mustChangePassword,
+          });
+          setIsLoading(false);
+          return;
         }
       }
-    } catch (e) {
-      console.error("Failed to load auth state", e);
+
+      // 2. Check customer session
+      const customerRes = await fetch("/api/auth/me", { method: "GET" }).catch(() => null);
+      if (customerRes && customerRes.ok) {
+        const customerData = await customerRes.json();
+        if (customerData.authenticated && customerData.user) {
+          setUser({
+            id: customerData.user.id,
+            name: customerData.user.name,
+            email: customerData.user.email,
+            phone: customerData.user.phone,
+            role: "customer",
+          });
+          setIsLoading(false);
+          return;
+        }
+      }
+
+      setUser(null);
+    } catch (err) {
+      console.warn("[AuthContext] Session verification check failed:", err);
+      setUser(null);
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  // Sync auth state to document cookie for Next.js routing/guards
-  const persistUser = (newUser: User | null) => {
-    setUser(newUser);
-    if (typeof window !== "undefined") {
-      if (newUser) {
-        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newUser));
-        document.cookie = `${AUTH_COOKIE_NAME}=${encodeURIComponent(JSON.stringify({ id: newUser.id, role: newUser.role }))}; path=/; max-age=604800; SameSite=Lax`;
-      } else {
-        localStorage.removeItem(AUTH_STORAGE_KEY);
-        document.cookie = `${AUTH_COOKIE_NAME}=; path=/; max-age=0; SameSite=Lax`;
-      }
-    }
-  };
+  useEffect(() => {
+    refreshSession();
+  }, [refreshSession]);
 
-  const login = async (email: string, password = "", role: UserRole = "customer"): Promise<{ success: boolean; error?: string }> => {
+  const login = async (email: string, password = ""): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
-    // Simulate brief network delay for realism
-    await new Promise((r) => setTimeout(r, 450));
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setIsLoading(false);
+        return { success: false, error: data.error || "Login failed. Please check your credentials." };
+      }
 
-    const cleanEmail = email.trim().toLowerCase();
-
-    // Check predefined accounts
-    if (cleanEmail === DEMO_USERS.admin.email.toLowerCase()) {
-      persistUser(DEMO_USERS.admin);
+      setUser(data.user);
       setIsLoading(false);
       return { success: true };
-    }
-
-    if (cleanEmail === DEMO_USERS.staff.email.toLowerCase()) {
-      persistUser(DEMO_USERS.staff);
+    } catch {
       setIsLoading(false);
-      return { success: true };
+      return { success: false, error: "Network error. Please try again." };
     }
-
-    if (cleanEmail === DEMO_USERS.customer.email.toLowerCase()) {
-      persistUser(DEMO_USERS.customer);
-      setIsLoading(false);
-      return { success: true };
-    }
-
-    // Fallback: allow any valid email
-    if (cleanEmail.includes("@")) {
-      const newUser: User = {
-        id: `usr-${Date.now().toString(36)}`,
-        name: cleanEmail.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-        email: cleanEmail,
-        role: role || (cleanEmail.includes("admin") ? "admin" : "customer"),
-        createdAt: new Date().toISOString(),
-      };
-      persistUser(newUser);
-      setIsLoading(false);
-      return { success: true };
-    }
-
-    setIsLoading(false);
-    return { success: false, error: "Please enter a valid email address." };
   };
 
   const signup = async (
     name: string,
     email: string,
     password = "",
-    role: UserRole = "customer"
+    phone = ""
   ): Promise<{ success: boolean; error?: string }> => {
     setIsLoading(true);
-    await new Promise((r) => setTimeout(r, 450));
+    try {
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), email: email.trim(), password, phone: phone.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setIsLoading(false);
+        return { success: false, error: data.error || "Failed to create account." };
+      }
 
-    const cleanEmail = email.trim().toLowerCase();
-    if (!name.trim()) {
+      setUser(data.user);
       setIsLoading(false);
-      return { success: false, error: "Please enter your full name." };
-    }
-    if (!cleanEmail.includes("@")) {
+      return { success: true };
+    } catch {
       setIsLoading(false);
-      return { success: false, error: "Please enter a valid email address." };
+      return { success: false, error: "Network error. Please try again." };
     }
-
-    const newUser: User = {
-      id: `usr-${Date.now().toString(36)}`,
-      name: name.trim(),
-      email: cleanEmail,
-      role: role || "customer",
-      createdAt: new Date().toISOString(),
-    };
-
-    persistUser(newUser);
-    setIsLoading(false);
-    return { success: true };
   };
 
-  const logout = () => {
-    persistUser(null);
+  const logout = async () => {
+    setUser(null);
+    try {
+      await Promise.all([
+        fetch("/api/admin/logout", { method: "POST" }),
+        fetch("/api/auth/logout", { method: "POST" }),
+      ]);
+    } catch {
+      // ignore
+    }
+    // Hard refresh/redirect
     if (typeof window !== "undefined") {
-      fetch("/api/admin/logout", { method: "POST" }).catch(() => {});
+      window.location.href = "/";
     }
   };
 
   const isAuthenticated = !!user;
   const isAdmin = user?.role === "admin";
-  const isStaff = user?.role === "staff" || isAdmin;
+  const isStaff = user?.role === "admin" || user?.role === "staff";
 
   return (
     <AuthContext.Provider
@@ -189,9 +161,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isAdmin,
         isStaff,
         isLoading,
+        mustChangePassword: user?.mustChangePassword,
         login,
         signup,
         logout,
+        refreshSession,
       }}
     >
       {children}
@@ -201,7 +175,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (!context) {
+  if (context === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;

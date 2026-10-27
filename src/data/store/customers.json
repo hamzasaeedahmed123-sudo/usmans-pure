@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cust_1793119222232_4o1ko",
+    "name": "Ahmad Raza",
+    "email": "test_1793119222111@example.pk",
+    "passwordHash": "$2b$10$eCkG8fDos75CAVG/lIjseOS8AUk3tKLJTLVISJgOav94iHDIpymGC",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T16:40:22.232Z",
+    "updatedAt": "2026-10-27T16:40:22.232Z"
+  },
+  {
+    "id": "cust_1793119293687_b1w7z",
+    "name": "Ahmad Raza",
+    "email": "test_1793119293527@example.pk",
+    "passwordHash": "$2b$10$m4Hx0.3mdTSAGto09bvYX.LQB1ypn.GVKphm7fLwwXXCk0I5of8EC",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T16:41:33.687Z",
+    "updatedAt": "2026-10-27T16:41:33.687Z"
+  },
+  {
+    "id": "cust_1793119373009_p69zt",
+    "name": "Fatima Noor",
+    "email": "live_cust_1793119371659@test.pk",
+    "passwordHash": "$2b$10$EYrX8DU2toyTTySs2KurjOiXXujHGEg5I5SRpu9nnzyehxP6TfF6K",
+    "phone": "03219876543",
+    "createdAt": "2026-10-27T16:42:53.009Z",
+    "updatedAt": "2026-10-27T16:42:53.009Z"
+  },
+  {
+    "id": "cust_1793119525324_zdgvd",
+    "name": "Fatima Noor",
+    "email": "live_cust_1793119525096@test.pk",
+    "passwordHash": "$2b$10$RVSAhpZDGqGbhFem54CcqOn6TXl4CHaTMg8/zQOyLgY4a7I/0Mc96",
+    "phone": "03219876543",
+    "createdAt": "2026-10-27T16:45:25.324Z",
+    "updatedAt": "2026-10-27T16:45:25.324Z"
+  },
+  {
+    "id": "cust_1793119545587_9dvld",
+    "name": "Ahmad Raza",
+    "email": "test_1793119545416@example.pk",
+    "passwordHash": "$2b$10$OP7LXWIp0BkQtIJNLvwXmuThDaCqfDHBvE3Id9c4rtBXzhTC7S10q",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T16:45:45.587Z",
+    "updatedAt": "2026-10-27T16:45:45.587Z"
+  }
+]

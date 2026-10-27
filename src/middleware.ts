@@ -1,33 +1,55 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { jwtVerify } from "jose";
 
-export function middleware(request: NextRequest) {
+const JWT_SECRET_STRING =
+  process.env.JWT_SECRET || "usmans-pure-production-secure-hmac-sha256-key-1947-elite";
+const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
+
+async function verifyAdminSession(token: string | undefined): Promise<boolean> {
+  if (!token) return false;
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET, {
+      issuer: "usmanspure",
+      audience: "usmanspure:admin",
+    });
+    return payload.role === "admin";
+  } catch {
+    return false;
+  }
+}
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const adminToken = request.cookies.get("admin_token")?.value;
 
-  // Protect all /admin routes except /admin/login
-  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
-    const authCookie = request.cookies.get("usman_auth_token")?.value;
-    const adminSession = request.cookies.get("admin_session")?.value;
+  // 1. Protect Admin API Routes (except /api/admin/login)
+  if (pathname.startsWith("/api/admin") && pathname !== "/api/admin/login") {
+    const authHeader = request.headers.get("authorization");
+    const bearerToken = authHeader?.startsWith("Bearer ") ? authHeader.substring(7) : null;
+    const tokenToVerify = adminToken || bearerToken || undefined;
 
-    let isAuthenticatedAdmin = false;
-
-    if (adminSession) {
-      isAuthenticatedAdmin = true;
-    } else if (authCookie) {
-      try {
-        const decoded = JSON.parse(decodeURIComponent(authCookie));
-        if (decoded && (decoded.role === "admin" || decoded.role === "staff")) {
-          isAuthenticatedAdmin = true;
-        }
-      } catch {
-        isAuthenticatedAdmin = false;
-      }
+    const isValid = await verifyAdminSession(tokenToVerify);
+    if (!isValid) {
+      return NextResponse.json(
+        { error: "Unauthorized. Administrator cryptographic authentication required." },
+        { status: 401 }
+      );
     }
+    return NextResponse.next();
+  }
 
-    if (!isAuthenticatedAdmin) {
+  // 2. Protect Admin Frontend Pages (except /admin/login)
+  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+    const isValid = await verifyAdminSession(adminToken);
+    if (!isValid) {
       const loginUrl = new URL("/admin/login", request.url);
       loginUrl.searchParams.set("redirect", pathname);
-      return NextResponse.redirect(loginUrl);
+      const response = NextResponse.redirect(loginUrl);
+      // Invalidate any legacy insecure cookies
+      response.cookies.delete("admin_session");
+      response.cookies.delete("usman_auth_token");
+      return response;
     }
   }
 
@@ -35,5 +57,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/checkout", "/cart", "/order"],
+        disallow: ["/admin/", "/api/", "/checkout", "/cart", "/order"],
       },
     ],
     sitemap: "https://usmanspure.com/sitemap.xml",

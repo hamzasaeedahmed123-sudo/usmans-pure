@@ -24,6 +24,8 @@ export interface Order {
   city: string;
   items: OrderItem[];
   totalAmount: number;
+  subtotal?: number;
+  shippingFee?: number;
   status: OrderStatus;
   paymentMethod: "Cash on Delivery (COD)" | "JazzCash" | "Easypaisa" | "Bank Transfer";
   date: string;

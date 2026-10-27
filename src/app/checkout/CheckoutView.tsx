@@ -163,6 +163,7 @@ export function CheckoutView() {
   const grandTotal = subtotal + shippingFee;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [backendWhatsappUrl, setBackendWhatsappUrl] = useState<string | null>(null);
 
   const { clearCart } = useCart();
@@ -183,13 +184,40 @@ export function CheckoutView() {
   const handleSubmitOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
+    setSubmitError(null);
+
+    // Client-side field validations before submission
+    const cleanName = (formData.name || "").trim();
+    const cleanPhone = (formData.phone || "").trim();
+    const cleanAddress = (formData.address || "").trim();
+    const cleanCity = (formData.city || "").trim();
+
+    if (cleanName.length < 2) {
+      setSubmitError("Please provide your complete full name.");
+      return;
+    }
+    if (cleanPhone.replace(/\D/g, "").length < 10) {
+      setSubmitError("Please provide a valid Pakistani mobile number (at least 10 digits).");
+      return;
+    }
+    if (cleanAddress.length < 5) {
+      setSubmitError("Please provide your complete street delivery address and landmark.");
+      return;
+    }
+    if (!cleanCity) {
+      setSubmitError("Please select or enter your city.");
+      return;
+    }
+    if (orderItems.length === 0) {
+      setSubmitError("Your shopping cart is empty. Please select products first.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     const randomNum = Math.floor(10000 + Math.random() * 90000);
     const orderId = `UPP-${randomNum}`;
-    setGeneratedOrderId(orderId);
 
-    // Save to real StoreDataContext
     const paymentMethodLabel: "Cash on Delivery (COD)" | "JazzCash" | "Easypaisa" | "Bank Transfer" =
       formData.paymentMethod === "cod"
         ? "Cash on Delivery (COD)"
@@ -203,25 +231,18 @@ export function CheckoutView() {
 
     const orderPayload = {
       orderNumber: orderId,
-      customerName: formData.name || "Customer",
-      customerEmail: formData.phone
-        ? `${formData.phone.replace(/[^0-9]/g, "")}@customer.pk`
+      customerName: cleanName,
+      customerEmail: cleanPhone
+        ? `${cleanPhone.replace(/[^0-9]/g, "")}@customer.pk`
         : "guest@usmanspure.com",
-      phone: formData.phone || "N/A",
-      address: formData.address || "N/A",
-      city: formData.city || "Lahore",
+      phone: cleanPhone,
+      address: cleanAddress,
+      city: cleanCity,
       items: orderItems.map((item) => ({
         id: item.id,
-        name: item.name,
-        pack: item.pack,
-        price: item.price,
         quantity: item.quantity,
-        image: item.image,
+        pack: item.pack,
       })),
-      subtotal,
-      shippingFee,
-      totalAmount: grandTotal,
-      status: "Pending" as const,
       paymentMethod: paymentMethodLabel,
       transactionId: formData.transactionId ? formData.transactionId.trim() : undefined,
       senderAccountTitle: formData.senderAccountTitle ? formData.senderAccountTitle.trim() : undefined,
@@ -236,10 +257,6 @@ export function CheckoutView() {
         .join(" | ") || undefined,
     };
 
-    // 1. Client Memory Store Sync
-    addOrder(orderPayload);
-
-    // 2. Triple-Channel Backend Sync (Server JSON + Google Sheets + Namecheap SMTP Email)
     try {
       const res = await fetch("/api/orders", {
         method: "POST",
@@ -247,16 +264,40 @@ export function CheckoutView() {
         body: JSON.stringify(orderPayload),
       });
       const data = await res.json();
-      if (data?.whatsappUrl) {
+
+      if (!res.ok) {
+        setIsSubmitting(false);
+        setSubmitError(data.error || "Failed to place order. Please review your details and retry.");
+        return;
+      }
+
+      // Order successfully persisted and validated by server
+      const confirmedOrderId = data.orderId || orderId;
+      setGeneratedOrderId(confirmedOrderId);
+
+      if (data.whatsappUrl) {
         setBackendWhatsappUrl(data.whatsappUrl);
       }
-    } catch (err) {
-      console.warn("Backend order sync fallback:", err);
-    } finally {
+
+      // Sync verified record to client state
+      addOrder({
+        ...orderPayload,
+        id: confirmedOrderId,
+        orderNumber: confirmedOrderId,
+        items: orderItems,
+        subtotal: data.order?.subtotal ?? subtotal,
+        totalAmount: data.order?.grandTotal ?? grandTotal,
+        status: "Pending" as const,
+        date: new Date().toLocaleDateString(),
+      });
+
       setIsSubmitting(false);
       setOrderConfirmed(true);
       clearCart();
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      setIsSubmitting(false);
+      setSubmitError("Network connection error. Your order was not placed. Please check your internet connection and try again.");
     }
   };
 
@@ -1104,11 +1145,20 @@ export function CheckoutView() {
                         </div>
                       </div>
 
+                      {/* Submission Error Banner */}
+                      {submitError && (
+                        <div className="p-3.5 rounded-lg bg-rose-50 border border-rose-300 text-rose-800 text-xs flex items-start gap-2.5 shadow-sm">
+                          <AlertCircle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
+                          <div className="font-medium">{submitError}</div>
+                        </div>
+                      )}
+
                       {/* Dynamic Submit Button */}
                       <div className="pt-2">
                         <button
                           type="submit"
-                          className="w-full py-4 px-6 rounded-[3px] bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] font-medium text-xs sm:text-sm flex items-center justify-center gap-2.5 transition duration-200 cursor-pointer uppercase tracking-[0.18em] ease-out shadow-sm"
+                          disabled={isSubmitting}
+                          className="w-full py-4 px-6 rounded-[3px] bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] font-medium text-xs sm:text-sm flex items-center justify-center gap-2.5 transition duration-200 cursor-pointer uppercase tracking-[0.18em] ease-out shadow-sm disabled:opacity-60"
                         >
                           {formData.paymentMethod === "cod" && (
                             <>
