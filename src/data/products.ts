@@ -38,9 +38,9 @@ export const PRODUCTS: Product[] = [
     weight: "5kg",
     tagline: "Everyday Wholesome Nutrition for the Entire Family",
     description:
-      "Stone-ground chakki flour milled at low temperature from premium wheat and ancient grains. Retains 90% of the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
+      "Stone-ground chakki flour milled at low temperature from premium wheat and ancient grains. Retains the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
     benefits: [
-      "90% Whole Grain Stone-Ground",
+      "100% Whole Grain Stone-Ground",
       "Zero Maida & Zero Bleach",
       "High Dietary Fiber for Digestion",
       "Rich in Natural B-Vitamins & Minerals",
@@ -82,7 +82,7 @@ export const PRODUCTS: Product[] = [
     originalPrice: 1500,
     priceFormatted: "₨1,200",
     originalPriceFormatted: "₨1,500",
-    discountBadge: "Doctor Recommended • Save 20%",
+    discountBadge: "Dietary Care • Save 20%",
     image: "/images/products/prod-4.png",
     link: "https://usmanzpure.com/product/flour-fenugreek/",
     rating: 4.9,
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
       "Ultra Soft Roti Texture Kids Love",
       "Natural Plant Iron & Calcium Fortified",
       "Easy on Delicate Tummies",
-      "90% Free of Artificial Flavors or Colors",
+      "Zero Artificial Flavors or Colors",
     ],
     inStock: true,
   },
@@ -140,11 +140,11 @@ export const PRODUCTS: Product[] = [
     rating: 4.9,
     reviewCount: 71,
     weight: "2kg",
-    tagline: "Certified Gluten-Free Chakki Flour for Celiac & Sensitive Digestion",
+    tagline: "Gluten-Free Chakki Flour for Sensitive Digestion",
     description:
       "Crafted in a dedicated gluten-free facility using sorghum (jowar), pearl millet (bajra), corn, and brown rice. Deliciously light and pliable rotis without gastrointestinal inflammation or bloating.",
     benefits: [
-      "90% Gluten-Free Tested & Certified",
+      "Naturally Gluten-Free Ancient Grains",
       "Zero Bloating or Digestive Distress",
       "Pliable Dough for Easy Rolling",
       "High in Natural Prebiotics",
@@ -172,10 +172,10 @@ export const PRODUCTS: Product[] = [
     description:
       "Saaf suthray aur qudrati sooraj mein sookhay chamomile ke phool. Halki meethi khushboo jo zehni thakawat door kare, pait ko araam pohanchaye, aur pur-sukoon neend mein madad de.",
     benefits: [
-      "Naturally 90% Caffeine-Free",
+      "Naturally 100% Caffeine-Free",
       "Pur-Sukoon Neend Aur Zehni Araam",
       "Pait Aur Hazmay Ke Liye Mufeed",
-      "90% Khalis Phool Bina Kisi Rang Ya Khushboo Ke",
+      "Khalis Phool Bina Kisi Rang Ya Khushboo Ke",
     ],
     inStock: true,
   },
@@ -328,7 +328,7 @@ export const PRODUCTS: Product[] = [
     weight: "200g Glass Jar",
     tagline: "Vibrant Ruby Red Color & Mild Warmth With Zero Artificial Dyes",
     description:
-      "Sun-ripened whole Kashmiri chilies cold-pounded in traditional stone mortars without friction heat. Locks in natural capsanthin pigments and essential oils. Tested 90% free of synthetic Sudan dyes and lead chromate.",
+      "Sun-ripened whole Kashmiri chilies cold-pounded in traditional stone mortars without friction heat. Locks in natural capsanthin pigments and essential oils. Tested free of synthetic Sudan dyes and lead chromate.",
     benefits: [
       "Cold-Pounded Without Friction Heat",
       "Zero Sudan Red Dyes or Artificial Colors",
@@ -358,7 +358,7 @@ export const PRODUCTS: Product[] = [
     benefits: [
       "High Potency >7% Natural Curcumin",
       "Powerful Cellular Antioxidant & Anti-Inflammatory",
-      "90% Pure — Zero Chalk or Starch",
+      "Pure Single-Origin — Zero Chalk or Starch",
       "Lab Tested for Zero Heavy Metal Traces",
     ],
     inStock: true,
@@ -411,7 +411,7 @@ export const PRODUCTS: Product[] = [
       "Freshly Roasted & Stone-Ground",
       "Aids Gastric Secretion & Digestion",
       "Intense Smoky Herbal Fragrance",
-      "90% Pure Seed — Zero Dust or Husk",
+      "Selected Whole Seeds — Zero Dust or Husk",
     ],
     inStock: true,
   },
@@ -458,7 +458,7 @@ export const PRODUCTS: Product[] = [
     weight: "800g Eco Pouch",
     tagline: "Ancient Khewra Mineral Salt with 84 Essential Trace Elements",
     description:
-      "Unrefined raw crystalline rock salt mined directly from prime ancient Khewra salt beds. Stone-milled to a fine table consistency. 90% free of anti-caking micro-chemical agents, bleaches, and synthetic iodine.",
+      "Unrefined raw crystalline rock salt mined directly from prime ancient Khewra salt beds. Stone-milled to a fine table consistency. 100% free of anti-caking micro-chemical agents, bleaches, and synthetic iodine.",
     benefits: [
       "84 Natural Minerals & Electrolytes",
       "Zero Anti-Caking Chemicals (E535/E536)",
@@ -501,7 +501,7 @@ export const MEGA_BUNDLES: BundleItem[] = [
   {
     id: "bundle-2",
     title: "Diabetic Care & Heart Health Pack",
-    badge: "Doctor Choice • Save ₨650",
+    badge: "Dietary Care • Save ₨650",
     price: 1850,
     originalPrice: 2500,
     savings: 650,
@@ -512,7 +512,7 @@ export const MEGA_BUNDLES: BundleItem[] = [
       "Diabetic Glycemic Guide",
     ],
     description:
-      "A clinical pairing to support stable HbA1c levels. Soluble fenugreek fiber slows carb absorption while olive leaf oleuropein protects cardiovascular health.",
+      "A wholesome pairing of slow-digesting stone-ground fenugreek flour and pure organic olive leaf tea rich in natural fiber and botanical antioxidants.",
   },
   {
     id: "bundle-3",
@@ -545,6 +545,6 @@ export const MEGA_BUNDLES: BundleItem[] = [
       "Himalayan Pink Rock Salt (800g Pouch)",
     ],
     description:
-      "Transform your cooking with 90% pure cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
+      "Transform your cooking with pure cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
   },
 ];

@@ -96,10 +96,11 @@ export async function POST(req: Request) {
     }> = [];
 
     for (const item of items) {
-      const product = PRODUCTS.find((p) => p.id === item.id);
+      const isFlagship = item.id === "prod-multigrain-flagship";
+      const product = isFlagship ? PRODUCTS.find((p) => p.id === "prod-3") : PRODUCTS.find((p) => p.id === item.id);
       const bundle = LUXURY_BUNDLES.find((b) => b.id === item.id);
 
-      if (!product && !bundle) {
+      if (!product && !bundle && !isFlagship) {
         return NextResponse.json(
           { error: `Item with ID "${item.id}" is unavailable or does not exist in store catalog.` },
           { status: 400 }
@@ -110,7 +111,13 @@ export async function POST(req: Request) {
       let itemName = "";
       let packName = item.pack || "Standard";
 
-      if (product) {
+      if (isFlagship) {
+        const is2_5 = item.pack?.includes("2.5");
+        const is10 = item.pack?.includes("10");
+        verifiedUnitPrice = is2_5 ? 650 : is10 ? 2300 : 1200;
+        itemName = "Multigrain Diet & Diabetic Care Flour";
+        packName = item.pack || "5kg Family Pack";
+      } else if (product) {
         if (!product.inStock) {
           return NextResponse.json(
             { error: `Product "${product.title}" is currently out of stock.` },

@@ -317,7 +317,7 @@ export function ReviewsPageView() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
               {/* Left Title & Intro */}
               <div className="lg:col-span-7">
-                <span className="eyebrow">500+ Verified Experiences &bull; Transparent Reviews</span>
+                <span className="eyebrow">Customer Experiences &bull; Authentic Feedback</span>
                 <h1 className="mt-3 text-4xl sm:text-5xl font-serif text-[#1E1510] leading-tight">
                   Real Stories from <em className="italic font-normal text-[#8B3A22]">Real Kitchens</em>
                 </h1>
@@ -355,7 +355,7 @@ export function ReviewsPageView() {
                           <Star key={i} className="w-4 h-4 fill-amber-400" />
                         ))}
                       </div>
-                      <div className="text-xs text-stone-500 mt-1">Based on 524 verified orders</div>
+                      <div className="text-xs text-stone-500 mt-1">Based on genuine customer orders</div>
                     </div>
 
                     <div className="text-right">
@@ -410,7 +410,7 @@ export function ReviewsPageView() {
           <div className="max-w-6xl mx-auto px-5 sm:px-8 py-3.5 flex items-center justify-between gap-4 overflow-x-auto">
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {[
-                { key: "all", label: "All Stories (524)" },
+                { key: "all", label: "All Customer Stories" },
                 { key: "photos", label: "📸 With Customer Photos" },
                 { key: "flours", label: "Stone-Ground Flours" },
                 { key: "teas", label: "Organic Herbal Teas" },

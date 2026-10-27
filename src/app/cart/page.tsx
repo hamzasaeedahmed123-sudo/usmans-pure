@@ -7,6 +7,8 @@ import { Header } from "@/components/Header";
 import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { useCart } from "@/context/CartContext";
+import { useStoreData } from "@/context/StoreDataContext";
 import {
   ChevronRight,
   Trash2,
@@ -16,36 +18,20 @@ import {
   CheckCircle2,
   ShoppingBag,
   ArrowRight,
+  AlertCircle,
 } from "lucide-react";
 
-interface CartItem {
-  id: string;
-  name: string;
-  pack: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
-
 export default function CartPage() {
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: "prod-3",
-      name: "Fat2Fuel Advance Multigrain Flour For Effective Weight Loss",
-      pack: "5kg Family Pack",
-      price: 1150,
-      quantity: 1,
-      image: "/images/products/prod-3.jpg",
-    },
-    {
-      id: "prod-9",
-      name: "Rosella Tea (Organic Ruby Hibiscus)",
-      pack: "50g Stand-up Pouch",
-      price: 1000,
-      quantity: 1,
-      image: "/images/products/prod-9.jpg",
-    },
-  ]);
+  const {
+    items: cartItems,
+    updateQuantity,
+    removeItem,
+    clearCart,
+    subtotal,
+    deliveryFee: shippingFee,
+    finalTotal: grandTotal,
+  } = useCart();
+  const { addOrder } = useStoreData();
 
   const [checkoutForm, setCheckoutForm] = useState({
     name: "",
@@ -56,34 +42,95 @@ export default function CartPage() {
   });
 
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [placedOrderId, setPlacedOrderId] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const freeShippingThreshold = 10000;
-  const shippingFee = subtotal >= freeShippingThreshold || subtotal === 0 ? 0 : 200;
-  const grandTotal = subtotal + shippingFee;
   const amountToFreeShipping = Math.max(0, freeShippingThreshold - subtotal);
 
-  const updateQuantity = (id: string, delta: number) => {
-    setCartItems((prev) =>
-      prev
-        .map((item) => {
-          if (item.id === id) {
-            const newQty = item.quantity + delta;
-            return newQty > 0 ? { ...item, quantity: newQty } : null;
-          }
-          return item;
-        })
-        .filter(Boolean) as CartItem[]
-    );
-  };
-
-  const removeItem = (id: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
-
-  const handlePlaceOrder = (e: React.FormEvent) => {
+  const handlePlaceOrder = async (e: React.FormEvent) => {
     e.preventDefault();
-    setOrderPlaced(true);
+    if (isSubmitting) return;
+    setSubmitError(null);
+
+    const cleanName = (checkoutForm.name || "").trim();
+    const cleanPhone = (checkoutForm.phone || "").trim();
+    const cleanAddress = (checkoutForm.address || "").trim();
+    const cleanCity = (checkoutForm.city || "").trim();
+
+    if (cleanName.length < 2) {
+      setSubmitError("Please enter your full name.");
+      return;
+    }
+    if (cleanPhone.replace(/\D/g, "").length < 10) {
+      setSubmitError("Please provide a valid Pakistani mobile number (at least 10 digits).");
+      return;
+    }
+    if (cleanAddress.length < 5) {
+      setSubmitError("Please provide your complete street delivery address.");
+      return;
+    }
+    if (cartItems.length === 0) {
+      setSubmitError("Your basket is empty.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const randomNum = Math.floor(10000 + Math.random() * 90000);
+    const orderId = `UPP-${randomNum}`;
+
+    const orderPayload = {
+      orderNumber: orderId,
+      customerName: cleanName,
+      customerEmail: `${cleanPhone.replace(/[^0-9]/g, "")}@customer.pk`,
+      phone: cleanPhone,
+      address: cleanAddress,
+      city: cleanCity,
+      items: cartItems.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+        pack: item.pack,
+      })),
+      paymentMethod: "Cash on Delivery (COD)" as const,
+      notes: checkoutForm.notes.trim() || undefined,
+    };
+
+    try {
+      const res = await fetch("/api/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderPayload),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        setIsSubmitting(false);
+        setSubmitError(data.error || "Failed to place order. Please review your details and retry.");
+        return;
+      }
+
+      const confirmedOrderId = data.orderId || orderId;
+      setPlacedOrderId(confirmedOrderId);
+
+      addOrder({
+        ...orderPayload,
+        id: confirmedOrderId,
+        orderNumber: confirmedOrderId,
+        items: cartItems,
+        subtotal: data.order?.subtotal ?? subtotal,
+        totalAmount: data.order?.grandTotal ?? grandTotal,
+        status: "Pending" as const,
+        date: new Date().toLocaleDateString(),
+      });
+
+      setIsSubmitting(false);
+      setOrderPlaced(true);
+      clearCart();
+    } catch {
+      setIsSubmitting(false);
+      setSubmitError("Network connection error. Your order was not placed. Please check your connection and retry.");
+    }
   };
 
   const handleWhatsAppOrder = () => {
@@ -92,7 +139,7 @@ export default function CartPage() {
       .join("%0A");
 
     const message = `Hello Usman's Pure,%0A%0AI would like to place an order on Cash on Delivery:%0A%0A${itemsList}%0A%0ASubtotal: ₨${subtotal.toLocaleString()}%0AShipping: ${
-      shippingFee === 0 ? "FREE" : "₨200"
+      shippingFee === 0 ? "FREE" : "₨250"
     }%0ATotal: ₨${grandTotal.toLocaleString()}%0A%0AName: ${encodeURIComponent(
       checkoutForm.name || "Customer"
     )}%0APhone: ${encodeURIComponent(checkoutForm.phone || "N/A")}%0ACity: ${encodeURIComponent(
@@ -135,6 +182,11 @@ export default function CartPage() {
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-[#1E3A2F]">
                 Order Confirmed with Cash on Delivery!
               </h2>
+              {placedOrderId && (
+                <div className="mt-2 inline-block px-3 py-1 rounded bg-stone-100 text-stone-800 text-xs font-bold tracking-wider">
+                  Order ID: #{placedOrderId}
+                </div>
+              )}
               <p className="mt-2 text-sm text-stone-600 leading-relaxed max-w-md mx-auto">
                 Thank you, <strong>{checkoutForm.name || "Valued Customer"}</strong>! Your order totaling{" "}
                 <strong>₨{grandTotal.toLocaleString()}</strong> has been scheduled for stone-milling and nationwide dispatch.
@@ -210,7 +262,7 @@ export default function CartPage() {
                   <div className="space-y-6">
                     {cartItems.map((item) => (
                       <div
-                        key={item.id}
+                        key={`${item.id}-${item.pack}`}
                         className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-stone-100 last:border-b-0 last:pb-0"
                       >
                         <div className="flex items-center gap-4">
@@ -238,7 +290,7 @@ export default function CartPage() {
                           {/* Quantity Counter */}
                           <div className="flex items-center border border-stone-200 rounded-md bg-stone-50 px-2 py-1 gap-3">
                             <button
-                              onClick={() => updateQuantity(item.id, -1)}
+                              onClick={() => updateQuantity(item.id, item.pack, -1)}
                               className="w-6 h-6 rounded-md bg-white border border-stone-200 text-stone-700 font-bold hover:bg-stone-200 flex items-center justify-center text-xs cursor-pointer"
                             >
                               -
@@ -247,7 +299,7 @@ export default function CartPage() {
                               {item.quantity}
                             </span>
                             <button
-                              onClick={() => updateQuantity(item.id, 1)}
+                              onClick={() => updateQuantity(item.id, item.pack, 1)}
                               className="w-6 h-6 rounded-md bg-white border border-stone-200 text-stone-700 font-bold hover:bg-stone-200 flex items-center justify-center text-xs cursor-pointer"
                             >
                               +
@@ -259,7 +311,7 @@ export default function CartPage() {
                           </div>
 
                           <button
-                            onClick={() => removeItem(item.id)}
+                            onClick={() => removeItem(item.id, item.pack)}
                             className="p-1.5 text-stone-400 hover:text-red-500 transition cursor-pointer"
                             aria-label="Remove item"
                           >
@@ -402,13 +454,25 @@ export default function CartPage() {
 
                   {/* Actions */}
                   <div className="space-y-3 pt-2">
+                    {submitError && (
+                      <div className="p-3 rounded-md bg-red-50 border border-red-200 text-xs text-red-700 flex items-start gap-2">
+                        <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                        <span>{submitError}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
                       form="cod-form"
-                      className="w-full py-4 rounded-[3px] bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] font-medium text-[11px] flex items-center justify-center gap-2 transition cursor-pointer uppercase tracking-[0.18em] duration-200 ease-out"
+                      disabled={isSubmitting}
+                      className={`w-full py-4 rounded-[3px] font-medium text-[11px] flex items-center justify-center gap-2 transition cursor-pointer uppercase tracking-[0.18em] duration-200 ease-out ${
+                        isSubmitting
+                          ? "bg-stone-400 text-white cursor-not-allowed"
+                          : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                      }`}
                     >
-                      <span>Confirm Cash on Delivery Order</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <span>{isSubmitting ? "Placing Order..." : "Confirm Cash on Delivery Order"}</span>
+                      {!isSubmitting && <ArrowRight className="w-4 h-4" />}
                     </button>
 
                     <button

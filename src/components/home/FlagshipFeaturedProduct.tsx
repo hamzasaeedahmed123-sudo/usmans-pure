@@ -151,7 +151,7 @@ export function FlagshipFeaturedProduct() {
                   />
                   <text className="text-[7.5px] font-bold uppercase tracking-[0.2em] fill-[#D4A373]">
                     <textPath href="#sealPath" startOffset="0%">
-                      • 90% STONE GROUND • TAAZA CHAKKI ATTA • ZERO MAIDA
+                      • STONE GROUND • TAAZA CHAKKI ATTA • ZERO MAIDA
                     </textPath>
                   </text>
                 </svg>
@@ -167,7 +167,7 @@ export function FlagshipFeaturedProduct() {
             <div className="relative w-full h-[280px] sm:h-[340px] md:h-[380px] lg:h-[410px]">
               <Image
                 src={PRODUCT_IMAGE}
-                alt="Usman's Pure Multigrain Flour 90% Stone-Ground Packaging"
+                alt="Usman's Pure Multigrain Flour Stone-Ground Packaging"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
                 className="object-contain"
@@ -215,8 +215,8 @@ export function FlagshipFeaturedProduct() {
               <div className="flex items-start gap-3">
                 <CheckCircle2 className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                  <strong className="text-stone-900 font-bold">Ammi Ki Tasalli:</strong>{" "}
-                  90% pathar ki chakki ka pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
+                  <strong className="text-stone-900 font-bold">Ghar Ki Tasalli:</strong>{" "}
+                  Pathar ki chakki ka pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
                 </p>
               </div>
             </div>

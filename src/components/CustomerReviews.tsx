@@ -115,21 +115,21 @@ export function CustomerReviews() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="eyebrow">Verified Customer Stories</span>
+              <span className="eyebrow">Customer Reviews</span>
               <span className="text-[#1E1510]/20">&bull;</span>
               <div className="flex items-center text-amber-500">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="text-xs font-semibold text-stone-700">4.9 / 5.0 Rating</span>
+              <span className="text-xs font-semibold text-stone-700">Customer Rating</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1510] leading-tight">
-              Loved by 50,000+ <em className="italic font-normal text-[#8B3A22]">Homes</em>
+              Loved by Families <em className="italic font-normal text-[#8B3A22]">Across Pakistan</em>
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
-              Real experiences from families across Pakistan who upgraded to 90% pure stone-ground chakki flour.
+              Real experiences from households who upgraded to fresh stone-ground chakki flour and pure essentials.
             </p>
           </div>
 
@@ -148,7 +148,7 @@ export function CustomerReviews() {
               href="/reviews"
               className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#8B3A22] hover:text-[#1E1510] transition-colors py-2 px-2"
             >
-              <span>View All Verified Stories</span>
+              <span>View All Reviews</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

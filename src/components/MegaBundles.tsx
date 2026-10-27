@@ -48,7 +48,7 @@ export function MegaBundles() {
           </div>
           <div className="flex flex-col items-start sm:items-end gap-2">
             <p className="text-sm text-[#6B5D52] max-w-sm sm:text-right">
-              Save up to ₨800 on carefully paired lifestyle bundles with free nationwide doorstep delivery.
+              Save up to ₨800 on carefully paired lifestyle bundles with nationwide Cash on Delivery (Free over ₨10,000).
             </p>
             <Link href="/bundles" className="link-lux text-xs mt-1">
               <span>Explore All 4 Bundles</span>

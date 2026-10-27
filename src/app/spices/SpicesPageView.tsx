@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { PRODUCTS, Product } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   Check,
@@ -20,6 +21,7 @@ import {
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function SpicesPageView() {
+  const { addItem, openCart } = useCart();
   const spiceProducts = PRODUCTS.filter((p) => p.category === "spices");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
@@ -27,24 +29,17 @@ export function SpicesPageView() {
   const handleAddToCart = (product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            product: {
-              id: product.id,
-              title: product.title,
-              image: product.image,
-              price: product.price,
-              category: product.category,
-            },
-            packSize: product.weight,
-            price: product.price,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: `Standard Pack (${product.weight})`,
+        price: product.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
@@ -90,7 +85,7 @@ export function SpicesPageView() {
                 Cold Stone-Pounded Organic Spices
               </h1>
               <p className="mt-3 text-[#FDECE5] text-sm sm:text-base leading-relaxed">
-                Hand-pounded in traditional stone mortars without friction heat. Preserves volatile essential oils, natural pigments, and aroma. Tested 90% free of artificial red dyes, chalk powders, and starch fillers.
+                Hand-pounded in traditional stone mortars without friction heat. Preserves volatile essential oils, natural pigments, and aroma. Tested free of artificial red dyes, chalk powders, and starch fillers.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -243,7 +238,7 @@ export function SpicesPageView() {
                 <div className="mt-4 space-y-2">
                   {[
                     "Cold stone-pounded in traditional mortars without heat",
-                    "Certified zero artificial food coloring or chemical brighteners",
+                    "Tested zero artificial food coloring or chemical brighteners",
                     "Aroma-lock glass jars preserve pungency for up to 12 months",
                   ].map((bullet, i) => (
                     <div key={i} className="flex items-center gap-2 text-xs font-bold text-stone-800">

@@ -34,14 +34,14 @@ const FAQS_DATA: FaqItem[] = [
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "How does your traditional stone chakki differ from commercial roller flour mills?",
-    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy stone chakkis rotate slowly at strictly under 40°C, preserving 90% live enzymes, vitamin E, and natural dietary fiber.",
+    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy stone chakkis rotate slowly at strictly under 40°C, preserving vital live enzymes, vitamin E, and natural dietary fiber.",
   },
   {
     id: 2,
     category: "flours",
     categoryLabel: "Stone Chakki & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
-    a: "Absolutely zero. We guarantee 90% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
+    a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,
@@ -65,39 +65,39 @@ const FAQS_DATA: FaqItem[] = [
     a: "Yes. Because of the fine stone-grinding process, simply knead with lukewarm water, let the dough rest for 10–15 minutes, and your rotis will remain remarkably soft, pliable, and puffy throughout the day.",
   },
 
-  // Category: Clinical Wellness & Doctor's Choice
+  // Category: Dietary Care & Wellness
   {
     id: 6,
     category: "clinical",
-    categoryLabel: "Clinical Wellness",
+    categoryLabel: "Dietary Care & Wellness",
     q: "Can non-diabetic family members safely eat FENUGREEK Plus flour?",
     a: "Yes, absolutely. FENUGREEK Plus is a wholesome multi-grain flour infused with organic methi seeds and soluble galactomannan fiber. It supports healthy digestion and prevents sluggish sugar crashes in anyone, making it a great daily staple for the entire family.",
   },
   {
     id: 7,
     category: "clinical",
-    categoryLabel: "Clinical Wellness",
+    categoryLabel: "Dietary Care & Wellness",
     q: "How does Fat2Fuel Multigrain Flour help with weight management?",
     a: "It blends roasted barley, whole oats, chickpeas, flaxseed, and chia seeds. With a very low glycemic index (<50) and 18g dietary fiber per 100g, it blunts insulin spikes and prolongs feelings of fullness for over 5 hours, curbing unnecessary cravings naturally.",
   },
   {
     id: 8,
     category: "clinical",
-    categoryLabel: "Clinical Wellness",
+    categoryLabel: "Dietary Care & Wellness",
     q: "How quickly can I expect results with Fat2Fuel or Diabetic flours?",
     a: "Many customers notice lighter digestion and reduced post-meal lethargy within 3 to 5 days. For blood sugar stabilization (lower post-prandial spikes) and metabolic weight shifts, consistent use for 2 to 3 weeks yields visible, documented improvements.",
   },
   {
     id: 9,
     category: "clinical",
-    categoryLabel: "Clinical Wellness",
+    categoryLabel: "Dietary Care & Wellness",
     q: "Is Olive Leaf Tea safe for people on blood pressure medication?",
     a: "Olive leaf naturally contains oleuropein, which supports healthy arterial dilation. While safe as a whole-food beverage, we advise consulting your doctor if you take clinical antihypertensives, as natural pressure improvements may allow medication adjustments under physician supervision.",
   },
   {
     id: 10,
     category: "clinical",
-    categoryLabel: "Clinical Wellness",
+    categoryLabel: "Dietary Care & Wellness",
     q: "What makes your Lakadong Turmeric different from market haldi?",
     a: "Standard commercial turmeric contains only 2% to 3% curcumin and is often mixed with starch or lead chromate dye. Our single-origin Lakadong rhizomes are lab-verified to contain over 7% active bio-available curcumin, cold-pounded without friction heat.",
   },
@@ -115,7 +115,7 @@ const FAQS_DATA: FaqItem[] = [
     category: "spices",
     categoryLabel: "Spices & Teas",
     q: "Are there added colors or preservatives in your Kashmiri Chili Powder?",
-    a: "Never. Our Kashmiri chili powder is 90% pure sun-dried whole pods stone-ground without Sudan dyes, artificial food colors, or added salt.",
+    a: "Never. Our Kashmiri chili powder is 100% pure sun-dried whole pods stone-ground without Sudan dyes, artificial food colors, or added salt.",
   },
   {
     id: 13,

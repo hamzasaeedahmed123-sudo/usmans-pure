@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { HerbalsPageView } from "./HerbalsPageView";
 
 export const metadata: Metadata = {
-  title: "Wild Organic Herbal Teas & Infusions | Usman's Pure",
+  title: "Organic Herbal Teas & Infusions | Usman's Pure",
   description:
-    "90% caffeine-free Rosella Hibiscus Tea, Olive Leaf Cardioprotective Tea, and Calming Chamomile Blossoms. Whole-leaf, shade-dried, and aroma-sealed.",
+    "Naturally caffeine-free Rosella Hibiscus Tea, Olive Leaf Tea, and Calming Chamomile Blossoms. Whole-leaf, shade-dried, and aroma-sealed.",
   alternates: {
     canonical: "/herbals",
   },
   openGraph: {
-    title: "Wild Organic Herbal Teas & Infusions | Usman's Pure",
+    title: "Organic Herbal Teas & Infusions | Usman's Pure",
     description:
-      "90% caffeine-free Rosella Hibiscus Tea, Olive Leaf Cardioprotective Tea, and Calming Chamomile Blossoms. Whole-leaf, shade-dried, and aroma-sealed.",
+      "Naturally caffeine-free Rosella Hibiscus Tea, Olive Leaf Tea, and Calming Chamomile Blossoms. Whole-leaf, shade-dried, and aroma-sealed.",
     url: "https://usmanspure.com/herbals",
     type: "website",
     images: [

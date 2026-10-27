@@ -9,6 +9,7 @@ import { TickerMarquee } from "@/components/TickerMarquee";
 import { TrustBadges } from "@/components/TrustBadges";
 import { PRODUCTS, Product } from "@/data/products";
 import { useStoreData } from "@/context/StoreDataContext";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   Check,
@@ -23,6 +24,7 @@ import {
 } from "lucide-react";
 
 export function ProductsPageView() {
+  const { addItem, openCart } = useCart();
   const { products: storeProducts } = useStoreData();
   const allCatalogProducts = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS;
 
@@ -35,15 +37,21 @@ export function ProductsPageView() {
   const handleAddToCart = useCallback((product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
-    const cartEl = document.getElementById("cart-badge-count");
-    if (cartEl) {
-      const current = parseInt(cartEl.innerText || "0", 10) + 1;
-      cartEl.innerText = current.toString();
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: `Standard Pack (${product.weight})`,
+        price: product.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
-  }, []);
+  }, [addItem, openCart]);
 
   const filteredProducts = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -107,7 +115,7 @@ export function ProductsPageView() {
                 All Pure Products
               </h1>
               <p className="mt-3 text-[#D5CEBF] text-sm sm:text-base leading-relaxed font-light">
-                Wholesome stone-ground chakki flours, pure organic herbal teas, and cold stone-pounded royal spices. 90% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
+                Wholesome stone-ground chakki flours, pure organic herbal teas, and cold stone-pounded royal spices. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
               </p>
             </div>
           </div>
@@ -302,13 +310,6 @@ export function ProductsPageView() {
               })}
             </div>
           )}
-        </div>
-
-        {/* Trust Badges */}
-        <div className="bg-stone-50/60 border-t border-stone-200 py-6 md:py-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <TrustBadges />
-          </div>
         </div>
       </main>
 

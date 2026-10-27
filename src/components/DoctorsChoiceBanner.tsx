@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BadgeCheck, Stethoscope, CheckCircle2, Wheat } from "lucide-react";
+import { ArrowRight, BadgeCheck, CheckCircle2, Wheat } from "lucide-react";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function DoctorsChoiceBanner() {
@@ -24,33 +24,33 @@ export function DoctorsChoiceBanner() {
           {/* Left Text Block */}
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B869]/15 border border-[#E5B869]/30 text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.18em] mb-5">
-              <Stethoscope className="w-3.5 h-3.5" strokeWidth={2} />
-              <span>Doctor Recommended &bull; 90% Whole Grains</span>
+              <Wheat className="w-3.5 h-3.5" strokeWidth={2} />
+              <span>Dietary Care &bull; Whole Grain Nutrition</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif !text-[#FAF7F0] leading-[1.12]">
-              Looking for Diabetic &amp; Weight-Loss Flours?
+              Looking for Diabetic-Friendly &amp; Weight-Care Flours?
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#D5CEBF] font-light leading-relaxed">
-              Explore stone-ground multigrain blends designed to help manage blood sugar, support healthy weight loss, and keep you full longer with high natural fiber.
+              Explore traditional stone-ground multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
             </p>
 
             {/* Quick Trust Badges */}
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-[#E8DFD0]">
               <span className="flex items-center gap-1.5">
                 <BadgeCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Doctor Recommended
+                Stone-Ground Chakki
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Low Sugar Spikes
+                High Dietary Fiber
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">
                 <Wheat className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                90% Whole Grain
+                Zero Maida &amp; Fillers
               </span>
             </div>
           </div>
@@ -61,12 +61,12 @@ export function DoctorsChoiceBanner() {
               href="/doctors-choice"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-md bg-[#E5B869] hover:bg-[#F2C97C] text-[#18281E] text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer text-center group"
             >
-              <span>Explore Doctor&apos;s Choice Range</span>
+              <span>Explore Dietary Care Range</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />
             </Link>
 
             <a
-              href="https://wa.me/923008472910?text=Hello%2C%20I%20would%20like%20to%20consult%20regarding%20Doctor%27s%20Choice%20diabetic%20and%20diet%20flours."
+              href="https://wa.me/923008472910?text=Hello%2C%20I%20would%20like%20guidance%20regarding%20diabetic%20and%20diet%20flours."
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-[#D5CEBF] hover:text-[#E5B869] underline underline-offset-4 decoration-[#E5B869]/40 transition-colors"
