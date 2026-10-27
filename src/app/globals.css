@@ -116,14 +116,21 @@ html {
 }
 
 /* Editorial warm heritage serif headings */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-serif), Georgia, serif;
-  letter-spacing: -0.02em;
-  color: #1E3A2F;
-  font-weight: 600;
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif), Georgia, serif;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  p {
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  }
 }
 
 .font-serif,
@@ -133,10 +140,6 @@ h4 {
 
 .font-sans,
 .font-body {
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-}
-
-p {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 

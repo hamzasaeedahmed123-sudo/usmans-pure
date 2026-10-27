@@ -18,7 +18,7 @@ export function DietConsultationBanner() {
               Chakki Fresh Quality
             </div>
 
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight text-white leading-tight">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold tracking-tight !text-white leading-tight">
               Fresh Atta &amp; Grain Inquiries
             </h2>
 
