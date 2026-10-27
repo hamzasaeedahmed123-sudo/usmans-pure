@@ -26,8 +26,8 @@
   --color-ink-muted: var(--ink-muted);
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-body: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-serif), Georgia, serif;
-  --font-heading: var(--font-serif), Georgia, serif;
+  --font-serif: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
   --breakpoint-xs: 400px;
 }
@@ -115,7 +115,7 @@ html {
   }
 }
 
-/* Editorial warm heritage serif headings */
+/* Clean, simple, modern typography */
 @layer base {
   h1,
   h2,
@@ -123,9 +123,9 @@ html {
   h4,
   h5,
   h6 {
-    font-family: var(--font-serif), Georgia, serif;
-    letter-spacing: -0.02em;
-    font-weight: 600;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.015em;
+    font-weight: 700;
   }
 
   p {
@@ -134,10 +134,7 @@ html {
 }
 
 .font-serif,
-.font-heading {
-  font-family: var(--font-serif), Georgia, serif;
-}
-
+.font-heading,
 .font-sans,
 .font-body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
