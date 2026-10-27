@@ -149,13 +149,6 @@ export function SpicesPageView() {
                     key={product.id}
                     className="group relative flex flex-col bg-white rounded-sm border border-[#ECCDC3]/80 hover:border-[#9E3E26]/60 shadow-xs hover:shadow-ambient transition-all duration-300 overflow-hidden"
                   >
-                    {/* Organic Spices Watermark in Card Background */}
-                    <BotanicalWatermark
-                      type="spices"
-                      className="absolute -bottom-4 -right-4 w-44 h-44 group-hover:opacity-50 transition-opacity duration-300 pointer-events-none"
-                      opacity={0.35}
-                      size={200}
-                    />
 
                     <div className="relative w-full aspect-square bg-stone-50 overflow-hidden p-2 sm:p-4 border-b border-stone-100 flex items-center justify-center">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">

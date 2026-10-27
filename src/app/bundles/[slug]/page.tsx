@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { BundleDetailView } from "./BundleDetailView";
 import { LUXURY_BUNDLES, getBundleBySlug } from "@/data/bundles";
 
+export const instant = false;
+
 export function generateStaticParams() {
   return LUXURY_BUNDLES.map((b) => ({ slug: b.slug }));
 }

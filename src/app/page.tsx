@@ -11,18 +11,9 @@ import { TrustGuarantee } from "@/components/TrustGuarantee";
 import { StoreFooter } from "@/components/StoreFooter";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
 
-const CustomerReviews = dynamic(
-  () => import("@/components/CustomerReviews").then((m) => m.CustomerReviews),
-  { ssr: true }
-);
-const MegaBundles = dynamic(
-  () => import("@/components/MegaBundles").then((m) => m.MegaBundles),
-  { ssr: true }
-);
-const NewsletterSection = dynamic(
-  () => import("@/components/NewsletterSection").then((m) => m.NewsletterSection),
-  { ssr: true }
-);
+import { CustomerReviews } from "@/components/CustomerReviews";
+import { MegaBundles } from "@/components/MegaBundles";
+import { NewsletterSection } from "@/components/NewsletterSection";
 
 export const metadata: Metadata = {
   title: "Usman's Pure | 90% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",

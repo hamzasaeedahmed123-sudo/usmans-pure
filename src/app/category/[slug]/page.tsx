@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { CategoryPageView } from "./CategoryPageView";
 
+export const instant = false;
+
 export function generateStaticParams() {
   return [{ slug: "flours" }, { slug: "teas" }, { slug: "spices" }];
 }

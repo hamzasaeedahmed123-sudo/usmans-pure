@@ -61,5 +61,23 @@
     "phone": "03219876543",
     "createdAt": "2026-10-27T17:14:34.970Z",
     "updatedAt": "2026-10-27T17:14:34.970Z"
+  },
+  {
+    "id": "cust_1793122540996_0ja7k",
+    "name": "Ahmad Raza",
+    "email": "test_1793122540475@example.pk",
+    "passwordHash": "$2b$10$Lx.FqLzaCzI/9vev2wcFheFv.pJSQ/Af0ydSFMpO5jL7OtDGUUUE6",
+    "phone": "03001234567",
+    "createdAt": "2026-10-27T17:35:40.996Z",
+    "updatedAt": "2026-10-27T17:35:40.996Z"
+  },
+  {
+    "id": "cust_1793122571293_vy67o",
+    "name": "Fatima Noor",
+    "email": "live_cust_1793122570021@test.pk",
+    "passwordHash": "$2b$10$Wjxuv996BzeNjPf7LYSyjOIiRl5/t/V63yqC0MqhPQQEoyUSzEfy.",
+    "phone": "03219876543",
+    "createdAt": "2026-10-27T17:36:11.293Z",
+    "updatedAt": "2026-10-27T17:36:11.293Z"
   }
 ]
