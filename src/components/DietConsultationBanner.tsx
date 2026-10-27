@@ -1,5 +1,3 @@
-"use client";
-
 import { CheckCircle2, Truck, Wheat, Sparkles } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { TrustBadges } from "@/components/TrustBadges";
 
 export function TrustGuarantee() {

@@ -35,37 +35,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const refreshSession = useCallback(async () => {
     try {
-      // 1. Check if an admin session is active
-      const adminRes = await fetch("/api/admin/me", { method: "GET" }).catch(() => null);
-      if (adminRes && adminRes.ok) {
-        const adminData = await adminRes.json();
-        if (adminData.authenticated) {
-          setUser({
-            id: "admin-master",
-            name: adminData.username || "Master Administrator",
-            email: `${adminData.username}@usmanspure.com`,
-            role: "admin",
-            mustChangePassword: adminData.mustChangePassword,
-          });
-          setIsLoading(false);
-          return;
-        }
-      }
+      const isAdminRoute =
+        typeof window !== "undefined" && window.location.pathname.startsWith("/admin");
 
-      // 2. Check customer session
-      const customerRes = await fetch("/api/auth/me", { method: "GET" }).catch(() => null);
-      if (customerRes && customerRes.ok) {
-        const customerData = await customerRes.json();
-        if (customerData.authenticated && customerData.user) {
-          setUser({
-            id: customerData.user.id,
-            name: customerData.user.name,
-            email: customerData.user.email,
-            phone: customerData.user.phone,
-            role: "customer",
-          });
-          setIsLoading(false);
-          return;
+      if (isAdminRoute) {
+        // Query admin verification endpoint
+        const adminRes = await fetch("/api/admin/me", { method: "GET" }).catch(() => null);
+        if (adminRes && adminRes.ok) {
+          const adminData = await adminRes.json();
+          if (adminData.authenticated) {
+            setUser({
+              id: "admin-master",
+              name: adminData.username || "Master Administrator",
+              email: `${adminData.username}@usmanspure.com`,
+              role: "admin",
+              mustChangePassword: adminData.mustChangePassword,
+            });
+            setIsLoading(false);
+            return;
+          }
+        }
+      } else {
+        // Query customer verification endpoint for storefront
+        const customerRes = await fetch("/api/auth/me", { method: "GET" }).catch(() => null);
+        if (customerRes && customerRes.ok) {
+          const customerData = await customerRes.json();
+          if (customerData.authenticated && customerData.user) {
+            setUser({
+              id: customerData.user.id,
+              name: customerData.user.name,
+              email: customerData.user.email,
+              phone: customerData.user.phone,
+              role: "customer",
+            });
+            setIsLoading(false);
+            return;
+          }
         }
       }
 

@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { ArrowRight, BadgeCheck, Stethoscope, CheckCircle2, Wheat } from "lucide-react";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";

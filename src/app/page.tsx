@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { CategoryCollections } from "@/components/CategoryCollections";
 import { ProductCatalog } from "@/components/ProductCatalog";
 import { DoctorsChoiceBanner } from "@/components/DoctorsChoiceBanner";
-import { MegaBundles } from "@/components/MegaBundles";
 import { DietConsultationBanner } from "@/components/DietConsultationBanner";
 import { TrustGuarantee } from "@/components/TrustGuarantee";
-import { CustomerReviews } from "@/components/CustomerReviews";
-import { NewsletterSection } from "@/components/NewsletterSection";
 import { StoreFooter } from "@/components/StoreFooter";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
+
+const CustomerReviews = dynamic(
+  () => import("@/components/CustomerReviews").then((m) => m.CustomerReviews),
+  { ssr: true }
+);
+const MegaBundles = dynamic(
+  () => import("@/components/MegaBundles").then((m) => m.MegaBundles),
+  { ssr: true }
+);
+const NewsletterSection = dynamic(
+  () => import("@/components/NewsletterSection").then((m) => m.NewsletterSection),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Usman's Pure | 90% Pure Chakki Atta Online Pakistan (Fresh Stone-Ground)",

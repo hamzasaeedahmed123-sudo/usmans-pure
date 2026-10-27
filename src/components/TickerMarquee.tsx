@@ -1,5 +1,3 @@
-"use client";
-
 export function TickerMarquee() {
   const items = [
     "PURE PRODUCTS, PURE LIFESTYLE",
