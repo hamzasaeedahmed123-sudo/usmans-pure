@@ -125,13 +125,13 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           {/* Top Brand Header */}
           <div className="p-5 border-b border-white/10 flex items-center justify-between">
             <Link href="/admin" className="flex items-center gap-3">
-              <div className="relative w-36 h-9 flex items-center">
+              <div className="bg-[#FAF7F2] rounded-xl px-3 py-1 flex items-center shadow-xs">
                 <Image
                   src="/logo.png"
                   alt="Usman's Pure Products"
-                  width={160}
-                  height={45}
-                  className="w-auto h-8 object-contain object-left invert brightness-200"
+                  width={150}
+                  height={40}
+                  className="w-auto h-7 sm:h-8 object-contain"
                 />
               </div>
             </Link>
