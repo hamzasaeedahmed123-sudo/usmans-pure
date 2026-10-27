@@ -363,22 +363,18 @@ export function HeroSlider() {
                   style={{ backgroundColor: currentSlide.bgColor }}
                 />
 
-                {/* Main Product Cutout Image with Gentle Idle Float Animation */}
-                <motion.div
-                  animate={{ y: [0, -5, 0], rotate: [0, 0.7, -0.7, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  className="relative w-full h-full flex items-center justify-center pointer-events-none transform-gpu will-change-transform"
-                >
+                {/* Main Product Cutout Image */}
+                <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
                   <Image
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
                     sizes="(max-width: 768px) 60vw, 360px"
-                    quality={85}
+                    quality={80}
                     className="object-contain p-1 mix-blend-multiply w-auto drop-shadow-md"
-                    priority
+                    loading="eager"
                   />
-                </motion.div>
+                </div>
 
               </div>
 
