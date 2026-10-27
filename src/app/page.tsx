@@ -9,7 +9,6 @@ import { MegaBundles } from "@/components/MegaBundles";
 import { DietConsultationBanner } from "@/components/DietConsultationBanner";
 import { TrustGuarantee } from "@/components/TrustGuarantee";
 import { CustomerReviews } from "@/components/CustomerReviews";
-import { FaqSection } from "@/components/FaqSection";
 import { NewsletterSection } from "@/components/NewsletterSection";
 import { StoreFooter } from "@/components/StoreFooter";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
@@ -75,11 +74,8 @@ export default function Home() {
       {/* 4. Category Collections ("Our Collections") */}
       <CategoryCollections />
 
-      {/* 4. Featured Products Showcase */}
+      {/* 4. Featured Products (Fresh Stone-Milled Whole Wheat Flour & Multi-Grain Blends) */}
       <ProductCatalog />
-
-      {/* 5. Frequently Asked Questions (Existing Sawaal Jawab Accordion Section) */}
-      <FaqSection />
 
       {/* 5. Prominent Doctor's Choice / Clinical Wellness Editorial CTA Banner */}
       <div className="content-visibility-auto">
