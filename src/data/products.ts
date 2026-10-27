@@ -38,9 +38,9 @@ export const PRODUCTS: Product[] = [
     weight: "5kg",
     tagline: "Everyday Wholesome Nutrition for the Entire Family",
     description:
-      "Stone-ground chakki flour milled at low temperature from premium wheat and ancient grains. Retains 100% of the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
+      "Stone-ground chakki flour milled at low temperature from premium wheat and ancient grains. Retains 90% of the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
     benefits: [
-      "100% Whole Grain Stone-Ground",
+      "90% Whole Grain Stone-Ground",
       "Zero Maida & Zero Bleach",
       "High Dietary Fiber for Digestion",
       "Rich in Natural B-Vitamins & Minerals",
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
       "Ultra Soft Roti Texture Kids Love",
       "Natural Plant Iron & Calcium Fortified",
       "Easy on Delicate Tummies",
-      "100% Free of Artificial Flavors or Colors",
+      "90% Free of Artificial Flavors or Colors",
     ],
     inStock: true,
   },
@@ -144,7 +144,7 @@ export const PRODUCTS: Product[] = [
     description:
       "Crafted in a dedicated gluten-free facility using sorghum (jowar), pearl millet (bajra), corn, and brown rice. Deliciously light and pliable rotis without gastrointestinal inflammation or bloating.",
     benefits: [
-      "100% Gluten-Free Tested & Certified",
+      "90% Gluten-Free Tested & Certified",
       "Zero Bloating or Digestive Distress",
       "Pliable Dough for Easy Rolling",
       "High in Natural Prebiotics",
@@ -172,10 +172,10 @@ export const PRODUCTS: Product[] = [
     description:
       "Saaf suthray aur qudrati sooraj mein sookhay chamomile ke phool. Halki meethi khushboo jo zehni thakawat door kare, pait ko araam pohanchaye, aur pur-sukoon neend mein madad de.",
     benefits: [
-      "Naturally 100% Caffeine-Free",
+      "Naturally 90% Caffeine-Free",
       "Pur-Sukoon Neend Aur Zehni Araam",
       "Pait Aur Hazmay Ke Liye Mufeed",
-      "100% Khalis Phool Bina Kisi Rang Ya Khushboo Ke",
+      "90% Khalis Phool Bina Kisi Rang Ya Khushboo Ke",
     ],
     inStock: true,
   },
@@ -328,7 +328,7 @@ export const PRODUCTS: Product[] = [
     weight: "200g Glass Jar",
     tagline: "Vibrant Ruby Red Color & Mild Warmth With Zero Artificial Dyes",
     description:
-      "Sun-ripened whole Kashmiri chilies cold-pounded in traditional stone mortars without friction heat. Locks in natural capsanthin pigments and essential oils. Tested 100% free of synthetic Sudan dyes and lead chromate.",
+      "Sun-ripened whole Kashmiri chilies cold-pounded in traditional stone mortars without friction heat. Locks in natural capsanthin pigments and essential oils. Tested 90% free of synthetic Sudan dyes and lead chromate.",
     benefits: [
       "Cold-Pounded Without Friction Heat",
       "Zero Sudan Red Dyes or Artificial Colors",
@@ -358,7 +358,7 @@ export const PRODUCTS: Product[] = [
     benefits: [
       "High Potency >7% Natural Curcumin",
       "Powerful Cellular Antioxidant & Anti-Inflammatory",
-      "100% Pure — Zero Chalk or Starch",
+      "90% Pure — Zero Chalk or Starch",
       "Lab Tested for Zero Heavy Metal Traces",
     ],
     inStock: true,
@@ -411,7 +411,7 @@ export const PRODUCTS: Product[] = [
       "Freshly Roasted & Stone-Ground",
       "Aids Gastric Secretion & Digestion",
       "Intense Smoky Herbal Fragrance",
-      "100% Pure Seed — Zero Dust or Husk",
+      "90% Pure Seed — Zero Dust or Husk",
     ],
     inStock: true,
   },
@@ -458,7 +458,7 @@ export const PRODUCTS: Product[] = [
     weight: "800g Eco Pouch",
     tagline: "Ancient Khewra Mineral Salt with 84 Essential Trace Elements",
     description:
-      "Unrefined raw crystalline rock salt mined directly from prime ancient Khewra salt beds. Stone-milled to a fine table consistency. 100% free of anti-caking micro-chemical agents, bleaches, and synthetic iodine.",
+      "Unrefined raw crystalline rock salt mined directly from prime ancient Khewra salt beds. Stone-milled to a fine table consistency. 90% free of anti-caking micro-chemical agents, bleaches, and synthetic iodine.",
     benefits: [
       "84 Natural Minerals & Electrolytes",
       "Zero Anti-Caking Chemicals (E535/E536)",
@@ -545,6 +545,6 @@ export const MEGA_BUNDLES: BundleItem[] = [
       "Himalayan Pink Rock Salt (800g Pouch)",
     ],
     description:
-      "Transform your cooking with 100% pure cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
+      "Transform your cooking with 90% pure cold-pounded spices. Zero artificial dyes, zero lead chromate, zero starch fillers.",
   },
 ];

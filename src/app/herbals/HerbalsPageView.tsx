@@ -87,7 +87,7 @@ export function HerbalsPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-emerald-300 mb-2">
-                100% Caffeine-Free &bull; Whole Dried Botanicals
+                90% Caffeine-Free &bull; Whole Dried Botanicals
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Pure Organic Herbal Teas &amp; Infusions
@@ -98,7 +98,7 @@ export function HerbalsPageView() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
-                  "100% naturally caffeine-free",
+                  "90% naturally caffeine-free",
                   "Whole dried calyces, flowers, and leaves",
                   "Wazan mein kami, pur-sukoon neend aur dil ki sehat ke liye mufeed",
                   "Sealed in UV-shielded aroma-lock standing pouches",

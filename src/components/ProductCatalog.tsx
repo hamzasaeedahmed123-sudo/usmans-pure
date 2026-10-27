@@ -39,7 +39,7 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     title: "Fat2Fuel Multigrain Flour",
     category: "flours",
     categoryBadge: "Flour",
-    highlight: "100% Stone-Ground Weight Loss Blend",
+    highlight: "90% Stone-Ground Weight Loss Blend",
     image: "/images/products/prod-3.jpg",
     detailUrl: "/product/prod-3",
     checkoutUrl: "/checkout?product=prod-3",

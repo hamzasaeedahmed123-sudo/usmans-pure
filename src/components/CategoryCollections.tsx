@@ -14,7 +14,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
     {
       id: "flour",
       title: "Traditional Whole Wheat & Multigrain Diet Atta",
-      subtitle: "Weight Loss, Diabetic Care & Kids Nutrition with 100% vital dietary fiber.",
+      subtitle: "Weight Loss, Diabetic Care & Kids Nutrition with 90% vital dietary fiber.",
       image: "/images/products/prod-3.jpg",
       badge: "Pure Chakki Flour",
       href: "/flour",
@@ -64,7 +64,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
-            100% pure stone-ground chakki atta, freshly milled grains, and authentic organic spices. Delivered fresh to your home across Pakistan.
+            90% pure stone-ground chakki atta, freshly milled grains, and authentic organic spices. Delivered fresh to your home across Pakistan.
           </p>
         </div>
 

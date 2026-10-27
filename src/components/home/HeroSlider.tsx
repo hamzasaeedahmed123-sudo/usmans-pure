@@ -56,11 +56,11 @@ export const CATEGORY_PILLS = [
 export const SLIDES: HeroSlide[] = [
   {
     id: "flour",
-    tag: "100% Pathar Ki Chakki",
+    tag: "90% Pathar Ki Chakki",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
     fullTitle: "Chakki Multigrain Atta",
-    benefit: "Ammi ke haath ki narm phulka roti — 100% pathar ki chakki ka qudrati fiber, bina kisi maiday ke.",
+    benefit: "Ammi ke haath ki narm phulka roti — 90% pathar ki chakki ka qudrati fiber, bina kisi maiday ke.",
     miniStats: ["Ammi Ki Pasand", "Zero Maida", "Pathar Ki Chakki"],
     price: "Rs 2,450",
     weight: "10kg",
@@ -83,7 +83,7 @@ export const SLIDES: HeroSlide[] = [
     subtitle: "TEAS",
     fullTitle: "Desi Herbal Qehwa",
     benefit: "Buzurgo ke blood pressure aur sukoon ke liye asli zaitoon patti aur chamomile ka qehwa.",
-    miniStats: ["100% Qudrati", "Caffeine-Free", "Zaitoon Patti"],
+    miniStats: ["90% Qudrati", "Caffeine-Free", "Zaitoon Patti"],
     price: "Rs 1,250",
     weight: "250g",
     bgColor: "#A3D2B7",

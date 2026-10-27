@@ -1133,7 +1133,7 @@ export function CheckoutView() {
                           </span>
                         </button>
                         <p className="text-center text-[11px] text-stone-500 mt-2">
-                          🔒 100% Guaranteed Fresh Chakki Milling • Safe &amp; Verified Delivery across Pakistan.
+                          🔒 Guaranteed Fresh Chakki Milling • Safe &amp; Verified Delivery across Pakistan.
                         </p>
                       </div>
                     </form>
@@ -1296,7 +1296,7 @@ export function CheckoutView() {
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                        <span>100% Stone-Ground</span>
+                        <span>90% Stone-Ground</span>
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <RotateCcw className="w-4 h-4 text-emerald-700" />

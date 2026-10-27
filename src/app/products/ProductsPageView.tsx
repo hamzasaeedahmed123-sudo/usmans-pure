@@ -107,7 +107,7 @@ export function ProductsPageView() {
                 All Pure Products
               </h1>
               <p className="mt-3 text-[#D5CEBF] text-sm sm:text-base leading-relaxed font-light">
-                Wholesome stone-ground chakki flours, pure organic herbal teas, and cold stone-pounded royal spices. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
+                Wholesome stone-ground chakki flours, pure organic herbal teas, and cold stone-pounded royal spices. 90% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
               </p>
             </div>
           </div>

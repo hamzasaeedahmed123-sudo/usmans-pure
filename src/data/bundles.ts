@@ -69,7 +69,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         name: "Pure Organic Rosella (Hibiscus) Herbal Tea",
         size: "50g UV-Shielded Aroma Pouch",
         role: "Metabolism Aur Taazgi",
-        desc: "Whole wild-harvested shade-dried ruby calyces rich in organic anthocyanins, hibiscus acid, and vitamin C. 100% caffeine-free.",
+        desc: "Whole wild-harvested shade-dried ruby calyces rich in organic anthocyanins, hibiscus acid, and vitamin C. 90% caffeine-free.",
         image: "/images/products/prod-9.jpg",
       },
       {
@@ -113,7 +113,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
       },
       {
         id: "purity",
-        title: "100% Laboratory Tested & Verified Purity Guarantee",
+        title: "90% Laboratory Tested & Verified Purity Guarantee",
         content:
           "Certified zero heavy metals (Lead 0.0 ppm, Arsenic 0.0 ppm). Zero benzoyl peroxide, zero potassium bromate, zero calcium propionate preservatives. Freshly stone-milled in traditional chakki upon order confirmation.",
       },
@@ -198,7 +198,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "purity",
         title: "Purity & Zero-Chemical Certification",
         content:
-          "Lab-tested 100% free of synthetic antidiabetic adulterants, heavy metals, or industrial fillers. Natural whole grains sourced directly from registered pesticide-monitored Punjab farms.",
+          "Lab-tested 90% free of synthetic antidiabetic adulterants, heavy metals, or industrial fillers. Natural whole grains sourced directly from registered pesticide-monitored Punjab farms.",
       },
       {
         id: "brewing",
@@ -222,7 +222,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F3E3DA]",
     includedTags: ["5kg Giggly Grains Atta", "5kg Basic Chakki Atta", "50g Chamomile Tea"],
     description:
-      "Ghar ke har fard ke liye mukammal mahana pack. Bacchon ki sehat aur taaqat ke liye makhsoos multigrain atta, ghar ke dastarkhwan ke liye 100% pathar ki chakki ka khalis atta, aur pur-sukoon neend ke liye qudrati chamomile kehwa.",
+      "Ghar ke har fard ke liye mukammal mahana pack. Bacchon ki sehat aur taaqat ke liye makhsoos multigrain atta, ghar ke dastarkhwan ke liye 90% pathar ki chakki ka khalis atta, aur pur-sukoon neend ke liye qudrati chamomile kehwa.",
     whatsInTheBox: [
       {
         name: "Giggly Grains Growing-Kids Multigrain Flour",
@@ -235,7 +235,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         name: "Traditional Basic Stone-Ground Chakki Atta",
         size: "5kg Daily Household Pack",
         role: "Everyday Wholesome Roti",
-        desc: "100% unbleached whole wheat containing the full germ and bran. Yields exceptionally sweet, aromatic rotis that remain soft all day.",
+        desc: "90% unbleached whole wheat containing the full germ and bran. Yields exceptionally sweet, aromatic rotis that remain soft all day.",
         image: "/atta-bag.png",
       },
       {
@@ -261,7 +261,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
           time: "Lunch & Dinner",
           title: "Family Stone-Ground Chakki Rotis",
           instruction:
-            "Serve hot rotis with home-cooked lentils or meat curries. 100% whole bran ensures comfortable, easy digestion for elder family members.",
+            "Serve hot rotis with home-cooked lentils or meat curries. 90% whole bran ensures comfortable, easy digestion for elder family members.",
         },
         {
           time: "Night (30 Minutes Before Bed)",
@@ -276,13 +276,13 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "nutrition",
         title: "Family Mineral & Vitamin Profile",
         content:
-          "High dietary calcium (120mg/100g) for bone density • Bioavailable iron (4.2mg/100g) for hemoglobin • Rich in natural thiamine (B1) and magnesium • 100% caffeine-free chamomile containing zero sedatives.",
+          "High dietary calcium (120mg/100g) for bone density • Bioavailable iron (4.2mg/100g) for hemoglobin • Rich in natural thiamine (B1) and magnesium • 90% caffeine-free chamomile containing zero sedatives.",
       },
       {
         id: "purity",
         title: "Zero-Maida & Zero-Preservative Assurance",
         content:
-          "Milled on traditional low-temperature chakkis under 40°C. Never exposed to steel roller friction or chlorine dioxide bleaching. 100% wholesome food as nature created.",
+          "Milled on traditional low-temperature chakkis under 40°C. Never exposed to steel roller friction or chlorine dioxide bleaching. 90% wholesome food as nature created.",
       },
       {
         id: "brewing",
@@ -306,7 +306,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F7EBE3]",
     includedTags: ["200g Kashmiri Chili", "200g Turmeric 7% Curcumin", "150g Garam Masala", "800g Pink Salt"],
     description:
-      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with 100% pure cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
+      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with 90% pure cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
     whatsInTheBox: [
       {
         name: "Hand-Pounded Kashmiri Red Chili Jar",
@@ -339,7 +339,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     synergy: {
       headline: "How It Works Together: The Artisan Culinary Difference",
       description:
-        "Cold-pounding retains fragile aromatic terpenes that evaporate in industrial mills. Because these spices are 100% pure without fillers or starch, you need only half the quantity compared to commercial brands to achieve richer flavor, deeper color, and real anti-inflammatory health benefits.",
+        "Cold-pounding retains fragile aromatic terpenes that evaporate in industrial mills. Because these spices are 90% pure without fillers or starch, you need only half the quantity compared to commercial brands to achieve richer flavor, deeper color, and real anti-inflammatory health benefits.",
       routineSteps: [
         {
           time: "Tempering (Tarka & Curries)",
@@ -366,13 +366,13 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "nutrition",
         title: "Curcumin Potency & Volatile Oil Analysis",
         content:
-          "Lakadong Turmeric: 7.2% active Curcumin (vs 1.8% in market brands) • Kashmiri Chili: 100% capsaicin with zero artificial color additive (Sudan dye negative) • Himalayan Salt: 98% pure NaCl with natural trace mineral matrix.",
+          "Lakadong Turmeric: 7.2% active Curcumin (vs 1.8% in market brands) • Kashmiri Chili: 90% natural capsaicin with zero artificial color additive (Sudan dye negative) • Himalayan Salt: 98% pure NaCl with natural trace mineral matrix.",
       },
       {
         id: "purity",
         title: "Heavy Metal & Adulterant Screening Report",
         content:
-          "Screened by independent third-party laboratory. Negative for lead chromate, negative for metanil yellow, negative for starch fillers or brick dust. 100% food-grade glass jar packaging.",
+          "Screened by independent third-party laboratory. Negative for lead chromate, negative for metanil yellow, negative for starch fillers or brick dust. Food-grade glass jar packaging.",
       },
       {
         id: "brewing",

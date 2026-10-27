@@ -162,7 +162,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     className="object-contain p-4 hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-sm text-xs font-semibold uppercase tracking-[0.16em] bg-[#FAF7F2]/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs">
-                    Sale &bull; 100% Pure
+                    Sale &bull; 90% Pure
                   </span>
                 </div>
 
@@ -420,7 +420,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents insulin spikes.</li>
                     <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you full for 5+ hours and promotes digestion.</li>
-                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> 100% natural wheat germ and enzymes intact.</li>
+                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> 90% natural wheat germ and enzymes intact.</li>
                     {product.benefits?.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}
@@ -462,7 +462,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and spices contain zero preservatives or chemical anti-caking agents, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
                   </p>
                   <p>
-                    <strong>100% Purity &amp; Money-Back Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a no-hassle replacement or full refund.
+                    <strong>90% Purity &amp; Money-Back Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a no-hassle replacement or full refund.
                   </p>
                 </div>
               )}

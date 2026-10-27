@@ -497,7 +497,7 @@ export default function WriteReviewPage() {
                   </button>
                   <div className="mt-3 text-center text-xs text-[#6B5D52] flex items-center justify-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                    <span>100% Genuine Community Feedback &bull; Zero Paid Endorsements</span>
+                    <span>Verified Genuine Community Feedback &bull; Zero Paid Endorsements</span>
                   </div>
                 </div>
               </form>

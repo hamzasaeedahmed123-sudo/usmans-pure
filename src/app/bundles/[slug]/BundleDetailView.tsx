@@ -120,7 +120,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                       Save ₨{bundle.savings}
                     </span>
                     <span className="px-2.5 py-0.5 rounded-[2px] bg-[#FAF7F2]/90 backdrop-blur-xs text-[#8B3A22] text-[10px] font-medium tracking-widest uppercase">
-                      100% Organic &bull; Zero Additives
+                      90% Organic &bull; Zero Additives
                     </span>
                   </div>
 

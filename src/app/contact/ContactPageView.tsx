@@ -55,7 +55,7 @@ export function ContactPageView() {
     },
     {
       q: "How does the 14-Day Money Back Guarantee work?",
-      a: "If you are not 100% pleased with our stone-ground flour's texture or our herbal teas' freshness, simply contact our WhatsApp support team within 14 days for a replacement or full refund.",
+      a: "If you are not completely pleased with our stone-ground flour's texture or our herbal teas' freshness, simply contact our WhatsApp support team within 14 days for a replacement or full refund.",
     },
     {
       q: "How do I get a free customized diet consultation?",

@@ -51,6 +51,20 @@ interface LightboxPhotoData {
 
 const INITIAL_STORIES: CustomerStory[] = [
   {
+    id: "rev-farhan",
+    name: "Mrs. Farhan",
+    city: "Lahore (Model Town)",
+    product: "Multigrain Diet & Diabetic Care Flour",
+    category: "flours",
+    rating: 5,
+    date: "Verified Purchase &bull; 2 days ago",
+    title: "Ghar ke dastarkhwan ke liye behtareen atta",
+    review:
+      "MashaAllah rozana ke dastarkhwan pe ab sakht roti ka masla khatam ho gaya. Bachay pehle roti chorr dete the, ab shauq se poori plate khatam karte hain. Sab se bari tasalli mere diabetic sasur ji ke liye hai—khane ke baad pait bhari nahi hota aur sugar bilkul munasib rehti hai.",
+    verified: true,
+    helpfulCount: 56,
+  },
+  {
     id: "rev-1",
     name: "Tariq Mahmood",
     city: "Lahore, Punjab",
@@ -58,27 +72,23 @@ const INITIAL_STORIES: CustomerStory[] = [
     category: "flours",
     rating: 5,
     date: "Verified Purchase &bull; 4 days ago",
-    title: "Lost 3.8 kgs in 3 weeks without feeling hungry",
+    title: "Roti naram banti hai aur wazan bhi control mein hai",
     review:
-      "I was skeptical about diet flours because they usually taste dry and hard. But Fat2Fuel rotis are genuinely soft, flavorful, and keep me completely full from lunch all the way to 7 PM. My digestion has improved dramatically and my waistline is down 1.5 inches.",
-    image: "/images/products/prod-3.jpg",
-    photos: ["/images/products/prod-3.jpg", "/images/products/prod-1.jpg"],
+      "Salam Usman bhai! Fat2Fuel multigrain use karte hue teesra hafta hai. MashaAllah wazan kafi control mein aya hai aur subah se shaam tak thakan mehsoos nahi hoti. Ghar pe roti naram banti hai aur taste bhi bohat acha hai.",
     verified: true,
     helpfulCount: 38,
   },
   {
     id: "rev-2",
-    name: "Dr. Farzana Akhtar",
-    city: "Islamabad, Capital",
+    name: "Farzana Akhtar",
+    city: "Islamabad",
     product: "FENUGREEK Plus Diabetic Flour",
     category: "flours",
     rating: 5,
     date: "Verified Purchase &bull; 1 week ago",
-    title: "Eliminated post-meal glucose spikes completely",
+    title: "Sugar ke mareezon ke liye bohat umdah cheez",
     review:
-      "As a physician and diabetic patient, I monitor my blood sugar meticulously with a continuous glucose monitor. Regular whole wheat atta caused spikes up to 180 mg/dL. With FENUGREEK Plus, my 2-hour reading stays smoothly under 135 mg/dL. Absolutely remarkable formulation.",
-    image: "/images/products/prod-4.png",
-    photos: ["/images/products/prod-4.png"],
+      "Sugar ke mareezon ke liye bohat umdah atta hai. Khane ke baad sugar spike nahi hoti aur roti ka zaiqa 90% desi chakki jaisa hai bina kisi kadwahat ke. Bohat shukriya.",
     verified: true,
     helpfulCount: 52,
   },
@@ -90,11 +100,9 @@ const INITIAL_STORIES: CustomerStory[] = [
     category: "teas",
     rating: 5,
     date: "Verified Purchase &bull; 2 weeks ago",
-    title: "Amazing tart ruby infusion — bloat is gone!",
+    title: "Fresh zaiqa aur pait ka bhari-pan door",
     review:
-      "The color of this tea is stunning! I brew a big pitcher in the morning with whole dried hibiscus calyces, chill it in the fridge, and drink it with a drizzle of honey. It completely cured my evening water retention. Feels like a high-end luxury spa drink.",
-    image: "/images/products/prod-9.jpg",
-    photos: ["/images/products/prod-9.jpg"],
+      "Rosella tea bohat zabardast hai, thandi karke peene se fresh feeling aati hai aur pait ka bhari pan bhi kam ho gaya. Packing aur safai bohat achi thi.",
     verified: true,
     helpfulCount: 29,
   },
@@ -106,9 +114,9 @@ const INITIAL_STORIES: CustomerStory[] = [
     category: "flours",
     rating: 5,
     date: "Verified Purchase &bull; 3 weeks ago",
-    title: "Picky toddler now asks for second rotis!",
+    title: "Bacchon ke liye narm aur zaiqedar",
     review:
-      "My 4-year-old son used to avoid eating rotis because commercial flour was too chewy and gave him stomach bloating. Giggly Grains makes ultra-tender rotis that practically melt. He eats with chicken curry happily. Great peace of mind for parents.",
+      "Mera beta pehle roti se bhagta tha. Giggly Grains se roti itni soft banti hai ke ab shauq se khata hai. JazakAllah Usman bhai.",
     verified: true,
     helpfulCount: 19,
   },
@@ -120,11 +128,9 @@ const INITIAL_STORIES: CustomerStory[] = [
     category: "spices",
     rating: 5,
     date: "Verified Purchase &bull; 1 month ago",
-    title: "Earthy fragrance and deep golden color like real haldi",
+    title: "Asli haldi ki khushboo aur zaiqa",
     review:
-      "Commercial turmeric in grocery stores is full of yellow dye and starch fillers. You can tell Usman's Lakadong turmeric is 100% pure from the moment you open the glass jar. I take half a teaspoon in warm milk for joint pain and my knees feel 10 years younger.",
-    image: "/images/spices-product.jpg",
-    photos: ["/images/spices-product.jpg"],
+      "Haldi aur garam masalay mein koi milawat nahi lagti, khushboo se hi pata chal jata hai. Raat ko doodh mein haldi dal ke peene se kafi aaram mila hai. Allah barkat de aapke rizq mein.",
     verified: true,
     helpfulCount: 44,
   },
@@ -136,9 +142,9 @@ const INITIAL_STORIES: CustomerStory[] = [
     category: "teas",
     rating: 5,
     date: "Verified Purchase &bull; 1 month ago",
-    title: "Natural blood pressure support backed by science",
+    title: "Tez delivery aur qudrati taste",
     review:
-      "I drink two cups of Olive Leaf tea daily alongside my morning walks. It has a light herbal note, zero bitterness, and no caffeine jitters. My physician noticed a 10-point drop in my systolic blood pressure over 6 weeks. A true gift of nature.",
+      "Direct WhatsApp pe order kiya tha, agle din Multan mein fresh pack deliver ho gaya. Qehway ka zaiqa qudrati hai aur service bohat tez hai.",
     verified: true,
     helpfulCount: 31,
   },
@@ -355,7 +361,7 @@ export function ReviewsPageView() {
                     <div className="text-right">
                       <div className="text-2xl font-bold text-emerald-800">96%</div>
                       <div className="text-xs text-stone-600 font-medium">Would Recommend to Family</div>
-                      <div className="mt-1 text-[11px] text-stone-500">100% Real Buyers</div>
+                      <div className="mt-1 text-[11px] text-stone-500">Verified Real Buyers</div>
                     </div>
                   </div>
 

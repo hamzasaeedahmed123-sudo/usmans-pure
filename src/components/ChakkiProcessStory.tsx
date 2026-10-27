@@ -44,7 +44,7 @@ export function ChakkiProcessStory() {
                   desc: "Slow stone rotation ensures heat never denatures vital wheat proteins or burns living enzymes.",
                 },
                 {
-                  title: "100% Whole Grain (Germ & Bran Intact)",
+                  title: "90% Whole Grain (Germ & Bran Intact)",
                   desc: "Natural grain oils, vitamin E, and essential dietary fiber remain completely intact in every roti.",
                 },
                 {

@@ -294,7 +294,7 @@ export function CartDrawer() {
             {/* Trust note */}
             <div className="pt-1 flex items-center justify-center gap-2 text-[10px] text-[#6B5D52]">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Cash on Delivery Across Pakistan • 100% Purity Certified</span>
+              <span>Cash on Delivery Across Pakistan • 90% Purity Certified</span>
             </div>
           </div>
         )}

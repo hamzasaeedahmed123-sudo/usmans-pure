@@ -35,7 +35,7 @@ export const NAVBAR_THEMES: Record<
     pillBg: "bg-[#F5EFE6]/70 border-[#E5DACB]/80 text-[#3D2817]",
     badgeBg: "bg-[#EBDDCB]/70 border-[#DCC7AD]/80 text-[#3D2817]",
     cartBtn: "bg-[#F5EFE6]/70 hover:bg-[#F5EFE6] border-[#E5DACB]/80 text-[#3D2817]",
-    defaultTag: "100% Stone-Ground",
+    defaultTag: "90% Stone-Ground",
   },
   herbals: {
     name: "Herbal Teas",

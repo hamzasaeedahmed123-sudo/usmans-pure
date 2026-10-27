@@ -129,7 +129,7 @@ export function CustomerReviews() {
               Loved by 50,000+ <em className="italic font-normal text-[#8B3A22]">Homes</em>
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
-              Real experiences from families across Pakistan who upgraded to 100% pure stone-ground chakki flour.
+              Real experiences from families across Pakistan who upgraded to 90% pure stone-ground chakki flour.
             </p>
           </div>
 
