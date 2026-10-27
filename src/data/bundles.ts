@@ -69,7 +69,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         name: "Pure Organic Rosella (Hibiscus) Herbal Tea",
         size: "50g UV-Shielded Aroma Pouch",
         role: "Metabolism Aur Taazgi",
-        desc: "Whole wild-harvested shade-dried ruby calyces rich in organic anthocyanins, hibiscus acid, and vitamin C. 90% caffeine-free.",
+        desc: "Whole wild-harvested shade-dried ruby calyces rich in organic anthocyanins, hibiscus acid, and vitamin C. Naturally caffeine-free.",
         image: "/images/products/prod-9.jpg",
       },
       {
@@ -113,7 +113,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
       },
       {
         id: "purity",
-        title: "90% Laboratory Tested & Verified Purity Guarantee",
+        title: "Laboratory Tested & Verified Purity Guarantee",
         content:
           "Certified zero heavy metals (Lead 0.0 ppm, Arsenic 0.0 ppm). Zero benzoyl peroxide, zero potassium bromate, zero calcium propionate preservatives. Freshly stone-milled in traditional chakki upon order confirmation.",
       },
@@ -130,8 +130,8 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     slug: "diabetic-care-heart-health-pack",
     title: "Diabetic Family Flour Kit",
     subtitle: "FENUGREEK Plus Low-GI Chakki Flour + Organic Olive Leaf Tea",
-    tagline: "Clinical botanical synergy to maintain healthy HbA1c and clear arterial vitality.",
-    badge: "Doctor Recommended • Save ₨650",
+    tagline: "Wholesome whole-grain synergy rich in dietary fiber and natural antioxidants.",
+    badge: "Dietary Care • Save ₨650",
     price: 1850,
     originalPrice: 2500,
     savings: 650,
@@ -139,7 +139,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#E9ECDF]",
     includedTags: ["5kg FENUGREEK Plus Atta", "50g Olive Leaf Tea", "Glycemic Food Tracker"],
     description:
-      "Formulated specifically for individuals managing pre-diabetes, Type-2 diabetes, and cardiovascular wellness. Cold-ground whole wheat blended with sprouted fenugreek, roasted barley, and cold-pressed flaxseed, paired with Mediterranean olive leaf tea loaded with heart-protective oleuropein.",
+      "Formulated for households seeking high-fiber, slow-digesting whole grain staples. Cold-ground whole wheat blended with sprouted fenugreek, roasted barley, and flaxseed, paired with herbal olive leaf tea rich in natural botanical polyphenols.",
     whatsInTheBox: [
       {
         name: "FENUGREEK Plus Diabetic-Care Flour",
@@ -198,7 +198,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "purity",
         title: "Purity & Zero-Chemical Certification",
         content:
-          "Lab-tested 90% free of synthetic antidiabetic adulterants, heavy metals, or industrial fillers. Natural whole grains sourced directly from registered pesticide-monitored Punjab farms.",
+          "Lab-tested free of synthetic antidiabetic adulterants, heavy metals, or industrial fillers. Natural whole grains sourced directly from registered pesticide-monitored Punjab farms.",
       },
       {
         id: "brewing",
@@ -222,7 +222,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F3E3DA]",
     includedTags: ["5kg Giggly Grains Atta", "5kg Basic Chakki Atta", "50g Chamomile Tea"],
     description:
-      "Ghar ke har fard ke liye mukammal mahana pack. Bacchon ki sehat aur taaqat ke liye makhsoos multigrain atta, ghar ke dastarkhwan ke liye 90% pathar ki chakki ka khalis atta, aur pur-sukoon neend ke liye qudrati chamomile kehwa.",
+      "Ghar ke har fard ke liye mukammal mahana pack. Bacchon ki sehat aur taaqat ke liye makhsoos multigrain atta, ghar ke dastarkhwan ke liye asli pathar ki chakki ka khalis atta, aur pur-sukoon neend ke liye qudrati chamomile kehwa.",
     whatsInTheBox: [
       {
         name: "Giggly Grains Growing-Kids Multigrain Flour",
@@ -235,7 +235,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         name: "Traditional Basic Stone-Ground Chakki Atta",
         size: "5kg Daily Household Pack",
         role: "Everyday Wholesome Roti",
-        desc: "90% unbleached whole wheat containing the full germ and bran. Yields exceptionally sweet, aromatic rotis that remain soft all day.",
+        desc: "Unbleached whole wheat containing the full germ and bran. Yields exceptionally sweet, aromatic rotis that remain soft all day.",
         image: "/atta-bag.png",
       },
       {
@@ -261,7 +261,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
           time: "Lunch & Dinner",
           title: "Family Stone-Ground Chakki Rotis",
           instruction:
-            "Serve hot rotis with home-cooked lentils or meat curries. 90% whole bran ensures comfortable, easy digestion for elder family members.",
+            "Serve hot rotis with home-cooked lentils or meat curries. Whole grain bran ensures comfortable, easy digestion for elder family members.",
         },
         {
           time: "Night (30 Minutes Before Bed)",
@@ -276,13 +276,13 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "nutrition",
         title: "Family Mineral & Vitamin Profile",
         content:
-          "High dietary calcium (120mg/100g) for bone density • Bioavailable iron (4.2mg/100g) for hemoglobin • Rich in natural thiamine (B1) and magnesium • 90% caffeine-free chamomile containing zero sedatives.",
+          "High dietary calcium (120mg/100g) for bone density • Bioavailable iron (4.2mg/100g) for hemoglobin • Rich in natural thiamine (B1) and magnesium • Naturally caffeine-free chamomile containing zero sedatives.",
       },
       {
         id: "purity",
         title: "Zero-Maida & Zero-Preservative Assurance",
         content:
-          "Milled on traditional low-temperature chakkis under 40°C. Never exposed to steel roller friction or chlorine dioxide bleaching. 90% wholesome food as nature created.",
+          "Milled on traditional low-temperature chakkis under 40°C. Never exposed to steel roller friction or chlorine dioxide bleaching. Wholesome food as nature created.",
       },
       {
         id: "brewing",
@@ -306,7 +306,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     tint: "bg-[#F7EBE3]",
     includedTags: ["200g Kashmiri Chili", "200g Turmeric 7% Curcumin", "150g Garam Masala", "800g Pink Salt"],
     description:
-      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with 90% pure cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
+      "Commercial market spices are scorched in high-speed pulverizers and routinely contaminated with artificial dyes, sawdust, and lead chromate. This royal kitchen box replaces your daily essentials with pure cold-pounded spices that retain their full volatile essential oils, deep fragrance, and vibrant natural color.",
     whatsInTheBox: [
       {
         name: "Hand-Pounded Kashmiri Red Chili Jar",
@@ -339,7 +339,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     synergy: {
       headline: "How It Works Together: The Artisan Culinary Difference",
       description:
-        "Cold-pounding retains fragile aromatic terpenes that evaporate in industrial mills. Because these spices are 90% pure without fillers or starch, you need only half the quantity compared to commercial brands to achieve richer flavor, deeper color, and real anti-inflammatory health benefits.",
+        "Cold-pounding retains fragile aromatic terpenes that evaporate in industrial mills. Because these spices are pure without fillers or starch, you need only half the quantity compared to commercial brands to achieve richer flavor, deeper color, and authentic culinary aroma.",
       routineSteps: [
         {
           time: "Tempering (Tarka & Curries)",
@@ -366,7 +366,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "nutrition",
         title: "Curcumin Potency & Volatile Oil Analysis",
         content:
-          "Lakadong Turmeric: 7.2% active Curcumin (vs 1.8% in market brands) • Kashmiri Chili: 90% natural capsaicin with zero artificial color additive (Sudan dye negative) • Himalayan Salt: 98% pure NaCl with natural trace mineral matrix.",
+          "Lakadong Turmeric: 7.2% active Curcumin (vs 1.8% in market brands) • Kashmiri Chili: High natural capsanthin with zero artificial color additive (Sudan dye negative) • Himalayan Salt: 98% pure NaCl with natural trace mineral matrix.",
       },
       {
         id: "purity",

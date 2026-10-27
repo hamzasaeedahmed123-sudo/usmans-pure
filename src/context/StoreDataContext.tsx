@@ -97,7 +97,7 @@ export interface CMSContent {
 }
 
 export const DEFAULT_CMS: CMSContent = {
-  announcementBarText: "90% Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Lahore & Rawalpindi/Islamabad Mein Taaza Delivery",
+  announcementBarText: "Asli Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Nationwide Cash on Delivery Across Pakistan",
   announcementSubText: "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery",
   announcementBg: "#2A1F17",
   heroSlides: {
@@ -105,7 +105,7 @@ export const DEFAULT_CMS: CMSContent = {
       title: "MULTIGRAIN",
       subtitle: "FLOUR",
       fullTitle: "Chakki Multigrain Atta",
-      benefit: "Maa ke haath ki narm phulka roti — 90% pathar ki chakki ka qudrati fiber, zero maida.",
+      benefit: "Maa ke haath ki narm phulka roti — pathar ki chakki ka qudrati fiber, zero maida.",
       price: "Rs 2,450",
       weight: "10kg",
     },
@@ -113,7 +113,7 @@ export const DEFAULT_CMS: CMSContent = {
       title: "HERBAL",
       subtitle: "TEAS",
       fullTitle: "Desi Herbal Qehwa",
-      benefit: "Buzurgo ke blood pressure aur sukoon ke liye asli zaitoon patti aur chamomile ka qehwa.",
+      benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli zaitoon patti aur chamomile ka qehwa.",
       price: "Rs 1,250",
       weight: "250g",
     },
@@ -136,7 +136,7 @@ export const DEFAULT_CMS: CMSContent = {
     enabled: false,
     badgeTitle: "Grand Opening Sale",
     discountTag: "Flat 15% OFF on Multigrain Flour",
-    subtext: "Fresh stone-milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout.",
+    subtext: "Fresh stone-milled chakki flour packed with natural wheat germ and fiber. Use code PURE15 at checkout.",
     buttonText: "Shop Flash Sale",
     link: "/products",
   },

@@ -101,17 +101,17 @@ export function AboutPageView() {
     {
       title: "Stone-Ground Multigrain Flour",
       highlight: "Cold-Milled Under 40°C",
-      desc: "Slow stone-ground chakki flour crafted from ancient whole grains, roasted barley, oats, and chia. Retains 90% of the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
+      desc: "Slow stone-ground chakki flour crafted from ancient whole grains, roasted barley, oats, and chia. Retains the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
       watermark: "wheat" as const,
       link: "/flour",
       tag: "Flour Collection",
       image: "/atta-bag.png",
-      purityBadge: "90% Stone-Ground",
+      purityBadge: "100% Stone-Ground",
     },
     {
       title: "Pure Herbal Teas (Rosella & Olive Leaf)",
       highlight: "Whole Leaf & Blossom Botanicals",
-      desc: "Shade-dried wild hibiscus (rosella) calyces, young Mediterranean olive leaves, and calming chamomile flowers. 90% caffeine-free, loaded with natural polyphenols, vitamin C, and cardiovascular antioxidants.",
+      desc: "Shade-dried wild hibiscus (rosella) calyces, young Mediterranean olive leaves, and calming chamomile flowers. Naturally caffeine-free, loaded with natural polyphenols, vitamin C, and wholesome antioxidants.",
       watermark: "herbal" as const,
       link: "/herbals",
       tag: "Herbal Infusions",
@@ -179,7 +179,7 @@ export function AboutPageView() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-stone-600">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> 90% Asli Pathar Ki Chakki
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Asli Pathar Ki Chakki
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Khalis Aur Saaf Anaj
@@ -327,7 +327,7 @@ export function AboutPageView() {
                     <div className="text-stone-400 mt-1">Cold Stone Chakki Temperature</div>
                   </div>
                   <div>
-                    <div className="text-amber-400 font-bold text-base">90% Pure</div>
+                    <div className="text-amber-400 font-bold text-base">100% Whole Grain</div>
                     <div className="text-stone-400 mt-1">Whole Germ &amp; Bran Retained</div>
                   </div>
                   <div>

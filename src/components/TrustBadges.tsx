@@ -18,7 +18,7 @@ export function TrustBadges({ className = "", wrapperClassName = "" }: TrustBadg
             <Wheat className="w-5 h-5 text-[#8C6D46]" strokeWidth={1.75} />
           </div>
           <h4 className="text-xs sm:text-sm font-bold text-stone-900 tracking-tight text-center leading-tight">
-            90% Khalis Chakki Atta
+            Asli Pathar Ki Chakki Atta
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-600 font-medium text-center mt-0.5 leading-tight">
             Freshly Stone-Ground Daily
@@ -34,7 +34,7 @@ export function TrustBadges({ className = "", wrapperClassName = "" }: TrustBadg
             Zero Maida &amp; 0% Bleach
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-600 font-medium text-center mt-0.5 leading-tight">
-            90% Whole Grains Bran Intact
+            100% Whole Grains Bran Intact
           </p>
         </div>
 

@@ -9,6 +9,7 @@ import { TickerMarquee } from "@/components/TickerMarquee";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 import { getBundleBySlug, LUXURY_BUNDLES, LuxuryBundle } from "@/data/bundles";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
+import { useCart } from "@/context/CartContext";
 import {
   ChevronRight,
   Check,
@@ -28,6 +29,7 @@ interface BundleDetailViewProps {
 }
 
 export function BundleDetailView({ slug }: BundleDetailViewProps) {
+  const { addItem, openCart } = useCart();
   const bundle = getBundleBySlug(slug) || LUXURY_BUNDLES[0];
   const [isAdded, setIsAdded] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string>("nutrition");
@@ -39,11 +41,17 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
 
   const handleAddToCart = () => {
     setIsAdded(true);
-    const cartEl = document.getElementById("cart-badge-count");
-    if (cartEl) {
-      const current = parseInt(cartEl.innerText || "0", 10) + quantity;
-      cartEl.innerText = current.toString();
-    }
+    addItem(
+      {
+        id: bundle.id,
+        name: bundle.title,
+        pack: "Curated Bundle",
+        price: bundle.price,
+        image: bundle.image,
+      },
+      quantity
+    );
+    openCart();
     setTimeout(() => {
       setIsAdded(false);
     }, 2000);
@@ -54,7 +62,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello Usman's Pure Products, I would like to order the "${bundle.title}" (₨${bundle.price.toLocaleString()} bundle special) on Cash on Delivery with free shipping. Please confirm delivery details.`
+    `Hello Usman's Pure Products, I would like to order the "${bundle.title}" (₨${bundle.price.toLocaleString()} bundle special) on Cash on Delivery. Please confirm delivery details.`
   );
 
   return (
@@ -120,7 +128,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                       Save ₨{bundle.savings}
                     </span>
                     <span className="px-2.5 py-0.5 rounded-[2px] bg-[#FAF7F2]/90 backdrop-blur-xs text-[#8B3A22] text-[10px] font-medium tracking-widest uppercase">
-                      90% Organic &bull; Zero Additives
+                      100% Pure &bull; Zero Additives
                     </span>
                   </div>
 

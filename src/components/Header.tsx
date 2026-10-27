@@ -86,7 +86,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
       pill: "bg-[#F5EFE6]/70 border-[#E5DACB]/80 text-[#3D2817]",
       badge: "bg-[#EBDDCB]/70 border-[#DCC7AD]/80 text-[#3D2817]",
       cartBtn: "bg-[#F5EFE6]/70 hover:bg-[#F5EFE6] border-[#E5DACB]/80 text-[#3D2817]",
-      tag: "90% Stone-Ground",
+      tag: "Stone-Ground",
     },
     green: {
       bar: "bg-[#0E381C] text-white",
@@ -158,14 +158,14 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 Home
               </Link>
 
-              {/* 2. Doctor's Choice with Verified Badge */}
+              {/* 2. Dietary Care Flours */}
               <Link
                 href="/doctors-choice"
                 className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
               >
-                <span>Doctor&apos;s Choice</span>
+                <span>Dietary Care</span>
                 <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-                  Verified
+                  Whole Grain
                 </span>
               </Link>
 
@@ -354,16 +354,16 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                   <span>Home</span>
                 </Link>
 
-                {/* 2. Doctor's Choice */}
+                {/* 2. Dietary Care Flours */}
                 <Link
                   href="/doctors-choice"
                   onClick={() => setMobileMenuOpen(false)}
                   className="flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold hover:bg-stone-100 transition text-stone-900 min-h-[48px]"
                 >
                   <div className="flex items-center">
-                    <span>Doctor&apos;s Choice</span>
+                    <span>Dietary Care Flours</span>
                     <span className="text-[10px] bg-emerald-700 text-white px-1.5 py-0.5 rounded-full font-bold ml-1.5 leading-none">
-                      Verified
+                      Whole Grain
                     </span>
                   </div>
                   <ChevronRight className="w-4 h-4 opacity-40" />

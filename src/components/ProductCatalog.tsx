@@ -13,6 +13,7 @@ import {
 
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 import { useAmbientTheme, AmbientCategoryTheme } from "@/components/theme/AmbientThemeWrapper";
+import { useCart } from "@/context/CartContext";
 
 interface FeaturedPackOption {
   size: string;
@@ -39,7 +40,7 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     title: "Fat2Fuel Multigrain Flour",
     category: "flours",
     categoryBadge: "Flour",
-    highlight: "90% Stone-Ground Weight Loss Blend",
+    highlight: "Stone-Ground Weight Management Blend",
     image: "/images/products/prod-3.jpg",
     detailUrl: "/product/prod-3",
     checkoutUrl: "/checkout?product=prod-3",
@@ -122,6 +123,7 @@ interface ProductCatalogProps {
 }
 
 export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: externalSetFilter }: ProductCatalogProps = {}) {
+  const { addItem, openCart } = useCart();
   const [internalFilter, setInternalFilter] = useState<"all" | "flours" | "spices" | "teas">("all");
   const currentFilter = externalFilter ?? internalFilter;
   const setFilter = externalSetFilter ?? setInternalFilter;
@@ -150,21 +152,17 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
 
-    // Dispatch global add to cart event
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            id: product.id,
-            name: product.title,
-            pack: option.size,
-            price: option.price,
-            image: product.image,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: option.size,
+        price: option.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
 
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));

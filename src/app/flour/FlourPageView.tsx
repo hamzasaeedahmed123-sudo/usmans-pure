@@ -8,6 +8,7 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { ChakkiProcessStory } from "@/components/ChakkiProcessStory";
 import { PRODUCTS, Product } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   Check,
@@ -19,6 +20,7 @@ import {
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function FlourPageView() {
+  const { addItem, openCart } = useCart();
   const flourProducts = PRODUCTS.filter((p) => p.category === "flours");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
@@ -26,24 +28,17 @@ export function FlourPageView() {
   const handleAddToCart = (product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            product: {
-              id: product.id,
-              title: product.title,
-              image: product.image,
-              price: product.price,
-              category: product.category,
-            },
-            packSize: product.weight,
-            price: product.price,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: `Standard Pack (${product.weight})`,
+        price: product.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
@@ -82,7 +77,7 @@ export function FlourPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
-                90% Stone-Ground Whole Grain
+                Traditional Stone-Ground Whole Grain
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Stone-Ground Chakki Flours
@@ -94,8 +89,8 @@ export function FlourPageView() {
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
                   "Cold stone-milling at <40°C",
-                  "Formulated for Weight Loss & Diabetic Glucose Control",
-                  "Preserves 90% Natural Dietary Fiber",
+                  "Formulated for Weight Care & Diabetic Nutrition",
+                  "Preserves 100% Natural Dietary Fiber",
                   "Pliable, soft rotis that stay fresh all day",
                 ].map((item, idx) => (
                   <span

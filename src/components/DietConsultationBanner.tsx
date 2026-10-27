@@ -27,7 +27,7 @@ export function DietConsultationBanner() {
             {/* Checklist */}
             <div className="mt-4 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {[
-                "90% whole wheat with zero maida or preservatives",
+                "100% whole wheat with zero maida or preservatives",
                 "Custom multigrain blends for diet and sugar management",
                 "Freshly ground on your order for maximum taste and fiber",
                 "Fast home delivery with Cash on Delivery",

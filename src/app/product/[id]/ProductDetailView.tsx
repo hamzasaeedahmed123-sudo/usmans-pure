@@ -26,6 +26,7 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import { useStoreData } from "@/context/StoreDataContext";
+import { useCart } from "@/context/CartContext";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 interface ProductDetailViewProps {
@@ -33,6 +34,7 @@ interface ProductDetailViewProps {
 }
 
 export function ProductDetailView({ id }: ProductDetailViewProps) {
+  const { addItem, openCart } = useCart();
   const { products: storeProducts, reviews, addReview } = useStoreData();
   const product = storeProducts.find((p) => p.id === id) || PRODUCTS.find((p) => p.id === id);
 
@@ -101,11 +103,18 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
   const handleAddToCart = () => {
     setIsAdded(true);
-    const cartEl = document.getElementById("cart-badge-count");
-    if (cartEl) {
-      const current = parseInt(cartEl.innerText || "0", 10) + quantity;
-      cartEl.innerText = current.toString();
-    }
+    const packLabel = selectedPack === "large" ? "Family Double Pack" : `Standard Pack (${product.weight})`;
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: packLabel,
+        price: unitPrice,
+        image: product.image,
+      },
+      quantity
+    );
+    openCart();
     setTimeout(() => setIsAdded(false), 2000);
   };
 
@@ -162,14 +171,14 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     className="object-contain p-4 hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-sm text-xs font-semibold uppercase tracking-[0.16em] bg-[#FAF7F2]/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs">
-                    Sale &bull; 90% Pure
+                    Sale &bull; 100% Pure
                   </span>
                 </div>
 
                 <div className="mt-4 flex items-center justify-center gap-6 text-xs text-stone-600 font-medium">
                   <span className="flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                    Doctor Approved
+                    Zero Maida &amp; Fillers
                   </span>
                   <span>&bull;</span>
                   <span className="flex items-center gap-1.5">
@@ -420,7 +429,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents insulin spikes.</li>
                     <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you full for 5+ hours and promotes digestion.</li>
-                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> 90% natural wheat germ and enzymes intact.</li>
+                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> Natural wheat germ, bran, and enzymes intact.</li>
                     {product.benefits?.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}
@@ -462,7 +471,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and spices contain zero preservatives or chemical anti-caking agents, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
                   </p>
                   <p>
-                    <strong>90% Purity &amp; Money-Back Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a no-hassle replacement or full refund.
+                    <strong>Freshness &amp; Satisfaction Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a replacement or full refund.
                   </p>
                 </div>
               )}

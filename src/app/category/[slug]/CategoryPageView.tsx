@@ -9,6 +9,7 @@ import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { TrustBadges } from "@/components/TrustBadges";
 import { PRODUCTS, Product } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   Check,
@@ -25,6 +26,7 @@ interface CategoryViewProps {
 }
 
 export function CategoryPageView({ slug }: CategoryViewProps) {
+  const { addItem, openCart } = useCart();
   const categoryMeta: {
     [key: string]: {
       title: string;
@@ -42,8 +44,8 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
         "Slow-milled in traditional chakki stones under 40°C to keep natural wheat germ, bran, and vitamin E intact. Zero maida, zero bleaching agents, and zero preservatives.",
       highlights: [
         "Cold stone-milling at <40°C",
-        "Formulated for Weight Loss & Diabetic Sugar Management",
-        "Preserves 90% Natural Dietary Fiber",
+        "Formulated for Weight Care & Diabetic Nutrition",
+        "Preserves 100% Natural Dietary Fiber",
         "Pliable, aromatic rotis that stay soft for hours",
       ],
     },
@@ -54,7 +56,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       description:
         "Saaf suthri qudrati bootiyan aur phool jinhein bina kisi chemical ya artificial rang ke mehfooz kiya gaya hai. Zehni sukoon, behtar hazmay aur pur-sukoon neend ke liye behtareen kehwa.",
       highlights: [
-        "Naturally 90% Caffeine-Free",
+        "Naturally 100% Caffeine-Free",
         "Whole Dried Flower & Leaf Calyces",
         "Zero Artificial Flavors or Added Colors",
         "Packed in Freshness-Sealed Pouches",
@@ -65,12 +67,12 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       categoryKey: "spices",
       badge: "Traditional Spices",
       description:
-        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains 90% natural aroma, flavor, and color without artificial dyes.",
+        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains full natural aroma, flavor, and color without artificial dyes.",
       highlights: [
         "Cold Stone-Pounded (<35°C processing)",
         "Zero Dyes, Lead Chromate or Sawdust Fillers",
         "Aroma-Locked Sealed Containers",
-        "Direct Certified Farm Sourcing",
+        "Direct Farm Sourcing",
       ],
     },
   };
@@ -87,24 +89,17 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
   const handleAddToCart = (product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            product: {
-              id: product.id,
-              title: product.title,
-              image: product.image,
-              price: product.price,
-              category: product.category,
-            },
-            packSize: product.weight,
-            price: product.price,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: `Standard Pack (${product.weight})`,
+        price: product.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
@@ -271,13 +266,6 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
                 </div>
               );
             })}
-          </div>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="bg-stone-50/60 border-t border-stone-200 py-6 md:py-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <TrustBadges />
           </div>
         </div>
       </main>

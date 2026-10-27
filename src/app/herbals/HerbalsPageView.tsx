@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { PRODUCTS, Product } from "@/data/products";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   Check,
@@ -21,6 +22,7 @@ import {
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 export function HerbalsPageView() {
+  const { addItem, openCart } = useCart();
   const teaProducts = PRODUCTS.filter((p) => p.category === "teas");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
@@ -28,24 +30,17 @@ export function HerbalsPageView() {
   const handleAddToCart = (product: Product, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [product.id]: true }));
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            product: {
-              id: product.id,
-              title: product.title,
-              image: product.image,
-              price: product.price,
-              category: product.category,
-            },
-            packSize: product.weight,
-            price: product.price,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: product.id,
+        name: product.title,
+        pack: `Standard Pack (${product.weight})`,
+        price: product.price,
+        image: product.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [product.id]: false }));
     }, 2000);
@@ -87,7 +82,7 @@ export function HerbalsPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-emerald-300 mb-2">
-                90% Caffeine-Free &bull; Whole Dried Botanicals
+                Naturally Caffeine-Free &bull; Whole Dried Botanicals
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Pure Organic Herbal Teas &amp; Infusions
@@ -98,7 +93,7 @@ export function HerbalsPageView() {
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
-                  "90% naturally caffeine-free",
+                  "Naturally 100% caffeine-free",
                   "Whole dried calyces, flowers, and leaves",
                   "Wazan mein kami, pur-sukoon neend aur dil ki sehat ke liye mufeed",
                   "Sealed in UV-shielded aroma-lock standing pouches",
@@ -145,7 +140,7 @@ export function HerbalsPageView() {
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#D0E2D6]">
               <div>
                 <h2 className="text-xl font-bold text-stone-900">Pure Herbal Infusions</h2>
-                <p className="text-xs text-stone-500">Showing {teaProducts.length} certified organic teas</p>
+                <p className="text-xs text-stone-500">Showing {teaProducts.length} pure organic teas</p>
               </div>
               <Link
                 href="/products"

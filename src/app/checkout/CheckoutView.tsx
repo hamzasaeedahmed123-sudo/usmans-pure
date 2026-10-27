@@ -440,7 +440,7 @@ export function CheckoutView() {
                   <div className="flex justify-between text-stone-600">
                     <span>Nationwide Delivery</span>
                     <span className="font-bold text-emerald-700">
-                      {shippingFee === 0 ? "FREE" : "₨199"}
+                      {shippingFee === 0 ? "FREE" : "₨250"}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm font-semibold text-stone-900 pt-2 border-t border-stone-200">
@@ -1211,7 +1211,7 @@ export function CheckoutView() {
                       ) : (
                         <div>
                           <div className="text-stone-700 font-medium">
-                            Add <strong className="text-amber-900 font-semibold">₨{amountToFreeShipping.toLocaleString()}</strong> more to get <strong className="text-emerald-700 font-bold">FREE Delivery</strong> (Standard: ₨199).
+                            Add <strong className="text-amber-900 font-semibold">₨{amountToFreeShipping.toLocaleString()}</strong> more to get <strong className="text-emerald-700 font-bold">FREE Delivery</strong> (Standard: ₨250).
                           </div>
                           <div className="w-full h-1.5 bg-amber-200 rounded-full mt-2 overflow-hidden">
                             <div
@@ -1294,7 +1294,7 @@ export function CheckoutView() {
                           {shippingFee === 0 ? (
                             <span className="text-emerald-700 font-medium uppercase">FREE</span>
                           ) : (
-                            "₨199"
+                            "₨250"
                           )}
                         </span>
                       </div>
@@ -1346,7 +1346,7 @@ export function CheckoutView() {
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                        <span>90% Stone-Ground</span>
+                        <span>Stone-Ground</span>
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <RotateCcw className="w-4 h-4 text-emerald-700" />

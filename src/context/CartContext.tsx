@@ -73,10 +73,34 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const handleOpenEvent = () => setIsOpen(true);
     const handleAddEvent = (e: Event) => {
-      const customEvent = e as CustomEvent<Omit<CartItem, "quantity"> & { quantity?: number }>;
+      const customEvent = e as CustomEvent<any>;
       if (customEvent.detail) {
-        const { quantity = 1, ...itemData } = customEvent.detail;
-        addItem(itemData, quantity);
+        const detail = customEvent.detail;
+        const qty = detail.quantity || 1;
+
+        if (detail.id && (detail.name || detail.title)) {
+          addItem(
+            {
+              id: detail.id,
+              name: detail.name || detail.title,
+              pack: detail.pack || detail.packSize || "Standard",
+              price: Number(detail.price) || 0,
+              image: detail.image || "/logo.png",
+            },
+            qty
+          );
+        } else if (detail.product) {
+          addItem(
+            {
+              id: detail.product.id,
+              name: detail.product.title || detail.product.name,
+              pack: detail.packSize || detail.pack || detail.product.weight || "Standard",
+              price: Number(detail.price || detail.product.price) || 0,
+              image: detail.product.image || detail.image || "/logo.png",
+            },
+            qty
+          );
+        }
         setIsOpen(true);
       }
     };

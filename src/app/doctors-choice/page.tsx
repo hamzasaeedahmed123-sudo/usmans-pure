@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { DoctorsChoicePageView } from "./DoctorsChoicePageView";
 
 export const metadata: Metadata = {
-  title: "Diabetic & Heart-Healthy Therapeutic Flours | Doctor Recommended Nutrition",
+  title: "Diabetic-Care & High-Fiber Whole Grain Flours | Usman's Pure",
   description:
-    "Low-GI flour blends enriched with fenugreek, barley, and cold-milled whole grains. Ideal for blood sugar control and cardiac wellness.",
+    "Stone-ground whole-grain flour blends enriched with roasted fenugreek, barley, and ancient grains for daily dietary wellness and balanced nutrition.",
   alternates: {
     canonical: "/doctors-choice",
   },
   openGraph: {
-    title: "Diabetic & Heart-Healthy Therapeutic Flours | Doctor Recommended Nutrition",
+    title: "Diabetic-Care & High-Fiber Whole Grain Flours | Usman's Pure",
     description:
-      "Low-GI flour blends enriched with fenugreek, barley, and cold-milled whole grains. Ideal for blood sugar control and cardiac wellness.",
+      "Stone-ground whole-grain flour blends enriched with roasted fenugreek, barley, and ancient grains for daily dietary wellness and balanced nutrition.",
     url: "https://usmanspure.com/doctors-choice",
     type: "website",
     images: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         url: "/images/products/prod-4.png",
         width: 1200,
         height: 630,
-        alt: "Doctor Recommended Diabetic & Heart Health Flours",
+        alt: "Diabetic-Care & High-Fiber Whole Grain Flours",
       },
     ],
   },

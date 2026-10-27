@@ -9,6 +9,7 @@ import { TickerMarquee } from "@/components/TickerMarquee";
 import { DietConsultationBanner } from "@/components/DietConsultationBanner";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 import { LUXURY_BUNDLES, LuxuryBundle } from "@/data/bundles";
+import { useCart } from "@/context/CartContext";
 import {
   ChevronRight,
   Check,
@@ -20,30 +21,24 @@ import {
 } from "lucide-react";
 
 export function BundlesPageView() {
+  const { addItem, openCart } = useCart();
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
 
   const handleAddBundle = (bundle: LuxuryBundle, e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     setAddedIds((prev) => ({ ...prev, [bundle.id]: true }));
-    if (typeof window !== "undefined") {
-      window.dispatchEvent(
-        new CustomEvent("usman-add-to-cart", {
-          detail: {
-            product: {
-              id: bundle.id,
-              title: bundle.title,
-              image: bundle.image,
-              price: bundle.price,
-              category: "bundles",
-            },
-            packSize: "Value Kit",
-            price: bundle.price,
-            quantity: 1,
-          },
-        })
-      );
-    }
+    addItem(
+      {
+        id: bundle.id,
+        name: bundle.title,
+        pack: "Curated Bundle",
+        price: bundle.price,
+        image: bundle.image,
+      },
+      1
+    );
+    openCart();
     setTimeout(() => {
       setAddedIds((prev) => ({ ...prev, [bundle.id]: false }));
     }, 2000);
@@ -101,7 +96,7 @@ export function BundlesPageView() {
                 <Truck className="w-3.5 h-3.5 text-[#8B3A22]" /> Free Doorstep COD Available
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-[#EFE7DB] text-[#1E1510] font-medium tracking-wide">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#8B3A22]" /> 90% Lab-Verified Purity
+                <ShieldCheck className="w-3.5 h-3.5 text-[#8B3A22]" /> Lab-Verified Purity
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-[3px] bg-[#EFE7DB] text-[#1E1510] font-medium tracking-wide">
                 <Heart className="w-3.5 h-3.5 text-[#8B3A22]" /> Includes Daily Usage Schedule
