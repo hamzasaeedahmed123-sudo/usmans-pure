@@ -114,20 +114,20 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
           className={`mx-auto transition-all duration-300 backdrop-blur-xl border-b ${themeClasses.glass}`}
         >
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 relative z-50">
-            {/* Left Section (Logo): Clean without redundant badge */}
+            {/* Left Section (Logo): Light glassmorphism container + white glow for maximum legibility */}
             <div className="flex items-center shrink-0">
               <Link
                 href="/"
                 className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
                 aria-label="USMAN'S PURE PRODUCTS"
               >
-                <div className="relative w-44 sm:w-52 md:w-56 h-11 sm:h-12 md:h-13 flex items-center py-0.5">
+                <div className="relative px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl bg-white/85 hover:bg-white/95 backdrop-blur-md border border-white/70 shadow-sm flex items-center transition-all duration-300 group-hover:scale-[1.02]">
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
                     width={220}
                     height={60}
-                    className="w-auto h-10 sm:h-11 md:h-12 object-contain object-left group-hover:scale-[1.02] transition-transform duration-300 drop-shadow-xs"
+                    className="w-auto h-9 sm:h-10 md:h-11 object-contain object-left drop-shadow-[0_0_15px_rgba(255,255,255,0.85)]"
                     priority
                   />
                 </div>
