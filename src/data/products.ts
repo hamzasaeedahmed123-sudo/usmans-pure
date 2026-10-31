@@ -87,6 +87,10 @@ export const PRODUCTS: Product[] = [
     originalPriceFormatted: "₨1,500",
     discountBadge: "Best Seller • Save 23%",
     image: "/images/products/prod-3.jpg",
+    images: [
+      "/images/products/prod-3.jpg",
+      "/images/products/prod-3-stone.jpg",
+    ],
     link: "https://usmanzpure.com/product/flour-weight-loss/",
     rating: 5.0,
     reviewCount: 112,

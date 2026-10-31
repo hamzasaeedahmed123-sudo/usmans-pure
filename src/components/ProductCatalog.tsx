@@ -245,13 +245,14 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
               >
                 <div>
                   {/* Full natural packaging shoot photograph */}
-                  <div className="relative aspect-[4/5] w-full bg-[#EFEAE2] overflow-hidden rounded-xl">
+                  <div className="relative aspect-[4/5] w-full bg-[#EFEAE2] overflow-hidden rounded-xl p-0">
                     <Link href={product.detailUrl} className="absolute inset-0" aria-label={product.title}>
                       <Image
                         src={product.image}
                         alt={product.title}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                        quality={100}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
@@ -369,12 +370,13 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 flex items-center justify-center">
                 <Image
                   src={quickViewProduct.image}
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
+                  quality={100}
                   loading="lazy"
                   className="w-full h-full object-cover"
                 />

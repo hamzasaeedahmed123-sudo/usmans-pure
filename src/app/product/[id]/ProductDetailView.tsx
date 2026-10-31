@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -67,33 +67,35 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
       : [product.image];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollToImage = (index: number) => {
+    const nextIdx = (index + galleryImages.length) % galleryImages.length;
+    setActiveImageIndex(nextIdx);
+    if (carouselRef.current) {
+      const width = carouselRef.current.clientWidth;
+      carouselRef.current.scrollTo({
+        left: nextIdx * width,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const handlePrevImage = () => {
-    setActiveImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+    scrollToImage(activeImageIndex - 1);
   };
 
   const handleNextImage = () => {
-    setActiveImageIndex((prev) => (prev + 1) % galleryImages.length);
+    scrollToImage(activeImageIndex + 1);
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEndX(null);
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return;
-    const distance = touchStartX - touchEndX;
-    if (distance > 40) {
-      handleNextImage();
-    } else if (distance < -40) {
-      handlePrevImage();
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const width = e.currentTarget.clientWidth;
+    if (width > 0) {
+      const idx = Math.round(e.currentTarget.scrollLeft / width);
+      if (idx !== activeImageIndex && idx >= 0 && idx < galleryImages.length) {
+        setActiveImageIndex(idx);
+      }
     }
   };
 
@@ -200,24 +202,33 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Left Photograph Container with Slider & Touch Swipe */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div
-                  className="relative w-full aspect-square rounded-2xl bg-stone-100 overflow-hidden border border-stone-200/80 shadow-xs group select-none touch-pan-y"
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  <Image
-                    key={galleryImages[activeImageIndex]}
-                    src={galleryImages[activeImageIndex]}
-                    alt={`${product.title} - View ${activeImageIndex + 1}`}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 42vw"
-                    priority
-                    className="w-full h-full object-cover transition-all duration-500 ease-out hover:scale-105"
-                  />
+                <div className="relative w-full aspect-square rounded-2xl bg-stone-100 overflow-hidden p-0 border border-stone-200/80 shadow-xs group select-none">
+                  {/* Native snap carousel for mobile touch swipe & desktop navigation */}
+                  <div
+                    ref={carouselRef}
+                    onScroll={handleScroll}
+                    className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full p-0"
+                  >
+                    {galleryImages.map((img, idx) => (
+                      <div
+                        key={img}
+                        className="snap-center min-w-full w-full h-full shrink-0 relative p-0 overflow-hidden"
+                      >
+                        <Image
+                          src={img}
+                          alt={`${product.title} - View ${idx + 1}`}
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 42vw"
+                          quality={100}
+                          priority={idx === 0}
+                          className="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
+                        />
+                      </div>
+                    ))}
+                  </div>
 
                   {/* Product Badge */}
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-white/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs z-10">
+                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-white/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs z-10 pointer-events-none">
                     Sale &bull; 100% Pure
                   </span>
 
@@ -267,9 +278,9 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       <button
                         key={img}
                         type="button"
-                        onClick={() => setActiveImageIndex(idx)}
+                        onClick={() => scrollToImage(idx)}
                         aria-label={`View picture ${idx + 1}`}
-                        className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                        className={`relative w-20 h-20 rounded-xl overflow-hidden p-0 border-2 transition-all cursor-pointer ${
                           activeImageIndex === idx
                             ? "border-[#8B3A22] ring-2 ring-[#8B3A22]/20 shadow-md scale-105"
                             : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
@@ -280,6 +291,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           alt=""
                           fill
                           sizes="80px"
+                          quality={100}
                           className="w-full h-full object-cover"
                         />
                       </button>

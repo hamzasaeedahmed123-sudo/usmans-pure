@@ -302,12 +302,13 @@ export function DoctorsChoicePageView() {
                     className="flex flex-col rounded-xl sm:rounded-2xl bg-white border border-[#1E1510]/10 overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 justify-between"
                   >
                     {/* Top Photograph Container */}
-                    <div className="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden rounded-t-xl flex items-center justify-center">
+                    <div className="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden rounded-t-xl p-0 flex items-center justify-center">
                       <Image
                         src={product.image}
                         alt={product.title}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        quality={100}
                         className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                       />
                       {/* Problem Tag on Image Badge */}
