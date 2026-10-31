@@ -4,15 +4,36 @@ import { HeroSlider } from "@/components/home/HeroSlider";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { CategoryCollections } from "@/components/CategoryCollections";
-import { ProductCatalog } from "@/components/ProductCatalog";
-import { DoctorsChoiceBanner } from "@/components/DoctorsChoiceBanner";
-import { DietConsultationBanner } from "@/components/DietConsultationBanner";
-import { StoreFooter } from "@/components/StoreFooter";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
 
-import { CustomerReviews } from "@/components/CustomerReviews";
-import { MegaBundles } from "@/components/MegaBundles";
-import { NewsletterSection } from "@/components/NewsletterSection";
+const ProductCatalog = dynamic(
+  () => import("@/components/ProductCatalog").then((m) => m.ProductCatalog),
+  { ssr: true }
+);
+const CustomerReviews = dynamic(
+  () => import("@/components/CustomerReviews").then((m) => m.CustomerReviews),
+  { ssr: true }
+);
+const DoctorsChoiceBanner = dynamic(
+  () => import("@/components/DoctorsChoiceBanner").then((m) => m.DoctorsChoiceBanner),
+  { ssr: true }
+);
+const MegaBundles = dynamic(
+  () => import("@/components/MegaBundles").then((m) => m.MegaBundles),
+  { ssr: true }
+);
+const DietConsultationBanner = dynamic(
+  () => import("@/components/DietConsultationBanner").then((m) => m.DietConsultationBanner),
+  { ssr: true }
+);
+const NewsletterSection = dynamic(
+  () => import("@/components/NewsletterSection").then((m) => m.NewsletterSection),
+  { ssr: true }
+);
+const StoreFooter = dynamic(
+  () => import("@/components/StoreFooter").then((m) => m.StoreFooter),
+  { ssr: true }
+);
 
 export const metadata: Metadata = {
   title: "Usman's Pure | Fresh Stone-Ground Chakki Atta Online Pakistan",
