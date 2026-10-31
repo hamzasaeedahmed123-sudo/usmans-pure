@@ -12,6 +12,7 @@ import {
   ShoppingBag,
   Check,
   ChevronRight,
+  ChevronLeft,
   Truck,
   ShieldCheck,
   Star,
@@ -55,6 +56,46 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
   const [revText, setRevText] = useState("");
   const [revSuccess, setRevSuccess] = useState(false);
   const [revError, setRevError] = useState<string | null>(null);
+
+  // Gallery images with fallback to PRODUCTS definition
+  const defaultProduct = PRODUCTS.find((p) => p.id === id);
+  const galleryImages: string[] =
+    product?.images && product.images.length > 0
+      ? product.images
+      : defaultProduct?.images && defaultProduct.images.length > 0
+      ? defaultProduct.images
+      : [product.image];
+
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+
+  const handlePrevImage = () => {
+    setActiveImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  const handleNextImage = () => {
+    setActiveImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    if (distance > 40) {
+      handleNextImage();
+    } else if (distance < -40) {
+      handlePrevImage();
+    }
+  };
 
   // Filter published reviews matching product
   const publishedReviews = reviews.filter((r) => r.status === "Published");
@@ -157,21 +198,94 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
           <div className="bg-white rounded-md shadow-xs border border-stone-200/80 p-6 sm:p-10 lg:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-              {/* Left Photograph Container */}
+              {/* Left Photograph Container with Slider & Touch Swipe */}
               <div className="lg:col-span-5 flex flex-col items-center">
-                <div className="relative w-full aspect-square rounded-md bg-[#FAF7F2] overflow-hidden flex items-center justify-center border border-stone-100">
+                <div
+                  className="relative w-full aspect-square rounded-2xl bg-stone-100 overflow-hidden border border-stone-200/80 shadow-xs group select-none touch-pan-y"
+                  onTouchStart={handleTouchStart}
+                  onTouchMove={handleTouchMove}
+                  onTouchEnd={handleTouchEnd}
+                >
                   <Image
-                    src={product.image}
-                    alt={product.title}
+                    key={galleryImages[activeImageIndex]}
+                    src={galleryImages[activeImageIndex]}
+                    alt={`${product.title} - View ${activeImageIndex + 1}`}
                     fill
                     sizes="(max-width: 1024px) 100vw, 42vw"
                     priority
-                    className="object-contain p-4 hover:scale-105 transition-transform duration-700 ease-out"
+                    className="w-full h-full object-cover transition-all duration-500 ease-out hover:scale-105"
                   />
-                  <span className="absolute top-4 left-4 px-3 py-1 rounded-sm text-xs font-semibold uppercase tracking-[0.16em] bg-[#FAF7F2]/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs">
+
+                  {/* Product Badge */}
+                  <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-white/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs z-10">
                     Sale &bull; 100% Pure
                   </span>
+
+                  {/* Navigation Arrows for Sliding */}
+                  {galleryImages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={handlePrevImage}
+                        aria-label="Previous image"
+                        className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-md flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-110 active:scale-95 border border-stone-200/60"
+                      >
+                        <ChevronLeft className="w-5 h-5 text-stone-800" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleNextImage}
+                        aria-label="Next image"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-md flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-110 active:scale-95 border border-stone-200/60"
+                      >
+                        <ChevronRight className="w-5 h-5 text-stone-800" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Slide Indicators / Dots */}
+                  {galleryImages.length > 1 && (
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5 z-10 pointer-events-none">
+                      {galleryImages.map((_, idx) => (
+                        <span
+                          key={idx}
+                          className={`h-2 rounded-full transition-all duration-300 ${
+                            activeImageIndex === idx
+                              ? "w-6 bg-white shadow-sm"
+                              : "w-2 bg-white/60"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
+
+                {/* Thumbnail Previews for Instant Selection */}
+                {galleryImages.length > 1 && (
+                  <div className="mt-3.5 flex items-center justify-center gap-3 w-full">
+                    {galleryImages.map((img, idx) => (
+                      <button
+                        key={img}
+                        type="button"
+                        onClick={() => setActiveImageIndex(idx)}
+                        aria-label={`View picture ${idx + 1}`}
+                        className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition-all cursor-pointer ${
+                          activeImageIndex === idx
+                            ? "border-[#8B3A22] ring-2 ring-[#8B3A22]/20 shadow-md scale-105"
+                            : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
+                        }`}
+                      >
+                        <Image
+                          src={img}
+                          alt=""
+                          fill
+                          sizes="80px"
+                          className="w-full h-full object-cover"
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
 
                 <div className="mt-4 flex items-center justify-center gap-6 text-xs text-stone-600 font-medium">
                   <span className="flex items-center gap-1.5">

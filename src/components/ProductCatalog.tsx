@@ -245,7 +245,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
               >
                 <div>
                   {/* Full natural packaging shoot photograph */}
-                  <div className="relative aspect-[4/5] w-full bg-[#EFEAE2] overflow-hidden rounded-xs">
+                  <div className="relative aspect-[4/5] w-full bg-[#EFEAE2] overflow-hidden rounded-xl">
                     <Link href={product.detailUrl} className="absolute inset-0" aria-label={product.title}>
                       <Image
                         src={product.image}
@@ -253,7 +253,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                         loading="lazy"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                     </Link>
 
@@ -369,14 +369,14 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="relative aspect-square w-full rounded-sm bg-stone-100 overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden flex items-center justify-center">
                 <Image
                   src={quickViewProduct.image}
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
                   loading="lazy"
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9]/95 text-[#8B3A22] backdrop-blur-xs">
                   Sale

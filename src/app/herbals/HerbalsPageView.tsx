@@ -172,14 +172,14 @@ export function HerbalsPageView() {
                       />
                     </div>
 
-                    <div className="relative w-full aspect-square bg-stone-50 overflow-hidden p-2 sm:p-4 border-b border-stone-100 flex items-center justify-center">
+                    <div className="relative w-full aspect-square bg-stone-100 overflow-hidden border-b border-stone-100 flex items-center justify-center">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">
                         <Image
                           src={product.image}
                           alt={product.title}
                           fill
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          className="object-contain p-2 sm:p-4 group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       </Link>
 
@@ -315,13 +315,13 @@ export function HerbalsPageView() {
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="relative aspect-square w-full rounded-sm bg-stone-50 p-6 flex items-center justify-center">
+              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden flex items-center justify-center">
                 <Image
                   src={quickViewProduct.image}
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
-                  className="object-contain p-4"
+                  className="w-full h-full object-cover"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase bg-[#F6F1E9] text-[#8B3A22]">
                   {quickViewProduct.discountBadge}

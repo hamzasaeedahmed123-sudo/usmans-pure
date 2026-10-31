@@ -9,6 +9,7 @@ export interface Product {
   originalPriceFormatted: string;
   discountBadge: string;
   image: string;
+  images?: string[];
   link: string;
   rating: number;
   reviewCount: number;
@@ -32,6 +33,10 @@ export const PRODUCTS: Product[] = [
     originalPriceFormatted: "₨1,500",
     discountBadge: "Save 20%",
     image: "/images/products/prod-1.jpg",
+    images: [
+      "/images/products/prod-1.jpg",
+      "/images/products/prod-1-field.jpg",
+    ],
     link: "https://usmanzpure.com/product/flour-basic/",
     rating: 4.9,
     reviewCount: 48,
