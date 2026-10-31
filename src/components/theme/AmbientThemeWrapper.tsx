@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type AmbientCategoryTheme = "default" | "flour" | "herbals" | "spices";
+export type AmbientCategoryTheme = "default" | "flour" | "herbals";
 
 export interface ThemePalette {
   bg: string;
@@ -54,18 +54,6 @@ export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
     label: "Pure Botanical Herbal Teas",
     subtext: "Botanical Sage & Mint Mist Tone",
   },
-  spices: {
-    bg: "bg-[#FAF3EF]",
-    bgHex: "#FAF3EF",
-    border: "border-[#ECCDC3]",
-    borderHex: "#ECCDC3",
-    accent: "text-[#9E3E26]",
-    accentHex: "#9E3E26",
-    pillBg: "bg-[#FBE5DF]",
-    pillText: "text-[#7E2914]",
-    label: "Cold-Pounded Pure Spices",
-    subtext: "Warm Saffron Sand & Terracotta Tone",
-  },
 };
 
 interface AmbientThemeContextType {
@@ -100,9 +88,9 @@ export function AmbientThemeWrapper({
   useEffect(() => {
     if (!enableScrollSpy) return;
 
-    // Observe elements with data-ambient-theme or id="flour" | "herbals" | "spices"
+    // Observe elements with data-ambient-theme or id="flour" | "herbals"
     const targets = document.querySelectorAll<HTMLElement>(
-      "[data-ambient-theme], #flour, #herbals, #spices"
+      "[data-ambient-theme], #flour, #herbals"
     );
 
     if (!targets || targets.length === 0) return;
@@ -120,7 +108,6 @@ export function AmbientThemeWrapper({
           if (
             rawAttr === "flour" ||
             rawAttr === "herbals" ||
-            rawAttr === "spices" ||
             rawAttr === "default"
           ) {
             setActiveTheme(rawAttr as AmbientCategoryTheme);

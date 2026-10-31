@@ -80,38 +80,38 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
   },
   {
     id: "prod-7",
-    title: "Olive Leaf Cardiac Herbal Infusion",
-    problemTag: "HERBAL WELLNESS & RELAXATION",
-    easyBenefit: "A traditional herbal brew naturally caffeine-free and rich in olive plant polyphenols.",
+    title: "Lemongrass Herbal Tea",
+    problemTag: "DIGESTION & DETOXIFICATION",
+    easyBenefit: "A refreshing herbal tea that improves digestion and naturally boosts immunity.",
     simplePoints: [
-      "Gentle traditional herbal infusion",
+      "Detoxifies the body naturally",
+      "Boosts immunity with refreshing citrus aroma",
       "Naturally 100% Caffeine-Free",
-      "Rich in natural antioxidants and plant polyphenols",
     ],
     image: "/images/products/prod-7.jpg",
     detailUrl: "/product/prod-7",
     checkoutUrl: "/checkout?product=prod-7",
     packOptions: [
-      { size: "50g", price: 700, originalPrice: 1000 },
-      { size: "100g", price: 1300, originalPrice: 1800 },
+      { size: "50g", price: 750, originalPrice: 950 },
+      { size: "100g", price: 1400, originalPrice: 1800 },
     ],
   },
   {
-    id: "prod-13",
-    title: "Pure Lakadong High-Curcumin Turmeric",
-    problemTag: "TRADITIONAL WELLNESS SPICE",
-    easyBenefit: "Single-origin Lakadong turmeric with naturally high curcumin, stone-ground with zero color additives.",
+    id: "prod-5",
+    title: "Pure Barley (Jau) Flour",
+    problemTag: "CHOLESTEROL CARE & HEART HEALTH",
+    easyBenefit: "100% pure barley flour with natural cooling properties for cholesterol control and heart health.",
     simplePoints: [
-      "High natural curcumin (7%+) for daily wellness",
-      "Ideal for traditional golden milk or daily cooking",
-      "Tested zero lead, zero fake yellow dye, zero fillers",
+      "Natural cooling properties and heart-friendly",
+      "Lowers cholesterol and aids in natural weight management",
+      "Very easy to digest and 100% stone-ground",
     ],
-    image: "/images/spices-product.jpg",
-    detailUrl: "/product/prod-13",
-    checkoutUrl: "/checkout?product=prod-13",
+    image: "/images/products/prod-5.jpg",
+    detailUrl: "/product/prod-5",
+    checkoutUrl: "/checkout?product=prod-5",
     packOptions: [
-      { size: "100g", price: 450, originalPrice: 600 },
-      { size: "200g", price: 800, originalPrice: 1100 },
+      { size: "5kg", price: 1100, originalPrice: 1400 },
+      { size: "10kg", price: 2100, originalPrice: 2700 },
     ],
   },
 ];
@@ -130,8 +130,8 @@ const CLINICAL_FAQS = [
     a: "Use Fat2Fuel flour for your everyday rotis. Because of its dense soluble fiber and roasted barley-oat composition, it digests slowly and provides steady energy without heavy post-meal lethargy. Pair with home-cooked curries, lentils, and fresh salads.",
   },
   {
-    q: "How do I brew Olive Leaf Herbal Infusion?",
-    a: "Steep 1 teaspoon (approx 2 grams) in 250ml of freshly boiled water for 6 to 8 minutes. Drink warm. It has a mild, earthy herbal taste and is naturally 100% caffeine-free, making it a soothing evening cup.",
+    q: "How do I brew Lemongrass Herbal Tea?",
+    a: "Steep 1 teaspoon in 250ml of freshly boiled water for 4 to 5 minutes. Drink warm or chilled. It has a bright refreshing citrus taste and is naturally 100% caffeine-free, making it a soothing daily cup.",
   },
 ];
 
@@ -141,7 +141,7 @@ export function DoctorsChoicePageView() {
     "prod-3": "5kg",
     "prod-4": "5kg",
     "prod-7": "50g",
-    "prod-13": "100g",
+    "prod-5": "5kg",
   });
 
   const [addedIds, setAddedIds] = useState<Record<string, boolean>>({});

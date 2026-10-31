@@ -24,6 +24,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/spices",
+        destination: "/products",
+        permanent: true,
+      },
+      {
+        source: "/category/spices",
+        destination: "/products",
+        permanent: true,
+      },
+      {
         source: "/order",
         destination: "/checkout",
         permanent: true,

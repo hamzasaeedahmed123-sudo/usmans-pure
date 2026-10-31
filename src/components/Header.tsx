@@ -22,7 +22,7 @@ import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 import { AuthHeaderButton } from "@/components/auth/AuthHeaderButton";
 
 interface HeaderProps {
-  theme?: "amber" | "green" | "terracotta";
+  theme?: "amber" | "green";
   isSolid?: boolean;
 }
 
@@ -71,8 +71,8 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
   );
 
   // Theme styling for header elements
-  const slideThemeKey: "flour" | "herbals" | "spices" =
-    theme === "green" ? "herbals" : theme === "terracotta" ? "spices" : "flour";
+  const slideThemeKey: "flour" | "herbals" =
+    theme === "green" ? "herbals" : "flour";
 
   const themeClasses = {
     amber: {
@@ -100,19 +100,6 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
       badge: "bg-[#D4E8D8]/70 border-[#BFDDC3]/80 text-[#0E351B]",
       cartBtn: "bg-[#EAF3EC]/70 hover:bg-[#EAF3EC] border-[#C5DEC9]/80 text-[#0E351B]",
       tag: "Pure Botanical",
-    },
-    terracotta: {
-      bar: "bg-[#541B10] text-white",
-      glass: isSolid
-        ? "bg-[#FCF1EC] border-[#E8BFB2]/80 text-[#681E10] shadow-md"
-        : isScrolled
-        ? "bg-[#FCF1EC]/90 border-[#E8BFB2]/70 text-[#681E10] shadow-lg shadow-[#681E10]/5"
-        : "bg-white/50 border-white/60 text-[#681E10]",
-      accent: "bg-[#8D2D1B] hover:bg-[#6D2012] text-[#FDF4EF]",
-      pill: "bg-[#F9ECE4]/70 border-[#E8C8B5]/80 text-[#4E1E0F]",
-      badge: "bg-[#F3D5C5]/70 border-[#ECC0AA]/80 text-[#4E1E0F]",
-      cartBtn: "bg-[#F9ECE4]/70 hover:bg-[#F9ECE4] border-[#E8C8B5]/80 text-[#4E1E0F]",
-      tag: "Cold Stone-Pounded",
     },
   }[theme];
 
@@ -220,14 +207,6 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                       >
                         <span className="w-2 h-2 rounded-full bg-[#2D5A3E]" />
                         <span>2. Herbal Teas</span>
-                      </Link>
-                      <Link
-                        href="/spices"
-                        onClick={() => setProductsDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-50 text-stone-800"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-[#9E3E26]" />
-                        <span>3. Pure Spices</span>
                       </Link>
                     </div>
                   </div>
@@ -396,14 +375,6 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                     >
                       <span className="w-2 h-2 rounded-full bg-[#2D5A3E]" />
                       <span>2. Herbal Teas</span>
-                    </Link>
-                    <Link
-                      href="/spices"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium hover:bg-stone-100 text-stone-800"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-[#9E3E26]" />
-                      <span>3. Pure Spices</span>
                     </Link>
                   </div>
                 </div>

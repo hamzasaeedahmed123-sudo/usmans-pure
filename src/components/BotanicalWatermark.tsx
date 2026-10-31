@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 interface WatermarkProps {
-  type: "herbal" | "wheat" | "spices" | "leaf" | "basil";
+  type: "herbal" | "wheat" | "leaf" | "basil";
   className?: string;
   opacity?: number; // default ~0.35 for clear visible organic watermark
   size?: number;
@@ -17,7 +17,6 @@ export function BotanicalWatermark({
     herbal: "/images/watermarks/leaves-free-img.png",
     leaf: "/images/watermarks/leaves-free-img.png",
     wheat: "/images/watermarks/wheat-stalks.png",
-    spices: "/images/watermarks/spices-mix.png",
     basil: "/images/watermarks/basil-leaf.png",
   };
 
@@ -115,27 +114,4 @@ export function WheatStalkSvg({ className = "" }: { className?: string }) {
   );
 }
 
-export function SpicesBotanicalSvg({ className = "" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={`pointer-events-none -z-10 select-none ${className}`}
-      aria-hidden="true"
-    >
-      {/* 8-pointed Star Anise */}
-      <g transform="translate(100, 100)">
-        {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-          <path
-            key={i}
-            d="M0 0 C-6 -20, -10 -40, 0 -55 C10 -40, 6 -20, 0 0 Z"
-            fill="currentColor"
-            transform={`rotate(${angle})`}
-          />
-        ))}
-        <circle cx="0" cy="0" r="10" fill="currentColor" />
-      </g>
-    </svg>
-  );
-}
+

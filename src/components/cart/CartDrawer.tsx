@@ -151,7 +151,7 @@ export function CartDrawer() {
                 Your Pure Basket is Empty
               </h3>
               <p className="text-xs text-[#6B5D52] mt-1.5 max-w-xs leading-relaxed">
-                Add fresh stone-ground flours, cold-pounded spices, or organic herbal teas to begin.
+                Add fresh stone-ground flours or organic herbal teas to begin.
               </p>
               <Link
                 href="/products"

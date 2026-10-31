@@ -78,12 +78,12 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
   {
     id: "block-3",
     type: "promo_banner",
-    title: "Cold Stone-Pounded Haldi & Organic Spices",
-    content: "Ground below 38°C to retain authentic essential oils, natural curcumin, and intense aroma.",
-    badge: "Pure Harvest",
+    title: "Handpicked Pure Herbal Teas",
+    content: "Sun-dried organic lemongrass, chamomile, and nutrient-dense moringa for natural vitality and daily detox.",
+    badge: "100% Pure",
     status: "published",
-    link: "/category/spices",
-    buttonText: "Explore Spices",
+    link: "/category/teas",
+    buttonText: "Explore Herbal Teas",
   },
   {
     id: "block-4",
@@ -108,11 +108,6 @@ interface ContentFormData {
   teaFullTitle: string;
   teaBenefit: string;
   teaPrice: string;
-  spiceTitle: string;
-  spiceSubtitle: string;
-  spiceFullTitle: string;
-  spiceBenefit: string;
-  spicePrice: string;
   doctorsChoice: boolean;
   dietBanner: boolean;
   megaBundles: boolean;
@@ -144,11 +139,6 @@ export default function AdminContentPage() {
       teaFullTitle: cmsContent.heroSlides.herbals.fullTitle,
       teaBenefit: cmsContent.heroSlides.herbals.benefit,
       teaPrice: cmsContent.heroSlides.herbals.price,
-      spiceTitle: cmsContent.heroSlides.spices.title,
-      spiceSubtitle: cmsContent.heroSlides.spices.subtitle,
-      spiceFullTitle: cmsContent.heroSlides.spices.fullTitle,
-      spiceBenefit: cmsContent.heroSlides.spices.benefit,
-      spicePrice: cmsContent.heroSlides.spices.price,
       doctorsChoice: cmsContent.promotions.doctorsChoiceEnabled,
       dietBanner: cmsContent.promotions.dietBannerEnabled,
       megaBundles: cmsContent.promotions.megaBundlesEnabled,
@@ -361,14 +351,6 @@ export default function AdminContentPage() {
           benefit: formData.teaBenefit,
           price: formData.teaPrice,
         },
-        spices: {
-          ...cmsContent.heroSlides.spices,
-          title: formData.spiceTitle,
-          subtitle: formData.spiceSubtitle,
-          fullTitle: formData.spiceFullTitle,
-          benefit: formData.spiceBenefit,
-          price: formData.spicePrice,
-        },
       },
       promotions: {
         ...cmsContent.promotions,
@@ -555,12 +537,12 @@ export default function AdminContentPage() {
                 Hero Slider Headlines &amp; Featured Slide Copy
               </h2>
               <p className="text-xs text-stone-500">
-                Text content for the 3 homepage hero slides (Flours, Teas, Spices)
+                Text content for the 2 homepage hero slides (Flours, Herbal Teas)
               </p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Slide 1: Flour */}
             <div className="p-4 rounded-2xl bg-amber-50/50 border border-amber-200/70 space-y-3">
               <div className="flex items-center justify-between border-b border-amber-200/60 pb-2">
@@ -672,64 +654,6 @@ export default function AdminContentPage() {
                   type="text"
                   value={formData.teaPrice}
                   onChange={(e) => updateField("teaPrice", e.target.value)}
-                  className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-bold"
-                />
-              </div>
-            </div>
-
-            {/* Slide 3: Spices */}
-            <div className="p-4 rounded-2xl bg-orange-50/50 border border-orange-200/70 space-y-3">
-              <div className="flex items-center justify-between border-b border-orange-200/60 pb-2">
-                <span className="font-bold text-xs text-orange-950 uppercase tracking-wider">Slide 3: Spices</span>
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-900 text-orange-100">Aromatic</span>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-0.5">Title Line 1</label>
-                <input
-                  type="text"
-                  value={formData.spiceTitle}
-                  onChange={(e) => updateField("spiceTitle", e.target.value)}
-                  className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-black"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-0.5">Title Line 2</label>
-                <input
-                  type="text"
-                  value={formData.spiceSubtitle}
-                  onChange={(e) => updateField("spiceSubtitle", e.target.value)}
-                  className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-black"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-0.5">Card Full Title</label>
-                <input
-                  type="text"
-                  value={formData.spiceFullTitle}
-                  onChange={(e) => updateField("spiceFullTitle", e.target.value)}
-                  className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-bold"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-0.5">Benefit Description</label>
-                <textarea
-                  rows={2}
-                  value={formData.spiceBenefit}
-                  onChange={(e) => updateField("spiceBenefit", e.target.value)}
-                  className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs leading-relaxed"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-bold text-stone-700 mb-0.5">Featured Price</label>
-                <input
-                  type="text"
-                  value={formData.spicePrice}
-                  onChange={(e) => updateField("spicePrice", e.target.value)}
                   className="w-full px-2.5 py-1.5 rounded-lg bg-white border border-stone-200 text-xs font-bold"
                 />
               </div>

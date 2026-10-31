@@ -30,7 +30,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
   const categoryMeta: {
     [key: string]: {
       title: string;
-      categoryKey: "flours" | "teas" | "spices";
+      categoryKey: "flours" | "teas";
       badge: string;
       description: string;
       highlights: string[];
@@ -60,19 +60,6 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
         "Whole Dried Flower & Leaf Calyces",
         "Zero Artificial Flavors or Added Colors",
         "Packed in Freshness-Sealed Pouches",
-      ],
-    },
-    spices: {
-      title: "Cold-Pounded Desi Spices (Mirch, Haldi, Dhania)",
-      categoryKey: "spices",
-      badge: "Traditional Spices",
-      description:
-        "Whole pure spices slow-pounded on stone mortars at cold temperatures. Retains full natural aroma, flavor, and color without artificial dyes.",
-      highlights: [
-        "Cold Stone-Pounded (<35°C processing)",
-        "Zero Dyes, Lead Chromate or Sawdust Fillers",
-        "Aroma-Locked Sealed Containers",
-        "Direct Farm Sourcing",
       ],
     },
   };
@@ -109,13 +96,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
     <div className="min-h-screen bg-stone-50 flex flex-col justify-between">
       <Header
         isSolid
-        theme={
-          currentMeta.categoryKey === "flours"
-            ? "amber"
-            : currentMeta.categoryKey === "spices"
-            ? "terracotta"
-            : "green"
-        }
+        theme={currentMeta.categoryKey === "flours" ? "amber" : "green"}
       />
 
       <main className="flex-1">

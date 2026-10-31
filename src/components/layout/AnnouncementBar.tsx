@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useStoreData } from "@/context/StoreDataContext";
 
-export type AnnouncementBarTheme = "flour" | "herbals" | "spices" | "amber" | "green" | "terracotta";
+export type AnnouncementBarTheme = "flour" | "herbals" | "amber" | "green";
 
 interface AnnouncementBarProps {
   theme?: AnnouncementBarTheme;
@@ -17,8 +17,6 @@ const THEME_COLORS: Record<AnnouncementBarTheme, string> = {
   amber: "#2A1F17",
   herbals: "#0E381C", // Deep Forest Green
   green: "#0E381C",
-  spices: "#541B10", // Deep Terracotta Rust
-  terracotta: "#541B10",
 };
 
 export function AnnouncementBar({ theme = "flour", className = "", customBg }: AnnouncementBarProps) {

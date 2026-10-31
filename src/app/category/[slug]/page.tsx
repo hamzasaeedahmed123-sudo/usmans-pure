@@ -4,7 +4,7 @@ import { CategoryPageView } from "./CategoryPageView";
 export const instant = false;
 
 export function generateStaticParams() {
-  return [{ slug: "flours" }, { slug: "teas" }, { slug: "spices" }];
+  return [{ slug: "flours" }, { slug: "teas" }];
 }
 
 interface PageProps {
@@ -16,13 +16,9 @@ const CATEGORY_META: Record<string, { title: string; desc: string }> = {
     title: "Stone-Ground Chakki Flours | Usman's Pure",
     desc: "Shop slow-milled chakki atta, multigrain dietary flour, and diabetic-safe grains milled fresh under 40°C.",
   },
-  spices: {
-    title: "Pure Cold-Pounded Organic Spices | Usman's Pure",
-    desc: "Single-origin Lakadong turmeric, stone-pounded garam masala, and pure Kashmiri chili powder.",
-  },
   teas: {
     title: "Organic Whole Herbal Teas & Infusions | Usman's Pure",
-    desc: "Whole wild Rosella hibiscus tea, olive leaf tea, and chamomile flowers for daily metabolic and heart health.",
+    desc: "Chamomile, lemongrass, and moringa herbal teas for restful sleep, immunity, and natural energy.",
   },
 };
 
@@ -30,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const meta = CATEGORY_META[slug] || {
     title: "Organic Collections | Usman's Pure",
-    desc: "Explore fresh stone-ground flours, cold-pounded spices, and herbal teas from Usman's Pure.",
+    desc: "Explore fresh stone-ground flours and pure herbal teas from Usman's Pure.",
   };
 
   return {

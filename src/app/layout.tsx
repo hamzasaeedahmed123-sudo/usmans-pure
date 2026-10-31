@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Usman's Pure Products",
   },
   description:
-    "Fresh stone-ground chakki atta, diabetic-care multigrain flours, cold-pounded masalas, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
+    "Fresh stone-ground chakki atta, diabetic-care multigrain flours, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "flour",
@@ -45,14 +45,13 @@ export const metadata: Metadata = {
     "wheat",
     "diabetic atta",
     "multigrain flour",
-    "organic spices",
     "herbal tea",
     "usman pure",
   ],
   openGraph: {
     title: "Usman's Pure Products | Traditional Stone-Ground Chakki Atta",
     description:
-      "Ghar ke dastarkhwan ke liye asli pathar ki chakki ka taaza atta, diabetic care flours, aur cold-pounded organic masalay. Doorstep Cash on Delivery Pakistan.",
+      "Ghar ke dastarkhwan ke liye asli pathar ki chakki ka taaza atta, diabetic care flours, aur qudrati herbal kehwa. Doorstep Cash on Delivery Pakistan.",
     url: "https://usmanspure.com",
     siteName: "Usman's Pure Products",
     images: [
@@ -96,7 +95,7 @@ const organizationSchema = {
       },
       image: "https://usmanspure.com/logo.png",
       description:
-        "Authentic stone-milled whole grain chakki flours, diabetic nutritional blends, cold-pounded spices, and pure herbal teas in Pakistan.",
+        "Authentic stone-milled whole grain chakki flours, diabetic nutritional blends, and pure herbal teas in Pakistan.",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+92-300-8472910",

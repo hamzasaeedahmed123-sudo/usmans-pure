@@ -513,7 +513,7 @@ export default function AdminReviewsPage() {
                 <textarea
                   required
                   rows={4}
-                  placeholder="Share details of roti texture, health benefits, spice purity, or delivery speed..."
+                  placeholder="Share details of roti texture, health benefits, tea aroma, or delivery speed..."
                   value={formReview}
                   onChange={(e) => setFormReview(e.target.value)}
                   className="w-full px-3 py-2 rounded-lg bg-stone-50 border border-stone-200 text-xs text-stone-900 focus:outline-hidden focus:border-[#8D2D1B] focus:bg-white"

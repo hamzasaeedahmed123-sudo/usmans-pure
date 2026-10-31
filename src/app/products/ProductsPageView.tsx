@@ -28,7 +28,7 @@ export function ProductsPageView() {
   const { products: storeProducts } = useStoreData();
   const allCatalogProducts = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS;
 
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "flours" | "teas" | "spices">("all");
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "flours" | "teas">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -99,10 +99,8 @@ export function ProductsPageView() {
               ? { backgroundColor: "#4D3817" }
               : selectedCategory === "teas"
               ? { backgroundColor: "#172A1C" }
-              : selectedCategory === "spices"
-              ? { backgroundColor: "#3D1614" }
               : {
-                  background: "linear-gradient(135deg, #4D3817 0%, #17281D 50%, #3D1815 100%)",
+                  background: "linear-gradient(135deg, #4D3817 0%, #17281D 100%)",
                 }
           }
         >
@@ -115,7 +113,7 @@ export function ProductsPageView() {
                 All Pure Products
               </h1>
               <p className="mt-3 text-[#D5CEBF] text-sm sm:text-base leading-relaxed font-light">
-                Wholesome stone-ground chakki flours, pure organic herbal teas, and cold stone-pounded royal spices. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
+                Wholesome stone-ground chakki flours and pure organic herbal teas. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
               </p>
             </div>
           </div>
@@ -156,16 +154,6 @@ export function ProductsPageView() {
                   }`}
                 >
                   Organic Herbal Teas
-                </button>
-                <button
-                  onClick={() => setSelectedCategory("spices")}
-                  className={`px-4 py-2 rounded-md text-xs font-bold transition shrink-0 cursor-pointer ${
-                    selectedCategory === "spices"
-                      ? "bg-[#3D1614] text-white shadow-sm"
-                      : "bg-stone-100 text-stone-700 hover:bg-stone-200"
-                  }`}
-                >
-                  Pure Spices
                 </button>
               </div>
 

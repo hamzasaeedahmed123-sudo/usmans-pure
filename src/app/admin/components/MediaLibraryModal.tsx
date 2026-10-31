@@ -52,15 +52,15 @@ const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   },
   {
     id: "media-prod-4",
-    name: "Cold-Pounded Pure Organic Haldi",
-    url: "/images/products/prod-4.jpg",
+    name: "FENUGREEK Plus Flour",
+    url: "/images/products/prod-4.png",
     size: "460 KB",
     date: "2026-10-18",
-    type: "image/jpeg",
+    type: "image/png",
   },
   {
     id: "media-prod-5",
-    name: "Traditional Kashmiri Kahwa Blend",
+    name: "Pure Barley (Jau) Flour",
     url: "/images/products/prod-5.jpg",
     size: "390 KB",
     date: "2026-10-19",
@@ -68,7 +68,7 @@ const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   },
   {
     id: "media-prod-6",
-    name: "Desi Cold-Ground Organic Ajwain",
+    name: "Whole Wheat Chakki Atta",
     url: "/images/products/prod-6.jpg",
     size: "340 KB",
     date: "2026-10-20",

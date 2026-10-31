@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
-import { useAmbientTheme, AmbientCategoryTheme } from "@/components/theme/AmbientThemeWrapper";
+import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 import { useCart } from "@/context/CartContext";
 
 interface FeaturedPackOption {
@@ -24,7 +24,7 @@ interface FeaturedPackOption {
 interface FeaturedProductItem {
   id: string;
   title: string;
-  category: "flours" | "teas" | "spices";
+  category: "flours" | "teas";
   categoryBadge: string;
   highlight: string;
   image: string;
@@ -36,113 +36,112 @@ interface FeaturedProductItem {
 
 export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
   {
-    id: "prod-3",
-    title: "Fat2Fuel Multigrain Flour",
+    id: "prod-1",
+    title: "Basic – Flour For General Health",
     category: "flours",
     categoryBadge: "Flour",
-    highlight: "Stone-Ground Weight Management Blend",
-    image: "/images/products/prod-3.jpg",
-    detailUrl: "/product/prod-3",
-    checkoutUrl: "/checkout?product=prod-3",
+    highlight: "100% Pure & Natural Everyday Flour",
+    image: "/images/products/prod-1.jpg",
+    detailUrl: "/product/prod-1",
+    checkoutUrl: "/checkout?product=prod-1",
     description:
-      "Milled slowly under 40°C in traditional stone chakkis. Blend of cold-ground roasted barley, oats, chickpeas, flaxseed, and chia grains. Keeps you full for 5+ hours with zero maida or chemical bleaching.",
+      "100% pure and natural everyday flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
     packOptions: [
-      { size: "5kg", price: 1150, originalPrice: 1500 },
-      { size: "10kg", price: 2150, originalPrice: 2900 },
+      { size: "5kg", price: 1200, originalPrice: 1500 },
+      { size: "10kg", price: 2350, originalPrice: 2950 },
     ],
   },
   {
     id: "prod-4",
-    title: "Diabetic-Care Multigrain Flour",
+    title: "FENUGREEK Plus – Flour for Good Diabetic Control",
     category: "flours",
     categoryBadge: "Flour",
-    highlight: "High Fiber & Fenugreek Seed Blend",
+    highlight: "Natural Diabetic Support & Blood Sugar Control",
     image: "/images/products/prod-4.png",
     detailUrl: "/product/prod-4",
     checkoutUrl: "/checkout?product=prod-4",
     description:
-      "Infused with organic whole methi (fenugreek) seeds, roasted barley, and soluble galactomannan fiber. Prevents sudden post-meal sugar spikes and supports natural metabolic balance.",
+      "Specially formulated for diabetic patients. Contains natural ingredients that help control blood sugar levels and promote a healthy lifestyle.",
     packOptions: [
       { size: "5kg", price: 1200, originalPrice: 1500 },
-      { size: "10kg", price: 2300, originalPrice: 3000 },
+      { size: "10kg", price: 2350, originalPrice: 2950 },
     ],
   },
   {
-    id: "prod-9",
-    title: "Pure Rosella Herbal Tea",
-    category: "teas",
-    categoryBadge: "Herbal Tea",
-    highlight: "Ruby Hibiscus & Olive Leaf Blend",
-    image: "/images/products/prod-9.jpg",
-    detailUrl: "/product/prod-9",
-    checkoutUrl: "/checkout?product=prod-9",
+    id: "prod-3",
+    title: "Fat2Fuel Advance Multigrain Flour",
+    category: "flours",
+    categoryBadge: "Flour",
+    highlight: "Weight Loss & Metabolism Boost",
+    image: "/images/products/prod-3.jpg",
+    detailUrl: "/product/prod-3",
+    checkoutUrl: "/checkout?product=prod-3",
     description:
-      "Shade-dried whole hibiscus (rosella) calyces blended with Mediterranean olive leaf botanicals. Naturally caffeine-free, high in natural vitamin C and polyphenols for daily wellness.",
+      "Excellent multigrain flour for weight loss and fitness maintenance. Boosts metabolism and helps convert body fat into energy to keep you active.",
     packOptions: [
-      { size: "100g", price: 950, originalPrice: 1200 },
-      { size: "200g", price: 1750, originalPrice: 2200 },
+      { size: "5kg", price: 1150, originalPrice: 1500 },
+      { size: "10kg", price: 2250, originalPrice: 2900 },
     ],
   },
   {
     id: "prod-2",
-    title: "Chamomile & Mint Relax Tea",
+    title: "Chamomile Tea",
     category: "teas",
     categoryBadge: "Herbal Tea",
-    highlight: "Sukoon Bakhsh Khalis Kehwa",
+    highlight: "Restful Sleep & Stress Relief",
     image: "/images/products/prod-2.jpg",
     detailUrl: "/product/prod-2",
     checkoutUrl: "/checkout?product=prod-2",
     description:
-      "Saaf suthray chamomile ke phool aur poodina. Shaam ke waqt zehni sukoon, behtar hazmay aur pur-sukoon neend ke liye nihayat mufeed aur khalis kehwa.",
+      "The perfect herbal tea for restful sleep and stress relief. A cup before bedtime relaxes the body and eliminates fatigue.",
     packOptions: [
-      { size: "100g", price: 850, originalPrice: 1100 },
-      { size: "200g", price: 1550, originalPrice: 1950 },
+      { size: "50g", price: 800, originalPrice: 1000 },
+      { size: "100g", price: 1500, originalPrice: 1900 },
     ],
   },
   {
-    id: "prod-12",
-    title: "Hand-Pounded Kashmiri Spices",
-    category: "spices",
-    categoryBadge: "Spices",
-    highlight: "Cold-Ground Aroma-Lock Glass Jars",
-    image: "/images/spices-product.jpg",
-    detailUrl: "/product/prod-12",
-    checkoutUrl: "/checkout?product=prod-12",
+    id: "prod-7",
+    title: "Lemongrass Herbal Tea",
+    category: "teas",
+    categoryBadge: "Herbal Tea",
+    highlight: "Digestion, Detox & Immunity Boost",
+    image: "/images/products/prod-7.jpg",
+    detailUrl: "/product/prod-7",
+    checkoutUrl: "/checkout?product=prod-7",
     description:
-      "Sun-ripened whole Kashmiri spices cold-pounded in traditional stone mortars without friction heat. Locks in natural aromatic oils with zero dyes or synthetic colorants.",
+      "A refreshing herbal tea that improves digestion and boosts immunity. Detoxifies the body naturally and provides a refreshing sensation.",
     packOptions: [
-      { size: "100g", price: 380, originalPrice: 500 },
-      { size: "200g", price: 650, originalPrice: 850 },
+      { size: "50g", price: 750, originalPrice: 950 },
+      { size: "100g", price: 1400, originalPrice: 1800 },
     ],
   },
 ];
 
 interface ProductCatalogProps {
-  activeFilter?: "all" | "flours" | "spices" | "teas";
-  setActiveFilter?: (filter: "all" | "flours" | "spices" | "teas") => void;
+  activeFilter?: "all" | "flours" | "teas";
+  setActiveFilter?: (filter: "all" | "flours" | "teas") => void;
 }
 
 export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: externalSetFilter }: ProductCatalogProps = {}) {
   const { addItem, openCart } = useCart();
-  const [internalFilter, setInternalFilter] = useState<"all" | "flours" | "spices" | "teas">("all");
+  const [internalFilter, setInternalFilter] = useState<"all" | "flours" | "teas">("all");
   const currentFilter = externalFilter ?? internalFilter;
   const setFilter = externalSetFilter ?? setInternalFilter;
-  const { activeTheme, setActiveTheme } = useAmbientTheme();
+  const { setActiveTheme } = useAmbientTheme();
 
-  const handleFilterChange = (filter: "all" | "flours" | "spices" | "teas") => {
+  const handleFilterChange = (filter: "all" | "flours" | "teas") => {
     setFilter(filter);
     if (filter === "flours") setActiveTheme("flour");
     else if (filter === "teas") setActiveTheme("herbals");
-    else if (filter === "spices") setActiveTheme("spices");
     else setActiveTheme("default");
   };
 
   const [selectedPacks, setSelectedPacks] = useState<Record<string, string>>({
-    "prod-3": "5kg",
+    "prod-1": "5kg",
     "prod-4": "5kg",
-    "prod-9": "100g",
-    "prod-2": "100g",
-    "prod-12": "100g",
+    "prod-3": "5kg",
+    "prod-2": "50g",
+    "prod-7": "50g",
   });
 
   const [addedIds, setAddedIds] = useState<Record<string, boolean>>({});
@@ -200,7 +199,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             </h2>
           </div>
           <p className="max-w-sm text-sm text-[#6B5D52] leading-relaxed">
-            Stone-ground chakki flours, whole-leaf herbal infusions and cold-pounded spices &mdash; made slowly, the way nature intended.
+            Stone-ground chakki flours and whole-leaf herbal infusions &mdash; made slowly, the way nature intended.
           </p>
         </div>
 
@@ -210,7 +209,6 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             { id: "all", label: "All Essentials" },
             { id: "flours", label: "Stone-Ground Flours" },
             { id: "teas", label: "Herbal Teas" },
-            { id: "spices", label: "Pure Spices" },
           ].map((tab) => {
             const isSelected = currentFilter === tab.id;
             return (
@@ -236,8 +234,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
             const currentOption =
               product.packOptions.find((o) => o.size === currentSize) || product.packOptions[0];
-            const themeCategory =
-              product.category === "flours" ? "flour" : product.category === "teas" ? "herbals" : "spices";
+            const themeCategory = product.category === "flours" ? "flour" : "herbals";
 
             return (
               <article
@@ -348,7 +345,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
           </Link>
           <p className="text-xs text-[#6B5D52]">
-            17 stone-ground flours, spices &amp; herbal teas
+            8 pure stone-ground flours &amp; herbal teas
           </p>
         </div>
       </div>

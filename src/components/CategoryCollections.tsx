@@ -4,34 +4,25 @@ import { ArrowRight } from "lucide-react";
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
 
 interface CategoryCollectionsProps {
-  onSelectCategory?: (cat: "all" | "flours" | "spices" | "teas") => void;
+  onSelectCategory?: (cat: "all" | "flours" | "teas") => void;
 }
 
 export function CategoryCollections({ onSelectCategory }: CategoryCollectionsProps = {}) {
   const collections = [
     {
       id: "flour",
-      title: "Traditional Whole Wheat & Multigrain Diet Atta",
-      subtitle: "Weight Care, Diabetic Care & Kids Nutrition rich in vital dietary fiber.",
+      title: "Traditional Stone-Ground Flours (Atta)",
+      subtitle: "General Health, Diabetic Care, Weight Loss & Pure Barley flours rich in vital nutrients.",
       image: "/images/products/prod-3.jpg",
       badge: "Pure Chakki Flour",
       href: "/flour",
       watermark: "wheat" as const,
     },
     {
-      id: "spices",
-      title: "Cold-Pounded Desi Spices (Mirch, Haldi, Dhania)",
-      subtitle: "Kashmiri Chili, Turmeric & Whole Garam Masala milled under 40°C.",
-      image: "/images/spices-product.jpg",
-      badge: "Traditional Spices",
-      href: "/spices",
-      watermark: "spices" as const,
-    },
-    {
       id: "herbals",
       title: "Pure Caffeine-Free Herbal Teas",
-      subtitle: "Rosella, Chamomile, Olive Leaf & Qudrati Botanicals rozana zehni sukoon aur taazgi ke liye.",
-      image: "/images/products/prod-9.jpg",
+      subtitle: "Chamomile, Lemongrass & Moringa Herbal Teas for restful sleep, immunity, and natural energy.",
+      image: "/images/products/prod-2.jpg",
       badge: "Herbal Infusions",
       href: "/herbals",
       watermark: "herbal" as const,
@@ -62,11 +53,11 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
-            Fresh stone-ground chakki atta, freshly milled grains, and authentic organic spices. Delivered fresh to your home across Pakistan.
+            Fresh stone-ground chakki atta, whole grain flours, and pure herbal teas. Delivered fresh to your home across Pakistan.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 px-4 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4 max-w-4xl mx-auto">
           {collections.map((item) => {
             return (
               <Link
@@ -76,13 +67,13 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                 href={item.href}
                 className="group rounded-2xl overflow-hidden bg-white border border-stone-200/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col"
               >
-                {/* Product Image Frame (100% Uncluttered Photography) */}
+                {/* Product Image Frame */}
                 <div className="relative w-full aspect-[4/3] sm:aspect-[16/11] overflow-hidden bg-stone-100">
                   <Image
                     src={item.image}
                     alt={item.title}
                     fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 50vw"
                     loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -104,7 +95,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                   </div>
 
                   <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#8B3A22] group-hover:translate-x-1.5 transition-transform duration-300 pt-3 border-t border-stone-100">
-                    <span>Explore {item.id === "flour" ? "Flours" : item.id === "spices" ? "Spices" : "Teas"}</span>
+                    <span>Explore {item.id === "flour" ? "Flours" : "Teas"}</span>
                     <ArrowRight className="w-3.5 h-3.5 text-[#8B3A22]" />
                   </div>
                 </div>

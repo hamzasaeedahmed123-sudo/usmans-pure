@@ -77,14 +77,6 @@ export interface CMSContent {
       price: string;
       weight: string;
     };
-    spices: {
-      title: string;
-      subtitle: string;
-      fullTitle: string;
-      benefit: string;
-      price: string;
-      weight: string;
-    };
   };
   promotions: {
     doctorsChoiceEnabled: boolean;
@@ -113,17 +105,9 @@ export const DEFAULT_CMS: CMSContent = {
       title: "HERBAL",
       subtitle: "TEAS",
       fullTitle: "Desi Herbal Qehwa",
-      benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli zaitoon patti aur chamomile ka qehwa.",
+      benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli chamomile aur lemongrass ka qehwa.",
       price: "Rs 1,250",
       weight: "250g",
-    },
-    spices: {
-      title: "ORGANIC",
-      subtitle: "SPICES",
-      fullTitle: "Sil-Batta Pure Masalay",
-      benefit: "Sil-batte aur pathar pe pise masalay — bina kisi rang ya chemical ke asli khushboo aur zaiqa.",
-      price: "Rs 950",
-      weight: "500g",
     },
   },
   promotions: {
@@ -276,10 +260,10 @@ export const DEFAULT_REVIEWS: Review[] = [
     id: "rev-5",
     name: "Begum Shahnaz",
     city: "Rawalpindi",
-    product: "Pure Lakadong High-Curcumin Turmeric",
+    product: "Chamomile Tea",
     rating: 5,
     date: "1 month ago",
-    review: "Haldi aur garam masalay mein koi milawat nahi lagti, khushboo se hi pata chal jata hai. Raat ko doodh mein haldi dal ke peene se kafi aaram mila hai. Allah barkat de aapke rizq mein.",
+    review: "Raat ko sonay se pehle aik cup Chamomile tea peeti hoon. Neend bohat pur-sukoon aati hai aur thakawat bilkul door ho jati hai. 100% pure taste aur khushboo.",
     verified: true,
     status: "Published",
     helpfulCount: 44,
@@ -432,7 +416,7 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
           if (
             parsed.heroSlides.herbals?.benefit?.includes("Hand-harvested") ||
             parsed.heroSlides.flour?.benefit?.includes("Cold-milled under 40°C with 100%") ||
-            parsed.heroSlides.spices?.benefit?.includes("Slow stone-pounded aroma lock")
+            Object.keys(parsed.heroSlides).length !== 2
           ) {
             parsed.heroSlides = DEFAULT_CMS.heroSlides;
           }

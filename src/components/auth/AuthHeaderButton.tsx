@@ -7,7 +7,7 @@ import { User, LogIn, UserPlus, LogOut, LayoutDashboard, Shield, ChevronDown } f
 import { motion, AnimatePresence } from "framer-motion";
 import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 
-export type SlideNavTheme = "flour" | "herbals" | "spices";
+export type SlideNavTheme = "flour" | "herbals";
 
 export interface AuthHeaderButtonProps {
   isMobile?: boolean;
@@ -25,8 +25,6 @@ export function AuthHeaderButton({ isMobile = false, slideTheme }: AuthHeaderBut
     slideTheme ||
     (activeTheme === "herbals"
       ? "herbals"
-      : activeTheme === "spices"
-      ? "spices"
       : "flour");
 
   const themeStyles: Record<
@@ -49,12 +47,6 @@ export function AuthHeaderButton({ isMobile = false, slideTheme }: AuthHeaderBut
       signUpBtn: "bg-[#0B2C16] text-[#F3F9F5] hover:bg-[#071F0F]",
       authPill: "bg-[#EAF3EC]/70 hover:bg-[#EAF3EC] border-[#C5DEC9]/80 text-[#0E351B]",
       avatarBg: "bg-[#0B2C16] text-[#F3F9F5]",
-    },
-    spices: {
-      loginBtn: "bg-[#F9ECE4]/70 hover:bg-[#F9ECE4] border-[#E8C8B5]/80 text-[#4E1E0F]",
-      signUpBtn: "bg-[#381408] text-[#FDF6F2] hover:bg-[#270E05]",
-      authPill: "bg-[#F9ECE4]/70 hover:bg-[#F9ECE4] border-[#E8C8B5]/80 text-[#4E1E0F]",
-      avatarBg: "bg-[#381408] text-[#FDF6F2]",
     },
   };
 

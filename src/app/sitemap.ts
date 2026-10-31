@@ -38,12 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
     },
     {
-      url: `${baseUrl}/spices`,
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/herbals`,
       lastModified: now,
       changeFrequency: "weekly",
@@ -89,7 +83,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const categoryRoutes: MetadataRoute.Sitemap = ["flours", "spices", "teas"].map((cat) => ({
+  const categoryRoutes: MetadataRoute.Sitemap = ["flours", "teas"].map((cat) => ({
     url: `${baseUrl}/category/${cat}`,
     lastModified: now,
     changeFrequency: "weekly",

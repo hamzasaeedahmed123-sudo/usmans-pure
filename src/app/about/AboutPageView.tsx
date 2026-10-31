@@ -99,9 +99,9 @@ export function AboutPageView() {
 
   const coreOfferings = [
     {
-      title: "Stone-Ground Multigrain Flour",
+      title: "Stone-Ground Flours (Atta)",
       highlight: "Cold-Milled Under 40°C",
-      desc: "Slow stone-ground chakki flour crafted from ancient whole grains, roasted barley, oats, and chia. Retains the natural bran, germ, and germ oils with zero maida or chemical bleaching.",
+      desc: "Slow stone-ground chakki flour crafted from premium wheat, roasted barley, and fenugreek. Retains the natural bran, germ, and vital nutrients with zero maida or chemical bleaching.",
       watermark: "wheat" as const,
       link: "/flour",
       tag: "Flour Collection",
@@ -109,24 +109,14 @@ export function AboutPageView() {
       purityBadge: "100% Stone-Ground",
     },
     {
-      title: "Pure Herbal Teas (Rosella & Olive Leaf)",
+      title: "Pure Herbal Teas (Chamomile, Lemongrass & Moringa)",
       highlight: "Whole Leaf & Blossom Botanicals",
-      desc: "Shade-dried wild hibiscus (rosella) calyces, young Mediterranean olive leaves, and calming chamomile flowers. Naturally caffeine-free, loaded with natural polyphenols, vitamin C, and wholesome antioxidants.",
+      desc: "Calming chamomile flowers, refreshing lemongrass leaves, and antioxidant-rich moringa superfood. Naturally caffeine-free, loaded with natural polyphenols and wholesome antioxidants.",
       watermark: "herbal" as const,
       link: "/herbals",
       tag: "Herbal Infusions",
       image: "/tea-pouch.png",
       purityBadge: "Zero Caffeine • Pure Herbs",
-    },
-    {
-      title: "Cold-Pounded Organic Spices",
-      highlight: "Friction-Free Stone Mortars",
-      desc: "Hand-pounded Kashmiri chili, sun-dried coriander, and golden turmeric pounded at ambient room temperature to preserve volatile essential oils without colorants, starch fillers, or synthetic dyes.",
-      watermark: "spices" as const,
-      link: "/spices",
-      tag: "Spices Collection",
-      image: "/spices-jar.png",
-      purityBadge: "Cold-Ground • Rich Aroma",
     },
   ];
 
@@ -355,7 +345,7 @@ export function AboutPageView() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {coreOfferings.map((offering) => (
                 <div
                   key={offering.title}
@@ -417,7 +407,7 @@ export function AboutPageView() {
                 href="/products"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-[3px] bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] font-medium text-[11px] uppercase transition tracking-[0.18em] duration-200 ease-out"
               >
-                <span>Explore Complete 17-Product Store</span>
+                <span>Explore Complete Product Store</span>
                 <ArrowRight className="w-4 h-4 text-amber-400" />
               </Link>
             </div>
@@ -427,7 +417,7 @@ export function AboutPageView() {
         {/* Facilities & Contact Section */}
         <section className="py-16 sm:py-20 bg-white border-b border-stone-200 relative overflow-hidden">
           <BotanicalWatermark
-            type="spices"
+            type="herbal"
             className="absolute -top-10 -right-10 w-72 h-72"
             opacity={0.09}
             size={300}

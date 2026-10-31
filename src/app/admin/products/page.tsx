@@ -49,7 +49,7 @@ export default function AdminProductsPage() {
 
   // New product form state
   const [newTitle, setNewTitle] = useState("");
-  const [newCategory, setNewCategory] = useState<"flours" | "teas" | "spices">("flours");
+  const [newCategory, setNewCategory] = useState<"flours" | "teas">("flours");
   const [newPrice, setNewPrice] = useState(1200);
   const [newOriginalPrice, setNewOriginalPrice] = useState(1500);
   const [newWeight, setNewWeight] = useState("5kg");
@@ -165,16 +165,13 @@ export default function AdminProductsPage() {
     const categoryLabels = {
       flours: "Stone-Ground Chakki Flour",
       teas: "Artisanal Pure Herbal Tea",
-      spices: "Cold Stone-Pounded Spices",
     };
 
     const finalImage =
       newImage.trim() ||
       (newCategory === "flours"
         ? "/images/products/prod-1.jpg"
-        : newCategory === "teas"
-        ? "/images/products/prod-2.jpg"
-        : "/images/products/prod-4.jpg");
+        : "/images/products/prod-2.jpg");
 
     const newProd: Omit<Product, "id"> = {
       title: newTitle.trim(),
@@ -224,7 +221,7 @@ export default function AdminProductsPage() {
             Products & Inventory Management
           </h1>
           <p className="text-xs sm:text-sm text-stone-600 mt-1">
-            Manage prices, stock levels, variants, and product descriptions across all 3 pure categories.
+            Manage prices, stock levels, variants, and product descriptions across flours and herbal teas.
           </p>
         </div>
 
@@ -296,7 +293,6 @@ export default function AdminProductsPage() {
             { id: "all", label: "All Items" },
             { id: "flours", label: "Chakki Flours" },
             { id: "teas", label: "Herbal Teas" },
-            { id: "spices", label: "Pure Spices" },
           ].map((cat) => (
             <button
               key={cat.id}
@@ -584,11 +580,11 @@ export default function AdminProductsPage() {
                       <div className="grid grid-cols-6 gap-1.5">
                         {[
                           { src: "/images/products/prod-1.jpg", name: "Chakki Atta" },
-                          { src: "/images/products/prod-2.jpg", name: "Herbal Tea" },
+                          { src: "/images/products/prod-2.jpg", name: "Chamomile Tea" },
                           { src: "/images/products/prod-3.jpg", name: "Multigrain Atta" },
-                          { src: "/images/products/prod-4.jpg", name: "Pure Haldi" },
-                          { src: "/images/products/prod-5.jpg", name: "Kashmiri Kahwa" },
-                          { src: "/images/products/prod-6.jpg", name: "Organic Ajwain" },
+                          { src: "/images/products/prod-4.png", name: "Fenugreek Plus" },
+                          { src: "/images/products/prod-5.jpg", name: "Barley Flour" },
+                          { src: "/images/products/prod-6.jpg", name: "Whole Wheat" },
                         ].map((media) => (
                           <button
                             key={media.src}
@@ -679,7 +675,6 @@ export default function AdminProductsPage() {
                   >
                     <option value="flours">Chakki Flour</option>
                     <option value="teas">Herbal Tea</option>
-                    <option value="spices">Pure Spices</option>
                   </select>
                 </div>
                 <div>

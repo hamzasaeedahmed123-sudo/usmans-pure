@@ -37,12 +37,10 @@ export default function AdminDashboardPage() {
   const categoryCounts = {
     flours: products.filter((p) => p.category === "flours").length,
     teas: products.filter((p) => p.category === "teas").length,
-    spices: products.filter((p) => p.category === "spices").length,
   };
   const totalProductsCount = products.length || 1;
   const flourShare = Math.round((categoryCounts.flours / totalProductsCount) * 100);
   const teaShare = Math.round((categoryCounts.teas / totalProductsCount) * 100);
-  const spiceShare = Math.round((categoryCounts.spices / totalProductsCount) * 100);
 
   // Dynamic Top Performing item from real orders
   const itemCounts: Record<string, number> = {};
@@ -466,23 +464,6 @@ export default function AdminDashboardPage() {
                   <div
                     className="h-full bg-[#2D5A3E] rounded-full transition-all duration-500"
                     style={{ width: `${teaShare}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Category 3: Spices */}
-              <div>
-                <div className="flex justify-between text-xs font-bold text-stone-800 mb-1">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#9E3E26]" />
-                    Cold-Pounded Pure Spices
-                  </span>
-                  <span>{spiceShare}% ({categoryCounts.spices})</span>
-                </div>
-                <div className="w-full h-2.5 bg-stone-100 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-[#9E3E26] rounded-full transition-all duration-500"
-                    style={{ width: `${spiceShare}%` }}
                   />
                 </div>
               </div>

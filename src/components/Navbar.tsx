@@ -10,7 +10,7 @@ import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 
 export { AuthHeaderButton };
 
-export type SlideTheme = "flour" | "herbals" | "spices";
+export type SlideTheme = "flour" | "herbals";
 
 export interface NavbarProps {
   slideTheme?: SlideTheme;
@@ -44,13 +44,6 @@ export const NAVBAR_THEMES: Record<
     cartBtn: "bg-[#EAF3EC]/70 hover:bg-[#EAF3EC] border-[#C5DEC9]/80 text-[#0E351B]",
     defaultTag: "Pure Botanical",
   },
-  spices: {
-    name: "Organic Spices",
-    pillBg: "bg-[#F9ECE4]/70 border-[#E8C8B5]/80 text-[#4E1E0F]",
-    badgeBg: "bg-[#F3D5C5]/70 border-[#ECC0AA]/80 text-[#4E1E0F]",
-    cartBtn: "bg-[#F9ECE4]/70 hover:bg-[#F9ECE4] border-[#E8C8B5]/80 text-[#4E1E0F]",
-    defaultTag: "Cold Stone-Pounded",
-  },
 };
 
 export function Navbar({
@@ -71,13 +64,9 @@ export function Navbar({
     (typeof slideIndex === "number"
       ? slideIndex === 1
         ? "herbals"
-        : slideIndex === 2
-        ? "spices"
         : "flour"
       : activeTheme === "herbals"
       ? "herbals"
-      : activeTheme === "spices"
-      ? "spices"
       : "flour");
 
   const themeConfig = NAVBAR_THEMES[effectiveTheme] || NAVBAR_THEMES.flour;
@@ -120,7 +109,7 @@ export function Navbar({
           </Link>
         </div>
 
-        {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
+        {/* Center Section: Navigation Pill Menu */}
         <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-[#ede8e1]/90 backdrop-blur-md px-3 xl:px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink">
           {/* 1. Home */}
           <Link
@@ -203,15 +192,6 @@ export function Navbar({
                     >
                       <span className="w-2 h-2 rounded-full bg-[#2D5A3E]" />
                       <span>2. Herbal Teas</span>
-                    </Link>
-
-                    <Link
-                      href="/spices"
-                      onClick={() => setProductsDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition-colors text-stone-800"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-[#9E3E26]" />
-                      <span>3. Pure Spices</span>
                     </Link>
                   </div>
                 </motion.div>
@@ -373,13 +353,6 @@ export function Navbar({
                     className="py-1.5 px-3 rounded-lg hover:bg-stone-100 text-stone-800 text-xs font-semibold"
                   >
                     2. Herbal Teas
-                  </Link>
-                  <Link
-                    href="/spices"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="py-1.5 px-3 rounded-lg hover:bg-stone-100 text-stone-800 text-xs font-semibold"
-                  >
-                    3. Pure Spices
                   </Link>
                 </div>
               </div>

@@ -140,9 +140,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               href={
                 product.category === "flours"
                   ? "/category/flours"
-                  : product.category === "teas"
-                  ? "/category/teas"
-                  : "/category/spices"
+                  : "/category/teas"
               }
               className="hover:text-stone-900 transition font-medium"
             >
@@ -468,7 +466,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               {openSection === "storage" && (
                 <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base border-t border-stone-100">
                   <p>
-                    <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and spices contain zero preservatives or chemical anti-caking agents, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
+                    <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and teas contain zero preservatives or artificial chemicals, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
                   </p>
                   <p>
                     <strong>Freshness &amp; Satisfaction Guarantee:</strong> We stand behind the absolute purity of every single batch. If you are not completely satisfied with our texture, milling quality, or flavor, contact us within 14 days for a replacement or full refund.

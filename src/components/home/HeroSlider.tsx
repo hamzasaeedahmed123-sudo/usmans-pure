@@ -45,12 +45,6 @@ export const CATEGORY_PILLS = [
     slideIndex: 1,
     activeClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
   },
-  {
-    id: "spices",
-    label: "03. Organic Spices",
-    slideIndex: 2,
-    activeClass: "bg-[#541B10] text-white shadow-md border border-[#8D2D1B]",
-  },
 ];
 
 export const SLIDES: HeroSlide[] = [
@@ -82,8 +76,8 @@ export const SLIDES: HeroSlide[] = [
     title: "HERBAL",
     subtitle: "TEAS",
     fullTitle: "Desi Herbal Qehwa",
-    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli zaitoon patti aur chamomile ka qehwa.",
-    miniStats: ["100% Qudrati", "Caffeine-Free", "Zaitoon Patti"],
+    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli chamomile aur lemongrass ka qehwa.",
+    miniStats: ["100% Qudrati", "Caffeine-Free", "Zehni Sukoon"],
     price: "Rs 1,250",
     weight: "250g",
     bgColor: "#A3D2B7",
@@ -97,28 +91,6 @@ export const SLIDES: HeroSlide[] = [
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
     altText: "Artisanal Pure Organic Herbal Tea 250g",
-  },
-  {
-    id: "spices",
-    tag: "Sil-Batta Pisai",
-    title: "ORGANIC",
-    subtitle: "SPICES",
-    fullTitle: "Sil-Batta Pure Masalay",
-    benefit: "Sil-batte aur pathar pe pise masalay — bina kisi rang ya chemical ke asli khushboo aur zaiqa.",
-    miniStats: ["Bina Chemical", "Sil-Batta Pisai", "Asli Khushboo"],
-    price: "Rs 950",
-    weight: "500g",
-    bgColor: "#A73E24",
-    announcementBg: "#541B10", // Deep Terracotta Rust
-    activePillClass: "bg-[#541B10] text-white shadow-md border border-[#8D2D1B]",
-    backdropImage: "/images/hero/spices-fluid-bg.jpg",
-    textColor: "#FFF2E5",
-    giantTextColor: "#FFF2E5",
-    giantTextClass: "text-[#FFF2E5] font-black opacity-100 drop-shadow-[0_4px_12px_rgba(0,0,0,0.18)]",
-    image: "/images/hero/spices-jar-v2.png",
-    floating: ["/images/hero/cinnamon.png", "/images/hero/star-anise.png"],
-    detailUrl: "/spices",
-    altText: "Cold Stone-Pounded Organic Spices 500g",
   },
 ];
 
@@ -146,7 +118,7 @@ export function HeroSlider() {
 
   // Sync ambient theme with active slide
   useEffect(() => {
-    setActiveTheme(rawSlide.id as "flour" | "herbals" | "spices");
+    setActiveTheme(rawSlide.id as "flour" | "herbals");
   }, [rawSlide.id, setActiveTheme]);
 
   // Navigation handlers
@@ -163,7 +135,7 @@ export function HeroSlider() {
     goToSlide((currentSlideIndex - 1 + SLIDES.length) % SLIDES.length, -1);
   }, [currentSlideIndex, goToSlide]);
 
-  // Auto-slide 4-second continuous timer (cycling: Flour -> Herbals -> Spices -> Flour)
+  // Auto-slide 4-second continuous timer (cycling: Flour -> Herbals -> Flour)
   // Re-runs and resets timer whenever currentSlideIndex changes (e.g. manual pill click)
   useEffect(() => {
     if (!isPlaying) return;

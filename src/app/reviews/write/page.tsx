@@ -27,20 +27,17 @@ interface UploadedPhoto {
 }
 
 const REVIEW_PRODUCTS = [
+  "Basic – Flour For General Health",
+  "FENUGREEK Plus – Flour for Good Diabetic Control",
   "Fat2Fuel Advance Multigrain Flour",
-  "FENUGREEK Plus – Diabetic Care Flour",
-  "Basic Stone-Ground Whole Wheat Atta",
-  "Kids Giggly Grains Immunity Flour",
-  "Wild Rosella Herbal Tea (Hibiscus)",
-  "Olive Leaf Cardiac Herbal Tea",
-  "Soothing Chamomile Relax Tea",
-  "Pure Lakadong High-Curcumin Turmeric",
-  "Cold-Pounded Kashmiri Red Chili",
-  "Royal Stone-Pounded Garam Masala",
+  "Pure Barley (Jau) Flour",
+  "Whole Wheat Chakki Atta",
+  "Chamomile Tea",
+  "Lemongrass Herbal Tea",
+  "Moringa Herbal Tea",
   "Fat Loss Transformation Combo",
   "Diabetic Care & Heart Health Pack",
   "Family Immunity & Vitality Pack",
-  "Royal Organic Spice Kitchen Box",
 ];
 
 const RATING_LABELS: Record<number, string> = {

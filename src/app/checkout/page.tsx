@@ -4,7 +4,7 @@ import { CheckoutView } from "./CheckoutView";
 export const metadata = {
   title: "Checkout & Payment Options (COD, JazzCash, Card) | Usman's Pure Products",
   description:
-    "Place your order for fresh stone-ground chakki flours, cold-pounded spices, and organic essentials. Pay with Cash on Delivery across Pakistan, JazzCash, Easypaisa, or Card.",
+    "Place your order for fresh stone-ground chakki flours and pure organic herbal teas. Pay with Cash on Delivery across Pakistan, JazzCash, Easypaisa, or Card.",
 };
 
 function CheckoutLoadingSkeleton() {

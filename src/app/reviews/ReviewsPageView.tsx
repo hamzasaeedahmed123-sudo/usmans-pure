@@ -30,7 +30,7 @@ interface CustomerStory {
   name: string;
   city: string;
   product: string;
-  category: "flours" | "teas" | "spices";
+  category: "flours" | "teas";
   rating: number;
   date: string;
   title: string;
@@ -124,13 +124,13 @@ const INITIAL_STORIES: CustomerStory[] = [
     id: "rev-5",
     name: "Begum Shahnaz",
     city: "Rawalpindi, Punjab",
-    product: "Pure Lakadong Turmeric (>7% Curcumin)",
-    category: "spices",
+    product: "Chamomile Tea",
+    category: "teas",
     rating: 5,
     date: "Verified Purchase &bull; 1 month ago",
-    title: "Asli haldi ki khushboo aur zaiqa",
+    title: "Pur-sukoon neend aur zehni sukoon",
     review:
-      "Haldi aur garam masalay mein koi milawat nahi lagti, khushboo se hi pata chal jata hai. Raat ko doodh mein haldi dal ke peene se kafi aaram mila hai. Allah barkat de aapke rizq mein.",
+      "Raat ko sonay se pehle aik cup Chamomile tea peeti hoon. Neend bohat pur-sukoon aati hai aur thakawat bilkul door ho jati hai. 100% pure taste aur khushboo.",
     verified: true,
     helpfulCount: 44,
   },
@@ -155,9 +155,8 @@ export function ReviewsPageView() {
   const publishedReviews = reviews.filter((r) => r.status === "Published");
 
   const displayStories: CustomerStory[] = publishedReviews.map((r) => {
-    const isTea = /tea|rosella|chamomile|olive/i.test(r.product);
-    const isSpice = /turmeric|chili|masala|haldi/i.test(r.product);
-    const cat: "flours" | "teas" | "spices" = isTea ? "teas" : isSpice ? "spices" : "flours";
+    const isTea = /tea|chamomile|lemongrass|moringa/i.test(r.product);
+    const cat: "flours" | "teas" = isTea ? "teas" : "flours";
 
     return {
       id: r.id,
@@ -176,7 +175,7 @@ export function ReviewsPageView() {
     };
   });
 
-  const [activeFilter, setActiveFilter] = useState<"all" | "flours" | "teas" | "spices" | "photos">("all");
+  const [activeFilter, setActiveFilter] = useState<"all" | "flours" | "teas" | "photos">("all");
   const [helpfulClicked, setHelpfulClicked] = useState<Record<string, boolean>>({});
   const [helpfulCounts, setHelpfulCounts] = useState<Record<string, number>>({});
   const [lightboxPhoto, setLightboxPhoto] = useState<LightboxPhotoData | null>(null);
@@ -191,7 +190,7 @@ export function ReviewsPageView() {
   const [rating, setRating] = useState(5);
   const [hoverRating, setHoverRating] = useState(0);
   const [productName, setProductName] = useState("Fat2Fuel Advance Multigrain Flour");
-  const [category, setCategory] = useState<"flours" | "teas" | "spices">("flours");
+  const [category, setCategory] = useState<"flours" | "teas">("flours");
   const [title, setTitle] = useState("");
   const [reviewText, setReviewText] = useState("");
   const [authorName, setAuthorName] = useState("");
@@ -414,7 +413,6 @@ export function ReviewsPageView() {
                 { key: "photos", label: "📸 With Customer Photos" },
                 { key: "flours", label: "Stone-Ground Flours" },
                 { key: "teas", label: "Organic Herbal Teas" },
-                { key: "spices", label: "Cold-Pounded Spices" },
               ].map((f) => (
                 <button
                   key={f.key}
@@ -624,41 +622,33 @@ export function ReviewsPageView() {
                           const val = e.target.value;
                           setProductName(val);
                           if (val.includes("Tea")) setCategory("teas");
-                          else if (val.includes("Turmeric") || val.includes("Chili") || val.includes("Spice"))
-                            setCategory("spices");
                           else setCategory("flours");
                         }}
                         className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded border border-stone-300 bg-stone-50 text-stone-800 focus:outline-none focus:ring-1 focus:ring-stone-900"
                       >
+                        <option value="Basic – Flour For General Health">
+                          Basic – Flour For General Health
+                        </option>
+                        <option value="FENUGREEK Plus – Flour for Good Diabetic Control">
+                          FENUGREEK Plus – Flour for Good Diabetic Control
+                        </option>
                         <option value="Fat2Fuel Advance Multigrain Flour">
-                          Fat2Fuel Advance Multigrain Flour (Weight Loss)
+                          Fat2Fuel Advance Multigrain Flour
                         </option>
-                        <option value="FENUGREEK Plus Diabetic Flour">
-                          FENUGREEK Plus Diabetic-Care Flour
+                        <option value="Pure Barley (Jau) Flour">
+                          Pure Barley (Jau) Flour
                         </option>
-                        <option value="Basic Stone-Ground Whole Wheat Atta">
-                          Basic Stone-Ground Chakki Flour
+                        <option value="Whole Wheat Chakki Atta">
+                          Whole Wheat Chakki Atta
                         </option>
-                        <option value="Giggly Grains Kids Immunity Flour">
-                          Giggly Grains (Kids Immunity Flour)
+                        <option value="Chamomile Tea">
+                          Chamomile Tea
                         </option>
-                        <option value="NutraPrime Gluten-Free Multigrain Flour">
-                          NutraPrime Gluten-Free Multigrain Flour
+                        <option value="Lemongrass Herbal Tea">
+                          Lemongrass Herbal Tea
                         </option>
-                        <option value="Rosella Ruby Herbal Tea">
-                          Rosella Ruby Herbal Tea (Hibiscus)
-                        </option>
-                        <option value="Chamomile & Mint Relax Tea">
-                          Chamomile &amp; Mint Relax Tea
-                        </option>
-                        <option value="Olive Leaf Cardiac Herbal Tea">
-                          Olive Leaf Cardiac Herbal Tea
-                        </option>
-                        <option value="Pure Lakadong High-Curcumin Turmeric">
-                          Pure Lakadong Turmeric (&gt;7% Curcumin)
-                        </option>
-                        <option value="Hand-Pounded Kashmiri Red Chili">
-                          Hand-Pounded Kashmiri Red Chili
+                        <option value="Moringa Herbal Tea">
+                          Moringa Herbal Tea
                         </option>
                       </select>
                     </div>
