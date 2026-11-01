@@ -51,19 +51,19 @@ export function MegaBundles() {
               Save up to ₨800 on carefully paired lifestyle bundles with nationwide Cash on Delivery (Free over ₨10,000).
             </p>
             <Link href="/bundles" className="link-lux text-xs mt-1">
-              <span>Explore All 4 Bundles</span>
+              <span>Explore All Bundles</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 gap-2 sm:gap-4 md:gap-6 lg:grid-cols-4">
           {LUXURY_BUNDLES.map((bundle) => {
             const isAdded = addedIds[bundle.id];
             return (
               <article
                 key={bundle.id}
-                className="bg-[#F6F1E9] rounded-2xl overflow-hidden flex flex-col justify-between shadow-ambient hover:shadow-ambient transition-all duration-300 group"
+                className="bg-[#F6F1E9] rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-between shadow-ambient hover:shadow-ambient transition-all duration-300 group"
               >
                 <div>
                   {/* Edge-to-edge image showcase - touches top, left, right edges */}
@@ -79,42 +79,42 @@ export function MegaBundles() {
                         className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       />
                     </Link>
-                    <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
+                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
                       Save Rs {bundle.savings}
                     </span>
                   </div>
 
-                  <div className="p-3.5 sm:p-5 pb-0 sm:pb-0">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-1">
+                  <div className="p-2.5 sm:p-5 pb-0 sm:pb-0">
+                    <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-0.5 sm:mb-1">
                       {bundle.badge}
                     </span>
 
                     <Link href={`/bundles/${bundle.slug}`}>
-                      <h3 className="text-base sm:text-lg font-serif font-bold text-stone-900 group-hover:text-[#8B3A22] transition-colors leading-snug line-clamp-2 min-h-[2.75rem]">
+                      <h3 className="text-sm sm:text-lg font-serif font-bold text-stone-900 group-hover:text-[#8B3A22] transition-colors leading-snug line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem]">
                         {bundle.title}
                       </h3>
                     </Link>
 
                     {/* Included Items Summary */}
-                    <p className="mt-1.5 text-xs sm:text-sm text-stone-700 line-clamp-2 leading-relaxed font-medium">
+                    <p className="mt-1 sm:mt-1.5 text-[11px] sm:text-sm text-stone-700 line-clamp-2 leading-relaxed font-medium">
                       {bundle.includedTags.join(" • ")}
                     </p>
 
-                    <div className="flex items-baseline gap-2 font-sans mt-3 pt-2 sm:pt-3 border-t border-[#1E1510]/10 flex-wrap">
-                      <span className="text-xl sm:text-2xl font-extrabold text-stone-900 tracking-tight font-sans">
+                    <div className="flex items-baseline gap-1.5 sm:gap-2 font-sans mt-2.5 sm:mt-3 pt-2 sm:pt-3 border-t border-[#1E1510]/10 flex-wrap">
+                      <span className="text-base sm:text-2xl font-extrabold text-stone-900 tracking-tight font-sans">
                         Rs {bundle.price.toLocaleString()}
                       </span>
-                      <span className="text-sm font-medium text-stone-400 line-through font-sans">
+                      <span className="text-xs sm:text-sm font-medium text-stone-400 line-through font-sans">
                         Rs {bundle.originalPrice.toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="p-3.5 sm:p-5 pt-3 sm:pt-4 flex flex-col gap-2">
+                <div className="p-2.5 sm:p-5 pt-2.5 sm:pt-4 flex flex-col gap-1.5 sm:gap-2">
                   <button
                     onClick={(e) => handleAddBundle(bundle, e)}
-                    className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl min-h-[48px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-ambient ${
+                    className={`w-full py-2.5 sm:py-3 px-2 sm:px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl min-h-[42px] sm:min-h-[48px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer shadow-ambient ${
                       isAdded
                         ? "bg-emerald-600 text-white"
                         : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
@@ -122,18 +122,18 @@ export function MegaBundles() {
                   >
                     {isAdded ? (
                       <>
-                        <Check className="w-4 h-4 stroke-[2.5]" /> Added
+                        <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" /> Added
                       </>
                     ) : (
                       <>
-                        <ShoppingBag className="w-4 h-4" /> Add to Cart
+                        <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Add to Cart
                       </>
                     )}
                   </button>
 
                   <Link
                     href={`/bundles/${bundle.slug}`}
-                    className="text-center text-xs sm:text-sm font-bold text-stone-700 hover:text-stone-900 transition-colors py-1.5"
+                    className="text-center text-[11px] sm:text-xs font-bold text-stone-700 hover:text-stone-900 transition-colors py-1"
                   >
                     View Details &rarr;
                   </Link>

@@ -18,6 +18,7 @@ export interface HeroSlide {
   benefit: string;
   miniStats: string[];
   price: string;
+  originalPrice?: string;
   weight: string;
   bgColor: string;
   announcementBg: string;
@@ -53,11 +54,12 @@ export const SLIDES: HeroSlide[] = [
     tag: "Taaza Chakki Atta",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
-    fullTitle: "Chakki Multigrain Atta",
+    fullTitle: "Fat 2 Fuel Multigrain Flour",
     benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — chakki ka qudrati fiber, bina kisi maiday ke.",
-    miniStats: ["Ghar Ki Pasand", "Zero Maida", "Taaza Chakki Atta"],
+    miniStats: ["Weight Management", "Zero Maida", "Chakki Ground"],
     price: "Rs 2,450",
-    weight: "10kg",
+    originalPrice: "Rs 2,950",
+    weight: "2 LBS (900g)",
     bgColor: "#E5D2BA",
     announcementBg: "#2A1F17", // Deep Roasted Brown
     activePillClass: "bg-[#2A1F17] text-white shadow-md border border-[#3D2B1F]",
@@ -65,20 +67,21 @@ export const SLIDES: HeroSlide[] = [
     textColor: "#3B291A",
     giantTextColor: "#3B291A",
     giantTextClass: "text-[#3B291A] font-black opacity-95",
-    image: "/images/hero/multigrain-flour.png",
+    image: "/images/hero/hero-flour-product.png",
     floating: ["/images/hero/wheat-1.png", "/images/hero/wheat-2.png"],
     detailUrl: "/flour",
-    altText: "Chakki pure milled Multigrain Flour 10kg",
+    altText: "Usman's Pure Products Fat 2 Fuel Multigrain Flour 2 LBS",
   },
   {
     id: "herbals",
     tag: "Qudrati Desi Qehwa",
     title: "HERBAL",
     subtitle: "TEAS",
-    fullTitle: "Desi Herbal Qehwa",
-    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli chamomile aur lemongrass ka qehwa.",
-    miniStats: ["100% Qudrati", "Caffeine-Free", "Zehni Sukoon"],
+    fullTitle: "Pure Thyme Herbal Tea",
+    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli chamomile aur thyme leaves ka qehwa.",
+    miniStats: ["100% Qudrati", "Caffeine-Free", "Immunity & Throat"],
     price: "Rs 1,250",
+    originalPrice: "Rs 1,500",
     weight: "250g",
     bgColor: "#A3D2B7",
     announcementBg: "#0E381C", // Deep Forest Green
@@ -87,10 +90,10 @@ export const SLIDES: HeroSlide[] = [
     textColor: "#0A3317",
     giantTextColor: "#0A3317",
     giantTextClass: "text-[#0A3317] font-black opacity-95",
-    image: "/images/hero/herbal-tea-v2.png",
+    image: "/images/hero/hero-tea-product.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
-    altText: "Artisanal Pure Organic Herbal Tea 250g",
+    altText: "Usman's Pure Products Pure Thyme Herbal Tea 250g",
   },
 ];
 
@@ -313,19 +316,19 @@ export function HeroSlider() {
               transition={{ duration: 0.45, ease: "easeInOut" }}
               className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-1.5 sm:gap-2 px-3 max-w-sm mx-auto"
             >
-              {/* 1. Category Title: Scaled & Placed Snugly Above Product */}
+              {/* 1. Category Title: Scaled & Placed Snugly Above Product (Enlarged for Mobile) */}
               <div className="w-full text-center shrink-0 z-10 select-none">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[8vw] sm:text-[6.5vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-[9.5vw] sm:text-[8vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[6.5vw] sm:text-[5vw] font-black tracking-tight mt-0.5">{currentSlide.subtitle}</span>
+                  <span className="block text-[7.5vw] sm:text-[6vw] font-black tracking-tight mt-1">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
-              {/* 2. Main Product Cutout Visual: Snug Height to Prevent Scatter */}
-              <div className="relative w-full h-[20vh] min-h-[140px] max-h-[190px] flex items-center justify-center pointer-events-none z-10 my-0">
+              {/* 2. Main Product Cutout Visual: Enlarged & Prominent for Mobile */}
+              <div className="relative w-full h-[26vh] sm:h-[30vh] min-h-[190px] sm:min-h-[230px] max-h-[270px] flex items-center justify-center pointer-events-none z-10 my-0.5">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
@@ -341,23 +344,23 @@ export function HeroSlider() {
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 60vw, 360px"
-                    quality={80}
-                    className="object-contain p-1 mix-blend-multiply w-auto drop-shadow-md"
+                    sizes="(max-width: 768px) 75vw, 360px"
+                    quality={85}
+                    className="object-contain p-0.5 mix-blend-multiply w-auto drop-shadow-md"
                     loading="eager"
                   />
                 </div>
 
               </div>
 
-              {/* 3. Glassmorphism Info Card: Hugs the Pouch without Large Gaps */}
-              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/40 border border-white/50 rounded-2xl p-2.5 shadow-lg w-full pointer-events-auto">
+              {/* 3. Glassmorphism Info Card: Hugs the Pouch with Enlarged Mobile Typography */}
+              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/45 border border-white/55 rounded-2xl p-3 shadow-lg w-full pointer-events-auto">
                 {/* Left Mini Badges */}
                 <div className="flex flex-col gap-1 border-r border-white/30 pr-2 shrink-0 self-center">
                   {currentSlide.miniStats.map((stat, i) => (
                     <span
                       key={i}
-                      className="px-1.5 py-0.5 rounded-full text-[8.5px] font-bold tracking-tight bg-white/50 text-stone-900 border border-white/50 whitespace-nowrap text-center"
+                      className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-tight bg-white/60 text-stone-900 border border-white/50 whitespace-nowrap text-center"
                     >
                       {stat}
                     </span>
@@ -365,31 +368,36 @@ export function HeroSlider() {
                 </div>
 
                 {/* Product Thumbnail */}
-                <div className="relative w-10 h-10 rounded-xl bg-white/50 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
+                <div className="relative w-11 h-11 rounded-xl bg-white/55 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
                   <Image
                     src={currentSlide.image}
                     alt={currentSlide.fullTitle}
                     fill
                     className="object-contain p-0.5"
-                    sizes="40px"
+                    sizes="44px"
                   />
                 </div>
 
                 {/* Title & Description */}
                 <div className="flex flex-col justify-center min-w-0 flex-1">
-                  <h3 className="text-sm font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
+                  <h3 className="text-sm sm:text-base font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
                     {currentSlide.fullTitle}
                   </h3>
-                  <p className="text-[11px] text-stone-800/90 leading-tight mt-0.5 font-medium line-clamp-2">
+                  <p className="text-xs text-stone-800 leading-snug mt-0.5 font-medium line-clamp-2">
                     {currentSlide.benefit}
                   </p>
                 </div>
               </div>
 
-              {/* 4. Bottom Price/CTA Button Bar: Compact, Cohesive Mobile Unit */}
+              {/* 4. Bottom Price/CTA Button Bar: Fixed Strikethrough & Flexible Layout */}
               <div className="flex items-center gap-2 w-full pointer-events-auto">
-                <div className="px-3 py-2 rounded-xl text-xs font-black bg-white/70 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
-                  <span>{currentSlide.price}</span>
+                <div className="flex items-center gap-1.5 flex-wrap px-2.5 py-1.5 rounded-xl bg-white/80 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
+                  <span className="text-xs sm:text-sm font-black">{currentSlide.price}</span>
+                  {currentSlide.originalPrice && (
+                    <span className="text-[10px] sm:text-xs text-stone-500 line-through">
+                      {currentSlide.originalPrice}
+                    </span>
+                  )}
                 </div>
 
                 <button
@@ -603,10 +611,17 @@ export function HeroSlider() {
           <div className="flex flex-col items-center gap-2 md:translate-x-10 lg:translate-x-14">
             {/* Center Pill: Hidden on Mobile, Only Visible on Desktop/Tablet */}
             <div className="hidden md:flex items-center gap-2.5 sm:gap-3 bg-white/45 backdrop-blur-md border border-white/65 rounded-2xl py-1.5 px-3 sm:py-2 sm:px-4 shadow-lg">
-              {/* Formatted Price */}
-              <span className="text-xs sm:text-sm font-black px-1 text-current">
-                {currentSlide.price}
-              </span>
+              {/* Formatted Price & Strikethrough */}
+              <div className="flex items-center gap-1.5 px-1">
+                <span className="text-xs sm:text-sm font-black text-current">
+                  {currentSlide.price}
+                </span>
+                {currentSlide.originalPrice && (
+                  <span className="text-[11px] sm:text-xs font-normal opacity-60 line-through">
+                    {currentSlide.originalPrice}
+                  </span>
+                )}
+              </div>
 
               {/* Add to Cart CTA */}
               <button

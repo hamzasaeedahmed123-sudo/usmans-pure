@@ -30,7 +30,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
   ];
 
   return (
-    <section className="relative py-14 sm:py-20 transition-colors duration-700 ease-in-out border-b border-stone-300/60 overflow-hidden bg-[#FAF7F2]">
+    <section id="our-collection" className="relative py-14 sm:py-20 transition-colors duration-700 ease-in-out border-b border-stone-300/60 overflow-hidden bg-[#FAF7F2] scroll-mt-20">
       {/* Background Watermark Accents */}
       <BotanicalWatermark
         type="wheat"

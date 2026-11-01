@@ -68,6 +68,22 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     ],
   },
   {
+    id: "prod-2",
+    title: "Chamomile Tea",
+    category: "teas",
+    categoryBadge: "Herbal Tea",
+    highlight: "For Restful Sleep & Stress Relief",
+    image: "/images/products/prod-2.jpg",
+    detailUrl: "/product/prod-2",
+    checkoutUrl: "/checkout?product=prod-2",
+    description:
+      "Enjoy a calming cup of pure Chamomile tea. Perfect for relaxing your mind, reducing anxiety, and promoting deep, restful sleep.",
+    packOptions: [
+      { size: "50g", price: 800, originalPrice: 1000 },
+      { size: "100g", price: 1500, originalPrice: 1900 },
+    ],
+  },
+  {
     id: "prod-3",
     title: "Fat2Fuel Advance Multigrain Flour",
     category: "flours",
@@ -113,22 +129,6 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     packOptions: [
       { size: "2 lbs", price: 1350, originalPrice: 1650 },
       { size: "4 lbs", price: 2600, originalPrice: 3200 },
-    ],
-  },
-  {
-    id: "prod-2",
-    title: "Chamomile Tea",
-    category: "teas",
-    categoryBadge: "Herbal Tea",
-    highlight: "For Restful Sleep & Stress Relief",
-    image: "/images/products/prod-2.jpg",
-    detailUrl: "/product/prod-2",
-    checkoutUrl: "/checkout?product=prod-2",
-    description:
-      "Enjoy a calming cup of pure Chamomile tea. Perfect for relaxing your mind, reducing anxiety, and promoting deep, restful sleep.",
-    packOptions: [
-      { size: "50g", price: 800, originalPrice: 1000 },
-      { size: "100g", price: 1500, originalPrice: 1900 },
     ],
   },
   {
@@ -438,14 +438,14 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           })}
         </div>
 
-        {/* View All Products */}
+        {/* Smooth Scroll to Our Collection Section without Opening New Page */}
         <div className="mt-14 sm:mt-16 flex flex-col items-center gap-3">
-          <Link href="/products" className="btn-lux group">
-            <span>View All Products</span>
+          <a href="#our-collection" className="btn-lux group cursor-pointer">
+            <span>Explore In Our Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
-          </Link>
+          </a>
           <p className="text-xs text-[#6B5D52]">
-            Showing 3 of {filteredProducts.length} essentials &bull; Explore full catalog for all flours &amp; herbal teas
+            Showing 3 essentials (2 Pure Flours &bull; 1 Herbal Tea) &bull; View full collections above
           </p>
         </div>
       </div>
