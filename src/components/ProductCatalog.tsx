@@ -366,9 +366,9 @@ export function ProductCatalog() {
                           onClick={() =>
                             setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
                           }
-                          className={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors duration-200 cursor-pointer border ${
+                          className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer border ${
                             currentSize === opt.size
-                              ? "bg-stone-900 text-white border-stone-900"
+                              ? "bg-[#FAF5EE] text-[#8B3A22] border-2 border-[#8B3A22] font-bold shadow-2xs"
                               : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"
                           }`}
                         >

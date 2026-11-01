@@ -406,14 +406,17 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         onClick={() => setSelectedPack("standard")}
                         className={`p-4 sm:p-5 rounded-xl border text-left transition-all cursor-pointer ${
                           selectedPack === "standard"
-                            ? "border-stone-900 bg-[#1E1510] text-white shadow-md ring-1 ring-stone-900"
-                            : "border-stone-300 bg-stone-50 text-stone-800 hover:border-stone-400"
+                            ? "border-2 border-[#8B3A22] bg-[#FAF5EE] text-stone-900 shadow-sm ring-2 ring-[#8B3A22]/15"
+                            : "border-stone-200 bg-white text-stone-800 hover:border-stone-400"
                         }`}
                       >
-                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider">
-                          Standard Pack ({product.weight})
+                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-900 flex items-center justify-between">
+                          <span>Standard Pack ({product.weight})</span>
+                          {selectedPack === "standard" && (
+                            <span className="w-2 h-2 rounded-full bg-[#8B3A22]" />
+                          )}
                         </div>
-                        <div className="text-base sm:text-lg font-bold mt-1">₨ {product.price.toLocaleString()}</div>
+                        <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">₨ {product.price.toLocaleString()}</div>
                       </button>
 
                       <button
@@ -421,15 +424,15 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         onClick={() => setSelectedPack("large")}
                         className={`p-4 sm:p-5 rounded-xl border text-left transition-all cursor-pointer ${
                           selectedPack === "large"
-                            ? "border-stone-900 bg-[#1E1510] text-white shadow-md ring-1 ring-stone-900"
-                            : "border-stone-300 bg-stone-50 text-stone-800 hover:border-stone-400"
+                            ? "border-2 border-[#8B3A22] bg-[#FAF5EE] text-stone-900 shadow-sm ring-2 ring-[#8B3A22]/15"
+                            : "border-stone-200 bg-white text-stone-800 hover:border-stone-400"
                         }`}
                       >
-                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-between">
+                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-between text-stone-900">
                           <span>Family Double Pack</span>
-                          <span className="text-[11px] text-emerald-300 font-bold bg-emerald-950/60 px-2 py-0.5 rounded">Save More</span>
+                          <span className="text-[11px] text-emerald-800 font-bold bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">Save More</span>
                         </div>
-                        <div className="text-base sm:text-lg font-bold mt-1">
+                        <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">
                           ₨ {Math.round(product.price * 1.85).toLocaleString()}
                         </div>
                       </button>

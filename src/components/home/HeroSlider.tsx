@@ -77,12 +77,12 @@ export const SLIDES: HeroSlide[] = [
     tag: "Qudrati Desi Qehwa",
     title: "HERBAL",
     subtitle: "TEAS",
-    fullTitle: "Pure Olive Leaf Herbal Tea",
-    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli olive leaves aur chamomile ka qehwa.",
+    fullTitle: "Pure Thyme Herbal Tea",
+    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli thyme aur herbal leaves ka qehwa.",
     miniStats: ["100% Qudrati", "Caffeine-Free", "Immunity & Throat"],
     price: "Rs 1,250",
     originalPrice: "Rs 1,500",
-    weight: "250g",
+    weight: "113g (4 oz)",
     bgColor: "#A3D2B7",
     announcementBg: "#0E381C", // Deep Forest Green
     activePillClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
@@ -93,7 +93,7 @@ export const SLIDES: HeroSlide[] = [
     image: "/images/hero/hero-tea-product.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
-    altText: "Usman's Pure Products Pure Olive Leaf Herbal Tea 250g",
+    altText: "Usman's Pure Products Pure Thyme Herbal Tea 113g",
   },
 ];
 
@@ -354,7 +354,7 @@ export function HeroSlider() {
                     fill
                     sizes="(max-width: 768px) 75vw, 360px"
                     quality={95}
-                    className="max-w-full h-auto object-contain p-0.5 w-auto drop-shadow-md"
+                    className="max-w-full h-auto object-contain p-0.5 w-auto"
                     loading="eager"
                   />
                 </div>
@@ -522,9 +522,9 @@ export function HeroSlider() {
 
                 {/* Main Product Cutout Image with 3D Spring Hover Interaction & Dynamic Drop Shadow */}
                 <motion.div
-                  whileHover={{ y: -10, scale: 1.03, rotate: 1.2 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="relative w-full h-full flex items-center justify-center cursor-pointer transition-[filter] duration-300 ease-out [filter:drop-shadow(0_12px_20px_rgba(0,0,0,0.1))] hover:[filter:drop-shadow(0_24px_35px_rgba(0,0,0,0.2))] transform-gpu will-change-transform"
+                  className="relative w-full h-full flex items-center justify-center cursor-pointer transition-[filter] duration-300 ease-out hover:[filter:drop-shadow(0_12px_20px_rgba(0,0,0,0.1))] transform-gpu will-change-transform"
                 >
                   <Image
                     src={currentSlide.image}
@@ -532,7 +532,7 @@ export function HeroSlider() {
                     fill
                     sizes="(max-width: 768px) 50vw, 280px"
                     quality={95}
-                    className="object-contain p-1 select-none drop-shadow-md"
+                    className="object-contain p-1 select-none"
                     priority
                   />
                 </motion.div>

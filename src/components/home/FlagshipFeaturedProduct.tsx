@@ -226,9 +226,9 @@ export function FlagshipFeaturedProduct() {
               Gandum, Jau, Jowar, Bajra, Kala Chana, Oats, Alsi (Flaxseeds) aur Methi Dana.
             </p>
 
-            {/* Pack Size Selector */}
+            {/* Pack Size Selector — Mobile-Optimized Grid with Brand Styling */}
             <div className="mb-6">
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between mb-2.5">
                 <span className="text-xs font-bold text-stone-800 uppercase tracking-wide">
                   Select Pack Size:
                 </span>
@@ -236,31 +236,32 @@ export function FlagshipFeaturedProduct() {
                   {selectedPack.savings}
                 </span>
               </div>
-              <div className="grid grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-3 gap-2 sm:gap-3">
                 {PACK_OPTIONS.map((pack) => {
                   const isSelected = selectedPack.id === pack.id;
                   return (
                     <button
                       key={pack.id}
                       onClick={() => setSelectedPack(pack)}
-                      className={`relative p-3 rounded-2xl text-left border transition-all cursor-pointer min-h-[58px] flex flex-col justify-between ${
+                      className={`relative p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-left border transition-all cursor-pointer min-h-[64px] flex flex-col justify-between ${
                         isSelected
-                          ? "bg-[#1E1510] text-white border-[#1E1510] shadow-md ring-2 ring-[#8B3A22]/20"
-                          : "bg-white text-stone-800 border-stone-300 hover:border-stone-400"
+                          ? "bg-[#FAF5EE] text-stone-900 border-2 border-[#8B3A22] shadow-sm ring-2 ring-[#8B3A22]/15"
+                          : "bg-white text-stone-700 border border-stone-200/90 hover:border-stone-300 hover:bg-stone-50"
                       }`}
                     >
-                      <div className="text-xs font-bold truncate">
-                        {pack.weight}
+                      <div className="flex items-center justify-between w-full">
+                        <span className={`text-xs font-bold ${isSelected ? "text-[#8B3A22]" : "text-stone-800"}`}>
+                          {pack.weight}
+                        </span>
+                        {isSelected && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#8B3A22]" />
+                        )}
                       </div>
-                      <div className="flex items-baseline gap-1 mt-1">
-                        <span className="text-sm font-extrabold">
+                      <div className="flex flex-col min-[390px]:flex-row min-[390px]:items-baseline gap-0.5 min-[390px]:gap-1.5 mt-1">
+                        <span className="text-xs min-[390px]:text-sm font-extrabold text-stone-900 whitespace-nowrap">
                           ₨{pack.price.toLocaleString()}
                         </span>
-                        <span
-                          className={`text-[10px] line-through ${
-                            isSelected ? "text-stone-400" : "text-stone-400"
-                          }`}
-                        >
+                        <span className="text-[10px] sm:text-[11px] text-stone-400 line-through whitespace-nowrap">
                           ₨{pack.originalPrice.toLocaleString()}
                         </span>
                       </div>
