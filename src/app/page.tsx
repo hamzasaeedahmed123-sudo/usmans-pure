@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { HeroSlider } from "@/components/home/HeroSlider";
+import { HeroFeatureShowcase } from "@/components/home/HeroFeatureShowcase";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { CategoryCollections } from "@/components/CategoryCollections";
@@ -86,6 +87,9 @@ export default function Home() {
 
       {/* 1. Hero Section Slider */}
       <HeroSlider />
+
+      {/* 1.1 Seamless Borderless Feature Showcase */}
+      <HeroFeatureShowcase />
 
       {/* 2. Flagship Featured Product (Multigrain Diet & Diabetic Care Flour) */}
       <FlagshipFeaturedProduct />
