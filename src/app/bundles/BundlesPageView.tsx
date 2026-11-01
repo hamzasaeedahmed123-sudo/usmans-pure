@@ -114,14 +114,14 @@ export function BundlesPageView() {
                 return (
                   <article
                     key={bundle.id}
-                    className="group relative flex flex-col justify-between bg-[#F6F1E9] rounded-2xl p-3 md:p-5 shadow-ambient hover:shadow-ambient transition-all duration-300"
+                    className="group relative flex flex-col justify-between bg-[#F6F1E9] rounded-2xl overflow-hidden shadow-ambient hover:shadow-ambient transition-all duration-300"
                   >
                     <div>
-                      {/* Image showcase - Full width aspect 4/3, uncropped and centered */}
-                      <div className="w-full aspect-[4/3] relative flex items-center justify-center p-3 overflow-hidden rounded-t-2xl sm:rounded-2xl bg-stone-50/50 border border-[#1E1510]/5 mb-3 sm:mb-4">
+                      {/* Edge-to-edge image showcase - touches top, left, right edges */}
+                      <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-stone-100">
                         <Link
                           href={`/bundles/${bundle.slug}`}
-                          className="block w-full h-full relative flex items-center justify-center"
+                          className="block w-full h-full relative"
                           aria-label={bundle.title}
                         >
                           <Image
@@ -129,18 +129,19 @@ export function BundlesPageView() {
                             alt={bundle.title}
                             fill
                             sizes="(max-width: 768px) 50vw, 33vw"
-                            className="w-full h-full object-contain max-h-56 drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+                            quality={100}
+                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                           />
                         </Link>
 
                         {/* Saving / Discount Badge */}
-                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-amber-100 text-amber-900 border border-amber-200/60 shadow-2xs z-10">
+                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
                           Save Rs {bundle.savings}
                         </span>
                       </div>
 
                       {/* Bundle Information */}
-                      <div>
+                      <div className="p-3.5 sm:p-5 pb-0 sm:pb-0">
                         <span className="text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-1">
                           {bundle.badge}
                         </span>
@@ -169,7 +170,7 @@ export function BundlesPageView() {
                     </div>
 
                     {/* Call to Actions */}
-                    <div className="mt-3 sm:mt-4 pt-1 flex flex-col gap-2">
+                    <div className="p-3.5 sm:p-5 pt-3 sm:pt-4 flex flex-col gap-2">
                       <button
                         onClick={(e) => handleAddBundle(bundle, e)}
                         className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl min-h-[48px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-ambient ${
