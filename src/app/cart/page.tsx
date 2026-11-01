@@ -146,7 +146,7 @@ export default function CartPage() {
       checkoutForm.city
     )}%0AAddress: ${encodeURIComponent(checkoutForm.address || "N/A")}`;
 
-    window.open(`https://wa.me/923008472910?text=${message}`, "_blank");
+    window.open(`https://wa.me/923129996658?text=${message}`, "_blank");
   };
 
   return (

@@ -290,7 +290,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
 
                   {/* Direct WhatsApp COD Order Button */}
                   <a
-                    href={`https://wa.me/923008472910?text=${whatsappMessage}`}
+                    href={`https://wa.me/923129996658?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full py-3 px-5 rounded-[3px] bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2 transition-colors duration-200 shadow-xs text-center cursor-pointer"

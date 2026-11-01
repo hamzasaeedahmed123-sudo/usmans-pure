@@ -42,7 +42,7 @@ export function DietConsultationBanner() {
             {/* WhatsApp CTA Button */}
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <a
-                href="https://wa.me/923008472910?text=Hi%20Usman's%20Pure,%20I%20would%20like%20to%20order%20fresh%20pure milled%20flour%20and%20herbal%20teas."
+                href="https://wa.me/923129996658?text=Hi%20Usman's%20Pure,%20I%20would%20like%20to%20order%20fresh%20pure milled%20flour%20and%20herbal%20teas."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl bg-amber-400 hover:bg-amber-300 text-stone-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2.5 transition shadow-ambient shadow-amber-400/20 active:scale-98"

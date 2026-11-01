@@ -66,7 +66,7 @@ export function DoctorsChoiceBanner() {
             </Link>
 
             <a
-              href="https://wa.me/923008472910?text=Hello%2C%20I%20would%20like%20guidance%20regarding%20diabetic%20and%20diet%20flours."
+              href="https://wa.me/923129996658?text=Hello%2C%20I%20would%20like%20guidance%20regarding%20diabetic%20and%20diet%20flours."
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-[#D5CEBF] hover:text-[#E5B869] underline underline-offset-4 decoration-[#E5B869]/40 transition-colors"

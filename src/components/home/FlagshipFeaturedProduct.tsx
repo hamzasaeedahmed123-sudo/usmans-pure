@@ -56,7 +56,7 @@ const PACK_OPTIONS: PackOption[] = [
 ];
 
 const PRODUCT_IMAGE = "/images/products/flagship-man-product-merged.png";
-const WHATSAPP_PHONE = "923008472910";
+const WHATSAPP_PHONE = "923129996658";
 
 export function FlagshipFeaturedProduct() {
   const { addItem, openCart } = useCart();

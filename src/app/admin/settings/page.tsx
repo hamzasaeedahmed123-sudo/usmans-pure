@@ -68,8 +68,8 @@ export default function AdminSettingsPage() {
       bankName: storeSettings.paymentCredentials?.bankName || "Meezan Bank Ltd",
       bankAccountTitle: storeSettings.paymentCredentials?.bankAccountTitle || "Usman's Pure Products",
       bankIban: storeSettings.paymentCredentials?.bankIban || "PK36MEZN0001098472910101",
-      raastId: storeSettings.paymentCredentials?.raastId || "0300-8472910",
-      jazzCashNumber: storeSettings.paymentCredentials?.jazzCashNumber || "0300-8472910",
+      raastId: storeSettings.paymentCredentials?.raastId || "0312-9996658",
+      jazzCashNumber: storeSettings.paymentCredentials?.jazzCashNumber || "0312-9996658",
       jazzCashTitle: storeSettings.paymentCredentials?.jazzCashTitle || "Usman's Pure Products",
       easyPaisaNumber: storeSettings.paymentCredentials?.easyPaisaNumber || "0345-1234567",
       easyPaisaTitle: storeSettings.paymentCredentials?.easyPaisaTitle || "Usman's Pure Products",
@@ -238,7 +238,7 @@ export default function AdminSettingsPage() {
       setFuture([]);
       const defaults: SettingsFormData = {
         storeName: "Usman's Pure Products",
-        storePhone: "+92 300 8472910",
+        storePhone: "+92 312 9996658",
         storeEmail: "support@usmanspure.com",
         storeAddress: "Milling Facility, G.T. Road, Lahore, Punjab, Pakistan",
         freeShippingThreshold: 10000,
@@ -250,8 +250,8 @@ export default function AdminSettingsPage() {
         bankName: "Meezan Bank Ltd",
         bankAccountTitle: "Usman's Pure Products",
         bankIban: "PK36MEZN0001098472910101",
-        raastId: "0300-8472910",
-        jazzCashNumber: "0300-8472910",
+        raastId: "0312-9996658",
+        jazzCashNumber: "0312-9996658",
         jazzCashTitle: "Usman's Pure Products",
         easyPaisaNumber: "0345-1234567",
         easyPaisaTitle: "Usman's Pure Products",
@@ -613,7 +613,7 @@ export default function AdminSettingsPage() {
                       type="text"
                       value={formData.raastId}
                       onChange={(e) => updateField("raastId", e.target.value)}
-                      placeholder="e.g. 0300-8472910"
+                      placeholder="e.g. 0312-9996658"
                       className="w-full px-2.5 py-1.5 rounded-lg bg-stone-50 border border-stone-200 text-xs font-mono font-bold text-stone-900"
                     />
                   </div>
@@ -633,7 +633,7 @@ export default function AdminSettingsPage() {
                       type="text"
                       value={formData.jazzCashNumber}
                       onChange={(e) => updateField("jazzCashNumber", e.target.value)}
-                      placeholder="0300-8472910"
+                      placeholder="0312-9996658"
                       className="w-full px-2.5 py-1.5 rounded-lg bg-stone-50 border border-stone-200 text-xs font-mono font-bold text-stone-900 mb-1.5"
                     />
                     <label className="block text-[10px] text-stone-500 font-medium mb-0.5">

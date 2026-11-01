@@ -172,8 +172,8 @@ export function CheckoutView() {
     bankName: "Meezan Bank Ltd",
     bankAccountTitle: "Usman's Pure Products",
     bankIban: "PK36MEZN0001098472910101",
-    raastId: "0300-8472910",
-    jazzCashNumber: "0300-8472910",
+    raastId: "0312-9996658",
+    jazzCashNumber: "0312-9996658",
     jazzCashTitle: "Usman's Pure Products",
     easyPaisaNumber: "0345-1234567",
     easyPaisaTitle: "Usman's Pure Products",
@@ -327,7 +327,7 @@ export function CheckoutView() {
       paymentLabel
     )}`;
 
-    return `https://wa.me/923008472910?text=${text}`;
+    return `https://wa.me/923129996658?text=${text}`;
   };
 
   if (!isLoaded) {
@@ -864,7 +864,7 @@ export function CheckoutView() {
                                               <span>Raast Instant ID</span>
                                             </div>
                                             <div className="font-mono font-black text-stone-900 text-xs sm:text-sm">
-                                              {creds.raastId || "0300-8472910"}
+                                              {creds.raastId || "0312-9996658"}
                                             </div>
                                             <div className="text-[10px] text-stone-600 mt-0.5 truncate">
                                               Instant fee-free transfer
@@ -872,7 +872,7 @@ export function CheckoutView() {
                                           </div>
                                           <button
                                             type="button"
-                                            onClick={() => handleCopy(creds.raastId || "03008472910", "raastId")}
+                                            onClick={() => handleCopy(creds.raastId || "03129996658", "raastId")}
                                             className="px-2.5 py-1.5 rounded-lg bg-white hover:bg-emerald-100 text-stone-800 hover:text-emerald-950 border border-emerald-300 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0 shadow-2xs"
                                             title="Copy Raast ID"
                                           >
@@ -897,7 +897,7 @@ export function CheckoutView() {
                                               JazzCash Mobile Account
                                             </div>
                                             <div className="font-mono font-black text-stone-900 text-xs">
-                                              {creds.jazzCashNumber || "0300-8472910"}
+                                              {creds.jazzCashNumber || "0312-9996658"}
                                             </div>
                                             <div className="text-[10px] text-stone-500 truncate">
                                               Title: {creds.jazzCashTitle || "Usman's Pure Products"}
@@ -905,7 +905,7 @@ export function CheckoutView() {
                                           </div>
                                           <button
                                             type="button"
-                                            onClick={() => handleCopy(creds.jazzCashNumber || "03008472910", "jazzcash")}
+                                            onClick={() => handleCopy(creds.jazzCashNumber || "03129996658", "jazzcash")}
                                             className="px-2 py-1 rounded-lg bg-white hover:bg-red-50 text-stone-700 border border-red-200 text-[10px] font-bold flex items-center gap-1 transition cursor-pointer shrink-0"
                                           >
                                             {copiedKey === "jazzcash" ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}

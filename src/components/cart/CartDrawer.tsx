@@ -69,7 +69,7 @@ export function CartDrawer() {
       deliveryFee === 0 ? "FREE Nationwide" : `Rs ${deliveryFee}`
     }%0A*Final Total:* Rs ${finalTotal.toLocaleString()}%0A%0APlease confirm availability and delivery details. JazakAllah!`;
 
-    return `https://wa.me/923008472910?text=${text}`;
+    return `https://wa.me/923129996658?text=${text}`;
   };
 
   return (

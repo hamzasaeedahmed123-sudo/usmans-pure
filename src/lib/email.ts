@@ -139,7 +139,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
       </div>
 
       <div style="text-align: center; border-top: 1px solid #EFEAE2; padding-top: 16px; font-size: 12px; color: #8C7D6F;">
-        <p style="margin: 0 0 6px 0;">Direct WhatsApp Support: <strong>+92 300 8472910</strong></p>
+        <p style="margin: 0 0 6px 0;">Direct WhatsApp Support: <strong>+92 312 9996658</strong></p>
         <p style="margin: 0;">Usman's Pure Products — wholesome whole wheat Chakki Atta &amp; Herbal Teas, Pakistan.</p>
       </div>
     </div>

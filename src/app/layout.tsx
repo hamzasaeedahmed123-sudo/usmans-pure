@@ -98,7 +98,7 @@ const organizationSchema = {
         "Authentic freshly milled whole grain chakki flours, diabetic nutritional blends, and pure herbal teas in Pakistan.",
       contactPoint: {
         "@type": "ContactPoint",
-        telephone: "+92-300-8472910",
+        telephone: "+92-312-9996658",
         contactType: "Customer Support",
         areaServed: "PK",
         availableLanguage: ["English", "Urdu"],

@@ -494,7 +494,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
                       {/* WhatsApp COD Order */}
                       <a
-                        href={`https://wa.me/923008472910?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
+                        href={`https://wa.me/923129996658?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
                           product.title
                         )}%20(${selectedPack}%20x%20${quantity}%20=%20₨${totalPrice})%20with%20Cash%20on%20Delivery.`}
                         target="_blank"

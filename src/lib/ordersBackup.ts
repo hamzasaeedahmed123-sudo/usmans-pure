@@ -85,10 +85,10 @@ export async function backupOrder(order: OrderBackupRecord) {
 }
 
 /**
- * Generate official structured WhatsApp message and direct URL for +92 300 8472910
+ * Generate official structured WhatsApp message and direct URL for +92 312 9996658
  */
 export function generateWhatsAppOrderUrl(order: OrderBackupRecord) {
-  const storeWhatsAppNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "923008472910";
+  const storeWhatsAppNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "923129996658";
   const cleanNumber = storeWhatsAppNumber.replace(/[^0-9]/g, "");
 
   const itemsList = order.items

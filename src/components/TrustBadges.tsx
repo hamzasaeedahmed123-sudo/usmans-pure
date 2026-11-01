@@ -54,7 +54,7 @@ export function TrustBadges({ className = "", wrapperClassName = "" }: TrustBadg
         {/* Card 4: Direct WhatsApp Support */}
         <div className="px-2 sm:px-3 text-center flex flex-col items-center justify-start h-full pt-1 sm:pt-0">
           <a
-            href="https://wa.me/923008472910"
+            href="https://wa.me/923129996658"
             target="_blank"
             rel="noopener noreferrer"
             className="w-11 h-11 mb-2 shrink-0 transition-transform hover:scale-105 active:scale-95 cursor-pointer drop-shadow-sm flex items-center justify-center"
@@ -66,7 +66,7 @@ export function TrustBadges({ className = "", wrapperClassName = "" }: TrustBadg
             Direct WhatsApp Support
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-600 font-medium text-center mt-0.5 leading-tight">
-            +92 300 8472910
+            +92 312 9996658
           </p>
         </div>
       </div>

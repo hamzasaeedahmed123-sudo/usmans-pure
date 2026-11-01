@@ -157,17 +157,17 @@ export const DEFAULT_PAYMENT_CREDENTIALS: PaymentCredentials = {
   bankName: "Meezan Bank Ltd",
   bankAccountTitle: "Usman's Pure Products",
   bankIban: "PK36MEZN0001098472910101",
-  raastId: "0300-8472910",
-  jazzCashNumber: "0300-8472910",
+  raastId: "0312-9996658",
+  jazzCashNumber: "0312-9996658",
   jazzCashTitle: "Usman's Pure Products",
-  easyPaisaNumber: "0345-1234567",
+  easyPaisaNumber: "0312-9996658",
   easyPaisaTitle: "Usman's Pure Products",
   paymentInstructions: "Please transfer the total order amount using Raast, Online Banking, or Mobile Wallet. Enter your Transaction ID (TID) or sender account title below for instant automated verification.",
 };
 
 export const DEFAULT_STORE_SETTINGS: StoreSettings = {
   storeName: "Usman's Pure Products",
-  storePhone: "+92 300 8472910",
+  storePhone: "+92 312 9996658",
   storeEmail: "support@usmanspure.com",
   storeAddress: "Milling Facility, G.T. Road, Lahore, Punjab, Pakistan",
   freeShippingThreshold: 10000,

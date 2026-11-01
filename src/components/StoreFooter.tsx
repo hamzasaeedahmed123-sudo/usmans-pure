@@ -64,7 +64,7 @@ export function StoreFooter() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
               <a
-                href="https://wa.me/923008472910"
+                href="https://wa.me/923129996658"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 transition-transform hover:scale-105 active:scale-95 cursor-pointer drop-shadow-sm flex items-center justify-center"
@@ -77,7 +77,7 @@ export function StoreFooter() {
                   Direct WhatsApp Support
                 </h5>
                 <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  +92 300 8472910
+                  +92 312 9996658
                 </p>
               </div>
             </div>
@@ -100,11 +100,11 @@ export function StoreFooter() {
                 {/* Phone / UAN - Large, bold and tap-to-call */}
                 <div>
                   <a
-                    href="tel:+923008472910"
+                    href="tel:+923129996658"
                     className="flex items-center gap-3 text-lg sm:text-xl font-bold text-white hover:text-[#D8B486] transition-colors group"
                   >
                     <Phone className="w-6 h-6 text-[#D8B486] shrink-0 group-hover:scale-110 transition-transform" />
-                    <span>+92 300 8472910</span>
+                    <span>+92 312 9996658</span>
                   </a>
                   <span className="text-xs text-[#A89887] ml-9 block mt-0.5">
                     Toll-Free UAN &amp; Order Helpline
@@ -137,7 +137,7 @@ export function StoreFooter() {
 
               {/* Direct WhatsApp CTA Button */}
               <a
-                href="https://wa.me/923008472910"
+                href="https://wa.me/923129996658"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="py-3 px-5 rounded-xl font-bold text-sm bg-[#25D366] text-white flex items-center gap-2.5 shadow-md hover:bg-[#20ba59] hover:shadow-lg transition-all duration-200 w-fit mt-5 cursor-pointer"
