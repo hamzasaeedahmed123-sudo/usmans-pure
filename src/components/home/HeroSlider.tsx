@@ -77,8 +77,8 @@ export const SLIDES: HeroSlide[] = [
     tag: "Qudrati Desi Qehwa",
     title: "HERBAL",
     subtitle: "TEAS",
-    fullTitle: "Pure Thyme Herbal Tea",
-    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli chamomile aur thyme leaves ka qehwa.",
+    fullTitle: "Pure Olive Leaf Herbal Tea",
+    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli olive leaves aur chamomile ka qehwa.",
     miniStats: ["100% Qudrati", "Caffeine-Free", "Immunity & Throat"],
     price: "Rs 1,250",
     originalPrice: "Rs 1,500",
@@ -93,7 +93,7 @@ export const SLIDES: HeroSlide[] = [
     image: "/images/hero/hero-tea-product.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
-    altText: "Usman's Pure Products Pure Thyme Herbal Tea 250g",
+    altText: "Usman's Pure Products Pure Olive Leaf Herbal Tea 250g",
   },
 ];
 
@@ -340,7 +340,7 @@ export function HeroSlider() {
               </div>
 
               {/* 2. Main Product Cutout Visual: Balanced & Readable Responsive Sizing */}
-              <div className="relative w-full h-44 sm:h-52 min-h-[170px] max-h-[220px] flex items-center justify-center pointer-events-none z-10 my-1">
+              <div className="relative w-full h-40 sm:h-48 min-h-[160px] max-h-[200px] flex items-center justify-center pointer-events-none z-10 my-0.5">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
@@ -356,9 +356,9 @@ export function HeroSlider() {
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 75vw, 360px"
-                    quality={85}
-                    className="max-w-full h-auto object-contain p-0.5 mix-blend-multiply w-auto drop-shadow-md"
+                    sizes="(max-width: 768px) 60vw, 300px"
+                    quality={90}
+                    className="max-w-full h-auto object-contain p-0.5 w-auto drop-shadow-md"
                     loading="eager"
                   />
                 </div>
@@ -513,7 +513,7 @@ export function HeroSlider() {
                   y: -20,
                   transition: { duration: 0.35, ease: "easeInOut" },
                 }}
-                className="relative w-64 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[460px] flex items-center justify-center transform-gpu will-change-transform"
+                className="relative w-56 h-64 sm:w-64 sm:h-72 md:w-72 md:h-[320px] lg:w-80 lg:h-[350px] flex items-center justify-center transform-gpu will-change-transform"
               >
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-4 inset-x-8 sm:inset-x-12 h-7 rounded-full bg-black/20 blur-lg pointer-events-none -z-10" />
@@ -534,9 +534,9 @@ export function HeroSlider() {
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 60vw, 400px"
-                    quality={85}
-                    className="object-contain p-2 mix-blend-multiply select-none"
+                    sizes="(max-width: 768px) 50vw, 360px"
+                    quality={90}
+                    className="object-contain p-1 select-none drop-shadow-md"
                     priority
                   />
                 </motion.div>

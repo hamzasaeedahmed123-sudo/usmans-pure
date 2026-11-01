@@ -121,13 +121,13 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
                 className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
                 aria-label="USMAN'S PURE PRODUCTS"
               >
-                <div className="relative px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-2xl bg-white/85 hover:bg-white/95 backdrop-blur-md border border-white/70 shadow-sm flex items-center transition-all duration-300 group-hover:scale-[1.02]">
+                <div className="relative flex items-center transition-all duration-300 group-hover:scale-[1.02]">
                   <Image
                     src="/logo.png"
                     alt="USMAN'S PURE PRODUCTS"
                     width={220}
                     height={60}
-                    className="w-auto h-9 sm:h-10 md:h-11 object-contain object-left drop-shadow-[0_0_15px_rgba(255,255,255,0.85)]"
+                    className="w-auto h-9 sm:h-10 md:h-11 object-contain object-left"
                     priority
                   />
                 </div>
