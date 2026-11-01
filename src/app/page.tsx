@@ -91,9 +91,6 @@ export default function Home() {
       {/* 2. Flagship Featured Product (with seamless merged visual of kitchen display and young man) */}
       <FlagshipFeaturedProduct />
 
-      {/* 2.1 Full-Width Video Showcase (immediately below the introductory product section) */}
-      <ProductVideoShowcase />
-
       {/* 3. Scrolling Marquee Ticker */}
       <TickerMarquee />
 
@@ -116,6 +113,11 @@ export default function Home() {
       {/* 8. Curated Mega Bundles Section */}
       <div className="content-visibility-auto">
         <MegaBundles />
+      </div>
+
+      {/* 8.1 Full-Width Video Showcase (Asli Qudrati Purity & Milling in Action) */}
+      <div className="content-visibility-auto">
+        <ProductVideoShowcase />
       </div>
 
       {/* 9. Personalized Diet Plan & Health Guidance Banner */}
