@@ -328,21 +328,21 @@ export function HeroSlider() {
               transition={{ duration: 0.45, ease: "easeInOut" }}
               className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2.5 px-2 max-w-sm mx-auto"
             >
-              {/* 1. Category Title: Bold, Prominent & Beautifully Balanced Typography */}
+              {/* 1. Category Title: Bold, Prominent & Space-Filling Typography */}
               <div className="w-full text-center shrink-0 z-10 select-none py-1">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[34px] min-[390px]:text-[40px] sm:text-[46px] font-serif font-black tracking-tight leading-[1.08] text-center max-w-full px-3 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-[46px] min-[390px]:text-[54px] sm:text-[62px] font-serif font-black tracking-tight leading-[0.96] text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[26px] min-[390px]:text-[32px] sm:text-[36px] font-serif font-bold tracking-tight mt-1 leading-[1.1]">{currentSlide.subtitle}</span>
+                  <span className="block text-[36px] min-[390px]:text-[42px] sm:text-[48px] font-serif font-black tracking-tight mt-1 leading-[0.98]">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
-              {/* 2. Main Product Cutout Visual: Balanced & Readable Responsive Sizing */}
-              <div className="relative w-full h-44 sm:h-52 min-h-[170px] max-h-[210px] flex items-center justify-center pointer-events-none z-10 my-1">
+              {/* 2. Main Product Cutout Visual: Enlarged & Prominent Sizing (Collision-Free) */}
+              <div className="relative w-full h-52 min-[390px]:h-60 sm:h-68 min-h-[200px] max-h-[260px] flex items-center justify-center pointer-events-none z-10 my-1">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
-                <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
+                <div className="absolute -bottom-1 inset-x-12 h-4 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
                 {/* Product Glow Aura */}
                 <div
@@ -356,8 +356,8 @@ export function HeroSlider() {
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 60vw, 300px"
-                    quality={90}
+                    sizes="(max-width: 768px) 75vw, 360px"
+                    quality={95}
                     className="max-w-full h-auto object-contain p-0.5 w-auto drop-shadow-md"
                     loading="eager"
                   />
