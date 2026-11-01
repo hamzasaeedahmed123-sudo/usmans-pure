@@ -63,8 +63,8 @@ export const FAQS_DATA: FaqItem[] = [
     id: 8,
     category: "clinical",
     categoryLabel: "Dietary Care & Wellness",
-    q: "What are the benefits of Pure Barley (Jau) Flour?",
-    a: "Pure Barley flour has natural cooling properties, is very easy to digest, and is an excellent option for controlling cholesterol, improving heart health, and natural weight management.",
+    q: "What are the benefits of Giggly Grains - Multigrain Blend?",
+    a: "Giggly Grains is an immunity-boosting multigrain blend specially formulated for kids and growing families. It is rich in dietary fiber, natural vitamins, and minerals that support healthy digestion and sustained daily energy without any artificial additives.",
   },
 
   // Category: Herbal Teas & Storage

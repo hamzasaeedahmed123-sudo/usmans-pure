@@ -60,7 +60,7 @@ const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   },
   {
     id: "media-prod-5",
-    name: "Pure Barley (Jau) Flour",
+    name: "Giggly Grains - Multigrain Blend",
     url: "/images/products/prod-5.jpg",
     size: "390 KB",
     date: "2026-10-19",

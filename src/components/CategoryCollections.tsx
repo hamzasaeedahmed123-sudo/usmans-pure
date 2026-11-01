@@ -12,7 +12,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
     {
       id: "flour",
       title: "Traditional Stone-Ground Flours (Atta)",
-      subtitle: "General Health, Diabetic Care, Weight Loss & Pure Barley flours rich in vital nutrients.",
+      subtitle: "General Health, Diabetic Care, Weight Loss & Giggly Grains flours rich in vital nutrients.",
       image: "/images/products/prod-3.jpg",
       badge: "Pure Chakki Flour",
       href: "/flour",

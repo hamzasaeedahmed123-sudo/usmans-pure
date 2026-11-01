@@ -98,20 +98,20 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
   },
   {
     id: "prod-5",
-    title: "Pure Barley (Jau) Flour",
-    problemTag: "CHOLESTEROL CARE & HEART HEALTH",
-    easyBenefit: "100% pure barley flour with natural cooling properties for cholesterol control and heart health.",
+    title: "Giggly Grains - Multigrain Blend",
+    problemTag: "KIDS IMMUNITY & NUTRITION",
+    easyBenefit: "Immunity Boost for Kids (Rich in Fiber & Nutrients) formulated with wholesome whole grains for growing children.",
     simplePoints: [
-      "Natural cooling properties and heart-friendly",
-      "Lowers cholesterol and aids in natural weight management",
-      "Very easy to digest and 100% stone-ground",
+      "Natural immunity boost and rich in dietary fiber",
+      "Loaded with vitamins, minerals, and plant-based calcium",
+      "Very easy to digest, soft rotis and fluffy pancakes",
     ],
     image: "/images/products/prod-5.jpg",
     detailUrl: "/product/prod-5",
     checkoutUrl: "/checkout?product=prod-5",
     packOptions: [
-      { size: "5kg", price: 1100, originalPrice: 1400 },
-      { size: "10kg", price: 2100, originalPrice: 2700 },
+      { size: "2 lbs (900g)", price: 1100, originalPrice: 1400 },
+      { size: "5kg", price: 2100, originalPrice: 2700 },
     ],
   },
 ];

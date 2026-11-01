@@ -635,8 +635,8 @@ export function ReviewsPageView() {
                         <option value="Fat2Fuel Advance Multigrain Flour">
                           Fat2Fuel Advance Multigrain Flour
                         </option>
-                        <option value="Pure Barley (Jau) Flour">
-                          Pure Barley (Jau) Flour
+                        <option value="Giggly Grains - Multigrain Blend">
+                          Giggly Grains - Multigrain Blend
                         </option>
                         <option value="Whole Wheat Chakki Atta">
                           Whole Wheat Chakki Atta

@@ -30,7 +30,7 @@ const REVIEW_PRODUCTS = [
   "Basic – Flour For General Health",
   "FENUGREEK Plus – Flour for Good Diabetic Control",
   "Fat2Fuel Advance Multigrain Flour",
-  "Pure Barley (Jau) Flour",
+  "Giggly Grains - Multigrain Blend",
   "Whole Wheat Chakki Atta",
   "Chamomile Tea",
   "Lemongrass Herbal Tea",

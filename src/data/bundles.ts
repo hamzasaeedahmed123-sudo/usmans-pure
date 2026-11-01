@@ -129,7 +129,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     id: "bundle-2",
     slug: "diabetic-care-heart-health-pack",
     title: "Diabetic Family Flour Kit",
-    subtitle: "FENUGREEK Plus Low-GI Chakki Flour + Pure Barley (Jau) Flour",
+    subtitle: "FENUGREEK Plus Low-GI Chakki Flour + Giggly Grains - Multigrain Blend",
     tagline: "Wholesome whole-grain synergy rich in dietary fiber and natural diabetic care.",
     badge: "Dietary Care • Save ₨650",
     price: 1850,
@@ -137,9 +137,9 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     savings: 650,
     image: "/images/products/prod-4.jpg",
     tint: "bg-[#E9ECDF]",
-    includedTags: ["5kg FENUGREEK Plus Atta", "5kg Barley Flour", "Glycemic Food Tracker"],
+    includedTags: ["5kg FENUGREEK Plus Atta", "Giggly Grains Blend", "Glycemic Food Tracker"],
     description:
-      "Formulated for households seeking high-fiber, slow-digesting whole grain staples. Cold-ground whole wheat blended with fenugreek seeds, paired with 100% pure barley flour with cooling properties for cholesterol control and heart health.",
+      "Formulated for households seeking high-fiber, slow-digesting whole grain staples. Cold-ground whole wheat blended with fenugreek seeds, paired with Giggly Grains multigrain blend rich in natural fiber and immunity-boosting nutrients.",
     whatsInTheBox: [
       {
         name: "FENUGREEK Plus – Flour for Good Diabetic Control",
@@ -149,10 +149,10 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         image: "/images/products/prod-4.jpg",
       },
       {
-        name: "Pure Barley (Jau) Flour",
-        size: "5kg Pack",
-        role: "Cholesterol & Heart Health",
-        desc: "100% pure barley flour with cooling properties and countless benefits. An excellent option for controlling cholesterol and improving heart health.",
+        name: "Giggly Grains - Multigrain Blend",
+        size: "900g Pack",
+        role: "Immunity Boost for Kids",
+        desc: "A wholesome multigrain blend rich in fiber, calcium, and essential nutrients to support natural immunity and healthy development in children.",
         image: "/images/products/prod-5.jpg",
       },
       {
@@ -163,9 +163,9 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
       },
     ],
     synergy: {
-      headline: "How It Works Together: Dual-Action Glycemic & Heart Guard",
+      headline: "How It Works Together: Dual-Action Glycemic & Immunity Guard",
       description:
-        "The natural ingredients in FENUGREEK Plus slow carbohydrate absorption and help regulate blood sugar levels, while Pure Barley flour lowers cholesterol and promotes cardiac health.",
+        "The natural ingredients in FENUGREEK Plus slow carbohydrate absorption and help regulate blood sugar levels, while Giggly Grains provides wholesome multigrain nutrition for family wellness.",
       routineSteps: [
         {
           time: "Breakfast & Lunch Meals",
@@ -175,9 +175,9 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         },
         {
           time: "Dinner or Alternative Days",
-          title: "Pure Barley Flour Rotis or Porridge",
+          title: "Giggly Grains Multigrain Porridge or Pancakes",
           instruction:
-            "Enjoy cooling barley rotis for dinner or prepared as traditional talbina for easy evening digestion and heart health.",
+            "Enjoy nutritious Giggly Grains prepared as pancakes, porridge, or rotis for easy evening digestion and family wellness.",
         },
       ],
     },
