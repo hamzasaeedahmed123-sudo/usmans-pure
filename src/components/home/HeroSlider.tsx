@@ -328,19 +328,19 @@ export function HeroSlider() {
               transition={{ duration: 0.45, ease: "easeInOut" }}
               className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2.5 px-2 max-w-sm mx-auto"
             >
-              {/* 1. Category Title: Standard, Clean Responsive Typography */}
-              <div className="w-full text-center shrink-0 z-10 select-none">
+              {/* 1. Category Title: Bold, Prominent & Beautifully Balanced Typography */}
+              <div className="w-full text-center shrink-0 z-10 select-none py-1">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-[34px] min-[390px]:text-[40px] sm:text-[46px] font-serif font-black tracking-tight leading-[1.08] text-center max-w-full px-3 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-xl sm:text-2xl font-bold tracking-tight mt-0.5">{currentSlide.subtitle}</span>
+                  <span className="block text-[26px] min-[390px]:text-[32px] sm:text-[36px] font-serif font-bold tracking-tight mt-1 leading-[1.1]">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
               {/* 2. Main Product Cutout Visual: Balanced & Readable Responsive Sizing */}
-              <div className="relative w-full h-40 sm:h-48 min-h-[160px] max-h-[200px] flex items-center justify-center pointer-events-none z-10 my-0.5">
+              <div className="relative w-full h-44 sm:h-52 min-h-[170px] max-h-[210px] flex items-center justify-center pointer-events-none z-10 my-1">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
