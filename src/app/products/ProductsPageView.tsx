@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/Header";
 import { StoreFooter } from "@/components/StoreFooter";
 import { TickerMarquee } from "@/components/TickerMarquee";
@@ -28,7 +29,20 @@ export function ProductsPageView() {
   const { products: storeProducts } = useStoreData();
   const allCatalogProducts = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS;
 
-  const [selectedCategory, setSelectedCategory] = useState<"all" | "flours" | "teas">("all");
+  const searchParams = useSearchParams();
+  const paramCategory = searchParams.get("category");
+
+  const [selectedCategory, setSelectedCategory] = useState<"all" | "flours" | "teas">(() => {
+    if (paramCategory === "flours") return "flours";
+    if (paramCategory === "teas") return "teas";
+    return "all";
+  });
+
+  useEffect(() => {
+    if (paramCategory === "flours" || paramCategory === "teas" || paramCategory === "all") {
+      setSelectedCategory(paramCategory);
+    }
+  }, [paramCategory]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState<"featured" | "price-asc" | "price-desc" | "rating">("featured");
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
@@ -133,7 +147,7 @@ export function ProductsPageView() {
                       : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                   }`}
                 >
-                  All Items
+                  All Essentials
                 </button>
                 <button
                   onClick={() => setSelectedCategory("flours")}
@@ -143,7 +157,7 @@ export function ProductsPageView() {
                       : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                   }`}
                 >
-                  Diet &amp; Chakki Flours
+                  Flour
                 </button>
                 <button
                   onClick={() => setSelectedCategory("teas")}
@@ -153,7 +167,7 @@ export function ProductsPageView() {
                       : "bg-stone-100 text-stone-700 hover:bg-stone-200"
                   }`}
                 >
-                  Organic Herbal Teas
+                  Herbal Teas
                 </button>
               </div>
 

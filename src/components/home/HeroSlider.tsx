@@ -225,11 +225,7 @@ export function HeroSlider() {
     e.preventDefault();
     if (typeof window !== "undefined") {
       const category = currentSlide.id === "herbals" ? "teas" : "flours";
-      window.dispatchEvent(new CustomEvent("setCollectionTab", { detail: category }));
-      const el = document.getElementById("our-collection");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+      window.location.href = `/products?category=${category}`;
     }
   };
 

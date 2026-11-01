@@ -4,7 +4,6 @@ import { HeroSlider } from "@/components/home/HeroSlider";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { ProductVideoShowcase } from "@/components/home/ProductVideoShowcase";
 import { TickerMarquee } from "@/components/TickerMarquee";
-import { CategoryCollections } from "@/components/CategoryCollections";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
 
 const ProductCatalog = dynamic(
@@ -96,9 +95,6 @@ export default function Home() {
 
       {/* 4. Featured Products (freshly milled Whole Wheat Flour & Multi-Grain Blends) */}
       <ProductCatalog />
-
-      {/* 5. Category Collections ("Our Collections" #our-collection with Dynamic Tabs) */}
-      <CategoryCollections />
 
       {/* 6. Customer Voices & Testimonials (Repositioned Higher on Homepage) */}
       <div className="content-visibility-auto">

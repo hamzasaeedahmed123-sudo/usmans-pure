@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ProductsPageView } from "../products/ProductsPageView";
 
 export const metadata: Metadata = {
@@ -18,5 +19,9 @@ export const metadata: Metadata = {
 };
 
 export default function ShopPage() {
-  return <ProductsPageView />;
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-stone-50" />}>
+      <ProductsPageView />
+    </Suspense>
+  );
 }

@@ -12,7 +12,6 @@ import {
 } from "lucide-react";
 
 import { BotanicalWatermark } from "@/components/BotanicalWatermark";
-import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 import { useCart } from "@/context/CartContext";
 
 interface FeaturedPackOption {
@@ -197,31 +196,20 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
   },
 ];
 
-interface ProductCatalogProps {
-  activeFilter?: "all" | "flours" | "teas";
-  setActiveFilter?: (filter: "all" | "flours" | "teas") => void;
-}
+// Hardcoded exactly 3 products for homepage showcase: 2 Flour products + 1 Herbal Tea
+export const HOMEPAGE_3_PRODUCTS: FeaturedProductItem[] = [
+  FEATURED_5_PRODUCTS[0], // Basic Whole Wheat Flour (Flour)
+  FEATURED_5_PRODUCTS[1], // FENUGREEK Plus (Flour)
+  FEATURED_5_PRODUCTS[2], // Chamomile Tea (Herbal Tea)
+];
 
-export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: externalSetFilter }: ProductCatalogProps = {}) {
+export function ProductCatalog() {
   const { addItem, openCart } = useCart();
-  const [internalFilter, setInternalFilter] = useState<"all" | "flours" | "teas">("all");
-  const currentFilter = externalFilter ?? internalFilter;
-  const setFilter = externalSetFilter ?? setInternalFilter;
-  const { setActiveTheme } = useAmbientTheme();
-
-  const handleFilterChange = (filter: "all" | "flours" | "teas") => {
-    setFilter(filter);
-    if (filter === "flours") setActiveTheme("flour");
-    else if (filter === "teas") setActiveTheme("herbals");
-    else setActiveTheme("default");
-  };
 
   const [selectedPacks, setSelectedPacks] = useState<Record<string, string>>({
     "prod-1": "5kg",
     "prod-4": "5kg",
-    "prod-3": "5kg",
     "prod-2": "50g",
-    "prod-7": "50g",
   });
 
   const [addedIds, setAddedIds] = useState<Record<string, boolean>>({});
@@ -248,30 +236,8 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
     }, 2000);
   };
 
-  const handleLearnMore = (category: "flours" | "teas", e?: React.MouseEvent) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-    if (typeof window !== "undefined") {
-      // 1. Dispatch custom event to dynamically activate the tab in "Our Collection"
-      window.dispatchEvent(new CustomEvent("setCollectionTab", { detail: category }));
-
-      // 2. Smoothly scroll down to the Our Collection section
-      const el = document.getElementById("our-collection");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
-  };
-
-  const filteredProducts =
-    currentFilter === "all"
-      ? FEATURED_5_PRODUCTS
-      : FEATURED_5_PRODUCTS.filter((p) => p.category === currentFilter);
-
-  // Strictly limit initial display to exactly 3 product cards
-  const displayedProducts = filteredProducts.slice(0, 3);
+  // Strictly hardcoded to exactly 3 products: 2 Flour products and 1 Herbal Tea
+  const displayedProducts = HOMEPAGE_3_PRODUCTS;
 
   return (
     <section id="featured-products" className="relative py-14 sm:py-24 transition-colors duration-700 ease-in-out overflow-hidden">
@@ -291,7 +257,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
         {/* Editorial Section Heading with Brand Logo opposite title */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
           <div className="max-w-xl">
             <span className="eyebrow">Handcrafted Organic Essentials</span>
             <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-snug">
@@ -319,28 +285,21 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           </div>
         </div>
 
-        {/* Category Ambient Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-12 no-scrollbar">
-          {[
-            { id: "all", label: "All Essentials" },
-            { id: "flours", label: "Pure Chakki Flours" },
-            { id: "teas", label: "Herbal Teas" },
-          ].map((tab) => {
-            const isSelected = currentFilter === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => handleFilterChange(tab.id as any)}
-                className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-300 cursor-pointer border whitespace-nowrap ${
-                  isSelected
-                    ? "bg-stone-900 text-white border-stone-900 shadow-sm"
-                    : "bg-white/80 hover:bg-white text-stone-700 border-stone-200/80 hover:border-stone-400"
-                }`}
-              >
-                {tab.label}
-              </button>
-            );
-          })}
+        {/* Clean Header Bar with Direct Link to Dedicated Shop Page (Replacing Tabs) */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-stone-200/80 pb-4 mb-8 sm:mb-12">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
+            <span className="text-xs sm:text-sm font-semibold text-stone-700 uppercase tracking-wider">
+              Featured Staples (2 Pure Flours &bull; 1 Herbal Tea)
+            </span>
+          </div>
+          <Link
+            href="/products"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B3A22] hover:text-[#1E1510] transition-colors self-start sm:self-auto"
+          >
+            <span>View All Products</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
+          </Link>
         </div>
 
         {/* Product Responsive Grid - Exactly 3 Prominent Columns */}
@@ -431,14 +390,13 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                 </div>
 
                 <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={(e) => handleLearnMore(product.category, e)}
+                  <Link
+                    href={product.detailUrl || "/products"}
                     className="py-2.5 px-3 rounded-xl border border-stone-300 hover:border-stone-900 bg-white hover:bg-stone-50 text-stone-800 text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-98 shadow-2xs"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="w-3.5 h-3.5 text-stone-600" />
-                  </button>
+                  </Link>
 
                   <button
                     type="button"
@@ -465,18 +423,17 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           })}
         </div>
 
-        {/* Smooth Scroll to Our Collection Section with Dynamic Tab Activation */}
+        {/* Bottom CTA to Dedicated Shop Page */}
         <div className="mt-14 sm:mt-16 flex flex-col items-center gap-3">
-          <button
-            type="button"
-            onClick={(e) => handleLearnMore(currentFilter === "teas" ? "teas" : "flours", e)}
-            className="btn-lux group cursor-pointer"
+          <Link
+            href="/products"
+            className="btn-lux group cursor-pointer inline-flex items-center gap-2"
           >
-            <span>Explore In Our Collection</span>
+            <span>View All Products</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
-          </button>
+          </Link>
           <p className="text-xs text-[#6B5D52]">
-            Showing 3 essentials (2 Pure Flours &bull; 1 Herbal Tea) &bull; Click to explore full collection below
+            Showing 3 essentials (2 Pure Flours &bull; 1 Herbal Tea) &bull; Explore full catalog &amp; all categories on our shop page
           </p>
         </div>
       </div>
