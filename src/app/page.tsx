@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { HeroSlider } from "@/components/home/HeroSlider";
-import { HeroFeatureShowcase } from "@/components/home/HeroFeatureShowcase";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
+import { ProductVideoShowcase } from "@/components/home/ProductVideoShowcase";
 import { TickerMarquee } from "@/components/TickerMarquee";
 import { CategoryCollections } from "@/components/CategoryCollections";
 import { AmbientThemeWrapper } from "@/components/theme/AmbientThemeWrapper";
@@ -88,11 +88,11 @@ export default function Home() {
       {/* 1. Hero Section Slider */}
       <HeroSlider />
 
-      {/* 1.1 Seamless Borderless Feature Showcase */}
-      <HeroFeatureShowcase />
-
-      {/* 2. Flagship Featured Product (Multigrain Diet & Diabetic Care Flour) */}
+      {/* 2. Flagship Featured Product (with seamless merged visual of kitchen display and young man) */}
       <FlagshipFeaturedProduct />
+
+      {/* 2.1 Full-Width Video Showcase (immediately below the introductory product section) */}
+      <ProductVideoShowcase />
 
       {/* 3. Scrolling Marquee Ticker */}
       <TickerMarquee />

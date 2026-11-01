@@ -55,7 +55,7 @@ const PACK_OPTIONS: PackOption[] = [
   },
 ];
 
-const PRODUCT_IMAGE = "/images/products/multigrain-diet.jpg";
+const PRODUCT_IMAGE = "/images/products/flagship-man-product-merged.png";
 const WHATSAPP_PHONE = "923008472910";
 
 export function FlagshipFeaturedProduct() {
@@ -104,7 +104,7 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full overflow-hidden bg-[#F3EDE2] border-t border-[#E2D5C3] border-b border-[#E2D5C3]"
+      className="relative w-full overflow-hidden bg-[#FAF9F5] border-t border-[#E8E2D5] border-b border-[#E8E2D5]"
     >
       {/* 1. Subtle Low-Opacity Radial Ambient Glow */}
       <div
@@ -132,17 +132,14 @@ export function FlagshipFeaturedProduct() {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
-        {/* ================= COLUMN 1: BLENDED PACKAGING & HERITAGE SEAL (LEFT) ================= */}
-        <div className="lg:col-span-5 flex justify-center relative">
-          
-          {/* Main Image Frame - Prominent, Larger Premium Card */}
-          <div className="relative w-full max-w-[360px] sm:max-w-[420px] md:max-w-[460px] lg:max-w-[480px] aspect-square bg-[#FAF7F0] border border-[#E5DAC8] shadow-md rounded-3xl p-6 sm:p-8 flex items-center justify-center">
-            
-            {/* Authentic Heritage Trust Seal Stamp */}
-            <div className="absolute -top-3.5 -right-3.5 sm:-top-4 sm:-right-4 z-20 pointer-events-none select-none -rotate-6">
-              <div className="relative w-22 h-22 sm:w-26 sm:h-26 rounded-full bg-[#1E3A2F] text-[#F3E3DA] p-1.5 shadow-md border-2 border-dashed border-[#D4A373]/70 flex items-center justify-center">
+        {/* ================= COLUMN 1: SEAMLESS MERGED VISUAL (LEFT) ================= */}
+        <div className="lg:col-span-6 flex items-center justify-center relative border-none shadow-none p-0 m-0">
+          <div className="relative w-full flex items-center justify-center border-none shadow-none p-0 m-0">
+            {/* Authentic Heritage Trust Seal Stamp - Floating Naturally Without Card Box */}
+            <div className="absolute top-2 right-2 sm:top-4 sm:right-6 z-20 pointer-events-none select-none -rotate-6">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#1E3A2F] text-[#F3E3DA] p-1.5 shadow-md border-2 border-dashed border-[#D4A373]/70 flex items-center justify-center">
                 <svg viewBox="0 0 100 100" className="w-full h-full animate-[spin_24s_linear_infinite]">
                   <path
                     id="sealPath"
@@ -164,20 +161,22 @@ export function FlagshipFeaturedProduct() {
               </div>
             </div>
 
-            <div className="relative w-full h-[280px] sm:h-[340px] md:h-[380px] lg:h-[410px]">
-              <Image
-                src={PRODUCT_IMAGE}
-                alt="Usman's Pure Multigrain Flour Packaging"
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
-                className="object-contain"
-              />
-            </div>
+            {/* Continuous, Borderless Merged Visual: Kitchen Setup on Left & Gesturing Man on Right */}
+            <Image
+              src="/images/products/flagship-man-product-merged.png"
+              alt="Usman's Pure Products Multigrain Flour & Organic Ingredients"
+              width={1200}
+              height={896}
+              priority
+              quality={100}
+              className="w-full h-auto object-contain max-h-[500px] md:max-h-[600px] mix-blend-multiply select-none pointer-events-none"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
+            />
           </div>
         </div>
 
         {/* ================= COLUMN 2: AUTHENTIC FAMILY STORY & BENEFITS (RIGHT) ================= */}
-        <div className="lg:col-span-7 flex flex-col justify-center">
+        <div className="lg:col-span-6 flex flex-col justify-center">
             
             {/* Brand Heritage Tagline */}
             <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
