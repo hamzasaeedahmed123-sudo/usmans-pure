@@ -161,44 +161,65 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
     setTimeout(() => setIsAdded(false), 2000);
   };
 
+  const isFlour = product.category === "flours";
+  const backdropImage = isFlour
+    ? "/images/backgrounds/wheat-field-backplate.jpg"
+    : "/images/backgrounds/herbal-garden-backplate.jpg";
+
   const relatedProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col justify-between selection:bg-[#8B3A22]/20 selection:text-stone-900">
-      <Header isSolid theme="amber" />
+    <div className="relative min-h-screen bg-[#FAF9F5] flex flex-col justify-between selection:bg-[#8B3A22]/20 selection:text-stone-900 overflow-x-hidden">
+      {/* Full-Page Edge-to-Edge Natural Scenery Backdrop */}
+      <div className="fixed inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <Image
+          src={backdropImage}
+          alt={isFlour ? "Natural Wheat Field Backdrop" : "Botanical Herbal Garden Backdrop"}
+          fill
+          sizes="100vw"
+          quality={90}
+          priority
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Semi-transparent light overlay for contrast and text clarity */}
+        <div className="absolute inset-0 bg-[#FAF9F5]/70 backdrop-blur-[1px]" />
+      </div>
 
-      <main className="flex-1">
-        {/* Breadcrumb Navigation */}
-        <div className="bg-white border-b border-stone-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center gap-2 text-xs text-stone-500 overflow-x-auto whitespace-nowrap">
-            <Link href="/" className="hover:text-stone-900 transition font-medium">
-              Home
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-            <Link href="/products" className="hover:text-stone-900 transition font-medium">
-              Products
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-            <Link
-              href={
-                product.category === "flours"
-                  ? "/category/flours"
-                  : "/category/teas"
-              }
-              className="hover:text-stone-900 transition font-medium"
-            >
-              {product.categoryLabel}
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
-            <span className="font-semibold text-stone-900 truncate">{product.title}</span>
+      <div className="relative z-10 flex flex-col min-h-screen justify-between">
+        <Header isSolid theme="amber" />
+
+        <main className="flex-1">
+          {/* Breadcrumb Navigation */}
+          <div className="bg-white/90 backdrop-blur-xs border-b border-stone-200/80">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center gap-2 text-xs text-stone-500 overflow-x-auto whitespace-nowrap">
+              <Link href="/" className="hover:text-stone-900 transition font-medium">
+                Home
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+              <Link href="/products" className="hover:text-stone-900 transition font-medium">
+                Products
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+              <Link
+                href={
+                  product.category === "flours"
+                    ? "/category/flours"
+                    : "/category/teas"
+                }
+                className="hover:text-stone-900 transition font-medium"
+              >
+                {product.categoryLabel}
+              </Link>
+              <ChevronRight className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+              <span className="font-semibold text-stone-900 truncate">{product.title}</span>
+            </div>
           </div>
-        </div>
 
-        <TickerMarquee />
+          <TickerMarquee />
 
-        {/* Hero Product Showcase Section */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-          <div className="bg-white rounded-md shadow-xs border border-stone-200/80 p-6 sm:p-10 lg:p-12">
+          {/* Hero Product Showcase Section */}
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+            <div className="bg-white rounded-2xl shadow-sm border border-stone-200/80 p-6 sm:p-10 lg:p-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Left Photograph Container with Slider & Touch Swipe */}
               <div className="lg:col-span-5 flex flex-col items-center">
@@ -604,9 +625,9 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         </div>
 
         {/* Verified Household Customer Reviews Section */}
-        <section className="bg-[#FAF7F2] py-14 sm:py-16 border-t border-stone-200">
+        <section className="py-14 sm:py-16 border-t border-stone-200/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 bg-white/85 backdrop-blur-xs p-5 sm:p-6 rounded-2xl border border-stone-200/70 shadow-2xs">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8B3A22]">
@@ -649,7 +670,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               {reviewsToDisplay.map((r) => (
                 <div
                   key={r.id}
-                  className="bg-white rounded-md p-5 border border-stone-200/80 shadow-2xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                  className="bg-white rounded-xl p-5 border border-stone-200/80 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -810,9 +831,9 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         )}
 
         {/* Related Products Section */}
-        <section className="bg-white py-16 border-t border-stone-200">
+        <section className="py-16 border-t border-stone-200/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 bg-white/85 backdrop-blur-xs p-5 sm:p-6 rounded-2xl border border-stone-200/70 shadow-2xs">
               <div>
                 <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#8B3A22]">
                   Complementary Selection
@@ -825,7 +846,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                 href="/products"
                 className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-stone-900 hover:text-[#8B3A22] transition-colors"
               >
-                <span>Explore All 17 Products</span>
+                <span>Explore All 10 Products</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
@@ -834,7 +855,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               {relatedProducts.map((rel) => (
                 <div
                   key={rel.id}
-                  className="group bg-[#FAF7F2] rounded-md p-3 md:p-4 border border-stone-200/80 shadow-2xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white rounded-xl p-3 md:p-4 border border-stone-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
                 >
                   <div>
                     <Link href={`/product/${rel.id}`} className="block">
@@ -903,6 +924,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
       </main>
 
       <StoreFooter />
+      </div>
     </div>
   );
 }
