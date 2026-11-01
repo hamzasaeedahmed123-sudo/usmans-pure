@@ -513,10 +513,10 @@ export function HeroSlider() {
                   y: -20,
                   transition: { duration: 0.35, ease: "easeInOut" },
                 }}
-                className="relative w-56 h-64 sm:w-64 sm:h-72 md:w-72 md:h-[320px] lg:w-80 lg:h-[350px] flex items-center justify-center transform-gpu will-change-transform"
+                className="relative w-56 h-64 sm:w-64 sm:h-72 md:w-56 md:h-[256px] lg:w-64 lg:h-[280px] flex items-center justify-center transform-gpu will-change-transform"
               >
                 {/* Natural Soft Radial Drop-Shadow at Base */}
-                <div className="absolute -bottom-4 inset-x-8 sm:inset-x-12 h-7 rounded-full bg-black/20 blur-lg pointer-events-none -z-10" />
+                <div className="absolute -bottom-3 inset-x-6 sm:inset-x-10 h-6 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
                 {/* Product Glow Aura */}
                 <div
@@ -526,16 +526,16 @@ export function HeroSlider() {
 
                 {/* Main Product Cutout Image with 3D Spring Hover Interaction & Dynamic Drop Shadow */}
                 <motion.div
-                  whileHover={{ y: -12, scale: 1.03, rotate: 1.2 }}
+                  whileHover={{ y: -10, scale: 1.03, rotate: 1.2 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="relative w-full h-full flex items-center justify-center cursor-pointer transition-[filter] duration-300 ease-out [filter:drop-shadow(0_15px_25px_rgba(0,0,0,0.12))] hover:[filter:drop-shadow(0_30px_45px_rgba(0,0,0,0.25))] transform-gpu will-change-transform"
+                  className="relative w-full h-full flex items-center justify-center cursor-pointer transition-[filter] duration-300 ease-out [filter:drop-shadow(0_12px_20px_rgba(0,0,0,0.1))] hover:[filter:drop-shadow(0_24px_35px_rgba(0,0,0,0.2))] transform-gpu will-change-transform"
                 >
                   <Image
                     src={currentSlide.image}
                     alt={currentSlide.altText}
                     fill
-                    sizes="(max-width: 768px) 50vw, 360px"
-                    quality={90}
+                    sizes="(max-width: 768px) 50vw, 280px"
+                    quality={95}
                     className="object-contain p-1 select-none drop-shadow-md"
                     priority
                   />
