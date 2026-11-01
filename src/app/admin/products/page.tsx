@@ -582,7 +582,7 @@ export default function AdminProductsPage() {
                           { src: "/images/products/prod-1.jpg", name: "Chakki Atta" },
                           { src: "/images/products/prod-2.jpg", name: "Chamomile Tea" },
                           { src: "/images/products/prod-3.jpg", name: "Multigrain Atta" },
-                          { src: "/images/products/prod-4.png", name: "Fenugreek Plus" },
+                          { src: "/images/products/prod-4.jpg", name: "Fenugreek Plus" },
                           { src: "/images/products/prod-5.jpg", name: "Barley Flour" },
                           { src: "/images/products/prod-6.jpg", name: "Whole Wheat" },
                         ].map((media) => (

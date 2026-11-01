@@ -70,7 +70,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
       "Made with real roasted methi seeds (pleasant, mild taste)",
       "Soft, nutritious rotis that the whole family can enjoy",
     ],
-    image: "/images/products/prod-4.png",
+    image: "/images/products/prod-4.jpg",
     detailUrl: "/product/prod-4",
     checkoutUrl: "/checkout?product=prod-4",
     packOptions: [

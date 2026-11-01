@@ -57,7 +57,7 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     category: "flours",
     categoryBadge: "Flour",
     highlight: "Natural Diabetic Support & Blood Sugar Control",
-    image: "/images/products/prod-4.png",
+    image: "/images/products/prod-4.jpg",
     detailUrl: "/product/prod-4",
     checkoutUrl: "/checkout?product=prod-4",
     description:

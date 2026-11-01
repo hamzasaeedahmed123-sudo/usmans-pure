@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/products/prod-4.png",
+        url: "/images/products/prod-4.jpg",
         width: 1200,
         height: 630,
         alt: "Diabetic-Care & High-Fiber Whole Grain Flours",

@@ -135,7 +135,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     price: 1850,
     originalPrice: 2500,
     savings: 650,
-    image: "/images/products/prod-4.png",
+    image: "/images/products/prod-4.jpg",
     tint: "bg-[#E9ECDF]",
     includedTags: ["5kg FENUGREEK Plus Atta", "5kg Barley Flour", "Glycemic Food Tracker"],
     description:
@@ -146,7 +146,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         size: "5kg Vacuum-Sealed Saver Pack",
         role: "Glycemic Stabilizer",
         desc: "Specially formulated for diabetic patients. Contains natural ingredients that help control blood sugar levels and promote a healthy lifestyle.",
-        image: "/images/products/prod-4.png",
+        image: "/images/products/prod-4.jpg",
       },
       {
         name: "Pure Barley (Jau) Flour",

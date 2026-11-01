@@ -53,10 +53,10 @@ const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   {
     id: "media-prod-4",
     name: "FENUGREEK Plus Flour",
-    url: "/images/products/prod-4.png",
+    url: "/images/products/prod-4.jpg",
     size: "460 KB",
-    date: "2026-10-18",
-    type: "image/png",
+    date: "2026-10-31",
+    type: "image/jpeg",
   },
   {
     id: "media-prod-5",

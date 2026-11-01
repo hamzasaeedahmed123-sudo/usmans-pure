@@ -61,7 +61,11 @@ export const PRODUCTS: Product[] = [
     priceFormatted: "₨1,200",
     originalPriceFormatted: "₨1,500",
     discountBadge: "Dietary Care • Save 20%",
-    image: "/images/products/prod-4.png",
+    image: "/images/products/prod-4.jpg",
+    images: [
+      "/images/products/prod-4.jpg",
+      "/images/products/prod-4-kitchen.jpg",
+    ],
     link: "https://usmanzpure.com/product/flour-fenugreek/",
     rating: 4.9,
     reviewCount: 97,
@@ -269,7 +273,7 @@ export const MEGA_BUNDLES: BundleItem[] = [
     price: 1850,
     originalPrice: 2500,
     savings: 650,
-    image: "/images/products/prod-4.png",
+    image: "/images/products/prod-4.jpg",
     includes: [
       "FENUGREEK Plus Diabetic Flour (5kg)",
       "Pure Barley (Jau) Flour (5kg)",
