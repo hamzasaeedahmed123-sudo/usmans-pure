@@ -248,6 +248,23 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
     }, 2000);
   };
 
+  const handleLearnMore = (category: "flours" | "teas", e?: React.MouseEvent) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (typeof window !== "undefined") {
+      // 1. Dispatch custom event to dynamically activate the tab in "Our Collection"
+      window.dispatchEvent(new CustomEvent("setCollectionTab", { detail: category }));
+
+      // 2. Smoothly scroll down to the Our Collection section
+      const el = document.getElementById("our-collection");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   const filteredProducts =
     currentFilter === "all"
       ? FEATURED_5_PRODUCTS
@@ -413,10 +430,20 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-4">
+                <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2">
                   <button
+                    type="button"
+                    onClick={(e) => handleLearnMore(product.category, e)}
+                    className="py-2.5 px-3 rounded-xl border border-stone-300 hover:border-stone-900 bg-white hover:bg-stone-50 text-stone-800 text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-98 shadow-2xs"
+                  >
+                    <span>Learn More</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-stone-600" />
+                  </button>
+
+                  <button
+                    type="button"
                     onClick={(e) => handleAddToCart(product, currentOption, e)}
-                    className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl min-h-[48px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-ambient ${
+                    className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer shadow-ambient active:scale-98 ${
                       isAdded
                         ? "bg-emerald-600 text-white"
                         : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
@@ -438,14 +465,18 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           })}
         </div>
 
-        {/* Smooth Scroll to Our Collection Section without Opening New Page */}
+        {/* Smooth Scroll to Our Collection Section with Dynamic Tab Activation */}
         <div className="mt-14 sm:mt-16 flex flex-col items-center gap-3">
-          <a href="#our-collection" className="btn-lux group cursor-pointer">
+          <button
+            type="button"
+            onClick={(e) => handleLearnMore(currentFilter === "teas" ? "teas" : "flours", e)}
+            className="btn-lux group cursor-pointer"
+          >
             <span>Explore In Our Collection</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
-          </a>
+          </button>
           <p className="text-xs text-[#6B5D52]">
-            Showing 3 essentials (2 Pure Flours &bull; 1 Herbal Tea) &bull; View full collections above
+            Showing 3 essentials (2 Pure Flours &bull; 1 Herbal Tea) &bull; Click to explore full collection below
           </p>
         </div>
       </div>

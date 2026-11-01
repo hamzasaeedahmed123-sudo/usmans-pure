@@ -94,11 +94,11 @@ export default function Home() {
       {/* 3. Scrolling Marquee Ticker */}
       <TickerMarquee />
 
-      {/* 4. Category Collections ("Our Collections") */}
-      <CategoryCollections />
-
-      {/* 5. Featured Products (freshly milled Whole Wheat Flour & Multi-Grain Blends) */}
+      {/* 4. Featured Products (freshly milled Whole Wheat Flour & Multi-Grain Blends) */}
       <ProductCatalog />
+
+      {/* 5. Category Collections ("Our Collections" #our-collection with Dynamic Tabs) */}
+      <CategoryCollections />
 
       {/* 6. Customer Voices & Testimonials (Repositioned Higher on Homepage) */}
       <div className="content-visibility-auto">

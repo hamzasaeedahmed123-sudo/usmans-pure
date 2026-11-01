@@ -221,6 +221,18 @@ export function HeroSlider() {
     }, 2000);
   };
 
+  const handleLearnMore = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== "undefined") {
+      const category = currentSlide.id === "herbals" ? "teas" : "flours";
+      window.dispatchEvent(new CustomEvent("setCollectionTab", { detail: category }));
+      const el = document.getElementById("our-collection");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  };
+
   return (
     <motion.section
       animate={{ backgroundColor: currentSlide.bgColor }}
@@ -416,12 +428,13 @@ export function HeroSlider() {
                   )}
                 </button>
 
-                <Link
-                  href={currentSlide.detailUrl}
+                <button
+                  type="button"
+                  onClick={handleLearnMore}
                   className="py-2 px-3 rounded-xl text-xs font-semibold border border-current/30 hover:bg-white/40 transition-all cursor-pointer shrink-0"
                 >
-                  <span>Details</span>
-                </Link>
+                  <span>Learn More</span>
+                </button>
               </div>
 
             </motion.div>
@@ -647,12 +660,13 @@ export function HeroSlider() {
               </button>
 
               {/* Learn More Button */}
-              <Link
-                href={currentSlide.detailUrl}
+              <button
+                type="button"
+                onClick={handleLearnMore}
                 className="py-2 sm:py-2.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold border border-current/30 hover:bg-white/40 transition-all flex items-center gap-1.5 cursor-pointer"
               >
                 <span>Learn More</span>
-              </Link>
+              </button>
             </div>
 
             {/* Pagination Dots right beneath the capsule dock */}
