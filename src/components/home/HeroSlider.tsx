@@ -313,12 +313,12 @@ export function HeroSlider() {
       </div>
 
       {/* 5. Main Hero Stage (Desktop: Layered 3D Swirl & Backdrop | Mobile: Detached Vertical Flow with Zero Overlap) */}
-      <div className="relative flex-1 flex items-center justify-center w-full max-w-full px-2 sm:px-6 py-1 md:py-2 overflow-hidden">
+      <div className="relative flex-1 flex items-center justify-center w-full max-w-full px-4 sm:px-6 py-2 md:py-2 overflow-hidden">
         
         {/* ========================================================================= */}
-        {/* MOBILE VIEW (< md): Tightly Clustered Vertical Flow (Herbal & All Slides)  */}
+        {/* MOBILE VIEW (< md): Clean, Readable Vertical Flow with Safe Padding       */}
         {/* ========================================================================= */}
-        <div className="md:hidden relative w-full h-full flex flex-col items-center justify-center py-1 z-10 overflow-hidden">
+        <div className="md:hidden relative w-full h-full flex flex-col items-center justify-center py-2 z-10 overflow-hidden px-2">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`mobile-stage-${currentSlide.id}`}
@@ -326,21 +326,21 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.45, ease: "easeInOut" }}
-              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-1.5 sm:gap-2 px-3 max-w-sm mx-auto"
+              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2.5 px-2 max-w-sm mx-auto"
             >
-              {/* 1. Category Title: Scaled & Placed Snugly Above Product (Enlarged for Mobile) */}
+              {/* 1. Category Title: Standard, Clean Responsive Typography */}
               <div className="w-full text-center shrink-0 z-10 select-none">
                 <h1
                   style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[9.5vw] sm:text-[8vw] font-black tracking-tight leading-none text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
+                  className={`text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
                 >
                   <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[7.5vw] sm:text-[6vw] font-black tracking-tight mt-1">{currentSlide.subtitle}</span>
+                  <span className="block text-xl sm:text-2xl font-bold tracking-tight mt-0.5">{currentSlide.subtitle}</span>
                 </h1>
               </div>
 
-              {/* 2. Main Product Cutout Visual: Enlarged & Prominent for Mobile */}
-              <div className="relative w-full h-[26vh] sm:h-[30vh] min-h-[190px] sm:min-h-[230px] max-h-[270px] flex items-center justify-center pointer-events-none z-10 my-0.5">
+              {/* 2. Main Product Cutout Visual: Balanced & Readable Responsive Sizing */}
+              <div className="relative w-full h-44 sm:h-52 min-h-[170px] max-h-[220px] flex items-center justify-center pointer-events-none z-10 my-1">
                 {/* Natural Soft Radial Drop-Shadow at Base */}
                 <div className="absolute -bottom-1 inset-x-12 h-3.5 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
 
@@ -358,21 +358,20 @@ export function HeroSlider() {
                     fill
                     sizes="(max-width: 768px) 75vw, 360px"
                     quality={85}
-                    className="object-contain p-0.5 mix-blend-multiply w-auto drop-shadow-md"
+                    className="max-w-full h-auto object-contain p-0.5 mix-blend-multiply w-auto drop-shadow-md"
                     loading="eager"
                   />
                 </div>
-
               </div>
 
-              {/* 3. Glassmorphism Info Card: Hugs the Pouch with Enlarged Mobile Typography */}
-              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/45 border border-white/55 rounded-2xl p-3 shadow-lg w-full pointer-events-auto">
+              {/* 3. Glassmorphism Info Card: Hugs the Pouch with Standard Typography & Safe Padding */}
+              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/60 border border-white/60 rounded-xl p-3 sm:p-4 shadow-sm w-full pointer-events-auto">
                 {/* Left Mini Badges */}
-                <div className="flex flex-col gap-1 border-r border-white/30 pr-2 shrink-0 self-center">
+                <div className="flex flex-col gap-1 border-r border-stone-200/50 pr-2 shrink-0 self-center">
                   {currentSlide.miniStats.map((stat, i) => (
                     <span
                       key={i}
-                      className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-tight bg-white/60 text-stone-900 border border-white/50 whitespace-nowrap text-center"
+                      className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-tight bg-white/80 text-stone-900 border border-stone-200/60 whitespace-nowrap text-center"
                     >
                       {stat}
                     </span>
@@ -380,33 +379,33 @@ export function HeroSlider() {
                 </div>
 
                 {/* Product Thumbnail */}
-                <div className="relative w-11 h-11 rounded-xl bg-white/55 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
+                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-white/70 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
                   <Image
                     src={currentSlide.image}
                     alt={currentSlide.fullTitle}
                     fill
-                    className="object-contain p-0.5"
+                    className="max-w-full h-auto object-contain p-0.5"
                     sizes="44px"
                   />
                 </div>
 
                 {/* Title & Description */}
                 <div className="flex flex-col justify-center min-w-0 flex-1">
-                  <h3 className="text-sm sm:text-base font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
+                  <h3 className="text-sm font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
                     {currentSlide.fullTitle}
                   </h3>
-                  <p className="text-xs text-stone-800 leading-snug mt-0.5 font-medium line-clamp-2">
+                  <p className="text-xs text-stone-700 leading-snug mt-0.5 font-medium line-clamp-2">
                     {currentSlide.benefit}
                   </p>
                 </div>
               </div>
 
               {/* 4. Bottom Price/CTA Button Bar: Fixed Strikethrough & Flexible Layout */}
-              <div className="flex items-center gap-2 w-full pointer-events-auto">
-                <div className="flex items-center gap-1.5 flex-wrap px-2.5 py-1.5 rounded-xl bg-white/80 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
-                  <span className="text-xs sm:text-sm font-black">{currentSlide.price}</span>
+              <div className="flex flex-wrap items-center gap-2 w-full pointer-events-auto">
+                <div className="flex items-center gap-1.5 flex-wrap px-3 py-1.5 rounded-lg bg-white/85 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
+                  <span className="text-xs sm:text-sm font-bold">{currentSlide.price}</span>
                   {currentSlide.originalPrice && (
-                    <span className="text-[10px] sm:text-xs text-stone-500 line-through">
+                    <span className="text-[11px] sm:text-xs text-stone-500 line-through">
                       {currentSlide.originalPrice}
                     </span>
                   )}
@@ -414,7 +413,7 @@ export function HeroSlider() {
 
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 py-2 px-3 rounded-xl text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="flex-1 min-w-[120px] py-2 px-3 rounded-lg text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   {isAdded ? (
                     <>
@@ -431,7 +430,7 @@ export function HeroSlider() {
                 <button
                   type="button"
                   onClick={handleLearnMore}
-                  className="py-2 px-3 rounded-xl text-xs font-semibold border border-current/30 hover:bg-white/40 transition-all cursor-pointer shrink-0"
+                  className="py-2 px-3 rounded-lg text-xs font-semibold border border-stone-300 hover:border-stone-500 bg-white/70 hover:bg-white transition-all cursor-pointer shrink-0 text-stone-800"
                 >
                   <span>Learn More</span>
                 </button>

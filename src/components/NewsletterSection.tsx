@@ -24,7 +24,7 @@ export function NewsletterSection() {
           Special Offer
         </div>
 
-        <h2 className="text-3xl sm:text-4xl font-serif font-bold tracking-tight text-white">
+        <h2 className="text-2xl sm:text-4xl font-serif font-bold tracking-tight text-white">
           Subscribe to Usman&apos;s Pure Newsletter
         </h2>
 

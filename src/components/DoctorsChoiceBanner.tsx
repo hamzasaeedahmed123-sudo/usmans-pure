@@ -19,25 +19,25 @@ export function DoctorsChoiceBanner() {
         size={460}
       />
 
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 relative z-10">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8 sm:gap-10">
           {/* Left Text Block */}
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B869]/15 border border-[#E5B869]/30 text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.18em] mb-5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5B869]/15 border border-[#E5B869]/30 text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.18em] mb-4">
               <Wheat className="w-3.5 h-3.5" strokeWidth={2} />
               <span>Dietary Care &bull; Whole Grain Nutrition</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif !text-[#FAF7F0] leading-[1.12]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif !text-[#FAF7F0] leading-snug">
               Looking for Diabetic-Friendly &amp; Weight-Care Flours?
             </h2>
 
-            <p className="mt-4 text-base sm:text-lg text-[#D5CEBF] font-light leading-relaxed">
+            <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-[#D5CEBF] font-light leading-relaxed">
               Explore FRESHLY MILLED multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
             </p>
 
             {/* Quick Trust Badges */}
-            <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-[#E8DFD0]">
+            <div className="mt-5 flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-[#E8DFD0]">
               <span className="flex items-center gap-1.5">
                 <BadgeCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
                 Pure Chakki Milling
@@ -56,10 +56,10 @@ export function DoctorsChoiceBanner() {
           </div>
 
           {/* Right CTA Action Area */}
-          <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3.5 shrink-0">
+          <div className="flex flex-col sm:flex-row lg:flex-col items-start lg:items-end gap-3.5 shrink-0 w-full lg:w-auto">
             <Link
               href="/doctors-choice"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-md bg-[#E5B869] hover:bg-[#F2C97C] text-[#18281E] text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer text-center group"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#E5B869] hover:bg-[#F2C97C] text-[#18281E] text-xs font-bold uppercase tracking-[0.16em] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 cursor-pointer text-center group"
             >
               <span>Explore Dietary Care Range</span>
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" strokeWidth={2.5} />

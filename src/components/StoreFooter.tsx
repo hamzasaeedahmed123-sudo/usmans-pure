@@ -18,9 +18,9 @@ export function StoreFooter() {
     <footer className="bg-[#1C1613] text-[#EDE4D8] border-t border-[#3A2D25] pt-0 pb-20 sm:pb-12">
       {/* Top Trust & Value Feature Strip */}
       <div className="border-b border-[#3A2D25] py-4 sm:py-5 bg-[#16110E]/80">
-        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#3A2D25] text-center gap-y-3 sm:gap-y-0">
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-4 divide-y min-[480px]:divide-y-0 min-[480px]:divide-x divide-[#3A2D25] text-center gap-y-4 min-[480px]:gap-y-0">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-3 sm:px-4 py-2 min-[480px]:py-0">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#D8B486] border border-[#8C6D46]/40 flex items-center justify-center shrink-0">
                 <Wheat className="w-5 h-5 text-[#D8B486]" strokeWidth={1.75} />
               </div>
@@ -34,7 +34,7 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-3 sm:px-4 py-2 min-[480px]:py-0">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#88D4A6] border border-[#1E5D38]/50 flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-5 h-5 text-[#88D4A6]" strokeWidth={1.75} />
               </div>
@@ -48,7 +48,7 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-3 sm:px-4 py-2 min-[480px]:py-0">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#2A211B] text-[#D8B486] border border-[#8C6D46]/40 flex items-center justify-center shrink-0">
                 <Truck className="w-5 h-5 text-[#D8B486]" strokeWidth={1.75} />
               </div>
@@ -62,7 +62,7 @@ export function StoreFooter() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-2 sm:px-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start gap-2.5 sm:gap-3.5 px-3 sm:px-4 py-2 min-[480px]:py-0">
               <a
                 href="https://wa.me/923129996658"
                 target="_blank"

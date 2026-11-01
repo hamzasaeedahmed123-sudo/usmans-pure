@@ -274,7 +274,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
   const displayedProducts = filteredProducts.slice(0, 3);
 
   return (
-    <section id="featured-products" className="relative py-20 sm:py-28 transition-colors duration-700 ease-in-out overflow-hidden">
+    <section id="featured-products" className="relative py-14 sm:py-24 transition-colors duration-700 ease-in-out overflow-hidden">
       {/* Organic Botanical Watermark Accents in Section Background */}
       <BotanicalWatermark
         type="wheat"
@@ -289,12 +289,12 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
         size={420}
       />
 
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
         {/* Editorial Section Heading with Brand Logo opposite title */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-12">
           <div className="max-w-xl">
             <span className="eyebrow">Handcrafted Organic Essentials</span>
-            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-[1.1]">
+            <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-snug">
               Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>

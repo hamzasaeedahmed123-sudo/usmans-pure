@@ -95,7 +95,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
                 Certified Artisanal Milling
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight leading-[1.15]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight leading-snug">
               Our Collections
             </h2>
           </div>
@@ -106,12 +106,12 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
 
         {/* Dynamic Category Switcher Tabs */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8 sm:mb-12 border-b border-stone-200/90 pb-4">
-          <div className="inline-flex p-1.5 rounded-2xl bg-stone-200/70 border border-stone-300/80 shadow-inner w-full sm:w-auto">
+          <div className="inline-flex flex-col min-[480px]:flex-row p-1.5 rounded-2xl bg-stone-200/70 border border-stone-300/80 shadow-inner w-full sm:w-auto gap-1">
             <button
               type="button"
               id="tab-flours"
               onClick={() => handleTabChange("flours")}
-              className={`flex-1 sm:flex-none px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 ${
+              className={`flex-1 sm:flex-none px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 ${
                 activeTab === "flours"
                   ? "bg-white text-stone-950 shadow-md ring-1 ring-stone-900/5 scale-[1.02]"
                   : "text-stone-600 hover:text-stone-950 hover:bg-white/40"
@@ -125,7 +125,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
               type="button"
               id="tab-teas"
               onClick={() => handleTabChange("teas")}
-              className={`flex-1 sm:flex-none px-5 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 ${
+              className={`flex-1 sm:flex-none px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 ${
                 activeTab === "teas"
                   ? "bg-white text-stone-950 shadow-md ring-1 ring-stone-900/5 scale-[1.02]"
                   : "text-stone-600 hover:text-stone-950 hover:bg-white/40"
@@ -145,7 +145,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
         </div>
 
         {/* Dynamic Products Grid for Active Tab */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6">
+        <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-6">
           {currentProducts.map((product) => {
             const isAdded = addedIds[product.id];
 

@@ -219,11 +219,11 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-sm border border-stone-200/80 p-6 sm:p-10 lg:p-14">
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-sm border border-stone-200/80 p-4 sm:p-10 lg:p-14">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-start">
                   {/* Left Photograph Container with Slider & Touch Swipe */}
                   <div className="lg:col-span-6 flex flex-col items-center">
-                    <div className="relative w-full aspect-square min-h-[320px] sm:min-h-[440px] lg:min-h-[520px] rounded-2xl bg-stone-100 overflow-hidden p-0 border border-stone-200/80 shadow-xs group select-none">
+                    <div className="relative w-full aspect-square min-h-[260px] sm:min-h-[400px] lg:min-h-[520px] max-h-[540px] rounded-2xl bg-stone-100 overflow-hidden p-0 border border-stone-200/80 shadow-xs group select-none">
                       {/* Native snap carousel for mobile touch swipe & desktop navigation */}
                       <div
                         ref={carouselRef}
@@ -351,7 +351,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     </span>
                   </div>
 
-                  <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight leading-[1.2]">
+                  <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight leading-snug">
                     {product.title}
                   </h1>
 
@@ -368,20 +368,20 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   </div>
 
                   {/* Price Row */}
-                  <div className="mt-6 flex flex-wrap items-baseline gap-3 sm:gap-4">
-                    <span className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight">
+                  <div className="mt-5 sm:mt-6 flex flex-wrap items-baseline gap-2.5 sm:gap-4">
+                    <span className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight">
                       ₨ {unitPrice.toLocaleString()}
                     </span>
-                    <span className="text-lg sm:text-2xl text-stone-400 line-through">
+                    <span className="text-base sm:text-2xl text-stone-400 line-through">
                       ₨ {originalUnitPrice.toLocaleString()}
                     </span>
-                    <span className="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    <span className="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
                       Save ₨ {(originalUnitPrice - unitPrice).toLocaleString()}
                     </span>
                   </div>
 
                   {/* Body Copy */}
-                  <p className="mt-5 text-base sm:text-lg lg:text-xl text-stone-700 leading-relaxed font-normal">
+                  <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-stone-700 leading-relaxed font-normal">
                     {product.description}
                   </p>
 
