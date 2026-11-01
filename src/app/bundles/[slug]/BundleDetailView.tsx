@@ -301,44 +301,68 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
         </section>
 
         {/* Synergy Section: How It Works Together */}
-        <section className="py-16 sm:py-24 bg-[#F6F1E9] border-b border-[#1E1510]/10 relative overflow-hidden">
+        <section className="py-16 sm:py-24 relative overflow-hidden border-b border-[#1E1510]/10">
+          {/* Edge-to-edge Natural Wheat Field Backplate */}
+          <div className="absolute inset-0 w-full h-full z-0 pointer-events-none select-none">
+            <Image
+              src="/images/backgrounds/wheat-field-backplate.jpg"
+              alt="Natural golden wheat field background"
+              fill
+              sizes="100vw"
+              quality={95}
+              priority={false}
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Semi-transparent warm light overlay + backdrop blur for optimal text contrast while keeping golden field visible */}
+            <div className="absolute inset-0 bg-[#FAF9F5]/90 backdrop-blur-[2px]" />
+            {/* Soft blend edge transitions for a seamless environment with sections above and below */}
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FAF7F2] to-transparent opacity-90" />
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF7F2] to-transparent opacity-90" />
+          </div>
+
           <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
             <div className="text-center max-w-2xl mx-auto mb-14">
               <span className="eyebrow mb-2">Nutritional Chemistry</span>
               <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1510] tracking-tight">
                 {bundle.synergy.headline}
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-[#6B5D52] leading-relaxed">
+              <p className="mt-4 text-sm sm:text-base text-stone-700 leading-relaxed font-medium">
                 {bundle.synergy.description}
               </p>
             </div>
 
             {/* Daily Routine Step Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              className={`grid grid-cols-1 ${
+                bundle.synergy.routineSteps.length === 2
+                  ? "md:grid-cols-2 max-w-3xl mx-auto"
+                  : "md:grid-cols-3"
+              } gap-6`}
+            >
               {bundle.synergy.routineSteps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="p-6 bg-[#FAF7F2] rounded-sm flex flex-col justify-between border border-[#1E1510]/5 shadow-ambient"
+                  className="p-6 sm:p-7 bg-white/95 backdrop-blur-sm rounded-xl flex flex-col justify-between border border-stone-200/90 shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   <div>
-                    <div className="flex items-center justify-between text-[#8B3A22] text-[10px] font-medium tracking-widest uppercase mb-3">
-                      <span className="flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5" /> {step.time}
+                    <div className="flex items-center justify-between text-[#8B3A22] text-xs font-bold tracking-widest uppercase mb-3.5">
+                      <span className="flex items-center gap-1.5 bg-[#FAF7F2] px-2.5 py-1 rounded-md border border-[#8B3A22]/15">
+                        <Clock className="w-3.5 h-3.5 text-[#8B3A22]" /> {step.time}
                       </span>
-                      <span>Step 0{idx + 1}</span>
+                      <span className="text-stone-400 font-semibold text-[11px]">Step 0{idx + 1}</span>
                     </div>
 
-                    <h3 className="text-lg font-serif font-bold text-[#1E1510] leading-snug">
+                    <h3 className="text-lg sm:text-xl font-serif font-bold text-stone-900 leading-snug">
                       {step.title}
                     </h3>
 
-                    <p className="mt-3 text-xs text-[#6B5D52] leading-relaxed">
+                    <p className="mt-3 text-xs sm:text-sm text-stone-700 leading-relaxed font-normal">
                       {step.instruction}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-[#1E1510]/10 flex items-center gap-2 text-[10px] font-medium text-emerald-800">
-                    <Check className="w-3.5 h-3.5" /> Clinical Synergy Active
+                  <div className="mt-6 pt-4 border-t border-stone-200/70 flex items-center gap-2 text-xs font-bold text-emerald-800">
+                    <Check className="w-4 h-4 text-emerald-600 stroke-[2.5]" /> Clinical Synergy Active
                   </div>
                 </div>
               ))}
