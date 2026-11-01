@@ -9,7 +9,7 @@ export function HeroFeatureShowcase() {
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-center border-none shadow-none">
         <Image
           src="/images/hero/feature-man-flour.png"
-          alt="Usman's Pure Products Multigrain Flour - 100% Pure & Freshly Stone-Ground"
+          alt="Usman's Pure Products Multigrain Flour - 100% Pure & Freshly pure milled"
           width={1024}
           height={765}
           priority

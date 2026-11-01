@@ -16,13 +16,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${product.title} | Usman's Pure`,
-    description: `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, stone-ground chakki flour and pure essentials.`,
+    description: `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, Pure Chakki Flour and pure essentials.`,
     alternates: {
       canonical: `/product/${product.id}`,
     },
     openGraph: {
       title: `${product.title} | Usman's Pure`,
-      description: product.description || `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, stone-ground chakki flour and pure essentials.`,
+      description: product.description || `Buy authentic ${product.title} in Pakistan. Freshly milled, zero preservatives, Pure Chakki Flour and pure essentials.`,
       url: `https://usmanspure.com/product/${product.id}`,
       type: "website",
       images: [

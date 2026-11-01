@@ -82,7 +82,7 @@ const INITIAL_STORIES: CustomerStory[] = [
     id: "rev-kamran-gulberg",
     name: "Chaudhry Kamran (Gulberg, Lahore)",
     city: "Gulberg, Lahore",
-    product: "Taaza Pure Stone-Ground Chakki Atta",
+    product: "Taaza Pure Pure Chakki Atta",
     category: "flours",
     rating: 5,
     date: "Verified Purchase &bull; 1 week ago",
@@ -321,7 +321,7 @@ export function ReviewsPageView() {
                   Real Stories from <em className="italic font-normal text-[#8B3A22]">Real Kitchens</em>
                 </h1>
                 <p className="mt-4 text-base sm:text-lg text-[#5A4E45] font-light leading-relaxed">
-                  Discover authentic feedback, meal photos, and health transformations from families across Pakistan who upgraded to Usman&apos;s Pure cold-stone chakki flours and organic botanicals.
+                  Discover authentic feedback, meal photos, and health transformations from families across Pakistan who upgraded to Usman&apos;s Pure cold-chakki mill flours and organic botanicals.
                 </p>
 
                 <div className="mt-6 flex flex-wrap items-center gap-4">
@@ -411,7 +411,7 @@ export function ReviewsPageView() {
               {[
                 { key: "all", label: "All Customer Stories" },
                 { key: "photos", label: "📸 With Customer Photos" },
-                { key: "flours", label: "Stone-Ground Flours" },
+                { key: "flours", label: "Pure Chakki Flours" },
                 { key: "teas", label: "Organic Herbal Teas" },
               ].map((f) => (
                 <button

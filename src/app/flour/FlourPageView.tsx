@@ -60,7 +60,7 @@ export function FlourPageView() {
               Products
             </Link>
             <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-            <span className="font-bold text-stone-900">Stone-Ground Chakki Flours</span>
+            <span className="font-bold text-stone-900">Pure Chakki Flours</span>
           </div>
         </div>
 
@@ -77,18 +77,18 @@ export function FlourPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
-                Traditional Stone-Ground Whole Grain
+                100% Pure & Freshly Milled Whole Grain
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
-                Stone-Ground Chakki Flours
+                Pure Chakki Flours
               </h1>
               <p className="mt-3 text-stone-300 text-sm sm:text-base leading-relaxed">
-                Milled slowly under 40°C in natural stone chakkis to preserve living vitamins, natural wheat germ, and dietary fiber. Zero maida mixing, zero chemical bleaching agents, and zero preservatives.
+                Milled slowly under 40°C in natural hygienic chakkis to preserve living vitamins, natural wheat germ, and dietary fiber. Zero maida mixing, zero chemical bleaching agents, and zero preservatives.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 {[
-                  "Cold stone-milling at <40°C",
+                  "Cold-milling at <40°C",
                   "Formulated for Weight Care & Diabetic Nutrition",
                   "Preserves 100% Natural Dietary Fiber",
                   "Pliable, soft rotis that stay fresh all day",

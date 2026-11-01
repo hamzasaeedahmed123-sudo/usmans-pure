@@ -31,11 +31,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://usmanspure.com"),
   title: {
-    default: "Usman's Pure Products | Traditional Stone-Ground Chakki Atta & Organics",
+    default: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta & Organics",
     template: "%s | Usman's Pure Products",
   },
   description:
-    "Fresh stone-ground chakki atta, diabetic-care multigrain flours, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
+    "100% pure & freshly milled chakki atta, diabetic-care multigrain flours, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "flour",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     "usman pure",
   ],
   openGraph: {
-    title: "Usman's Pure Products | Traditional Stone-Ground Chakki Atta",
+    title: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta",
     description:
-      "Ghar ke dastarkhwan ke liye asli pathar ki chakki ka taaza atta, diabetic care flours, aur qudrati herbal kehwa. Doorstep Cash on Delivery Pakistan.",
+      "Ghar ke dastarkhwan ke liye taaza chakki ka khalis atta, diabetic care flours, aur qudrati herbal kehwa. Doorstep Cash on Delivery Pakistan.",
     url: "https://usmanspure.com",
     siteName: "Usman's Pure Products",
     images: [
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: "https://usmanspure.com/images/products/multigrain-flagship-family.jpg",
         width: 1024,
         height: 824,
-        alt: "Usman's Pure Products - Fresh Stone-Ground Chakki Atta",
+        alt: "Usman's Pure Products - 100% pure & freshly milled Chakki Atta",
       },
       {
         url: "https://usmanspure.com/logo.png",
@@ -73,8 +73,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Usman's Pure Products | Traditional Stone-Ground Chakki Atta",
-    description: "Fresh stone-ground chakki flour, zero maida, diabetic-care flours in Pakistan.",
+    title: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta",
+    description: "100% pure & freshly milled chakki flour, zero maida, diabetic-care flours in Pakistan.",
     images: ["https://usmanspure.com/images/products/multigrain-flagship-family.jpg"],
   },
 };
@@ -95,7 +95,7 @@ const organizationSchema = {
       },
       image: "https://usmanspure.com/logo.png",
       description:
-        "Authentic stone-milled whole grain chakki flours, diabetic nutritional blends, and pure herbal teas in Pakistan.",
+        "Authentic freshly milled whole grain chakki flours, diabetic nutritional blends, and pure herbal teas in Pakistan.",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+92-300-8472910",
@@ -116,7 +116,7 @@ const organizationSchema = {
       logo: "https://usmanspure.com/logo.png",
       image: "https://usmanspure.com/images/products/prod-3.jpg",
       description:
-        "Premium Stone-Ground Whole Wheat Chakki Atta & Organic Wellness Products in Pakistan.",
+        "Premium Pure Whole Wheat Chakki Atta & Organic Wellness Products in Pakistan.",
       priceRange: "₨₨",
       address: {
         "@type": "PostalAddress",

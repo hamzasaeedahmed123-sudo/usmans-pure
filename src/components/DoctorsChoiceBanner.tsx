@@ -33,14 +33,14 @@ export function DoctorsChoiceBanner() {
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#D5CEBF] font-light leading-relaxed">
-              Explore traditional stone-ground multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
+              Explore 100% Pure & Freshly Milled multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
             </p>
 
             {/* Quick Trust Badges */}
             <div className="mt-6 flex flex-wrap items-center gap-4 text-xs text-[#E8DFD0]">
               <span className="flex items-center gap-1.5">
                 <BadgeCheck className="w-4 h-4 text-[#E5B869]" strokeWidth={2} />
-                Stone-Ground Chakki
+                Pure Chakki Milling
               </span>
               <span className="text-white/20">•</span>
               <span className="flex items-center gap-1.5">

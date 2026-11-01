@@ -99,14 +99,14 @@ export function AboutPageView() {
 
   const coreOfferings = [
     {
-      title: "Stone-Ground Flours (Atta)",
+      title: "Pure Chakki Flours (Atta)",
       highlight: "Cold-Milled Under 40°C",
-      desc: "Slow stone-ground chakki flour crafted from premium wheat, roasted barley, and fenugreek. Retains the natural bran, germ, and vital nutrients with zero maida or chemical bleaching.",
+      desc: "Slow Pure Chakki Flour crafted from premium wheat, roasted barley, and fenugreek. Retains the natural bran, germ, and vital nutrients with zero maida or chemical bleaching.",
       watermark: "wheat" as const,
       link: "/flour",
       tag: "Flour Collection",
       image: "/atta-bag.png",
-      purityBadge: "100% Stone-Ground",
+      purityBadge: "100% Pure & Freshly Milled",
     },
     {
       title: "Pure Herbal Teas (Chamomile, Lemongrass & Moringa)",
@@ -169,7 +169,7 @@ export function AboutPageView() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-stone-600">
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Asli Pathar Ki Chakki
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Asli Taaza Chakki Atta
               </span>
               <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-100 border border-stone-200 font-medium">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" /> Khalis Aur Saaf Anaj
@@ -247,7 +247,7 @@ export function AboutPageView() {
                 </div>
                 <div>
                   <p className="text-base sm:text-lg text-stone-700 leading-relaxed font-sans">
-                    Hum khalispan par kabhi samjhota nahi karte. Saaf suthra anaj, pathar ki thandi chakki ki peesai, aur bina kisi chemical ya maiday ki milawat ke taaza atta&mdash;yehi hamara har ghar se pakka waada hai. Taake buzurg aur bachay dono sehatmand rahein aur dastarkhwan par barkat barkarar rahe.
+                    Hum khalispan par kabhi samjhota nahi karte. Saaf suthra anaj, thandi chakki ki taaza peesai, aur bina kisi chemical ya maiday ki milawat ke taaza atta&mdash;yehi hamara har ghar se pakka waada hai. Taake buzurg aur bachay dono sehatmand rahein aur dastarkhwan par barkat barkarar rahe.
                   </p>
                 </div>
               </div>
@@ -283,7 +283,7 @@ export function AboutPageView() {
           </div>
         </section>
 
-        {/* Traditional Milling Science: Why Cold Stone-Chakki Milling Matters */}
+        {/* Traditional Milling Science: Why Cold-Chakki Milling Matters */}
         <ChakkiProcessStory />
 
         {/* Trust & Purity Promise Section: Lab Certification */}
@@ -314,7 +314,7 @@ export function AboutPageView() {
                 <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-stone-800 text-xs">
                   <div>
                     <div className="text-amber-400 font-bold text-base">Under 40°C</div>
-                    <div className="text-stone-400 mt-1">Cold Stone Chakki Temperature</div>
+                    <div className="text-stone-400 mt-1">Cold chakki mill Temperature</div>
                   </div>
                   <div>
                     <div className="text-amber-400 font-bold text-base">100% Whole Grain</div>
@@ -447,7 +447,7 @@ export function AboutPageView() {
                   </div>
                   <div>
                     <h4 className="text-sm font-bold text-stone-900">Faisalabad Traditional Chakki Unit</h4>
-                    <p className="text-xs text-stone-500">Cold Stone Milling &amp; Herb Processing</p>
+                    <p className="text-xs text-stone-500">Cold cold milling &amp; Herb Processing</p>
                   </div>
                 </div>
                 <p className="text-xs text-stone-600 leading-relaxed">

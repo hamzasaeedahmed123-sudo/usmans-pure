@@ -129,7 +129,7 @@ export function CustomerReviews() {
               Loved by Families <em className="italic font-normal text-[#8B3A22]">Across Pakistan</em>
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
-              Real experiences from households who upgraded to fresh stone-ground chakki flour and pure essentials.
+              Real experiences from households who upgraded to 100% pure & freshly milled chakki flour and pure essentials.
             </p>
           </div>
 
@@ -332,7 +332,7 @@ export function CustomerReviews() {
                 <span className="eyebrow">Share Your Experience</span>
                 <h3 className="mt-1 text-2xl font-serif text-stone-900">Write a Customer Review</h3>
                 <p className="mt-1 text-xs text-stone-600">
-                  Help other Pakistani families discover authentic, pure stone-ground foods.
+                  Help other Pakistani families discover authentic, pure pure milled foods.
                 </p>
 
                 <form onSubmit={handleModalSubmit} noValidate className="mt-5 space-y-4">
@@ -384,8 +384,8 @@ export function CustomerReviews() {
                       <option value="FENUGREEK Plus Diabetic Flour">
                         FENUGREEK Plus Diabetic-Care Flour
                       </option>
-                      <option value="Basic Stone-Ground Chakki Flour">
-                        Basic Stone-Ground Whole Wheat Atta
+                      <option value="Basic Pure Chakki Flour">
+                        Basic Pure Whole Wheat Chakki Atta
                       </option>
                       <option value="Giggly Grains Kids Immunity Flour">
                         Giggly Grains (Kids Immunity Flour)

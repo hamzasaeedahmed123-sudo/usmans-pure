@@ -4,14 +4,14 @@ import { ReviewsPageView } from "./ReviewsPageView";
 export const metadata: Metadata = {
   title: "Verified Customer Reviews & Real Stories | Usman's Pure",
   description:
-    "Read authentic customer experiences with our stone-ground flours, dietary care flours, and organic teas. Real meal photos and feedback from Pakistani households.",
+    "Read authentic customer experiences with our Pure Chakki Flours, dietary care flours, and organic teas. Real meal photos and feedback from Pakistani households.",
   alternates: {
     canonical: "/reviews",
   },
   openGraph: {
     title: "Verified Customer Reviews & Real Stories | Usman's Pure",
     description:
-      "Read authentic customer experiences with our stone-ground flours, dietary care flours, and organic teas. Real meal photos and feedback from Pakistani households.",
+      "Read authentic customer experiences with our Pure Chakki Flours, dietary care flours, and organic teas. Real meal photos and feedback from Pakistani households.",
     url: "https://usmanspure.com/reviews",
     type: "website",
     images: [

@@ -11,7 +11,7 @@ interface PageProps {
 
 const CATEGORY_META: Record<string, { title: string; desc: string }> = {
   flours: {
-    title: "Stone-Ground Chakki Flours | Usman's Pure",
+    title: "Pure Chakki Flours | Usman's Pure",
     desc: "Shop slow-milled chakki atta, multigrain dietary flour, and diabetic-safe grains milled fresh under 40°C.",
   },
   teas: {
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const meta = CATEGORY_META[slug] || {
     title: "Organic Collections | Usman's Pure",
-    desc: "Explore fresh stone-ground flours and pure herbal teas from Usman's Pure.",
+    desc: "Explore 100% pure & freshly milled flours and pure herbal teas from Usman's Pure.",
   };
 
   return {

@@ -43,7 +43,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
       description:
         "Slow-milled in traditional chakki stones under 40°C to keep natural wheat germ, bran, and vitamin E intact. Zero maida, zero bleaching agents, and zero preservatives.",
       highlights: [
-        "Cold stone-milling at <40°C",
+        "Cold-milling at <40°C",
         "Formulated for Weight Care & Diabetic Nutrition",
         "Preserves 100% Natural Dietary Fiber",
         "Pliable, aromatic rotis that stay soft for hours",

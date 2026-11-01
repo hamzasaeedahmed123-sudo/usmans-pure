@@ -55,7 +55,7 @@ export function ContactPageView() {
     },
     {
       q: "How does the 14-Day Money Back Guarantee work?",
-      a: "If you are not completely pleased with our stone-ground flour's texture or our herbal teas' freshness, simply contact our WhatsApp support team within 14 days for a replacement or full refund.",
+      a: "If you are not completely pleased with our pure milled flour's texture or our herbal teas' freshness, simply contact our WhatsApp support team within 14 days for a replacement or full refund.",
     },
     {
       q: "How do I get a free customized diet consultation?",
@@ -110,7 +110,7 @@ export function ContactPageView() {
             We&apos;re Here to Help Your Family Live Pure
           </h1>
           <p className="text-stone-600 text-base md:text-lg max-w-2xl mx-auto mt-4 leading-relaxed">
-            Have questions about our stone chakki milling, diabetic flour glycemic index, or need assistance with your order? Our team responds within minutes.
+            Have questions about our cold chakki milling, diabetic flour glycemic index, or need assistance with your order? Our team responds within minutes.
           </p>
         </div>
 
@@ -188,7 +188,7 @@ export function ContactPageView() {
               <div className="bg-[#1E1510] text-white rounded-2xl p-6 md:p-8 border border-stone-800 shadow-sm relative z-10">
                 <h4 className="text-base font-bold text-white mb-2">Our Physical Facilities</h4>
                 <p className="text-xs text-stone-300 leading-relaxed mb-4">
-                  We welcome customers and food safety auditors at our stone chakki units and testing laboratories in Lahore &amp; Faisalabad.
+                  We welcome customers and food safety auditors at our chakki milling units and testing laboratories in Lahore &amp; Faisalabad.
                 </p>
                 <div className="space-y-3 text-xs text-stone-300">
                   <div className="flex items-center gap-2">
@@ -197,7 +197,7 @@ export function ContactPageView() {
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-[#E5B869] shrink-0" />
-                    <span>Faisalabad: Traditional Cold Stone-Milling &amp; Packing Suites</span>
+                    <span>Faisalabad: Traditional Cold-milling &amp; Packing Suites</span>
                   </div>
                 </div>
               </div>

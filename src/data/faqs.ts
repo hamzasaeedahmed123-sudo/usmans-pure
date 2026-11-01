@@ -7,41 +7,41 @@ export interface FaqItem {
 }
 
 export const FAQS_DATA: FaqItem[] = [
-  // Category: Stone Chakki & Flours
+  // Category: chakki mill & Flours
   {
     id: 1,
     category: "flours",
-    categoryLabel: "Stone Chakki & Flours",
-    q: "How does your traditional stone chakki differ from commercial roller flour mills?",
-    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy stone chakkis rotate slowly at strictly under 40°C, preserving vital live enzymes, vitamin E, and natural dietary fiber.",
+    categoryLabel: "chakki mill & Flours",
+    q: "How does your traditional chakki mill differ from commercial roller flour mills?",
+    a: "Commercial roller mills operate at high speeds (>90°C), burning away delicate wheat germ oils, bran fiber, and vital micronutrients. Our traditional heavy hygienic chakkis rotate slowly at strictly under 40°C, preserving vital live enzymes, vitamin E, and natural dietary fiber.",
   },
   {
     id: 2,
     category: "flours",
-    categoryLabel: "Stone Chakki & Flours",
+    categoryLabel: "chakki mill & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
     a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,
     category: "flours",
-    categoryLabel: "Stone Chakki & Flours",
-    q: "How long does freshly stone-ground chakki flour stay fresh?",
+    categoryLabel: "chakki mill & Flours",
+    q: "How long does Freshly milled chakki flour stay fresh?",
     a: "Because our flour contains live wheat germ with natural, cold-preserved oils and zero synthetic preservatives, we recommend consuming it within 30 to 45 days. Store in a cool, dry place in an airtight container.",
   },
   {
     id: 4,
     category: "flours",
-    categoryLabel: "Stone Chakki & Flours",
+    categoryLabel: "chakki mill & Flours",
     q: "Why are rotis made with your whole grain flour slightly darker in color?",
-    a: "Commercial flour uses chemical bleaching to look artificially white. Natural unbleached stone-ground wheat retains the dark outer bran and germ layers, resulting in a healthy, rich golden-brown wholesome roti with superior aroma.",
+    a: "Commercial flour uses chemical bleaching to look artificially white. Natural unbleached pure milled wheat retains the dark outer bran and germ layers, resulting in a healthy, rich golden-brown wholesome roti with superior aroma.",
   },
   {
     id: 5,
     category: "flours",
-    categoryLabel: "Stone Chakki & Flours",
+    categoryLabel: "chakki mill & Flours",
     q: "Is your flour easy to knead and roll into soft rotis?",
-    a: "Yes. Because of the fine stone-grinding process, simply knead with lukewarm water, let the dough rest for 10–15 minutes, and your rotis will remain remarkably soft, pliable, and puffy throughout the day.",
+    a: "Yes. Because of the fine slow cold-grinding process, simply knead with lukewarm water, let the dough rest for 10–15 minutes, and your rotis will remain remarkably soft, pliable, and puffy throughout the day.",
   },
 
   // Category: Dietary Care & Wellness

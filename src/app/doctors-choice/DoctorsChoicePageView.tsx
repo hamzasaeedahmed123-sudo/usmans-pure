@@ -49,7 +49,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
     easyBenefit: "Rich in slow-digesting dietary fiber to keep you full and energized for hours.",
     simplePoints: [
       "High natural dietary fiber for prolonged satiety",
-      "Stone-ground whole grains — Zero Maida",
+      "pure milled whole grains — Zero Maida",
       "Keeps you active and energized throughout the day",
     ],
     image: "/images/products/prod-3.jpg",
@@ -118,8 +118,8 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
 
 const CLINICAL_FAQS = [
   {
-    q: "How does stone-ground Chakki flour differ from commercial roller-mill flour?",
-    a: "Commercial industrial roller mills operate at high speeds, stripping away the delicate wheat germ oils and nutritious outer bran. Usman's Pure traditional stone-ground chakkis rotate slowly at low temperatures (<40°C), preserving the full living germ, natural dietary fiber, and authentic grain flavor.",
+    q: "How does Pure Chakki Flour differ from commercial roller-mill flour?",
+    a: "Commercial industrial roller mills operate at high speeds, stripping away the delicate wheat germ oils and nutritious outer bran. Usman's Pure 100% PURE & FRESHLY MILLED CHAKKIs rotate slowly at low temperatures (<40°C), preserving the full living germ, natural dietary fiber, and authentic grain flavor.",
   },
   {
     q: "Can the entire family eat FENUGREEK Plus flour, or only individuals managing blood sugar?",
@@ -209,7 +209,7 @@ export function DoctorsChoicePageView() {
           <div className="max-w-5xl mx-auto px-5 sm:px-8 relative z-10 text-center">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#18281E] text-[#E5B869] text-[11px] font-semibold uppercase tracking-[0.2em] mb-6 shadow-xs">
               <Wheat className="w-3.5 h-3.5" strokeWidth={2.5} />
-              <span>Nutrition-Focused &bull; Stone-Ground Quality</span>
+              <span>Nutrition-Focused &bull; Freshly Milled Quality</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-[#1E1510] leading-[1.08] tracking-tight">
@@ -218,14 +218,14 @@ export function DoctorsChoicePageView() {
             </h1>
 
             <p className="mt-6 text-lg sm:text-xl text-[#5A4E45] max-w-3xl mx-auto font-light leading-relaxed">
-              Wholesome stone-ground grains, ancient seeds, and pure botanicals formulated to provide sustained natural fiber, steady digestion, and honest nutrition.
+              Wholesome pure milled grains, ancient seeds, and pure botanicals formulated to provide sustained natural fiber, steady digestion, and honest nutrition.
             </p>
 
             {/* Clinical Trust Strip */}
             <div className="mt-10 pt-8 border-t border-[#1E1510]/10 flex flex-wrap items-center justify-center gap-6 sm:gap-10 text-xs sm:text-sm text-[#4A3F37] font-medium">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
-                <span>Stone-Ground Whole Grains</span>
+                <span>pure milled whole grains</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
@@ -237,7 +237,7 @@ export function DoctorsChoicePageView() {
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-5 h-5 text-[#8B3A22]" strokeWidth={2} />
-                <span>Cold Stone-Milled &lt;40&deg;C</span>
+                <span>Cold-Milled &lt;40&deg;C</span>
               </div>
             </div>
           </div>
@@ -251,7 +251,7 @@ export function DoctorsChoicePageView() {
                 Whole Grains &amp; Nutrition Philosophy
               </span>
               <p className="mt-3 text-base sm:text-lg text-[#2E241E] font-serif italic leading-relaxed">
-                &ldquo;Real grain nutrition starts with stone milling. Modern roller milling strips the living germ and protective bran fiber from grain, creating fast starches. By cold stone-milling unbleached grains with wholesome botanicals like roasted fenugreek, barley, and high-curcumin turmeric, we preserve the complex fiber and vital nutrients as nature intended.&rdquo;
+                &ldquo;Real grain nutrition starts with cold milling. Modern roller milling strips the living germ and protective bran fiber from grain, creating fast starches. By Cold-milling unbleached grains with wholesome botanicals like roasted fenugreek, barley, and high-curcumin turmeric, we preserve the complex fiber and vital nutrients as nature intended.&rdquo;
               </p>
 
               <div className="mt-6 pt-5 border-t border-[#1E1510]/10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">

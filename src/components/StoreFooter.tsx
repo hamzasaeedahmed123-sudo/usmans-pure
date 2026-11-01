@@ -26,10 +26,10 @@ export function StoreFooter() {
               </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
-                  Asli Pathar Ki Chakki Atta
+                  100% Pure &amp; Freshly Milled Atta
                 </h5>
                 <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  Freshly Stone-Ground Daily
+                  100% Pure &amp; Freshly Milled
                 </p>
               </div>
             </div>
@@ -164,7 +164,7 @@ export function StoreFooter() {
               Usman&apos;s Pure Products
             </h5>
             <p className="text-xs sm:text-sm text-[#C8BBAF] leading-relaxed max-w-sm mt-3 font-sans">
-              Hamare dastarkhwan se aapke dastarkhwan tak—asli pathar ki chakki ka khalis atta aur qudrati jari bootiyon ka kehwa. Zero chemical, zero maida, aur har niwalay mein barkat.
+              Hamare dastarkhwan se aapke dastarkhwan tak—khalis aur taaza pisa hua chakki atta aur qudrati jari bootiyon ka kehwa. Zero chemical, zero maida, aur har niwalay mein barkat.
             </p>
             <p className="text-xs text-[#8C7D6F] mt-3">
               Asli Chakki Atta &bull; Zero Maida &bull; Cash on Delivery Available
@@ -184,7 +184,7 @@ export function StoreFooter() {
               </li>
               <li>
                 <Link href="/flour" className="hover:text-white transition-colors block">
-                  Stone-Ground Flours
+                  Pure Chakki Flours
                 </Link>
               </li>
               <li>

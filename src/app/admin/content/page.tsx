@@ -59,7 +59,7 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
     id: "block-1",
     type: "announcement",
     title: "Nationwide Free Delivery",
-    content: "Free express dispatch across Pakistan on all stone-ground chakki flour orders above ₨10,000.",
+    content: "Free express dispatch across Pakistan on all Pure Chakki Flour orders above ₨10,000.",
     badge: "Free Shipping",
     status: "published",
     link: "/products",
@@ -88,8 +88,8 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
   {
     id: "block-4",
     type: "faq_item",
-    title: "What makes traditional stone-ground chakki atta healthier?",
-    content: "Unlike industrial roller mills which extract the nutrient-rich germ and overheat the wheat, our stone chakki grinds at low RPM preserving complete natural dietary fiber, germ, and vitamins.",
+    title: "What makes 100% PURE & FRESHLY MILLED CHAKKI atta healthier?",
+    content: "Unlike industrial roller mills which extract the nutrient-rich germ and overheat the wheat, our chakki mill grinds at low RPM preserving complete natural dietary fiber, germ, and vitamins.",
     badge: "Milling FAQ",
     status: "published",
   },
@@ -147,7 +147,7 @@ export default function AdminContentPage() {
       saleDiscountTag: cmsContent.saleBanner?.discountTag || "Flat 15% OFF on Multigrain Flour",
       saleBannerSubtext:
         cmsContent.saleBanner?.subtext ||
-        "Fresh stone-milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout.",
+        "freshly milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout.",
       saleButtonText: cmsContent.saleBanner?.buttonText || "Shop Flash Sale",
       saleLink: cmsContent.saleBanner?.link || "/products",
       customBanners: cmsContent.customBanners || [],
@@ -191,7 +191,7 @@ export default function AdminContentPage() {
       id: `block-${Date.now()}`,
       type,
       title: titles[type],
-      content: "Write customized section content, pure stone-ground benefits, and customer instructions here...",
+      content: "Write customized section content, pure pure milled benefits, and customer instructions here...",
       badge: badges[type],
       status: "published",
       link: "/products",
@@ -747,7 +747,7 @@ export default function AdminContentPage() {
                 rows={2}
                 value={formData.saleBannerSubtext}
                 onChange={(e) => updateField("saleBannerSubtext", e.target.value)}
-                placeholder="Fresh stone-milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout."
+                placeholder="freshly milled chakki flour packed with 90% natural wheat germ. Use code PURE15 at checkout."
                 className="w-full px-3.5 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs font-semibold focus:ring-2 focus:ring-amber-900/40 leading-relaxed"
               />
             </div>
@@ -981,7 +981,7 @@ export default function AdminContentPage() {
                             value={block.title}
                             onChange={(e) => handleUpdateBlock(block.id, { title: e.target.value })}
                             className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-900"
-                            placeholder="e.g. Traditional Slow-Stone Ground Wheat"
+                            placeholder="e.g. Traditional Slow-100% PURE & FRESHLY MILLED Wheat"
                           />
                         </div>
 

@@ -28,7 +28,7 @@ export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
     pillBg: "bg-[#EFE2CE]",
     pillText: "text-[#54361C]",
     label: "Organic Pantry",
-    subtext: "Pure Stone-Ground Chakki Products",
+    subtext: "Pure Pure Chakki Milling Products",
   },
   flour: {
     bg: "bg-[#F7F3EB]",
@@ -39,7 +39,7 @@ export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
     accentHex: "#8C6D46",
     pillBg: "bg-[#EFE7DB]",
     pillText: "text-[#6E4E28]",
-    label: "Stone-Ground Chakki Flours",
+    label: "Pure Chakki Flours",
     subtext: "Warm Linen & Milled Wheat Tone",
   },
   herbals: {

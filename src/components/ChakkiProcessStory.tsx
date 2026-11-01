@@ -12,16 +12,16 @@ export function ChakkiProcessStory() {
             Traditional Milling Science
           </div>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-stone-900 tracking-tight">
-            Why Cold Stone-Chakki Milling Matters
+            Why Cold-Chakki Milling Matters
           </h2>
           <p className="mt-3 text-stone-600 text-sm sm:text-base leading-relaxed">
-            Not all flour is created equal. Learn why modern commercial mills ruin flour nutrition, and how our low-speed stone chakki restores real food vitality.
+            Not all flour is created equal. Learn why modern commercial mills ruin flour nutrition, and how our low-speed chakki mill restores real food vitality.
           </p>
         </div>
 
         {/* Comparison Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {/* Usman's Pure Stone Chakki */}
+          {/* Usman's Pure chakki mill */}
           <div className="rounded-sm bg-white border-2 border-emerald-600/40 p-6 sm:p-8 shadow-ambient relative overflow-hidden">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-stone-100">
               <div>
@@ -29,7 +29,7 @@ export function ChakkiProcessStory() {
                   Our Method
                 </span>
                 <h3 className="text-xl sm:text-2xl font-semibold text-stone-900 mt-2">
-                  Usman&apos;s Cold Stone Chakki
+                  Usman&apos;s Cold chakki mill
                 </h3>
               </div>
               <div className="w-12 h-12 rounded-sm bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold">
@@ -41,7 +41,7 @@ export function ChakkiProcessStory() {
               {[
                 {
                   title: "Cold Temperature (<40°C)",
-                  desc: "Slow stone rotation ensures heat never denatures vital wheat proteins or burns living enzymes.",
+                  desc: "Slow cold rotation ensures heat never denatures vital wheat proteins or burns living enzymes.",
                 },
                 {
                   title: "100% Whole Grain (Germ & Bran Intact)",

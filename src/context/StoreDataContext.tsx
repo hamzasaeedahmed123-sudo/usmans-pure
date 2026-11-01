@@ -89,7 +89,7 @@ export interface CMSContent {
 }
 
 export const DEFAULT_CMS: CMSContent = {
-  announcementBarText: "Asli Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Nationwide Cash on Delivery Across Pakistan",
+  announcementBarText: "100% Khalis Aur Taaza Chakki Atta • Zero Maida • Nationwide Cash on Delivery Across Pakistan",
   announcementSubText: "Free Nationwide Shipping on Orders Rs 10,000+ • Cash on Delivery",
   announcementBg: "#2A1F17",
   heroSlides: {
@@ -97,7 +97,7 @@ export const DEFAULT_CMS: CMSContent = {
       title: "MULTIGRAIN",
       subtitle: "FLOUR",
       fullTitle: "Chakki Multigrain Atta",
-      benefit: "Maa ke haath ki narm phulka roti — pathar ki chakki ka qudrati fiber, zero maida.",
+      benefit: "Maa ke haath ki narm phulka roti — qudrati fiber, zero maida.",
       price: "Rs 2,450",
       weight: "10kg",
     },
@@ -120,7 +120,7 @@ export const DEFAULT_CMS: CMSContent = {
     enabled: false,
     badgeTitle: "Grand Opening Sale",
     discountTag: "Flat 15% OFF on Multigrain Flour",
-    subtext: "Fresh stone-milled chakki flour packed with natural wheat germ and fiber. Use code PURE15 at checkout.",
+    subtext: "100% pure & freshly milled chakki flour packed with natural wheat germ and fiber. Use code PURE15 at checkout.",
     buttonText: "Shop Flash Sale",
     link: "/products",
   },
@@ -224,7 +224,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     id: "rev-kamran-gulberg",
     name: "Chaudhry Kamran (Gulberg, Lahore)",
     city: "Gulberg, Lahore",
-    product: "Taaza Pure Stone-Ground Chakki Atta",
+    product: "Taaza Pure Chakki Atta",
     rating: 5,
     date: "1 week ago",
     review: "Subah pisa hua taaza chakki atta direct ghar deliver ho gaya. Asli gandum aur jau ki khushboo aati hai jab taway par roti banti hai. Quality 10/10 hai.",
@@ -284,7 +284,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     id: "rev-7",
     name: "Fatima Zahra",
     city: "Gujranwala",
-    product: "Basic Stone-Ground Whole Wheat Atta",
+    product: "Basic Whole Wheat Chakki Atta",
     rating: 5,
     date: "1 month ago",
     review: "Bina maida khalis chakki ka atta hai. Phulkay sham tak bilkul naram rehte hain. Dastarkhwan ke liye behtareen cheez hai.",
@@ -308,7 +308,7 @@ export const DEFAULT_REVIEWS: Review[] = [
     id: "rev-9",
     name: "Sadia Naveed",
     city: "Sialkot",
-    product: "Royal Stone-Pounded Garam Masala",
+    product: "Royal Pure Garam Masala",
     rating: 5,
     date: "2 months ago",
     review: "Garam masala bohat taaza aur khushbudaar hai, thori si miqdaar hi kaafi hoti hai. Khane ka maza dobala ho jata hai.",

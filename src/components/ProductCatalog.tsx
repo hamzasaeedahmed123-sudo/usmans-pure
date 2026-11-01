@@ -84,35 +84,115 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     ],
   },
   {
+    id: "prod-5",
+    title: "Giggly Grains - Multigrain Blend",
+    category: "flours",
+    categoryBadge: "Flour",
+    highlight: "Immunity Boost for Kids (Rich in Fiber & Nutrients)",
+    image: "/images/products/prod-5.jpg",
+    detailUrl: "/product/prod-5",
+    checkoutUrl: "/checkout?product=prod-5",
+    description:
+      "A wholesome multigrain blend specially formulated for kids' healthy growth and strong immunity. Rich in dietary fiber, natural calcium, and essential nutrients.",
+    packOptions: [
+      { size: "2 lbs", price: 1100, originalPrice: 1400 },
+      { size: "4 lbs", price: 2150, originalPrice: 2750 },
+    ],
+  },
+  {
+    id: "prod-6",
+    title: "Nutra Prime - 100% Gluten Free Flour",
+    category: "flours",
+    categoryBadge: "Flour",
+    highlight: "100% Gluten Free (Rich in Fiber & Nutrients)",
+    image: "/images/products/prod-6.jpg",
+    detailUrl: "/product/prod-6",
+    checkoutUrl: "/checkout?product=prod-6",
+    description:
+      "Specially crafted 100% gluten-free multigrain flour packed with essential fiber, natural vitamins, and minerals. Safe and wholesome for sensitive diets.",
+    packOptions: [
+      { size: "2 lbs", price: 1350, originalPrice: 1650 },
+      { size: "4 lbs", price: 2600, originalPrice: 3200 },
+    ],
+  },
+  {
     id: "prod-2",
     title: "Chamomile Tea",
     category: "teas",
     categoryBadge: "Herbal Tea",
-    highlight: "Restful Sleep & Stress Relief",
+    highlight: "For Restful Sleep & Stress Relief",
     image: "/images/products/prod-2.jpg",
     detailUrl: "/product/prod-2",
     checkoutUrl: "/checkout?product=prod-2",
     description:
-      "The perfect herbal tea for restful sleep and stress relief. A cup before bedtime relaxes the body and eliminates fatigue.",
+      "Enjoy a calming cup of pure Chamomile tea. Perfect for relaxing your mind, reducing anxiety, and promoting deep, restful sleep.",
     packOptions: [
       { size: "50g", price: 800, originalPrice: 1000 },
       { size: "100g", price: 1500, originalPrice: 1900 },
     ],
   },
   {
-    id: "prod-7",
-    title: "Lemongrass Herbal Tea",
+    id: "prod-8",
+    title: "Olive Leaf Tea",
     category: "teas",
     categoryBadge: "Herbal Tea",
-    highlight: "Digestion, Detox & Immunity Boost",
-    image: "/images/products/prod-7.jpg",
-    detailUrl: "/product/prod-7",
-    checkoutUrl: "/checkout?product=prod-7",
+    highlight: "Immunity & Heart Health",
+    image: "/images/products/prod-8.jpg",
+    detailUrl: "/product/prod-8",
+    checkoutUrl: "/checkout?product=prod-8",
     description:
-      "A refreshing herbal tea that improves digestion and boosts immunity. Detoxifies the body naturally and provides a refreshing sensation.",
+      "Rich in natural antioxidants, this tea supports cardiovascular health, boosts the immune system, and helps you stay active naturally.",
     packOptions: [
-      { size: "50g", price: 750, originalPrice: 950 },
-      { size: "100g", price: 1400, originalPrice: 1800 },
+      { size: "50g", price: 850, originalPrice: 1100 },
+      { size: "100g", price: 1600, originalPrice: 2100 },
+    ],
+  },
+  {
+    id: "prod-9",
+    title: "Oregano Tea",
+    category: "teas",
+    categoryBadge: "Herbal Tea",
+    highlight: "Digestive & Respiratory Support",
+    image: "/images/products/prod-9.jpg",
+    detailUrl: "/product/prod-9",
+    checkoutUrl: "/checkout?product=prod-9",
+    description:
+      "A traditional herbal remedy excellent for soothing digestion, clearing respiratory pathways, and providing natural antibacterial benefits.",
+    packOptions: [
+      { size: "50g", price: 850, originalPrice: 1100 },
+      { size: "100g", price: 1600, originalPrice: 2100 },
+    ],
+  },
+  {
+    id: "prod-10",
+    title: "Persian Rose Delight",
+    category: "teas",
+    categoryBadge: "Herbal Tea",
+    highlight: "Mood Booster & Glowing Skin",
+    image: "/images/products/prod-10.jpg",
+    detailUrl: "/product/prod-10",
+    checkoutUrl: "/checkout?product=prod-10",
+    description:
+      "A fragrant and luxurious rose tea blend that helps relieve stress, uplifts your mood, and promotes healthy, radiant skin.",
+    packOptions: [
+      { size: "50g", price: 950, originalPrice: 1200 },
+      { size: "100g", price: 1800, originalPrice: 2300 },
+    ],
+  },
+  {
+    id: "prod-11",
+    title: "Rosella Tea",
+    category: "teas",
+    categoryBadge: "Herbal Tea",
+    highlight: "Rich in Vitamin C & Antioxidants",
+    image: "/images/products/prod-11.jpg",
+    detailUrl: "/product/prod-11",
+    checkoutUrl: "/checkout?product=prod-11",
+    description:
+      "A tart and refreshing herbal drink packed with Vitamin C. Great for supporting healthy blood pressure and naturally detoxifying the body.",
+    packOptions: [
+      { size: "50g", price: 850, originalPrice: 1100 },
+      { size: "100g", price: 1600, originalPrice: 2100 },
     ],
   },
 ];
@@ -195,11 +275,11 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           <div className="max-w-xl">
             <span className="eyebrow">Handcrafted Organic Essentials</span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-[1.1]">
-              Fresh Stone-Milled Whole Wheat Flour &amp; Multi-Grain Blends
+              100% Pure &amp; Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>
           <p className="max-w-sm text-sm text-[#6B5D52] leading-relaxed">
-            Stone-ground chakki flours and whole-leaf herbal infusions &mdash; made slowly, the way nature intended.
+            Pure milled chakki flours and whole-leaf herbal infusions &mdash; made slowly, the way nature intended.
           </p>
         </div>
 
@@ -207,7 +287,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 sm:mb-12 no-scrollbar">
           {[
             { id: "all", label: "All Essentials" },
-            { id: "flours", label: "Stone-Ground Flours" },
+            { id: "flours", label: "Pure Chakki Flours" },
             { id: "teas", label: "Herbal Teas" },
           ].map((tab) => {
             const isSelected = currentFilter === tab.id;
@@ -346,7 +426,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
           </Link>
           <p className="text-xs text-[#6B5D52]">
-            8 pure stone-ground flours &amp; herbal teas
+            10 pure milled flours &amp; herbal teas
           </p>
         </div>
       </div>

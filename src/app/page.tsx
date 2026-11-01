@@ -37,9 +37,9 @@ const StoreFooter = dynamic(
 );
 
 export const metadata: Metadata = {
-  title: "Usman's Pure | Fresh Stone-Ground Chakki Atta Online Pakistan",
+  title: "Usman's Pure | 100% pure & freshly milled Chakki Atta Online Pakistan",
   description:
-    "Buy fresh stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic-care & multigrain flour. Doorstep Cash on Delivery.",
+    "Buy 100% pure & freshly milled chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic-care & multigrain flour. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "chakki atta",
@@ -51,15 +51,15 @@ export const metadata: Metadata = {
     "diabetic atta pakistan",
     "multigrain flour",
     "gandum ka atta",
-    "stone ground flour",
+    "100% PURE & FRESHLY MILLED flour",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Usman's Pure | Fresh Stone-Ground Chakki Atta Online Pakistan",
+    title: "Usman's Pure | 100% pure & freshly milled Chakki Atta Online Pakistan",
     description:
-      "Buy fresh stone-ground chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic-care & multigrain flour. Doorstep Cash on Delivery.",
+      "Buy 100% pure & freshly milled chakki atta online in Pakistan. Zero maida, 100% whole wheat flour, diabetic-care & multigrain flour. Doorstep Cash on Delivery.",
     url: "https://usmanspure.com",
     type: "website",
     images: [
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
         url: "/images/products/multigrain-flagship-family.jpg",
         width: 1024,
         height: 824,
-        alt: "Usman's Pure Products - Fresh Stone-Ground Chakki Atta Online Pakistan",
+        alt: "Usman's Pure Products - 100% pure & freshly milled Chakki Atta Online Pakistan",
       },
       {
         url: "/logo.png",
@@ -83,7 +83,7 @@ export default function Home() {
   return (
     <AmbientThemeWrapper className="min-h-screen selection:bg-amber-500/20 selection:text-amber-900">
       {/* Primary Semantic H1 for Search Engine Dominance */}
-      <h1 className="sr-only">Fresh Stone-Ground Chakki Atta &amp; Organics in Pakistan</h1>
+      <h1 className="sr-only">100% pure & freshly milled Chakki Atta &amp; Organics in Pakistan</h1>
 
       {/* 1. Hero Section Slider */}
       <HeroSlider />
@@ -100,7 +100,7 @@ export default function Home() {
       {/* 4. Category Collections ("Our Collections") */}
       <CategoryCollections />
 
-      {/* 5. Featured Products (Fresh Stone-Milled Whole Wheat Flour & Multi-Grain Blends) */}
+      {/* 5. Featured Products (freshly milled Whole Wheat Flour & Multi-Grain Blends) */}
       <ProductCatalog />
 
       {/* 6. Customer Voices & Testimonials (Repositioned Higher on Homepage) */}

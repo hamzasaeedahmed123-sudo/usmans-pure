@@ -113,7 +113,7 @@ export function ProductsPageView() {
                 All Pure Products
               </h1>
               <p className="mt-3 text-[#D5CEBF] text-sm sm:text-base leading-relaxed font-light">
-                Wholesome stone-ground chakki flours and pure organic herbal teas. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
+                Wholesome Pure Chakki Flours and pure organic herbal teas. 100% natural, chemical-free, and dispatches nationwide with Cash on Delivery.
               </p>
             </div>
           </div>

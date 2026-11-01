@@ -116,7 +116,7 @@ export function FaqsPageView() {
             </h1>
 
             <p className="mt-4 text-base sm:text-lg text-[#5A4E45] max-w-2xl mx-auto font-light leading-relaxed">
-              Everything you need to know about our stone chakki milling, diabetic &amp; diet flours, herbal teas, and door-to-door delivery.
+              Everything you need to know about our cold chakki milling, diabetic &amp; diet flours, herbal teas, and door-to-door delivery.
             </p>
 
             {/* Live Search Input */}
@@ -126,7 +126,7 @@ export function FaqsPageView() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search by keyword (e.g., stone chakki, diabetes, delivery, maida)..."
+                placeholder="Search by keyword (e.g., chakki mill, diabetes, delivery, maida)..."
                 className="w-full pl-11 pr-4 py-3.5 rounded-md bg-white border border-[#1E1510]/15 text-sm text-[#1E1510] placeholder:text-stone-400 focus:outline-hidden focus:border-[#8B3A22] shadow-xs transition-colors"
               />
               {searchQuery && (

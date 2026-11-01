@@ -11,7 +11,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
   const collections = [
     {
       id: "flour",
-      title: "Traditional Stone-Ground Flours (Atta)",
+      title: "100% Pure & Freshly Milled Flours (Atta)",
       subtitle: "General Health, Diabetic Care, Weight Loss & Giggly Grains flours rich in vital nutrients.",
       image: "/images/products/prod-3.jpg",
       badge: "Pure Chakki Flour",
@@ -53,7 +53,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
             </h2>
           </div>
           <p className="text-xs sm:text-sm text-stone-600 max-w-md leading-relaxed">
-            Fresh stone-ground chakki atta, whole grain flours, and pure herbal teas. Delivered fresh to your home across Pakistan.
+            100% pure & freshly milled chakki atta, whole grain flours, and pure herbal teas. Delivered fresh to your home across Pakistan.
           </p>
         </div>
 

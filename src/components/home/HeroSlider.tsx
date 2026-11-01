@@ -50,12 +50,12 @@ export const CATEGORY_PILLS = [
 export const SLIDES: HeroSlide[] = [
   {
     id: "flour",
-    tag: "Pathar Ki Chakki",
+    tag: "Taaza Chakki Atta",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
     fullTitle: "Chakki Multigrain Atta",
-    benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — pathar ki chakki ka qudrati fiber, bina kisi maiday ke.",
-    miniStats: ["Ghar Ki Pasand", "Zero Maida", "Pathar Ki Chakki"],
+    benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — chakki ka qudrati fiber, bina kisi maiday ke.",
+    miniStats: ["Ghar Ki Pasand", "Zero Maida", "Taaza Chakki Atta"],
     price: "Rs 2,450",
     weight: "10kg",
     bgColor: "#E5D2BA",
@@ -68,7 +68,7 @@ export const SLIDES: HeroSlide[] = [
     image: "/images/hero/multigrain-flour.png",
     floating: ["/images/hero/wheat-1.png", "/images/hero/wheat-2.png"],
     detailUrl: "/flour",
-    altText: "Chakki Stone-Ground Multigrain Flour 10kg",
+    altText: "Chakki pure milled Multigrain Flour 10kg",
   },
   {
     id: "herbals",

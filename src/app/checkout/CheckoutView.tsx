@@ -698,7 +698,7 @@ export function CheckoutView() {
                                       <span>Cash on Delivery is available across all cities and villages of Pakistan.</span>
                                     </div>
                                     <p className="text-[11px] text-stone-500 pl-6 leading-relaxed">
-                                      No bank cards, apps, or passwords needed. The courier rider will hand over your stone-ground package at your door. You inspect the parcel and pay cash.
+                                      No bank cards, apps, or passwords needed. The courier rider will hand over your pure milled package at your door. You inspect the parcel and pay cash.
                                     </p>
                                   </div>
                                 )}
@@ -1346,7 +1346,7 @@ export function CheckoutView() {
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                        <span>Stone-Ground</span>
+                        <span>pure milled</span>
                       </div>
                       <div className="p-2 rounded-md bg-stone-50 flex flex-col items-center gap-1">
                         <RotateCcw className="w-4 h-4 text-emerald-700" />

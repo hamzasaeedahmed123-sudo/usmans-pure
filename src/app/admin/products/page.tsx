@@ -53,9 +53,9 @@ export default function AdminProductsPage() {
   const [newPrice, setNewPrice] = useState(1200);
   const [newOriginalPrice, setNewOriginalPrice] = useState(1500);
   const [newWeight, setNewWeight] = useState("5kg");
-  const [newTagline, setNewTagline] = useState("90% Pure & Stone-Ground");
+  const [newTagline, setNewTagline] = useState("90% Pure & pure milled");
   const [newDescription, setNewDescription] = useState("");
-  const [newBenefits, setNewBenefits] = useState("Stone-Ground Chakki\nZero Preservatives\n90% Pure Organics");
+  const [newBenefits, setNewBenefits] = useState("Pure Chakki Milling\nZero Preservatives\n90% Pure Organics");
   const [newImage, setNewImage] = useState<string>("");
   const [imageUrlInput, setImageUrlInput] = useState<string>("");
   const [isDragging, setIsDragging] = useState(false);
@@ -163,7 +163,7 @@ export default function AdminProductsPage() {
       .filter((b) => b.length > 0);
 
     const categoryLabels = {
-      flours: "Stone-Ground Chakki Flour",
+      flours: "Pure Chakki Flour",
       teas: "Artisanal Pure Herbal Tea",
     };
 
@@ -188,7 +188,7 @@ export default function AdminProductsPage() {
       reviewCount: 1,
       weight: newWeight,
       tagline: newTagline,
-      description: newDescription || "90% pure stone-milled product with zero chemical additives.",
+      description: newDescription || "90% pure freshly milled product with zero chemical additives.",
       benefits: benefitsArray,
       inStock: true,
     };
@@ -444,7 +444,7 @@ export default function AdminProductsPage() {
             <div className="flex items-center justify-between pb-4 border-b border-stone-100 mb-5">
               <div>
                 <h3 className="text-xl font-black text-stone-900 tracking-tight">Add New Product</h3>
-                <p className="text-xs text-stone-500">Create a stone-ground organic product entry</p>
+                <p className="text-xs text-stone-500">Create a pure milled organic product entry</p>
               </div>
               <button
                 onClick={() => setAddModalOpen(false)}
@@ -660,7 +660,7 @@ export default function AdminProductsPage() {
                   required
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
-                  placeholder="e.g. Pure Stone-Ground Diabetic Atta"
+                  placeholder="e.g. Pure pure milled Diabetic Atta"
                   className="w-full px-3.5 py-2 rounded-xl bg-stone-50 border border-stone-200 text-stone-900 text-xs focus:ring-2 focus:ring-amber-900/40"
                 />
               </div>
@@ -716,7 +716,7 @@ export default function AdminProductsPage() {
                 label="Product Description (Visual Gutenberg Editor)"
                 value={newDescription}
                 onChange={setNewDescription}
-                placeholder="Write detailed product description, stone-ground milling benefits, and pure organic attributes..."
+                placeholder="Write detailed product description, pure milled milling benefits, and pure organic attributes..."
                 onOpenMediaLibrary={() => setMediaModalOpen(true)}
               />
 

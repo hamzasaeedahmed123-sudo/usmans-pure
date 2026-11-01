@@ -115,7 +115,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         id: "purity",
         title: "Laboratory Tested & Verified Purity Guarantee",
         content:
-          "Certified zero heavy metals. Zero benzoyl peroxide, zero potassium bromate, zero chemical preservatives. Freshly stone-milled in traditional chakki upon order confirmation.",
+          "Certified zero heavy metals. Zero benzoyl peroxide, zero potassium bromate, zero chemical preservatives. freshly milled in traditional chakki upon order confirmation.",
       },
       {
         id: "brewing",
@@ -222,8 +222,8 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
       {
         name: "Whole Wheat Chakki Atta",
         size: "10kg Traditional Pack",
-        role: "Stone-Ground Whole Grain",
-        desc: "Pure stone-ground whole wheat flour retaining the grain's original nutrition and fiber. Makes soft rotis and keeps you feeling full all day.",
+        role: "pure milled Whole Grain",
+        desc: "Pure Pure Whole Wheat flour retaining the grain's original nutrition and fiber. Makes soft rotis and keeps you feeling full all day.",
         image: "/images/products/prod-6.jpg",
       },
       {
@@ -237,7 +237,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
     synergy: {
       headline: "How It Works Together: All-Day Vitality & Night Rest",
       description:
-        "Family members enjoy wholesome fiber-rich digestion all day from stone-ground whole grains, capped by soothing chamomile tea that gently relaxes the body and mind before bedtime.",
+        "Family members enjoy wholesome fiber-rich digestion all day from pure milled whole grains, capped by soothing chamomile tea that gently relaxes the body and mind before bedtime.",
       routineSteps: [
         {
           time: "Morning & Lunch",

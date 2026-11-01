@@ -23,7 +23,7 @@ export function AnnouncementBar({ theme = "flour", className = "", customBg }: A
   const bgColor = customBg || THEME_COLORS[theme] || "#2A1F17";
   const { cmsContent } = useStoreData();
 
-  const defaultText = "Asli Pathar Ki Chakki Ka Khalis Atta • Zero Maida • Nationwide Cash on Delivery Across Pakistan";
+  const defaultText = "100% Khalis Aur Taaza Chakki Atta • Zero Maida • Nationwide Cash on Delivery Across Pakistan";
   const primaryText = cmsContent?.announcementBarText || defaultText;
 
   return (

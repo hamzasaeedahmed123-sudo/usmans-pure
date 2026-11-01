@@ -151,7 +151,7 @@ export function FlagshipFeaturedProduct() {
                   />
                   <text className="text-[7.5px] font-bold uppercase tracking-[0.2em] fill-[#D4A373]">
                     <textPath href="#sealPath" startOffset="0%">
-                      • STONE GROUND • TAAZA CHAKKI ATTA • ZERO MAIDA
+                      • 100% KHALIS &amp; PURE • TAAZA CHAKKI ATTA • ZERO MAIDA
                     </textPath>
                   </text>
                 </svg>
@@ -167,7 +167,7 @@ export function FlagshipFeaturedProduct() {
             <div className="relative w-full h-[280px] sm:h-[340px] md:h-[380px] lg:h-[410px]">
               <Image
                 src={PRODUCT_IMAGE}
-                alt="Usman's Pure Multigrain Flour Stone-Ground Packaging"
+                alt="Usman's Pure Multigrain Flour Packaging"
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
                 className="object-contain"
@@ -191,7 +191,7 @@ export function FlagshipFeaturedProduct() {
 
             {/* Subtitle */}
             <p className="text-sm sm:text-base text-stone-600 leading-relaxed mb-6">
-              Pathar ki chakki pe pisa asli qudrati anaj—bina chemical bleaching aur bina kisi maiday ke. Buzurgo ki sugar ka khayal, bacchon ki taaqat aur ghar ke dastarkhwan ke liye Ammi ke haath ki narm phulka roti jo har niwala sehatmand banaye.
+              Khalis aur asli qudrati anaj bina kisi chemical bleaching ke aur bina kisi maiday ke. Buzurgo ki sugar ka khayal, bacchon ki taaqat aur ghar ke dastarkhwan ke liye Ammi ke haath ki narm phulka roti jo har niwala sehatmand banaye.
             </p>
 
             {/* 3 Natural Desi Family Points */}
@@ -216,7 +216,7 @@ export function FlagshipFeaturedProduct() {
                 <CheckCircle2 className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
                 <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
                   <strong className="text-stone-900 font-bold">Ghar Ki Tasalli:</strong>{" "}
-                  Pathar ki chakki ka pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
+                  100% khalis aur taaza pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
                 </p>
               </div>
             </div>
@@ -327,7 +327,7 @@ export function FlagshipFeaturedProduct() {
               </div>
               <div className="flex items-center gap-1.5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>Fresh Stone-Ground Every Morning</span>
+                <span>100% Pure &amp; Freshly Milled</span>
               </div>
               <Link
                 href="/flour"

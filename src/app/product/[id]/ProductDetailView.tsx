@@ -307,7 +307,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   <span>&bull;</span>
                   <span className="flex items-center gap-1.5">
                     <Wheat className="w-4 h-4 text-amber-700" strokeWidth={1.75} />
-                    Stone-Ground
+                    pure milled
                   </span>
                   <span>&bull;</span>
                   <span className="flex items-center gap-1.5">
@@ -520,7 +520,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       "Proprietary cold-milled blend of traditional whole grains. Helps maintain prolonged fullness, prevents insulin spikes, and turns stored fat into everyday sustained energy."}
                   </p>
                   <p>
-                    Milled in traditional stone chakkis under 40°C. We guarantee zero maida mixing, zero chemical bleaching, and zero synthetic preservatives. Freshly packed in UV-shielded packaging to preserve aroma and living nutrients.
+                    Milled in traditional hygienic chakkis under 40°C. We guarantee zero maida mixing, zero chemical bleaching, and zero synthetic preservatives. Freshly packed in UV-shielded packaging to preserve aroma and living nutrients.
                   </p>
                 </div>
               )}
@@ -553,7 +553,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents insulin spikes.</li>
                     <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you full for 5+ hours and promotes digestion.</li>
-                    <li><strong>Cold Stone Milled (&lt;40°C):</strong> Natural wheat germ, bran, and enzymes intact.</li>
+                    <li><strong>cold milled (&lt;40°C):</strong> Natural wheat germ, bran, and enzymes intact.</li>
                     {product.benefits?.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}

@@ -3,16 +3,16 @@ import { FaqsPageView } from "./FaqsPageView";
 import { FAQS_DATA } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions | Purity, Delivery & Stone Chakki Storage",
+  title: "Frequently Asked Questions | Purity, Delivery & chakki mill Storage",
   description:
-    "Got questions about shelf life, stone-ground grain varieties, or delivery across Pakistan? Read our complete purity knowledge base.",
+    "Got questions about shelf life, pure milled grain varieties, or delivery across Pakistan? Read our complete purity knowledge base.",
   alternates: {
     canonical: "/faqs",
   },
   openGraph: {
-    title: "Frequently Asked Questions | Purity, Delivery & Stone Chakki Storage",
+    title: "Frequently Asked Questions | Purity, Delivery & chakki mill Storage",
     description:
-      "Got questions about shelf life, stone-ground grain varieties, or delivery across Pakistan? Read our complete purity knowledge base.",
+      "Got questions about shelf life, pure milled grain varieties, or delivery across Pakistan? Read our complete purity knowledge base.",
     url: "https://usmanspure.com/faqs",
     type: "website",
     images: [

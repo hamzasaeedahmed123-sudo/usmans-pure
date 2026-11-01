@@ -88,7 +88,7 @@ export function BundlesPageView() {
               Curated Value <em className="italic font-normal text-[#8B3A22]">Bundles</em>
             </h1>
             <p className="mt-5 text-base sm:text-lg text-[#6B5D52] max-w-2xl mx-auto leading-relaxed">
-              Carefully paired by our master millers. Each value pack combines fresh stone-ground flours with pure herbal teas to give your family wholesome nutrition at bundle savings of up to ₨800.
+              Carefully paired by our master millers. Each value pack combines 100% pure & freshly milled flours with pure herbal teas to give your family wholesome nutrition at bundle savings of up to ₨800.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs text-[#6B5D52]">
