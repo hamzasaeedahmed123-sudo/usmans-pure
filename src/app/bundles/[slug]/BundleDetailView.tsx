@@ -325,20 +325,20 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
               priority={false}
               className="w-full h-full object-cover object-center"
             />
-            {/* Semi-transparent warm light overlay + backdrop blur for optimal text contrast while keeping golden field visible */}
-            <div className="absolute inset-0 bg-[#FAF9F5]/90 backdrop-blur-[2px]" />
+            {/* Reduced opacity overlay so the golden wheat field is prominently and vividly visible */}
+            <div className="absolute inset-0 bg-[#FAF9F5]/40 backdrop-blur-[1px]" />
             {/* Soft blend edge transitions for a seamless environment with sections above and below */}
-            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FAF7F2] to-transparent opacity-90" />
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF7F2] to-transparent opacity-90" />
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[#FAF7F2] to-transparent opacity-85" />
+            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#FAF7F2] to-transparent opacity-85" />
           </div>
 
           <div className="max-w-5xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-3xl mx-auto mb-14 bg-white/85 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/90 shadow-sm">
               <span className="eyebrow mb-2">Nutritional Chemistry</span>
               <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1510] tracking-tight">
                 {bundle.synergy.headline}
               </h2>
-              <p className="mt-4 text-sm sm:text-base text-stone-700 leading-relaxed font-medium">
+              <p className="mt-4 text-sm sm:text-base text-stone-800 leading-relaxed font-medium">
                 {bundle.synergy.description}
               </p>
             </div>
@@ -354,7 +354,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
               {bundle.synergy.routineSteps.map((step, idx) => (
                 <div
                   key={idx}
-                  className="p-6 sm:p-7 bg-white/95 backdrop-blur-sm rounded-xl flex flex-col justify-between border border-stone-200/90 shadow-md hover:shadow-lg transition-all duration-300"
+                  className="p-6 sm:p-7 bg-white rounded-xl flex flex-col justify-between border border-stone-200/90 shadow-md hover:shadow-xl transition-all duration-300"
                 >
                   <div>
                     <div className="flex items-center justify-between text-[#8B3A22] text-xs font-bold tracking-widest uppercase mb-3.5">
