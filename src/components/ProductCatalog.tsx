@@ -40,12 +40,12 @@ export const FEATURED_5_PRODUCTS: FeaturedProductItem[] = [
     title: "Basic – Flour For General Health",
     category: "flours",
     categoryBadge: "Flour",
-    highlight: "100% Pure & Natural Everyday Flour",
+    highlight: "Natural Everyday Whole Wheat Flour",
     image: "/images/products/prod-1.jpg",
     detailUrl: "/product/prod-1",
     checkoutUrl: "/checkout?product=prod-1",
     description:
-      "100% pure and natural everyday flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
+      "natural everyday whole wheat flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
     packOptions: [
       { size: "5kg", price: 1200, originalPrice: 1500 },
       { size: "10kg", price: 2350, originalPrice: 2950 },
@@ -275,7 +275,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           <div className="max-w-xl">
             <span className="eyebrow">Handcrafted Organic Essentials</span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-[1.1]">
-              100% Pure &amp; Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
+              Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>
           <p className="max-w-sm text-sm text-[#6B5D52] leading-relaxed">
@@ -450,7 +450,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 flex items-center justify-center">
+              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 m-0 flex items-center justify-center">
                 <Image
                   src={quickViewProduct.image}
                   alt={quickViewProduct.title}
@@ -458,7 +458,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                   sizes="320px"
                   quality={100}
                   loading="lazy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover p-0 m-0"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9]/95 text-[#8B3A22] backdrop-blur-xs">
                   Sale

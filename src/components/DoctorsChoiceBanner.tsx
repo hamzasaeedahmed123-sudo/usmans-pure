@@ -33,7 +33,7 @@ export function DoctorsChoiceBanner() {
             </h2>
 
             <p className="mt-4 text-base sm:text-lg text-[#D5CEBF] font-light leading-relaxed">
-              Explore 100% Pure & Freshly Milled multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
+              Explore FRESHLY MILLED multigrain blends rich in natural fiber, complex carbohydrates, and wholesome ancient grains that keep you satisfied longer.
             </p>
 
             {/* Quick Trust Badges */}

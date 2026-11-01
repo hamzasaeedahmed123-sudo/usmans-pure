@@ -80,7 +80,7 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
     type: "promo_banner",
     title: "Handpicked Pure Herbal Teas",
     content: "Sun-dried organic lemongrass, chamomile, and nutrient-dense moringa for natural vitality and daily detox.",
-    badge: "100% Pure",
+    badge: "Zero Additives",
     status: "published",
     link: "/category/teas",
     buttonText: "Explore Herbal Teas",
@@ -88,7 +88,7 @@ export const DEFAULT_BLOCKS: CustomBlock[] = [
   {
     id: "block-4",
     type: "faq_item",
-    title: "What makes 100% PURE & FRESHLY MILLED CHAKKI atta healthier?",
+    title: "What makes FRESHLY MILLED CHAKKI atta healthier?",
     content: "Unlike industrial roller mills which extract the nutrient-rich germ and overheat the wheat, our chakki mill grinds at low RPM preserving complete natural dietary fiber, germ, and vitamins.",
     badge: "Milling FAQ",
     status: "published",
@@ -981,7 +981,7 @@ export default function AdminContentPage() {
                             value={block.title}
                             onChange={(e) => handleUpdateBlock(block.id, { title: e.target.value })}
                             className="w-full px-3 py-1.5 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-900"
-                            placeholder="e.g. Traditional Slow-100% PURE & FRESHLY MILLED Wheat"
+                            placeholder="e.g. Traditional Slow-FRESHLY MILLED Wheat"
                           />
                         </div>
 

@@ -18,10 +18,10 @@ export function TrustBadges({ className = "", wrapperClassName = "" }: TrustBadg
             <Wheat className="w-5 h-5 text-[#8C6D46]" strokeWidth={1.75} />
           </div>
           <h4 className="text-xs sm:text-sm font-bold text-stone-900 tracking-tight text-center leading-tight">
-            100% Pure &amp; Freshly Milled Atta
+            Freshly Milled Chakki Atta
           </h4>
           <p className="text-[11px] sm:text-xs text-stone-600 font-medium text-center mt-0.5 leading-tight">
-            100% Pure &amp; Freshly Milled
+            Freshly Milled
           </p>
         </div>
 

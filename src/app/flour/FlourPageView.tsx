@@ -77,7 +77,7 @@ export function FlourPageView() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-3xl">
               <div className="text-xs font-semibold uppercase tracking-wider text-amber-400 mb-2">
-                100% Pure & Freshly Milled Whole Grain
+                FRESHLY MILLED Whole Grain
               </div>
               <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight text-white">
                 Pure Chakki Flours
@@ -241,14 +241,14 @@ export function FlourPageView() {
               </button>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-                <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 flex items-center justify-center">
+                <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 m-0 flex items-center justify-center">
                   <Image
                     src={quickViewProduct.image}
                     alt={quickViewProduct.title}
                     fill
                     sizes="320px"
                     quality={100}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover p-0 m-0"
                   />
                   <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase bg-[#F6F1E9] text-[#8B3A22]">
                     {quickViewProduct.discountBadge}

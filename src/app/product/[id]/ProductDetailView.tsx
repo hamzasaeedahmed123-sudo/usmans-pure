@@ -229,7 +229,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
                   {/* Product Badge */}
                   <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-white/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs z-10 pointer-events-none">
-                    Sale &bull; 100% Pure
+                    Sale &bull; Zero Additives
                   </span>
 
                   {/* Navigation Arrows for Sliding */}

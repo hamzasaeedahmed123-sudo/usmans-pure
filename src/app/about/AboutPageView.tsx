@@ -106,7 +106,7 @@ export function AboutPageView() {
       link: "/flour",
       tag: "Flour Collection",
       image: "/atta-bag.png",
-      purityBadge: "100% Pure & Freshly Milled",
+      purityBadge: "FRESHLY MILLED",
     },
     {
       title: "Pure Herbal Teas (Chamomile, Lemongrass & Moringa)",

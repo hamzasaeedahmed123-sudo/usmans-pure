@@ -26,10 +26,10 @@ export function StoreFooter() {
               </div>
               <div className="text-center sm:text-left">
                 <h5 className="font-bold text-white text-xs sm:text-sm leading-tight tracking-tight">
-                  100% Pure &amp; Freshly Milled Atta
+                  Freshly Milled Chakki Atta
                 </h5>
                 <p className="text-[11px] sm:text-xs text-[#A89887] mt-0.5 leading-tight">
-                  100% Pure &amp; Freshly Milled
+                  Freshly Milled
                 </p>
               </div>
             </div>

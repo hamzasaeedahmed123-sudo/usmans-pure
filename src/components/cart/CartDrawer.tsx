@@ -151,7 +151,7 @@ export function CartDrawer() {
                 Your Pure Basket is Empty
               </h3>
               <p className="text-xs text-[#6B5D52] mt-1.5 max-w-xs leading-relaxed">
-                Add 100% pure & freshly milled flours or organic herbal teas to begin.
+                Add FRESHLY MILLED flours or organic herbal teas to begin.
               </p>
               <Link
                 href="/products"
@@ -294,7 +294,7 @@ export function CartDrawer() {
             {/* Trust note */}
             <div className="pt-1 flex items-center justify-center gap-2 text-[10px] text-[#6B5D52]">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-              <span>Cash on Delivery Across Pakistan • 100% Pure & Freshly Milled Quality</span>
+              <span>Cash on Delivery Across Pakistan • FRESHLY MILLED Quality</span>
             </div>
           </div>
         )}

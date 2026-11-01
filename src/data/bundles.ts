@@ -216,7 +216,7 @@ export const LUXURY_BUNDLES: LuxuryBundle[] = [
         name: "Basic – Flour For General Health",
         size: "5kg Daily Household Pack",
         role: "Everyday Wholesome Roti",
-        desc: "100% pure and natural everyday flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
+        desc: "natural everyday whole wheat flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
         image: "/images/products/prod-1.jpg",
       },
       {

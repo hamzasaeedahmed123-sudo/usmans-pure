@@ -215,7 +215,7 @@ export default function CartPage() {
               <ShoppingBag className="w-14 h-14 text-stone-300 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-stone-900">Your pure basket is empty</h3>
               <p className="mt-1 text-xs text-stone-500">
-                Explore our 100% pure & freshly milled flours and organic herbal teas.
+                Explore our FRESHLY MILLED flours and organic herbal teas.
               </p>
               <Link
                 href="/products"

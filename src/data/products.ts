@@ -41,9 +41,9 @@ export const PRODUCTS: Product[] = [
     rating: 4.9,
     reviewCount: 48,
     weight: "5kg",
-    tagline: "100% pure and natural everyday flour for daily family health",
+    tagline: "natural everyday whole wheat flour for daily family health",
     description:
-      "100% pure and natural everyday flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
+      "natural everyday whole wheat flour. Rich in fiber and essential nutrients for better digestion and all-day energy. Free from artificial chemicals.",
     benefits: [
       "Improves digestion",
       "Provides natural energy",

@@ -31,11 +31,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://usmanspure.com"),
   title: {
-    default: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta & Organics",
+    default: "Usman's Pure Products | FRESHLY MILLED CHAKKI Atta & Organics",
     template: "%s | Usman's Pure Products",
   },
   description:
-    "100% pure & freshly milled chakki atta, diabetic-care multigrain flours, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
+    "FRESHLY MILLED CHAKKI atta, diabetic-care multigrain flours, and organic herbal teas in Pakistan. Zero maida, zero bleach. Doorstep Cash on Delivery.",
   keywords: [
     "atta",
     "flour",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     "usman pure",
   ],
   openGraph: {
-    title: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta",
+    title: "Usman's Pure Products | FRESHLY MILLED CHAKKI Atta",
     description:
       "Ghar ke dastarkhwan ke liye taaza chakki ka khalis atta, diabetic care flours, aur qudrati herbal kehwa. Doorstep Cash on Delivery Pakistan.",
     url: "https://usmanspure.com",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
         url: "https://usmanspure.com/images/products/multigrain-flagship-family.jpg",
         width: 1024,
         height: 824,
-        alt: "Usman's Pure Products - 100% pure & freshly milled Chakki Atta",
+        alt: "Usman's Pure Products - FRESHLY MILLED CHAKKI Atta",
       },
       {
         url: "https://usmanspure.com/logo.png",
@@ -73,8 +73,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Usman's Pure Products | 100% PURE & FRESHLY MILLED CHAKKI Atta",
-    description: "100% pure & freshly milled chakki flour, zero maida, diabetic-care flours in Pakistan.",
+    title: "Usman's Pure Products | FRESHLY MILLED CHAKKI Atta",
+    description: "FRESHLY MILLED CHAKKI flour, zero maida, diabetic-care flours in Pakistan.",
     images: ["https://usmanspure.com/images/products/multigrain-flagship-family.jpg"],
   },
 };

@@ -20,7 +20,7 @@ export const FAQS_DATA: FaqItem[] = [
     category: "flours",
     categoryLabel: "chakki mill & Flours",
     q: "Do you mix maida (white refined flour) or bran fillers in your chakki atta?",
-    a: "Absolutely zero. We guarantee 100% pure whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
+    a: "Absolutely zero. We guarantee wholesome whole wheat. No maida, no bran stripping, and no chemical bleaching agents like benzoyl peroxide or chlorine dioxide.",
   },
   {
     id: 3,

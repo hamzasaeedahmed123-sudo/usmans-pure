@@ -151,7 +151,7 @@ export function FlagshipFeaturedProduct() {
                   />
                   <text className="text-[7.5px] font-bold uppercase tracking-[0.2em] fill-[#D4A373]">
                     <textPath href="#sealPath" startOffset="0%">
-                      • 100% KHALIS &amp; PURE • TAAZA CHAKKI ATTA • ZERO MAIDA
+                      • ASLI &amp; KHALIS • TAAZA CHAKKI ATTA • ZERO MAIDA
                     </textPath>
                   </text>
                 </svg>
@@ -327,7 +327,7 @@ export function FlagshipFeaturedProduct() {
               </div>
               <div className="flex items-center gap-1.5">
                 <BadgeCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>100% Pure &amp; Freshly Milled</span>
+                <span>Freshly Milled</span>
               </div>
               <Link
                 href="/flour"

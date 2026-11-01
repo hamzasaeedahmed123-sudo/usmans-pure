@@ -4,7 +4,7 @@ import { CheckoutView } from "./CheckoutView";
 export const metadata = {
   title: "Checkout & Payment Options (COD, JazzCash, Card) | Usman's Pure Products",
   description:
-    "Place your order for 100% pure & freshly milled chakki flours and pure organic herbal teas. Pay with Cash on Delivery across Pakistan, JazzCash, Easypaisa, or Card.",
+    "Place your order for FRESHLY MILLED CHAKKI flours and pure organic herbal teas. Pay with Cash on Delivery across Pakistan, JazzCash, Easypaisa, or Card.",
 };
 
 function CheckoutLoadingSkeleton() {

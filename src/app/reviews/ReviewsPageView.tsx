@@ -130,7 +130,7 @@ const INITIAL_STORIES: CustomerStory[] = [
     date: "Verified Purchase &bull; 1 month ago",
     title: "Pur-sukoon neend aur zehni sukoon",
     review:
-      "Raat ko sonay se pehle aik cup Chamomile tea peeti hoon. Neend bohat pur-sukoon aati hai aur thakawat bilkul door ho jati hai. 100% pure taste aur khushboo.",
+      "Raat ko sonay se pehle aik cup Chamomile tea peeti hoon. Neend bohat pur-sukoon aati hai aur thakawat bilkul door ho jati hai. qudrati taste aur khushboo.",
     verified: true,
     helpfulCount: 44,
   },

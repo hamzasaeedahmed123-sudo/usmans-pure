@@ -119,7 +119,7 @@ const DOCTOR_PRODUCTS: DoctorProduct[] = [
 const CLINICAL_FAQS = [
   {
     q: "How does Pure Chakki Flour differ from commercial roller-mill flour?",
-    a: "Commercial industrial roller mills operate at high speeds, stripping away the delicate wheat germ oils and nutritious outer bran. Usman's Pure 100% PURE & FRESHLY MILLED CHAKKIs rotate slowly at low temperatures (<40°C), preserving the full living germ, natural dietary fiber, and authentic grain flavor.",
+    a: "Commercial industrial roller mills operate at high speeds, stripping away the delicate wheat germ oils and nutritious outer bran. Usman's Pure FRESHLY MILLED CHAKKIs rotate slowly at low temperatures (<40°C), preserving the full living germ, natural dietary fiber, and authentic grain flavor.",
   },
   {
     q: "Can the entire family eat FENUGREEK Plus flour, or only individuals managing blood sugar?",

@@ -316,14 +316,14 @@ export function HerbalsPageView() {
             </button>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 items-center">
-              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 flex items-center justify-center">
+              <div className="relative aspect-square w-full rounded-xl bg-stone-100 overflow-hidden p-0 m-0 flex items-center justify-center">
                 <Image
                   src={quickViewProduct.image}
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
                   quality={100}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover p-0 m-0"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase bg-[#F6F1E9] text-[#8B3A22]">
                   {quickViewProduct.discountBadge}

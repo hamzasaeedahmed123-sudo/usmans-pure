@@ -86,7 +86,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #FAF7F2; padding: 24px; border-radius: 16px; border: 1px solid #EFEAE2;">
       <div style="text-align: center; padding-bottom: 20px; border-bottom: 2px solid #8B3A22;">
         <h1 style="color: #1E1510; font-size: 24px; margin: 0 0 6px 0; font-family: Georgia, serif;">Usman's Pure Products</h1>
-        <p style="color: #8B3A22; font-size: 13px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">100% Pure & Freshly Milled • Order Confirmation</p>
+        <p style="color: #8B3A22; font-size: 13px; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">FRESHLY MILLED • Order Confirmation</p>
       </div>
 
       <div style="padding: 20px 0;">
@@ -140,7 +140,7 @@ export async function sendOrderConfirmationEmail(order: OrderEmailPayload) {
 
       <div style="text-align: center; border-top: 1px solid #EFEAE2; padding-top: 16px; font-size: 12px; color: #8C7D6F;">
         <p style="margin: 0 0 6px 0;">Direct WhatsApp Support: <strong>+92 300 8472910</strong></p>
-        <p style="margin: 0;">Usman's Pure Products — 100% Pure Whole Wheat Chakki Atta &amp; Herbal Teas, Pakistan.</p>
+        <p style="margin: 0;">Usman's Pure Products — wholesome whole wheat Chakki Atta &amp; Herbal Teas, Pakistan.</p>
       </div>
     </div>
   `;

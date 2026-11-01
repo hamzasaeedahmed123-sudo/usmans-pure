@@ -22,6 +22,8 @@ import {
   ArrowRight,
   PackageCheck,
   HeartHandshake,
+  Eye,
+  X,
 } from "lucide-react";
 
 interface BundleDetailViewProps {
@@ -34,6 +36,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
   const [isAdded, setIsAdded] = useState(false);
   const [openAccordion, setOpenAccordion] = useState<string>("nutrition");
   const [quantity, setQuantity] = useState(1);
+  const [isPackPreviewOpen, setIsPackPreviewOpen] = useState(false);
 
   const totalPrice = bundle.price * quantity;
   const totalOriginal = bundle.originalPrice * quantity;
@@ -111,7 +114,8 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
               <div className="lg:col-span-6 flex flex-col gap-6">
                 {/* Main Hero Pack Image */}
                 <div
-                  className={`relative aspect-[4/3] w-full ${bundle.tint} rounded-sm overflow-hidden flex items-center justify-center p-8`}
+                  className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden p-0 m-0 border border-stone-200/80 shadow-md bg-stone-100 group select-none cursor-pointer"
+                  onClick={() => setIsPackPreviewOpen(true)}
                 >
                   <Image
                     src={bundle.image}
@@ -119,7 +123,8 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-contain p-6 shadow-product"
+                    quality={100}
+                    className="w-full h-full object-cover p-0 m-0 transition-transform duration-500 ease-out group-hover:scale-105"
                   />
 
                   {/* Badges */}
@@ -127,14 +132,21 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                     <span className="px-3 py-1 rounded-[2px] bg-[#1E1510] text-[#F6F1E9] text-[10px] font-medium tracking-[0.2em] uppercase">
                       Save ₨{bundle.savings}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-[2px] bg-[#FAF7F2]/90 backdrop-blur-xs text-[#8B3A22] text-[10px] font-medium tracking-widest uppercase">
-                      100% Pure &bull; Zero Additives
+                    <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[#8B3A22] text-[10px] sm:text-xs font-bold tracking-widest uppercase shadow-2xs border border-[#8B3A22]/15">
+                      ZERO ADDITIVES
                     </span>
                   </div>
 
-                  <span className="absolute bottom-4 right-4 text-[10px] uppercase tracking-widest text-[#6B5D52] font-medium bg-[#FAF7F2]/80 px-2 py-0.5 rounded-[2px]">
-                    Authentic Pack Preview
-                  </span>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsPackPreviewOpen(true);
+                    }}
+                    className="absolute bottom-4 right-4 text-[10px] sm:text-xs uppercase tracking-widest text-[#1E1510] font-bold bg-white/95 backdrop-blur-xs px-3 py-1.5 rounded-full shadow-md hover:bg-white flex items-center gap-1.5 cursor-pointer transition-all duration-200 hover:scale-105"
+                  >
+                    <Eye className="w-3.5 h-3.5 text-[#8B3A22]" /> Authentic Pack Preview
+                  </button>
                 </div>
 
                 {/* Bundle Component Preview Thumbnails */}
@@ -474,6 +486,47 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
             </div>
           </div>
         </section>
+
+        {/* Authentic Pack Preview Modal */}
+        {isPackPreviewOpen && (
+          <div
+            className="fixed inset-0 z-50 bg-stone-900/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+            onClick={() => setIsPackPreviewOpen(false)}
+          >
+            <div
+              className="relative w-full max-w-3xl bg-white rounded-2xl overflow-hidden p-0 m-0 shadow-2xl animate-in fade-in zoom-in-95 duration-200"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setIsPackPreviewOpen(false)}
+                className="absolute top-4 right-4 w-10 h-10 rounded-full bg-stone-900/70 hover:bg-stone-900 text-white flex items-center justify-center transition cursor-pointer z-30 shadow-md backdrop-blur-xs"
+                aria-label="Close preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Modal Image Wrapper with strict p-0 m-0, w-full h-full object-cover, overflow-hidden */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] p-0 m-0 overflow-hidden bg-stone-100">
+                <Image
+                  src={bundle.image}
+                  alt={bundle.title}
+                  fill
+                  quality={100}
+                  sizes="(max-width: 1024px) 100vw, 896px"
+                  className="w-full h-full object-cover p-0 m-0"
+                />
+                <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
+                  <span className="px-3 py-1 rounded-[2px] bg-[#1E1510] text-[#F6F1E9] text-[10px] font-medium tracking-[0.2em] uppercase">
+                    Save ₨{bundle.savings}
+                  </span>
+                  <span className="px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[#8B3A22] text-[10px] font-bold tracking-widest uppercase shadow-2xs border border-[#8B3A22]/15">
+                    ZERO ADDITIVES
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
 
       <StoreFooter />

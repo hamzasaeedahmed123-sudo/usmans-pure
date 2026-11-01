@@ -129,7 +129,7 @@ export function CustomerReviews() {
               Loved by Families <em className="italic font-normal text-[#8B3A22]">Across Pakistan</em>
             </h2>
             <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
-              Real experiences from households who upgraded to 100% pure & freshly milled chakki flour and pure essentials.
+              Real experiences from households who upgraded to FRESHLY MILLED CHAKKI flour and pure essentials.
             </p>
           </div>
 
