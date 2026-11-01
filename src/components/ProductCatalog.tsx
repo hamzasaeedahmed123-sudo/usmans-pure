@@ -248,10 +248,13 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
     }, 2000);
   };
 
-  const displayedProducts =
+  const filteredProducts =
     currentFilter === "all"
       ? FEATURED_5_PRODUCTS
       : FEATURED_5_PRODUCTS.filter((p) => p.category === currentFilter);
+
+  // Strictly limit initial display to exactly 3 product cards
+  const displayedProducts = filteredProducts.slice(0, 3);
 
   return (
     <section id="featured-products" className="relative py-20 sm:py-28 transition-colors duration-700 ease-in-out overflow-hidden">
@@ -270,17 +273,33 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
       />
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
-        {/* Editorial Section Heading */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 sm:mb-12">
+        {/* Editorial Section Heading with Brand Logo opposite title */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-10 sm:mb-12">
           <div className="max-w-xl">
             <span className="eyebrow">Handcrafted Organic Essentials</span>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-[1.1]">
               Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>
-          <p className="max-w-sm text-sm text-[#6B5D52] leading-relaxed">
-            Pure milled chakki flours and whole-leaf herbal infusions &mdash; made slowly, the way nature intended.
-          </p>
+          <div className="flex flex-col items-start md:items-end gap-3 max-w-sm shrink-0">
+            <Link
+              href="/"
+              className="inline-block transition-transform duration-300 hover:scale-[1.02] focus:outline-none"
+              aria-label="Usman's Pure Products"
+            >
+              <Image
+                src="/logo.png"
+                alt="Usman's Pure Products"
+                width={240}
+                height={68}
+                className="w-auto h-11 sm:h-12 md:h-14 object-contain object-left md:object-right"
+                priority
+              />
+            </Link>
+            <p className="text-xs sm:text-sm text-[#6B5D52] leading-relaxed md:text-right">
+              Pure milled chakki flours and whole-leaf herbal infusions &mdash; made slowly, the way nature intended.
+            </p>
+          </div>
         </div>
 
         {/* Category Ambient Filter Tabs */}
@@ -307,8 +326,8 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
           })}
         </div>
 
-        {/* Product Responsive Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-6 gap-y-8 md:gap-y-14">
+        {/* Product Responsive Grid - Exactly 3 Prominent Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 gap-y-10 sm:gap-y-12">
           {displayedProducts.map((product) => {
             const isAdded = addedIds[product.id];
             const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
@@ -331,7 +350,7 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
                         src={product.image}
                         alt={product.title}
                         fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         quality={100}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -420,13 +439,13 @@ export function ProductCatalog({ activeFilter: externalFilter, setActiveFilter: 
         </div>
 
         {/* View All Products */}
-        <div className="mt-20 flex flex-col items-center gap-4">
+        <div className="mt-14 sm:mt-16 flex flex-col items-center gap-3">
           <Link href="/products" className="btn-lux group">
             <span>View All Products</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.5} />
           </Link>
           <p className="text-xs text-[#6B5D52]">
-            10 pure milled flours &amp; herbal teas
+            Showing 3 of {filteredProducts.length} essentials &bull; Explore full catalog for all flours &amp; herbal teas
           </p>
         </div>
       </div>
