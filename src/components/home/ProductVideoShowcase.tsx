@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { Play, Sparkles, CheckCircle2, ShieldCheck, Award } from "lucide-react";
+import { Play, CheckCircle2, ShieldCheck, Award } from "lucide-react";
 
 export function ProductVideoShowcase() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -28,10 +28,6 @@ export function ProductVideoShowcase() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8B3A22]/10 border border-[#8B3A22]/20 text-[#8B3A22] text-xs font-bold uppercase tracking-widest mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#8B3A22]" />
-            <span>Visual Evidence of Purity</span>
-          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1E1510] tracking-tight leading-snug">
             Asli Qudrati Purity &amp; Milling in Action
           </h2>

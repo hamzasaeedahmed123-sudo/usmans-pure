@@ -1,4 +1,4 @@
-import { CheckCircle2, Truck, Wheat, Sparkles } from "lucide-react";
+import { CheckCircle2, Truck, Wheat } from "lucide-react";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export function DietConsultationBanner() {
@@ -88,7 +88,7 @@ export function DietConsultationBanner() {
                 <div className="min-w-[78%] sm:min-w-[260px] md:min-w-0 snap-center p-3.5 rounded-xl bg-emerald-950/70 border border-emerald-500/20 flex flex-col justify-center">
                   <div className="flex items-center gap-2">
                     <span className="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center shrink-0">
-                      <Sparkles className="w-3.5 h-3.5" strokeWidth={1.75} />
+                      <Wheat className="w-3.5 h-3.5" strokeWidth={1.75} />
                     </span>
                     <h5 className="text-xs font-bold text-white">Fresh Cold Milling</h5>
                   </div>
