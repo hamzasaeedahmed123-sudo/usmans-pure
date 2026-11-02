@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     const expectedEmail = (admin.email || admin.username || "admin@usmanspure.com").toLowerCase();
 
     // Verify email matches administrator
-    if (inputEmail !== expectedEmail && inputEmail !== "admin@usmanspure.com") {
+    if (inputEmail !== expectedEmail) {
       return NextResponse.json(
         { error: "No administrator account found associated with this email address." },
         { status: 404 }

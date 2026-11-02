@@ -6,15 +6,10 @@ import { query } from "@/lib/db";
 // 1. JWT Security Configuration
 function getJwtSecret(): Uint8Array {
   const secret = process.env.JWT_SECRET;
-  if (!secret) {
-    if (process.env.NODE_ENV === "production") {
-      throw new Error(
-        "FATAL SECURITY ERROR: JWT_SECRET environment variable is missing. It must be defined in your environment."
-      );
-    }
-    // Fallback solely for local test boots before env injection
-    console.warn("[Security Notice] JWT_SECRET not found in env, using runtime generated key.");
-    return new TextEncoder().encode("dev_local_jwt_secret_32_characters_minimum_length_safe");
+  if (!secret || secret.trim().length === 0) {
+    throw new Error(
+      "FATAL SECURITY ERROR: JWT_SECRET environment variable is missing. The application must fail securely rather than defaulting to insecure values."
+    );
   }
   return new TextEncoder().encode(secret);
 }
@@ -123,11 +118,13 @@ let memoryAdminFallback: AdminRecord | null = null;
 export async function getOrInitAdminRecord(): Promise<AdminRecord> {
   const defaultUsername = (process.env.ADMIN_USERNAME || "admin@usmanspure.com").trim();
   const defaultEmail = (process.env.ADMIN_EMAIL || "admin@usmanspure.com").trim();
-  const defaultPassword =
-    process.env.ADMIN_PASSWORD ||
-    (process.env.NODE_ENV === "production"
-      ? crypto.randomBytes(16).toString("hex")
-      : "admin1122");
+  const defaultPassword = process.env.ADMIN_PASSWORD;
+
+  if (!defaultPassword || defaultPassword.trim().length === 0) {
+    throw new Error(
+      "FATAL SECURITY ERROR: ADMIN_PASSWORD environment variable is missing. The application must fail securely rather than defaulting to insecure hardcoded values."
+    );
+  }
 
   try {
     const res = await query(

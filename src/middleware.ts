@@ -2,14 +2,23 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const JWT_SECRET_STRING =
-  process.env.JWT_SECRET || "usmans-pure-production-secure-hmac-sha256-key-1947-elite";
-const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
+function getMiddlewareJwtSecret(): Uint8Array | null {
+  const secret = process.env.JWT_SECRET;
+  if (!secret || secret.trim().length === 0) {
+    return null;
+  }
+  return new TextEncoder().encode(secret);
+}
 
 async function verifyAdminSession(token: string | undefined): Promise<boolean> {
   if (!token) return false;
+  const secret = getMiddlewareJwtSecret();
+  if (!secret) {
+    // Fail securely if JWT_SECRET is missing from environment
+    return false;
+  }
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET, {
+    const { payload } = await jwtVerify(token, secret, {
       issuer: "usmanspure",
       audience: "usmanspure:admin",
     });

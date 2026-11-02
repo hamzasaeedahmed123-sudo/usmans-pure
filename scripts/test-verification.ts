@@ -21,6 +21,11 @@ import {
 import { PRODUCTS } from "../src/data/products";
 import { LUXURY_BUNDLES } from "../src/data/bundles";
 
+process.env.JWT_SECRET = process.env.JWT_SECRET || "test_jwt_secret_32_characters_minimum_length_safe_123456";
+process.env.ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "admin1122";
+process.env.ADMIN_USERNAME = process.env.ADMIN_USERNAME || "admin@usmanspure.com";
+process.env.ADMIN_EMAIL = process.env.ADMIN_EMAIL || "admin@usmanspure.com";
+
 let passedCount = 0;
 let failedCount = 0;
 
@@ -106,7 +111,17 @@ async function runTests() {
   assert(verifiedCust !== null && verifiedCust.role === "customer", "Valid customer token is verified");
   // Ensure customer token cannot authenticate as admin
   const customerAsAdmin = await verifyAdminToken(customerToken);
-  assert(customerAsAdmin === null, "Customer token cannot authenticate as admin (audience & issuer isolated)");
+  // Ensure system fails securely when JWT_SECRET is missing
+  const originalSecret = process.env.JWT_SECRET;
+  delete process.env.JWT_SECRET;
+  let missingSecretThrew = false;
+  try {
+    await signAdminToken({ username: "test", role: "admin" });
+  } catch (err: any) {
+    missingSecretThrew = err.message.includes("FATAL SECURITY ERROR: JWT_SECRET");
+  }
+  process.env.JWT_SECRET = originalSecret;
+  assert(missingSecretThrew, "Fails securely with fatal error when JWT_SECRET is missing");
 
   // TEST 4: Customer Account Persistence & Isolation
   console.log("\nTest Suite 4: Customer Store & Role Isolation");

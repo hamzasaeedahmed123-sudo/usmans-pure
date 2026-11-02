@@ -92,10 +92,7 @@ export async function POST(req: Request) {
     // Check username or admin email match
     const isUsernameMatch =
       inputIdentifier === expectedUsername ||
-      inputIdentifier === expectedEmail ||
-      inputIdentifier === "admin" ||
-      inputIdentifier === "admin@usmanspure.com" ||
-      inputIdentifier === "usmanspure1947";
+      inputIdentifier === expectedEmail;
 
     const isPasswordMatch = isUsernameMatch
       ? await verifyPassword(inputPassword, admin.passwordHash)
