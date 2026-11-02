@@ -25,6 +25,8 @@ import {
   AlertCircle,
   X,
   Mail,
+  Database,
+  Loader2,
 } from "lucide-react";
 
 interface SettingsFormData {
@@ -84,6 +86,7 @@ export default function AdminSettingsPage() {
   const [past, setPast] = useState<SettingsFormData[]>([]);
   const [future, setFuture] = useState<SettingsFormData[]>([]);
   const [toastMessage, setToastMessage] = useState("");
+  const [isMigrating, setIsMigrating] = useState(false);
 
   // Sync state if storeSettings updates from storage
   useEffect(() => {
@@ -263,6 +266,48 @@ export default function AdminSettingsPage() {
     }
   };
 
+  const handleMigrateBrowserData = async () => {
+    setIsMigrating(true);
+    try {
+      let products = [];
+      let banners = [];
+      let reviews = [];
+      let settings = null;
+      let cms = null;
+      if (typeof window !== "undefined") {
+        try {
+          const p = localStorage.getItem("usman_admin_products");
+          if (p) products = JSON.parse(p);
+          const r = localStorage.getItem("usman_admin_reviews_v4");
+          if (r) reviews = JSON.parse(r);
+          const c = localStorage.getItem("usman_admin_cms");
+          if (c) {
+            cms = JSON.parse(c);
+            banners = cms.customBanners || [];
+          }
+          const s = localStorage.getItem("usman_admin_settings");
+          if (s) settings = JSON.parse(s);
+        } catch {}
+      }
+
+      const res = await fetch("/api/admin/migrate-browser-data", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ products, banners, reviews, settings, cms }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        showToast(data.message || "Browser data synced to PostgreSQL database!");
+      } else {
+        showToast(data.error || "Migration failed. Please check credentials.");
+      }
+    } catch {
+      showToast("Network error executing browser migration.");
+    } finally {
+      setIsMigrating(false);
+    }
+  };
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -348,6 +393,18 @@ export default function AdminSettingsPage() {
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset</span>
+          </button>
+
+          {/* Sync Browser Data to PostgreSQL */}
+          <button
+            type="button"
+            onClick={handleMigrateBrowserData}
+            disabled={isMigrating}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 text-xs font-bold transition cursor-pointer disabled:opacity-50"
+            title="Push any legacy browser data directly into PostgreSQL tables"
+          >
+            {isMigrating ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Database className="w-3.5 h-3.5 text-emerald-700" />}
+            <span>Sync Browser Data to DB</span>
           </button>
 
           {/* Preview Live */}

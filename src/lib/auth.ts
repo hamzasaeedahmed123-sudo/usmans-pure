@@ -49,8 +49,29 @@ export async function verifyAdminToken(token: string): Promise<AdminTokenPayload
       audience: "usmanspure:admin",
     });
     if (payload.role !== "admin") return null;
+
+    const username = String(payload.username || "");
+
+    // Verify session validity directly against the PostgreSQL admin schema
+    try {
+      const res = await query(
+        "SELECT id, username, email, must_change_password FROM admin WHERE username = $1 OR email = $1 LIMIT 1",
+        [username]
+      );
+      if (res.rows.length > 0) {
+        const row = res.rows[0];
+        return {
+          username: row.username,
+          role: "admin",
+          mustChangePassword: Boolean(row.must_change_password),
+        };
+      }
+    } catch {
+      // In case DB is temporarily offline, fallback to cryptographically verified payload
+    }
+
     return {
-      username: String(payload.username || ""),
+      username,
       role: "admin",
       mustChangePassword: Boolean(payload.mustChangePassword),
     };

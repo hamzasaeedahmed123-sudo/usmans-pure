@@ -204,12 +204,50 @@ export async function initDatabaseTables(): Promise<void> {
         );
       `);
 
+      // 8. Luxury Bundles Table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS bundles (
+          id VARCHAR(100) PRIMARY KEY,
+          slug VARCHAR(100) UNIQUE NOT NULL,
+          title VARCHAR(255) NOT NULL,
+          subtitle TEXT,
+          tagline TEXT,
+          badge VARCHAR(100),
+          price NUMERIC(12, 2) NOT NULL,
+          original_price NUMERIC(12, 2),
+          savings NUMERIC(12, 2),
+          image TEXT,
+          tint VARCHAR(50),
+          included_tags JSONB,
+          description TEXT,
+          whats_in_the_box JSONB,
+          synergy JSONB,
+          accordions JSONB,
+          created_at TIMESTAMPTZ DEFAULT NOW(),
+          updated_at TIMESTAMPTZ DEFAULT NOW()
+        );
+      `);
+
+      // 9. Frequently Asked Questions (FAQs) Table
+      await client.query(`
+        CREATE TABLE IF NOT EXISTS faqs (
+          id SERIAL PRIMARY KEY,
+          category VARCHAR(50) NOT NULL,
+          category_label VARCHAR(100) NOT NULL,
+          q TEXT NOT NULL,
+          a TEXT NOT NULL,
+          created_at TIMESTAMPTZ DEFAULT NOW()
+        );
+      `);
+
       // Indices for high performance lookups
       await client.query(`
         CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at DESC);
         CREATE INDEX IF NOT EXISTS idx_customers_email ON customers(email);
         CREATE INDEX IF NOT EXISTS idx_reviews_status ON reviews(status);
         CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);
+        CREATE INDEX IF NOT EXISTS idx_bundles_slug ON bundles(slug);
+        CREATE INDEX IF NOT EXISTS idx_faqs_category ON faqs(category);
       `);
 
       await client.query("COMMIT");
