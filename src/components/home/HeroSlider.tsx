@@ -74,7 +74,7 @@ export const SLIDES: HeroSlide[] = [
   },
   {
     id: "herbals",
-    tag: "Qudrati Desi Qehwa",
+    tag: "Desi Herbal Qehwa",
     title: "OREGANO",
     subtitle: "TEA",
     fullTitle: "Usman's Oregano Tea",
@@ -87,9 +87,9 @@ export const SLIDES: HeroSlide[] = [
     announcementBg: "#0E381C", // Deep Forest Green
     activePillClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
     backdropImage: "/images/hero/herbal-flatlay-bg.jpg",
-    textColor: "#0A3317",
-    giantTextColor: "#0A3317",
-    giantTextClass: "text-[#0A3317] font-black opacity-95",
+    textColor: "#FAF9F5",
+    giantTextColor: "#FAF9F5",
+    giantTextClass: "text-[#FAF9F5] font-black opacity-95",
     image: "/images/hero/hero-tea-product.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
@@ -325,17 +325,35 @@ export function HeroSlider() {
               className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform"
             >
               {/* 1. Eyebrow Tag */}
-              <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-white/80 border border-stone-200/70 text-stone-800 mb-1.5 shadow-2xs">
+              <span
+                className={`inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1.5 shadow-2xs backdrop-blur-md transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "bg-black/50 text-[#FAF9F5] border border-white/40 drop-shadow-md"
+                    : "bg-white/80 border border-stone-200/70 text-stone-800"
+                }`}
+              >
                 🌱 {currentSlide.tag}
               </span>
 
-              {/* 2. Headline Title */}
-              <h1 className="text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-stone-900 text-center mb-1.5">
+              {/* 2. Headline Title (White / Cream with drop-shadow on busy backdrops) */}
+              <h1
+                className={`text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-center mb-1.5 transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "text-[#FAF9F5] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
+                    : "text-stone-900"
+                }`}
+              >
                 {currentSlide.fullTitle}
               </h1>
 
-              {/* 3. Description / Benefit */}
-              <p className="text-xs sm:text-sm text-stone-700 text-center font-medium leading-snug line-clamp-2 max-w-xs mb-3">
+              {/* 3. Description / Benefit (Light cream with drop-shadow on busy backdrops) */}
+              <p
+                className={`text-xs sm:text-sm text-center font-medium leading-snug line-clamp-2 max-w-xs mb-3 transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "text-[#FAF9F5] drop-shadow-[0_1px_5px_rgba(0,0,0,0.85)]"
+                    : "text-stone-700"
+                }`}
+              >
                 {currentSlide.benefit}
               </p>
 
@@ -415,17 +433,35 @@ export function HeroSlider() {
               className="flex flex-col justify-center text-left max-w-xl z-10"
             >
               {/* Eyebrow Tag */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/75 backdrop-blur-md border border-stone-300/70 text-stone-900 w-fit mb-3.5 shadow-2xs">
+              <div
+                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider w-fit mb-3.5 shadow-2xs backdrop-blur-md transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "bg-black/50 text-[#FAF9F5] border border-white/40 drop-shadow-md"
+                    : "bg-white/75 border border-stone-300/70 text-stone-900"
+                }`}
+              >
                 🌱 {currentSlide.tag}
               </div>
 
               {/* Large Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight leading-[1.12] text-stone-900 mb-3.5">
+              <h1
+                className={`text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight leading-[1.12] mb-3.5 transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "text-[#FAF9F5] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
+                    : "text-stone-900"
+                }`}
+              >
                 {currentSlide.fullTitle}
               </h1>
 
               {/* Brief Description */}
-              <p className="text-sm lg:text-base text-stone-700 leading-relaxed font-medium max-w-lg mb-4.5">
+              <p
+                className={`text-sm lg:text-base leading-relaxed font-medium max-w-lg mb-4.5 transition-colors ${
+                  currentSlide.id === "herbals"
+                    ? "text-[#FAF9F5] drop-shadow-[0_1px_5px_rgba(0,0,0,0.85)]"
+                    : "text-stone-700"
+                }`}
+              >
                 {currentSlide.benefit}
               </p>
 
@@ -434,7 +470,11 @@ export function HeroSlider() {
                 {currentSlide.miniStats.map((stat, i) => (
                   <span
                     key={i}
-                    className="px-3 py-1 rounded-full text-xs font-bold bg-white/75 backdrop-blur-md border border-stone-200/80 text-stone-900 shadow-2xs"
+                    className={`px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md shadow-2xs transition-colors ${
+                      currentSlide.id === "herbals"
+                        ? "bg-black/40 border border-white/30 text-[#FAF9F5] drop-shadow-sm"
+                        : "bg-white/75 border border-stone-200/80 text-stone-900"
+                    }`}
                   >
                     ✓ {stat}
                   </span>

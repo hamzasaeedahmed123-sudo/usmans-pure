@@ -444,14 +444,14 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-6">
               {LUXURY_BUNDLES.filter((b) => b.id !== bundle.id)
                 .slice(0, 3)
                 .map((other) => (
                   <Link
                     key={other.id}
                     href={`/bundles/${other.slug}`}
-                    className="bg-[#F6F1E9] rounded-2xl overflow-hidden group hover:shadow-ambient transition-all duration-300 flex flex-col justify-between"
+                    className="bg-[#F6F1E9] rounded-xl sm:rounded-2xl overflow-hidden group hover:shadow-ambient transition-all duration-300 flex flex-col justify-between"
                   >
                     <div>
                       <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-stone-100">
@@ -459,23 +459,23 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                           src={other.image}
                           alt={other.title}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw"
+                          sizes="(max-width: 640px) 50vw, 33vw"
                           quality={100}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
-                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
+                        <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 px-2 py-0.5 rounded-full text-[9px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
                           Save Rs {other.savings}
                         </span>
                       </div>
-                      <div className="p-4 sm:p-5">
-                        <h4 className="text-base font-serif font-bold text-[#1E1510] group-hover:text-[#8B3A22] transition-colors line-clamp-1">
+                      <div className="p-2.5 sm:p-5">
+                        <h4 className="text-xs sm:text-base font-serif font-bold text-[#1E1510] group-hover:text-[#8B3A22] transition-colors line-clamp-2 leading-tight sm:leading-snug">
                           {other.title}
                         </h4>
-                        <div className="flex items-baseline gap-2 font-sans mt-2.5 pt-2 border-t border-[#1E1510]/10 flex-wrap">
-                          <span className="text-xl sm:text-2xl font-extrabold text-stone-900 tracking-tight font-sans">
+                        <div className="flex items-baseline gap-1 sm:gap-2 font-sans mt-2 pt-1.5 sm:mt-2.5 sm:pt-2 border-t border-[#1E1510]/10 flex-wrap">
+                          <span className="text-sm sm:text-2xl font-extrabold text-stone-900 tracking-tight font-sans">
                             Rs {other.price.toLocaleString()}
                           </span>
-                          <span className="text-sm font-medium text-stone-400 line-through font-sans">
+                          <span className="text-[10px] sm:text-sm font-medium text-stone-400 line-through font-sans">
                             Rs {other.originalPrice.toLocaleString()}
                           </span>
                         </div>

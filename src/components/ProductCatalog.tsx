@@ -259,7 +259,7 @@ export function ProductCatalog() {
         {/* Editorial Section Heading with Brand Logo opposite title */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
           <div className="max-w-xl">
-            <span className="eyebrow">Handcrafted Organic Essentials</span>
+            <span className="eyebrow">Essentials</span>
             <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-snug">
               Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
@@ -302,8 +302,8 @@ export function ProductCatalog() {
           </Link>
         </div>
 
-        {/* Product Responsive Grid - Exactly 3 Prominent Columns */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 gap-y-10 sm:gap-y-12">
+        {/* Product Responsive Grid - Side-by-Side 2 Columns on Mobile, 3 on Desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 gap-y-6 sm:gap-y-10 md:gap-y-12">
           {displayedProducts.map((product) => {
             const isAdded = addedIds[product.id];
             const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
@@ -326,14 +326,14 @@ export function ProductCatalog() {
                         src={product.image}
                         alt={product.title}
                         fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
                         quality={100}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                     </Link>
 
-                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 text-xs font-bold uppercase tracking-wider text-[#8B3A22] bg-[#F6F1E9]/95 backdrop-blur-xs px-2 py-0.5 rounded-sm pointer-events-none shadow-2xs">
+                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] bg-[#F6F1E9]/95 backdrop-blur-xs px-2 py-0.5 rounded-sm pointer-events-none shadow-2xs">
                       Sale
                     </span>
 
@@ -346,27 +346,27 @@ export function ProductCatalog() {
                   </div>
 
                   {/* Text */}
-                  <div className="pt-2.5 sm:pt-4 flex flex-col">
-                    <span className="text-xs font-bold uppercase tracking-wider text-[#8B3A22] truncate block">{product.categoryBadge}</span>
+                  <div className="pt-2 sm:pt-4 flex flex-col">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] truncate block">{product.categoryBadge}</span>
 
                     <Link href={product.detailUrl}>
-                      <h3 className="mt-1 font-serif text-base sm:text-lg font-bold text-stone-900 leading-snug line-clamp-2 min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
+                      <h3 className="mt-1 font-serif text-xs sm:text-base md:text-lg font-bold text-stone-900 leading-tight sm:leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
                         {product.title}
                       </h3>
                     </Link>
 
                     {/* Clean 1-line everyday benefit */}
-                    <p className="mt-1 text-xs sm:text-sm text-stone-700 font-medium line-clamp-1">{product.highlight}</p>
+                    <p className="mt-0.5 sm:mt-1 text-[11px] sm:text-sm text-stone-700 font-medium line-clamp-1">{product.highlight}</p>
 
                     {/* Pack size — clear touch-friendly toggles */}
-                    <div className="mt-2.5 flex items-center gap-2 overflow-x-auto">
+                    <div className="mt-2 sm:mt-2.5 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5">
                       {product.packOptions.map((opt) => (
                         <button
                           key={opt.size}
                           onClick={() =>
                             setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
                           }
-                          className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors duration-200 cursor-pointer border ${
+                          className={`px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-colors duration-200 cursor-pointer border shrink-0 ${
                             currentSize === opt.size
                               ? "bg-[#FAF5EE] text-[#8B3A22] border-2 border-[#8B3A22] font-bold shadow-2xs"
                               : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"
@@ -378,30 +378,30 @@ export function ProductCatalog() {
                     </div>
 
                     {/* Price & Strikethrough */}
-                    <div className="mt-2.5 sm:mt-3 flex items-baseline gap-1.5 flex-wrap">
-                      <span className="text-lg sm:text-xl font-extrabold font-sans text-stone-900">
+                    <div className="mt-2 sm:mt-3 flex items-baseline gap-1 sm:gap-1.5 flex-wrap">
+                      <span className="text-sm sm:text-xl font-extrabold font-sans text-stone-900">
                         Rs {currentOption.price.toLocaleString()}
                       </span>
-                      <span className="text-sm font-normal font-sans text-stone-500 line-through ml-1.5">
+                      <span className="text-[10px] sm:text-sm font-normal font-sans text-stone-500 line-through ml-1 sm:ml-1.5">
                         Rs {currentOption.originalPrice.toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-4 grid grid-cols-2 gap-2">
+                <div className="mt-2.5 sm:mt-4 grid grid-cols-1 min-[440px]:grid-cols-2 gap-1.5 sm:gap-2">
                   <Link
                     href={product.detailUrl || "/products"}
-                    className="py-2.5 px-3 rounded-xl border border-stone-300 hover:border-stone-900 bg-white hover:bg-stone-50 text-stone-800 text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-1.5 active:scale-98 shadow-2xs"
+                    className="py-1.5 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl border border-stone-300 hover:border-stone-900 bg-white hover:bg-stone-50 text-stone-800 text-[11px] sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 active:scale-98 shadow-2xs"
                   >
                     <span>Learn More</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-stone-600" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-600" />
                   </Link>
 
                   <button
                     type="button"
                     onClick={(e) => handleAddToCart(product, currentOption, e)}
-                    className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer shadow-ambient active:scale-98 ${
+                    className={`py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold tracking-wide min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer shadow-ambient active:scale-98 ${
                       isAdded
                         ? "bg-emerald-600 text-white"
                         : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
@@ -409,11 +409,11 @@ export function ProductCatalog() {
                   >
                     {isAdded ? (
                       <>
-                        <Check className="w-4 h-4 stroke-[2.5]" /> Added
+                        <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" /> Added
                       </>
                     ) : (
                       <>
-                        <ShoppingBag className="w-4 h-4" /> Add to Cart
+                        <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Add to Cart
                       </>
                     )}
                   </button>
