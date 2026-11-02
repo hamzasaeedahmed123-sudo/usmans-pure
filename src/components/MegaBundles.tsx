@@ -1,13 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LUXURY_BUNDLES, LuxuryBundle } from "@/data/bundles";
 import { Check, ShoppingBag, ArrowRight, Truck } from "lucide-react";
 
 export function MegaBundles() {
+  const [bundles, setBundles] = useState<LuxuryBundle[]>(LUXURY_BUNDLES);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    fetch("/api/bundles")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && Array.isArray(data.bundles) && data.bundles.length > 0) {
+          setBundles(data.bundles);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleAddBundle = (bundle: LuxuryBundle, e: React.MouseEvent) => {
     e.preventDefault();
@@ -58,7 +70,7 @@ export function MegaBundles() {
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-6">
-          {LUXURY_BUNDLES.map((bundle) => {
+          {bundles.map((bundle) => {
             const isAdded = addedIds[bundle.id];
             return (
               <article

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { Header } from "@/components/Header";
 import { StoreFooter } from "@/components/StoreFooter";
@@ -23,19 +23,34 @@ import { FAQS_DATA, FaqItem } from "@/data/faqs";
 
 type CategoryFilter = "all" | "flours" | "clinical" | "teas" | "sourcing" | "orders";
 
-const CATEGORIES: { key: CategoryFilter; label: string; count: number }[] = [
-  { key: "all", label: "All Questions", count: FAQS_DATA.length },
-  { key: "flours", label: "Flours & Grains", count: FAQS_DATA.filter((f) => f.category === "flours").length },
-  { key: "clinical", label: "Clinical Wellness", count: FAQS_DATA.filter((f) => f.category === "clinical").length },
-  { key: "teas", label: "Herbal Teas", count: FAQS_DATA.filter((f) => f.category === "teas").length },
-  { key: "sourcing", label: "Sourcing & Purity", count: FAQS_DATA.filter((f) => f.category === "sourcing").length },
-  { key: "orders", label: "Orders & Delivery", count: FAQS_DATA.filter((f) => f.category === "orders").length },
-];
-
 export function FaqsPageView() {
+  const [faqs, setFaqs] = useState<FaqItem[]>(FAQS_DATA);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [openIds, setOpenIds] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    fetch("/api/faqs")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && Array.isArray(data.faqs) && data.faqs.length > 0) {
+          setFaqs(data.faqs);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const categories = useMemo(
+    () => [
+      { key: "all" as const, label: "All Questions", count: faqs.length },
+      { key: "flours" as const, label: "Flours & Grains", count: faqs.filter((f) => f.category === "flours").length },
+      { key: "clinical" as const, label: "Clinical Wellness", count: faqs.filter((f) => f.category === "clinical").length },
+      { key: "teas" as const, label: "Herbal Teas", count: faqs.filter((f) => f.category === "teas").length },
+      { key: "sourcing" as const, label: "Sourcing & Purity", count: faqs.filter((f) => f.category === "sourcing").length },
+      { key: "orders" as const, label: "Orders & Delivery", count: faqs.filter((f) => f.category === "orders").length },
+    ],
+    [faqs]
+  );
 
   const toggleAccordion = (id: number) => {
     setOpenIds((prev) => ({
@@ -46,7 +61,7 @@ export function FaqsPageView() {
 
   const expandAll = () => {
     const allOpen: Record<number, boolean> = {};
-    FAQS_DATA.forEach((faq) => {
+    faqs.forEach((faq) => {
       allOpen[faq.id] = true;
     });
     setOpenIds(allOpen);
@@ -57,7 +72,7 @@ export function FaqsPageView() {
   };
 
   const filteredFaqs = useMemo(() => {
-    return FAQS_DATA.filter((faq) => {
+    return faqs.filter((faq) => {
       const matchesCategory =
         selectedCategory === "all" || faq.category === selectedCategory;
 
@@ -153,7 +168,7 @@ export function FaqsPageView() {
               {/* Quick Filter Category Tabs */}
               <div className="flex items-center justify-between gap-4 mb-8 flex-wrap">
                 <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 w-full sm:w-auto">
-                  {CATEGORIES.map((cat) => (
+                  {categories.map((cat) => (
                     <button
                       key={cat.key}
                       onClick={() => setSelectedCategory(cat.key)}

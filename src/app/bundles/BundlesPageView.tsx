@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Header } from "@/components/Header";
@@ -22,7 +22,19 @@ import {
 
 export function BundlesPageView() {
   const { addItem, openCart } = useCart();
+  const [bundles, setBundles] = useState<LuxuryBundle[]>(LUXURY_BUNDLES);
   const [addedIds, setAddedIds] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    fetch("/api/bundles")
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && Array.isArray(data.bundles) && data.bundles.length > 0) {
+          setBundles(data.bundles);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleAddBundle = (bundle: LuxuryBundle, e: React.MouseEvent) => {
     e.preventDefault();
@@ -109,7 +121,7 @@ export function BundlesPageView() {
         <section className="py-16 sm:py-24 bg-[#FAF7F2] relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
-              {LUXURY_BUNDLES.map((bundle) => {
+              {bundles.map((bundle) => {
                 const isAdded = addedIds[bundle.id];
                 return (
                   <article
