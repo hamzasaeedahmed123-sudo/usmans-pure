@@ -151,15 +151,7 @@ export default function AdminContentPage() {
       saleButtonText: cmsContent.saleBanner?.buttonText || "Shop Flash Sale",
       saleLink: cmsContent.saleBanner?.link || "/products",
       customBanners: cmsContent.customBanners || [],
-      blocks: (() => {
-        if (typeof window !== "undefined") {
-          try {
-            const raw = localStorage.getItem("usmans_pure_cms_blocks");
-            if (raw) return JSON.parse(raw);
-          } catch {}
-        }
-        return DEFAULT_BLOCKS;
-      })(),
+      blocks: cmsContent.blocks && cmsContent.blocks.length > 0 ? cmsContent.blocks : DEFAULT_BLOCKS,
     }),
     [cmsContent]
   );
@@ -367,13 +359,8 @@ export default function AdminContentPage() {
         link: formData.saleLink,
       },
       customBanners: formData.customBanners,
+      blocks: formData.blocks,
     });
-
-    if (typeof window !== "undefined") {
-      try {
-        localStorage.setItem("usmans_pure_cms_blocks", JSON.stringify(formData.blocks));
-      } catch {}
-    }
 
     showToast("Website content published! Changes are now live on the store.");
   };
@@ -383,9 +370,6 @@ export default function AdminContentPage() {
       resetToDefaults();
       setPast([]);
       setFuture([]);
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("usmans_pure_cms_blocks");
-      }
       setFormData({
         ...getStateFromCMS(),
         blocks: DEFAULT_BLOCKS,

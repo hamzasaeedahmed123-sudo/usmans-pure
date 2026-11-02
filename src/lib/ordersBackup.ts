@@ -1,5 +1,7 @@
-import fs from "fs";
-import path from "path";
+/**
+ * Order Backup & External Synchronization Utilities
+ * Synchronizes confirmed orders with Google Sheets webhook and generates WhatsApp order links.
+ */
 
 export interface OrderBackupRecord {
   orderId: string;
@@ -24,35 +26,10 @@ export interface OrderBackupRecord {
   senderAccountTitle?: string;
 }
 
-const BACKUP_FILE_PATH = path.join(process.cwd(), "src", "data", "orders_backup.json");
-
 /**
- * Persists order to server JSON file and optionally dispatches to Google Sheets Webhook
+ * Dispatches order to Google Sheets Webhook (if configured)
  */
 export async function backupOrder(order: OrderBackupRecord) {
-  // 1. Server-side file persistence
-  try {
-    let existingOrders: OrderBackupRecord[] = [];
-    if (fs.existsSync(BACKUP_FILE_PATH)) {
-      const fileData = fs.readFileSync(BACKUP_FILE_PATH, "utf-8");
-      try {
-        existingOrders = JSON.parse(fileData);
-      } catch {
-        existingOrders = [];
-      }
-    }
-    existingOrders.unshift(order);
-    // Keep last 1,000 orders
-    if (existingOrders.length > 1000) {
-      existingOrders = existingOrders.slice(0, 1000);
-    }
-    fs.writeFileSync(BACKUP_FILE_PATH, JSON.stringify(existingOrders, null, 2), "utf-8");
-    console.log(`[Order Backup] Saved #${order.orderId} to server-side file.`);
-  } catch (fileErr) {
-    console.warn("[Order Backup Warning] Could not write to local JSON file (likely read-only serverless environment):", fileErr);
-  }
-
-  // 2. Google Sheets Webhook sync (if configured)
   const sheetsWebhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
   if (sheetsWebhookUrl) {
     try {

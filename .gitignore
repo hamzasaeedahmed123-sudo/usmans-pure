@@ -41,4 +41,13 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# local data storage & sensitive JSON files
+/src/data/store/
+/src/data/*.json
+!/src/data/products.ts
+!/src/data/faqs.ts
+!/src/data/bundles.ts
+!/src/data/reviews.ts
+*.tmp
+*.sqlite
+*.db

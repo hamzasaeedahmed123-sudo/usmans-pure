@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     const { name, email, password, phone } = parsed.data;
 
     // Check if user already exists
-    const existing = findCustomerByEmail(email);
+    const existing = await findCustomerByEmail(email);
     if (existing) {
       return NextResponse.json(
         { error: "An account with this email address already exists. Please log in." },
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
 
     // Secure password hashing
     const passwordHash = await hashPassword(password);
-    const customer = createCustomer({
+    const customer = await createCustomer({
       name,
       email,
       passwordHash,

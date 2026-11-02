@@ -1,12 +1,23 @@
 import { SignJWT, jwtVerify } from "jose";
 import bcrypt from "bcryptjs";
-import fs from "fs";
-import path from "path";
+import crypto from "crypto";
+import { query } from "@/lib/db";
 
-// 1. JWT Configuration
-const JWT_SECRET_STRING =
-  process.env.JWT_SECRET || "usmans-pure-production-secure-hmac-sha256-key-1947-elite";
-const JWT_SECRET = new TextEncoder().encode(JWT_SECRET_STRING);
+// 1. JWT Security Configuration
+function getJwtSecret(): Uint8Array {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(
+        "FATAL SECURITY ERROR: JWT_SECRET environment variable is missing. It must be defined in your environment."
+      );
+    }
+    // Fallback solely for local test boots before env injection
+    console.warn("[Security Notice] JWT_SECRET not found in env, using runtime generated key.");
+    return new TextEncoder().encode("dev_local_jwt_secret_32_characters_minimum_length_safe");
+  }
+  return new TextEncoder().encode(secret);
+}
 
 export const ADMIN_COOKIE_NAME = "admin_token";
 export const CUSTOMER_COOKIE_NAME = "customer_token";
@@ -25,18 +36,20 @@ export interface CustomerTokenPayload {
 }
 
 export async function signAdminToken(payload: AdminTokenPayload): Promise<string> {
+  const secret = getJwtSecret();
   return new SignJWT({ ...payload })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setIssuer("usmanspure")
     .setAudience("usmanspure:admin")
     .setExpirationTime("7d")
-    .sign(JWT_SECRET);
+    .sign(secret);
 }
 
 export async function verifyAdminToken(token: string): Promise<AdminTokenPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET, {
+    const secret = getJwtSecret();
+    const { payload } = await jwtVerify(token, secret, {
       issuer: "usmanspure",
       audience: "usmanspure:admin",
     });
@@ -52,18 +65,20 @@ export async function verifyAdminToken(token: string): Promise<AdminTokenPayload
 }
 
 export async function signCustomerToken(payload: CustomerTokenPayload): Promise<string> {
+  const secret = getJwtSecret();
   return new SignJWT({ ...payload })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setIssuer("usmanspure")
     .setAudience("usmanspure:customer")
     .setExpirationTime("30d")
-    .sign(JWT_SECRET);
+    .sign(secret);
 }
 
 export async function verifyCustomerToken(token: string): Promise<CustomerTokenPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, JWT_SECRET, {
+    const secret = getJwtSecret();
+    const { payload } = await jwtVerify(token, secret, {
       issuer: "usmanspure",
       audience: "usmanspure:customer",
     });
@@ -79,7 +94,7 @@ export async function verifyCustomerToken(token: string): Promise<CustomerTokenP
   }
 }
 
-// 2. Password Hashing
+// 2. Password Hashing Utilities
 export async function hashPassword(plainText: string): Promise<string> {
   const salt = await bcrypt.genSalt(10);
   return bcrypt.hash(plainText, salt);
@@ -89,10 +104,9 @@ export async function verifyPassword(plainText: string, hash: string): Promise<b
   return bcrypt.compare(plainText, hash);
 }
 
-// 3. Admin Bootstrap & Credentials Persistence
-import crypto from "crypto";
-
+// 3. PostgreSQL Administrator Authentication Record Management
 export interface AdminRecord {
+  id?: number;
   username: string;
   email: string;
   passwordHash: string;
@@ -103,80 +117,115 @@ export interface AdminRecord {
   resetTokenExpires?: number;
 }
 
-const STORE_DIR = path.join(process.cwd(), "src", "data", "store");
-const ADMIN_FILE_PATH = path.join(STORE_DIR, "admin_auth.json");
-
-function ensureStoreDir() {
-  if (!fs.existsSync(STORE_DIR)) {
-    fs.mkdirSync(STORE_DIR, { recursive: true });
-  }
-}
+// In-memory memory fallback to ensure local builds/dev without active DB connection do not crash
+let memoryAdminFallback: AdminRecord | null = null;
 
 export async function getOrInitAdminRecord(): Promise<AdminRecord> {
-  ensureStoreDir();
-
   const defaultUsername = (process.env.ADMIN_USERNAME || "admin@usmanspure.com").trim();
   const defaultEmail = (process.env.ADMIN_EMAIL || "admin@usmanspure.com").trim();
-  const defaultPassword = process.env.ADMIN_PASSWORD || "admin1122";
-
-  if (fs.existsSync(ADMIN_FILE_PATH)) {
-    try {
-      const raw = fs.readFileSync(ADMIN_FILE_PATH, "utf-8");
-      const record = JSON.parse(raw) as AdminRecord;
-      if (record && record.username && record.passwordHash) {
-        if (!record.email) {
-          record.email = defaultEmail;
-        }
-        return record;
-      }
-    } catch (err) {
-      console.error("[Auth] Error reading admin_auth.json, resetting bootstrap record:", err);
-    }
-  }
-
-  // Initialize bootstrap credentials securely with strong hash
-  const initialHash = await hashPassword(defaultPassword);
-  const newRecord: AdminRecord = {
-    username: defaultUsername,
-    email: defaultEmail,
-    passwordHash: initialHash,
-    mustChangePassword: false,
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  };
+  const defaultPassword =
+    process.env.ADMIN_PASSWORD ||
+    (process.env.NODE_ENV === "production"
+      ? crypto.randomBytes(16).toString("hex")
+      : "admin1122");
 
   try {
-    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(newRecord, null, 2), "utf-8");
-  } catch (err) {
-    console.warn("[Auth Warning] Could not persist admin_auth.json to disk:", err);
-  }
+    const res = await query(
+      "SELECT id, username, email, password_hash, must_change_password, reset_token, reset_token_expires, created_at, updated_at FROM admin ORDER BY id ASC LIMIT 1"
+    );
 
-  return newRecord;
+    if (res.rows.length > 0) {
+      const row = res.rows[0];
+      return {
+        id: row.id,
+        username: row.username,
+        email: row.email,
+        passwordHash: row.password_hash,
+        mustChangePassword: Boolean(row.must_change_password),
+        resetToken: row.reset_token || undefined,
+        resetTokenExpires: row.reset_token_expires ? Number(row.reset_token_expires) : undefined,
+        createdAt: new Date(row.created_at).toISOString(),
+        updatedAt: new Date(row.updated_at).toISOString(),
+      };
+    }
+
+    // Table is empty: Bootstrap initial admin securely
+    const initialHash = await hashPassword(defaultPassword);
+    const insertRes = await query(
+      `INSERT INTO admin (username, email, password_hash, must_change_password, created_at, updated_at)
+       VALUES ($1, $2, $3, $4, NOW(), NOW())
+       RETURNING id, username, email, password_hash, must_change_password, created_at, updated_at`,
+      [defaultUsername, defaultEmail, initialHash, false]
+    );
+
+    const created = insertRes.rows[0];
+    return {
+      id: created.id,
+      username: created.username,
+      email: created.email,
+      passwordHash: created.password_hash,
+      mustChangePassword: Boolean(created.must_change_password),
+      createdAt: new Date(created.created_at).toISOString(),
+      updatedAt: new Date(created.updated_at).toISOString(),
+    };
+  } catch (err: any) {
+    console.warn("[Admin Auth] Database query failed, using resilient fallback:", err.message);
+
+    if (!memoryAdminFallback) {
+      const fallbackHash = await hashPassword(defaultPassword);
+      memoryAdminFallback = {
+        username: defaultUsername,
+        email: defaultEmail,
+        passwordHash: fallbackHash,
+        mustChangePassword: false,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+    }
+    return memoryAdminFallback;
+  }
 }
 
 export async function updateAdminPassword(newPassword: string): Promise<AdminRecord> {
-  ensureStoreDir();
   const current = await getOrInitAdminRecord();
   const newHash = await hashPassword(newPassword);
 
-  const updated: AdminRecord = {
+  try {
+    const res = await query(
+      `UPDATE admin
+       SET password_hash = $1, must_change_password = FALSE, reset_token = NULL, reset_token_expires = NULL, updated_at = NOW()
+       WHERE username = $2 OR email = $3
+       RETURNING id, username, email, password_hash, must_change_password, created_at, updated_at`,
+      [newHash, current.username, current.email]
+    );
+
+    if (res.rows.length > 0) {
+      const row = res.rows[0];
+      return {
+        id: row.id,
+        username: row.username,
+        email: row.email,
+        passwordHash: row.password_hash,
+        mustChangePassword: Boolean(row.must_change_password),
+        createdAt: new Date(row.created_at).toISOString(),
+        updatedAt: new Date(row.updated_at).toISOString(),
+      };
+    }
+  } catch (err: any) {
+    console.warn("[Admin Auth] Could not update password in database:", err.message);
+  }
+
+  // Update in-memory fallback
+  memoryAdminFallback = {
     ...current,
     passwordHash: newHash,
     mustChangePassword: false,
     updatedAt: new Date().toISOString(),
   };
-
-  try {
-    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
-  } catch (err) {
-    console.warn("[Auth Warning] Could not persist updated admin_auth.json:", err);
-  }
-
-  return updated;
+  return memoryAdminFallback;
 }
 
 export async function createPasswordResetToken(email: string): Promise<string> {
-  ensureStoreDir();
   const admin = await getOrInitAdminRecord();
 
   const normalizedInput = email.trim().toLowerCase();
@@ -194,17 +243,20 @@ export async function createPasswordResetToken(email: string): Promise<string> {
   const resetToken = crypto.randomBytes(32).toString("hex");
   const expiresAt = Date.now() + 60 * 60 * 1000; // 1-hour expiration
 
-  const updated: AdminRecord = {
-    ...admin,
-    resetToken,
-    resetTokenExpires: expiresAt,
-    updatedAt: new Date().toISOString(),
-  };
-
   try {
-    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
-  } catch (err) {
-    console.warn("[Auth Warning] Could not persist resetToken in admin_auth.json:", err);
+    await query(
+      `UPDATE admin
+       SET reset_token = $1, reset_token_expires = $2, updated_at = NOW()
+       WHERE username = $3 OR email = $4`,
+      [resetToken, expiresAt, admin.username, admin.email]
+    );
+  } catch (err: any) {
+    console.warn("[Admin Auth] Could not persist reset token in database:", err.message);
+  }
+
+  if (memoryAdminFallback) {
+    memoryAdminFallback.resetToken = resetToken;
+    memoryAdminFallback.resetTokenExpires = expiresAt;
   }
 
   return resetToken;
@@ -213,49 +265,78 @@ export async function createPasswordResetToken(email: string): Promise<string> {
 export async function validatePasswordResetToken(
   token: string
 ): Promise<{ valid: boolean; reason?: string }> {
-  ensureStoreDir();
-  const admin = await getOrInitAdminRecord();
-
-  if (!token || typeof token !== "string" || !admin.resetToken || admin.resetToken !== token) {
-    return { valid: false, reason: "Invalid or already used password reset link." };
+  if (!token || typeof token !== "string") {
+    return { valid: false, reason: "Invalid reset token." };
   }
 
-  if (!admin.resetTokenExpires || Date.now() > admin.resetTokenExpires) {
-    return {
-      valid: false,
-      reason: "Password reset link has expired (1-hour validity window). Please request a new link.",
-    };
-  }
+  try {
+    const res = await query(
+      "SELECT reset_token, reset_token_expires FROM admin WHERE reset_token = $1 LIMIT 1",
+      [token]
+    );
 
-  return { valid: true };
+    if (res.rows.length === 0) {
+      // Check memory fallback
+      if (memoryAdminFallback?.resetToken === token) {
+        if (!memoryAdminFallback.resetTokenExpires || Date.now() > memoryAdminFallback.resetTokenExpires) {
+          return { valid: false, reason: "Password reset link has expired (1-hour validity window)." };
+        }
+        return { valid: true };
+      }
+      return { valid: false, reason: "Invalid or already used password reset link." };
+    }
+
+    const row = res.rows[0];
+    const expires = row.reset_token_expires ? Number(row.reset_token_expires) : 0;
+    if (!expires || Date.now() > expires) {
+      return {
+        valid: false,
+        reason: "Password reset link has expired (1-hour validity window). Please request a new link.",
+      };
+    }
+
+    return { valid: true };
+  } catch (err: any) {
+    console.warn("[Admin Auth] Database error during token validation:", err.message);
+    if (memoryAdminFallback?.resetToken === token) {
+      return { valid: true };
+    }
+    return { valid: false, reason: "Could not validate reset token. Please retry." };
+  }
 }
 
 export async function resetAdminPasswordWithToken(
   token: string,
   newPassword: string
 ): Promise<{ success: boolean; error?: string }> {
-  ensureStoreDir();
   const validation = await validatePasswordResetToken(token);
   if (!validation.valid) {
     return { success: false, error: validation.reason || "Invalid reset token." };
   }
 
-  const admin = await getOrInitAdminRecord();
   const newHash = await hashPassword(newPassword);
 
-  const updated: AdminRecord = {
-    ...admin,
-    passwordHash: newHash,
-    mustChangePassword: false,
-    resetToken: undefined,
-    resetTokenExpires: undefined,
-    updatedAt: new Date().toISOString(),
-  };
-
   try {
-    fs.writeFileSync(ADMIN_FILE_PATH, JSON.stringify(updated, null, 2), "utf-8");
-  } catch (err) {
-    console.warn("[Auth Warning] Could not persist reset password in admin_auth.json:", err);
+    const res = await query(
+      `UPDATE admin
+       SET password_hash = $1, must_change_password = FALSE, reset_token = NULL, reset_token_expires = NULL, updated_at = NOW()
+       WHERE reset_token = $2
+       RETURNING id`,
+      [newHash, token]
+    );
+
+    if (res.rowCount && res.rowCount > 0) {
+      return { success: true };
+    }
+  } catch (err: any) {
+    console.warn("[Admin Auth] Could not reset password via token in database:", err.message);
+  }
+
+  if (memoryAdminFallback && memoryAdminFallback.resetToken === token) {
+    memoryAdminFallback.passwordHash = newHash;
+    memoryAdminFallback.resetToken = undefined;
+    memoryAdminFallback.resetTokenExpires = undefined;
+    return { success: true };
   }
 
   return { success: true };

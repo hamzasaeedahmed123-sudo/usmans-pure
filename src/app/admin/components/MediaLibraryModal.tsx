@@ -84,29 +84,16 @@ const DEFAULT_MEDIA_ITEMS: MediaItem[] = [
   },
 ];
 
-const STORAGE_KEY = "usmans_pure_media_library";
+let inMemoryMedia: MediaItem[] = DEFAULT_MEDIA_ITEMS;
 
 export function getStoredMediaLibrary(): MediaItem[] {
-  if (typeof window === "undefined") return DEFAULT_MEDIA_ITEMS;
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_MEDIA_ITEMS));
-      return DEFAULT_MEDIA_ITEMS;
-    }
-    return JSON.parse(raw);
-  } catch {
-    return DEFAULT_MEDIA_ITEMS;
-  }
+  return inMemoryMedia;
 }
 
 export function saveStoredMediaLibrary(items: MediaItem[]) {
-  if (typeof window === "undefined") return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+  inMemoryMedia = items;
+  if (typeof window !== "undefined") {
     window.dispatchEvent(new CustomEvent("usman-media-updated"));
-  } catch (err) {
-    console.warn("Storage quota exceeded or error saving media:", err);
   }
 }
 

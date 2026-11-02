@@ -86,6 +86,7 @@ export interface CMSContent {
   };
   saleBanner: SaleBannerConfig;
   customBanners: CustomPromoBanner[];
+  blocks?: any[];
 }
 
 export const DEFAULT_CMS: CMSContent = {
@@ -356,14 +357,6 @@ interface StoreDataContextType {
 
 const StoreDataContext = createContext<StoreDataContextType | undefined>(undefined);
 
-const STORAGE_KEYS = {
-  PRODUCTS: "usman_admin_products",
-  ORDERS: "usman_admin_orders",
-  REVIEWS: "usman_admin_reviews_v4",
-  CMS: "usman_admin_cms",
-  SETTINGS: "usman_admin_settings",
-};
-
 export function StoreDataProvider({ children }: { children: ReactNode }) {
   const [products, setProducts] = useState<Product[]>(DEFAULT_PRODUCTS);
   const [orders, setOrders] = useState<Order[]>(INITIAL_ORDERS);
@@ -372,114 +365,124 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
   const [storeSettings, setStoreSettings] = useState<StoreSettings>(DEFAULT_STORE_SETTINGS);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load persisted store data on mount
+  // Fetch initial data dynamically from PostgreSQL database APIs
   useEffect(() => {
-    try {
-      const storedProducts = localStorage.getItem(STORAGE_KEYS.PRODUCTS);
-      if (storedProducts) {
-        const parsed = JSON.parse(storedProducts);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          if (parsed.length !== DEFAULT_PRODUCTS.length) {
-            setProducts(DEFAULT_PRODUCTS);
-            try {
-              localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
-            } catch {}
-          } else if (JSON.stringify(parsed) !== JSON.stringify(DEFAULT_PRODUCTS)) {
-            setProducts(parsed);
-          }
-        }
-      }
+    let isCancelled = false;
 
-      const storedOrders = localStorage.getItem(STORAGE_KEYS.ORDERS);
-      if (storedOrders) {
-        const parsed = JSON.parse(storedOrders);
-        if (Array.isArray(parsed)) {
-          // Check if stored orders are exclusively the legacy hardcoded mock orders
-          const isLegacyMock =
-            parsed.length > 0 &&
-            parsed.every((o) => o.id && o.id.startsWith("ord-1084"));
-
-          if (isLegacyMock) {
-            setOrders([]);
-            localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify([]));
-          } else {
-            setOrders(parsed);
-          }
-        }
-      }
-
-      const storedCMS = localStorage.getItem(STORAGE_KEYS.CMS);
-      if (storedCMS) {
-        const parsed = JSON.parse(storedCMS);
-        if (parsed && parsed.heroSlides) {
-          // Auto-migrate legacy shipping threshold string in cached localStorage
-          if (parsed.announcementSubText && /2,?000/.test(parsed.announcementSubText)) {
-            parsed.announcementSubText = parsed.announcementSubText.replace(/2,?000/g, "10,000");
-          }
-          // Auto-migrate legacy robotic AI hero slide benefits if detected in cached storage
-          if (
-            parsed.heroSlides.herbals?.benefit?.includes("Hand-harvested") ||
-            parsed.heroSlides.flour?.benefit?.includes("Cold-milled under 40°C with 100%") ||
-            Object.keys(parsed.heroSlides).length !== 2
-          ) {
-            parsed.heroSlides = DEFAULT_CMS.heroSlides;
-          }
-          try {
-            localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(parsed));
-          } catch {}
-          setCmsContent({
-            ...DEFAULT_CMS,
-            ...parsed,
-            saleBanner: { ...DEFAULT_CMS.saleBanner, ...(parsed.saleBanner || {}) },
-            customBanners: parsed.customBanners || DEFAULT_CMS.customBanners,
-          });
-        }
-      }
-
-      const storedSettings = localStorage.getItem(STORAGE_KEYS.SETTINGS);
-      if (storedSettings) {
-        const parsed = JSON.parse(storedSettings);
-        if (parsed) {
-          // Auto-migrate legacy 2000 threshold to 10000 in cached localStorage
-          if (parsed.freeShippingThreshold === 2000) {
-            parsed.freeShippingThreshold = 10000;
-            try {
-              localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(parsed));
-            } catch {}
-          }
-          setStoreSettings({
-            ...DEFAULT_STORE_SETTINGS,
-            ...parsed,
-            freeShippingThreshold: parsed.freeShippingThreshold === 2000 ? 10000 : (parsed.freeShippingThreshold || 10000),
-            paymentCredentials: {
-              ...DEFAULT_PAYMENT_CREDENTIALS,
-              ...(parsed.paymentCredentials || {}),
-            },
-          });
-        }
-      }
-
-      const storedReviews = localStorage.getItem(STORAGE_KEYS.REVIEWS);
-      if (storedReviews) {
-        const parsed = JSON.parse(storedReviews);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // Ensure Mrs. Farhan (rev-farhan) is present even if user has older cached reviews
-          const hasFarhan = parsed.some((r) => r.id === "rev-farhan");
-          const mergedReviews = hasFarhan ? parsed : [DEFAULT_REVIEWS[0], ...parsed];
-          setReviews(mergedReviews);
-          try {
-            localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(mergedReviews));
-          } catch {}
-        }
-      }
-    } catch (e) {
-      console.error("Error reading stored admin data", e);
-    } finally {
-      setIsLoaded(true);
+    // Purge deprecated localStorage keys (preserving 'usman_cart' strictly)
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.removeItem("usman_admin_products");
+        localStorage.removeItem("usman_admin_orders");
+        localStorage.removeItem("usman_admin_reviews_v4");
+        localStorage.removeItem("usman_admin_cms");
+        localStorage.removeItem("usman_admin_settings");
+        localStorage.removeItem("usmans_pure_cms_blocks");
+      } catch {}
     }
+
+    async function loadDataFromDB() {
+      try {
+        const [prodRes, ordersRes, reviewsRes, settingsRes] = await Promise.allSettled([
+          fetch("/api/products"),
+          fetch("/api/orders"),
+          fetch("/api/reviews"),
+          fetch("/api/settings"),
+        ]);
+
+        if (isCancelled) return;
+
+        // 1. Products from PostgreSQL
+        if (prodRes.status === "fulfilled" && prodRes.value.ok) {
+          try {
+            const prodData = await prodRes.value.json();
+            const items = Array.isArray(prodData) ? prodData : prodData?.products;
+            if (Array.isArray(items) && items.length > 0) {
+              setProducts(items);
+            }
+          } catch (e) {
+            console.warn("Could not parse products response", e);
+          }
+        }
+
+        // 2. Orders from PostgreSQL
+        if (ordersRes.status === "fulfilled" && ordersRes.value.ok) {
+          try {
+            const ordersData = await ordersRes.value.json();
+            if (ordersData && Array.isArray(ordersData.orders)) {
+              setOrders(ordersData.orders);
+            }
+          } catch (e) {
+            console.warn("Could not parse orders response", e);
+          }
+        }
+
+        // 3. Reviews from PostgreSQL
+        if (reviewsRes.status === "fulfilled" && reviewsRes.value.ok) {
+          try {
+            const reviewsData = await reviewsRes.value.json();
+            if (reviewsData && Array.isArray(reviewsData.reviews) && reviewsData.reviews.length > 0) {
+              setReviews(reviewsData.reviews);
+            }
+          } catch (e) {
+            console.warn("Could not parse reviews response", e);
+          }
+        }
+
+        // 4. Settings and CMS from PostgreSQL
+        if (settingsRes.status === "fulfilled" && settingsRes.value.ok) {
+          try {
+            const settingsData = await settingsRes.value.json();
+            if (settingsData && settingsData.settings) {
+              setStoreSettings((prev) => ({
+                ...prev,
+                ...settingsData.settings,
+                paymentCredentials: {
+                  ...prev.paymentCredentials,
+                  ...(settingsData.settings.paymentCredentials || {}),
+                },
+              }));
+            }
+            if (settingsData && settingsData.cms) {
+              setCmsContent((prev) => ({
+                ...prev,
+                ...settingsData.cms,
+                heroSlides: {
+                  ...prev.heroSlides,
+                  ...(settingsData.cms.heroSlides || {}),
+                },
+                promotions: {
+                  ...prev.promotions,
+                  ...(settingsData.cms.promotions || {}),
+                },
+                saleBanner: {
+                  ...prev.saleBanner,
+                  ...(settingsData.cms.saleBanner || {}),
+                },
+                customBanners: settingsData.banners || settingsData.cms.customBanners || prev.customBanners,
+              }));
+            }
+          } catch (e) {
+            console.warn("Could not parse settings response", e);
+          }
+        }
+      } catch (err) {
+        console.error("Error loading store data from PostgreSQL APIs", err);
+      } finally {
+        if (!isCancelled) {
+          setIsLoaded(true);
+        }
+      }
+    }
+
+    loadDataFromDB();
+
+    return () => {
+      isCancelled = true;
+    };
   }, []);
 
-  // Listen for real-time order placements across tabs and components
+  // Listen for real-time order placements across storefront components
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -493,28 +496,13 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEYS.ORDERS && e.newValue) {
-        try {
-          const parsed = JSON.parse(e.newValue);
-          if (Array.isArray(parsed)) {
-            setOrders(parsed);
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    };
-
     window.addEventListener("usman-order-placed", handleOrderPlaced);
-    window.addEventListener("storage", handleStorageChange);
     return () => {
       window.removeEventListener("usman-order-placed", handleOrderPlaced);
-      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
 
-  // Listen for real-time reviews submitted across storefront and tabs
+  // Listen for real-time reviews submitted across storefront
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -528,81 +516,11 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       }
     };
 
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEYS.REVIEWS && e.newValue) {
-        try {
-          const parsed = JSON.parse(e.newValue);
-          if (Array.isArray(parsed)) {
-            setReviews(parsed);
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      }
-    };
-
     window.addEventListener("usman-review-added", handleReviewAdded);
-    window.addEventListener("storage", handleStorageChange);
     return () => {
       window.removeEventListener("usman-review-added", handleReviewAdded);
-      window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
-
-  // Debounced Sync to localStorage for 60FPS UI thread responsiveness
-  useEffect(() => {
-    if (!isLoaded) return;
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEYS.PRODUCTS, JSON.stringify(products));
-      } catch (e) {
-        console.error(e);
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [products, isLoaded]);
-
-  useEffect(() => {
-    if (!isLoaded) return;
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
-      } catch (e) {
-        console.error(e);
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [orders, isLoaded]);
-
-  useEffect(() => {
-    if (!isLoaded) return;
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
-        if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("usman-reviews-updated", { detail: reviews }));
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [reviews, isLoaded]);
-
-  useEffect(() => {
-    if (!isLoaded) return;
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem(STORAGE_KEYS.CMS, JSON.stringify(cmsContent));
-        if (typeof window !== "undefined") {
-          window.dispatchEvent(new CustomEvent("usman-cms-updated", { detail: cmsContent }));
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }, 100);
-    return () => clearTimeout(timer);
-  }, [cmsContent, isLoaded]);
 
   const addProduct = (newProd: Omit<Product, "id">) => {
     const id = `prod-${Date.now().toString(36)}`;
@@ -611,13 +529,20 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       id,
     };
     setProducts((prev) => [fullProduct, ...prev]);
+
+    fetch("/api/products", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fullProduct),
+    }).catch((err) => console.error("Failed to persist product to database:", err));
   };
 
   const updateProduct = (id: string, updates: Partial<Product>) => {
+    let updatedProduct: Product | undefined;
     setProducts((prev) =>
       prev.map((p) => {
         if (p.id === id) {
-          return {
+          updatedProduct = {
             ...p,
             ...updates,
             priceFormatted: updates.price !== undefined ? `₨${updates.price.toLocaleString()}` : p.priceFormatted,
@@ -626,10 +551,19 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
                 ? `₨${updates.originalPrice.toLocaleString()}`
                 : p.originalPriceFormatted,
           };
+          return updatedProduct;
         }
         return p;
       })
     );
+
+    if (updatedProduct) {
+      fetch("/api/products", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct),
+      }).catch((err) => console.error("Failed to update product in database:", err));
+    }
   };
 
   const deleteProduct = (id: string) => {
@@ -647,17 +581,7 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       status: orderData.status || "Pending",
     };
 
-    setOrders((prev) => {
-      const updated = [newOrder, ...prev.filter((o) => o.id !== id)];
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(updated));
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      return updated;
-    });
+    setOrders((prev) => [newOrder, ...prev.filter((o) => o.id !== id)]);
 
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("usman-order-placed", { detail: newOrder }));
@@ -670,10 +594,20 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     setOrders((prev) =>
       prev.map((o) => (o.id === orderId ? { ...o, status } : o))
     );
+
+    fetch("/api/orders", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: orderId, status }),
+    }).catch((err) => console.error("Failed to update order status in PostgreSQL:", err));
   };
 
   const deleteOrder = (orderId: string) => {
     setOrders((prev) => prev.filter((o) => o.id !== orderId));
+
+    fetch(`/api/orders?id=${encodeURIComponent(orderId)}`, {
+      method: "DELETE",
+    }).catch((err) => console.error("Failed to delete order from PostgreSQL:", err));
   };
 
   const addReview = (reviewData: Omit<Review, "id" | "date"> & { id?: string; date?: string; status?: ReviewStatus }): Review => {
@@ -687,88 +621,126 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
       helpfulCount: reviewData.helpfulCount || 0,
     };
 
-    setReviews((prev) => {
-      const updated = [newReview, ...prev.filter((r) => r.id !== id)];
-      if (typeof window !== "undefined") {
-        try {
-          localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(updated));
-        } catch (e) {
-          console.error(e);
-        }
-      }
-      return updated;
-    });
+    setReviews((prev) => [newReview, ...prev.filter((r) => r.id !== id)]);
 
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("usman-review-added", { detail: newReview }));
     }
 
+    fetch("/api/reviews", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newReview),
+    }).catch((err) => console.error("Failed to insert review into PostgreSQL:", err));
+
     return newReview;
   };
 
   const updateReview = (id: string, updates: Partial<Review>) => {
+    let updated: Review | undefined;
     setReviews((prev) =>
-      prev.map((r) => (r.id === id ? { ...r, ...updates } : r))
+      prev.map((r) => {
+        if (r.id === id) {
+          updated = { ...r, ...updates };
+          return updated;
+        }
+        return r;
+      })
     );
+
+    if (updated) {
+      fetch("/api/reviews", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated),
+      }).catch((err) => console.error("Failed to update review in PostgreSQL:", err));
+    }
   };
 
   const deleteReview = (id: string) => {
     setReviews((prev) => prev.filter((r) => r.id !== id));
+
+    fetch(`/api/reviews?id=${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    }).catch((err) => console.error("Failed to delete review from PostgreSQL:", err));
   };
 
   const toggleReviewStatus = (id: string) => {
+    let nextStatus: ReviewStatus = "Published";
     setReviews((prev) =>
       prev.map((r) => {
         if (r.id === id) {
-          const nextStatus: ReviewStatus = r.status === "Published" ? "Hidden" : "Published";
+          nextStatus = r.status === "Published" ? "Hidden" : "Published";
           return { ...r, status: nextStatus };
         }
         return r;
       })
     );
+
+    fetch("/api/reviews", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id, status: nextStatus }),
+    }).catch((err) => console.error("Failed to toggle review status in PostgreSQL:", err));
   };
 
   const updateCMS = (updates: Partial<CMSContent>) => {
-    setCmsContent((prev) => ({
-      ...prev,
-      ...updates,
-      heroSlides: {
-        ...prev.heroSlides,
-        ...(updates.heroSlides || {}),
-      },
-      promotions: {
-        ...prev.promotions,
-        ...(updates.promotions || {}),
-      },
-      saleBanner: {
-        ...prev.saleBanner,
-        ...(updates.saleBanner || {}),
-      },
-      customBanners: updates.customBanners !== undefined ? updates.customBanners : prev.customBanners,
-    }));
+    let updatedCms: CMSContent;
+    setCmsContent((prev) => {
+      updatedCms = {
+        ...prev,
+        ...updates,
+        heroSlides: {
+          ...prev.heroSlides,
+          ...(updates.heroSlides || {}),
+        },
+        promotions: {
+          ...prev.promotions,
+          ...(updates.promotions || {}),
+        },
+        saleBanner: {
+          ...prev.saleBanner,
+          ...(updates.saleBanner || {}),
+        },
+        customBanners: updates.customBanners !== undefined ? updates.customBanners : prev.customBanners,
+      };
+      return updatedCms;
+    });
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("usman-cms-updated", { detail: updates }));
+    }
+
+    fetch("/api/settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ cms: updates, banners: updates.customBanners }),
+    }).catch((err) => console.error("Failed to update CMS in PostgreSQL:", err));
   };
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    try {
-      localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(storeSettings));
-      if (typeof window !== "undefined") {
-        window.dispatchEvent(new CustomEvent("usman-settings-updated", { detail: storeSettings }));
-      }
-    } catch (e) {
-      console.error(e);
-    }
-  }, [storeSettings, isLoaded]);
-
   const updateStoreSettings = (updates: Partial<StoreSettings>) => {
-    setStoreSettings((prev) => ({
-      ...prev,
-      ...updates,
-      paymentCredentials: {
-        ...prev.paymentCredentials,
-        ...(updates.paymentCredentials || {}),
-      },
-    }));
+    let updatedSettings: StoreSettings;
+    setStoreSettings((prev) => {
+      updatedSettings = {
+        ...prev,
+        ...updates,
+        paymentCredentials: {
+          ...prev.paymentCredentials,
+          ...(updates.paymentCredentials || {}),
+        },
+      };
+      return updatedSettings;
+    });
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("usman-settings-updated", { detail: updates }));
+    }
+
+    fetch("/api/settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ settings: updates }),
+    }).catch((err) => console.error("Failed to update settings in PostgreSQL:", err));
   };
 
   const resetToDefaults = () => {
@@ -777,11 +749,12 @@ export function StoreDataProvider({ children }: { children: ReactNode }) {
     setReviews(DEFAULT_REVIEWS);
     setCmsContent(DEFAULT_CMS);
     setStoreSettings(DEFAULT_STORE_SETTINGS);
-    localStorage.removeItem(STORAGE_KEYS.PRODUCTS);
-    localStorage.removeItem(STORAGE_KEYS.ORDERS);
-    localStorage.removeItem(STORAGE_KEYS.REVIEWS);
-    localStorage.removeItem(STORAGE_KEYS.CMS);
-    localStorage.removeItem(STORAGE_KEYS.SETTINGS);
+
+    fetch("/api/settings", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ settings: DEFAULT_STORE_SETTINGS, cms: DEFAULT_CMS }),
+    }).catch((err) => console.error("Failed to reset settings in PostgreSQL:", err));
   };
 
   return (
@@ -820,3 +793,4 @@ export function useStoreData() {
   }
   return context;
 }
+

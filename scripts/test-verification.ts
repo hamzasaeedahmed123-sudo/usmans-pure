@@ -111,16 +111,17 @@ async function runTests() {
   // TEST 4: Customer Account Persistence & Isolation
   console.log("\nTest Suite 4: Customer Store & Role Isolation");
   const testEmail = `test_${Date.now()}@example.pk`;
-  const createdCustomer = createCustomer({
+  const createdCustomer = await createCustomer({
     name: "Ahmad Raza",
     email: testEmail,
     passwordHash: await hashPassword("CustomerSecret123"),
     phone: "03001234567",
   });
   assert(createdCustomer.email === testEmail, "Customer saved to persistent store with sanitized email");
-  const retrieved = findCustomerByEmail(testEmail);
+  const retrieved = await findCustomerByEmail(testEmail);
   assert(retrieved !== null && retrieved.id === createdCustomer.id, "Customer lookup by email succeeds");
-  assert(findCustomerById(createdCustomer.id) !== null, "Customer lookup by ID succeeds");
+  const retrievedById = await findCustomerById(createdCustomer.id);
+  assert(retrievedById !== null, "Customer lookup by ID succeeds");
 
   // TEST 5: E-Commerce Pricing Integrity & Single Source of Truth
   console.log("\nTest Suite 5: E-Commerce Catalog & Server-Side Pricing Integrity");

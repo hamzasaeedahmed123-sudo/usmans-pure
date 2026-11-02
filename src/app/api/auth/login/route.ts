@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     }
 
     const { email, password } = parsed.data;
-    const customer = findCustomerByEmail(email);
+    const customer = await findCustomerByEmail(email);
 
     if (!customer) {
       tracker.count += 1;

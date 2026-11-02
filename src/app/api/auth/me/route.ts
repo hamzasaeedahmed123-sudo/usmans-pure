@@ -22,7 +22,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ authenticated: false, user: null }, { status: 401 });
     }
 
-    const customer = findCustomerById(payload.userId);
+    const customer = await findCustomerById(payload.userId);
     return NextResponse.json({
       authenticated: true,
       user: {
