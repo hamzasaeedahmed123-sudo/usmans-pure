@@ -88,12 +88,12 @@ export function ProductsPageView() {
   }, [allCatalogProducts, selectedCategory, searchQuery, sortBy]);
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col justify-between">
+    <div className="min-h-screen bg-[#FAF9F5] flex flex-col justify-between">
       <Header isSolid theme="amber" />
 
       <main className="flex-1">
         {/* Breadcrumb */}
-        <div className="bg-white border-b border-stone-200">
+        <div className="bg-[#FAF9F5] border-b border-stone-200/60">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center gap-2 text-xs text-stone-500">
             <Link href="/" className="hover:text-amber-800 transition">
               Home
@@ -134,37 +134,37 @@ export function ProductsPageView() {
         </div>
 
         {/* Filter Toolbar */}
-        <div className="bg-white border-b border-stone-200 sticky top-20 z-20 shadow-xs">
+        <div className="bg-[#FAF9F5]/90 backdrop-blur-md border-b border-stone-200/60 sticky top-20 z-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               {/* Category Filter Tabs */}
               <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
                 <button
                   onClick={() => setSelectedCategory("all")}
-                  className={`px-4 py-2 rounded-md text-xs font-bold transition shrink-0 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
                     selectedCategory === "all"
-                      ? "bg-[#1E1510] text-white shadow-sm"
-                      : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                      ? "bg-[#1E1510] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
                   }`}
                 >
                   All Essentials
                 </button>
                 <button
                   onClick={() => setSelectedCategory("flours")}
-                  className={`px-4 py-2 rounded-md text-xs font-bold transition shrink-0 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
                     selectedCategory === "flours"
-                      ? "bg-[#4D3817] text-white shadow-sm"
-                      : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                      ? "bg-[#4D3817] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
                   }`}
                 >
                   Flour
                 </button>
                 <button
                   onClick={() => setSelectedCategory("teas")}
-                  className={`px-4 py-2 rounded-md text-xs font-bold transition shrink-0 cursor-pointer ${
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
                     selectedCategory === "teas"
-                      ? "bg-[#172A1C] text-white shadow-sm"
-                      : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                      ? "bg-[#172A1C] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
                   }`}
                 >
                   Herbal Teas
@@ -180,7 +180,7 @@ export function ProductsPageView() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search product..."
-                    className="w-full pl-9 pr-3 py-2 rounded-md bg-stone-50 border border-stone-200 text-xs font-medium text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-600 transition"
+                    className="w-full pl-9 pr-3 py-2 rounded-full bg-white/80 border border-stone-200/80 text-xs font-medium text-stone-900 placeholder-stone-400 focus:outline-none focus:border-amber-600 transition"
                   />
                   {searchQuery && (
                     <button
@@ -196,7 +196,7 @@ export function ProductsPageView() {
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value as any)}
-                    className="pl-3 pr-8 py-2 rounded-md bg-stone-50 border border-stone-200 text-xs font-bold text-stone-800 focus:outline-none focus:border-amber-600 transition appearance-none cursor-pointer"
+                    className="pl-3.5 pr-8 py-2 rounded-full bg-white/80 border border-stone-200/80 text-xs font-bold text-stone-800 focus:outline-none focus:border-amber-600 transition appearance-none cursor-pointer"
                   >
                     <option value="featured">Sort: Featured</option>
                     <option value="price-asc">Price: Low to High</option>
@@ -210,10 +210,10 @@ export function ProductsPageView() {
           </div>
         </div>
 
-        {/* Product Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        {/* Product Grid - Borderless Flat Organic Brand Layout */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
           {filteredProducts.length === 0 ? (
-            <div className="py-20 text-center bg-white rounded-sm p-8 max-w-md mx-auto">
+            <div className="py-20 text-center bg-transparent p-8 max-w-md mx-auto">
               <Search className="w-12 h-12 text-stone-300 mx-auto mb-4" />
               <h3 className="text-lg font-bold text-stone-800">No products found</h3>
               <p className="text-xs text-stone-500 mt-1">Try resetting your filters or search terms.</p>
@@ -222,22 +222,22 @@ export function ProductsPageView() {
                   setSelectedCategory("all");
                   setSearchQuery("");
                 }}
-                className="mt-5 px-5 py-2.5 rounded-[3px] bg-[#1E1510] text-[#F6F1E9] text-[11px] font-medium hover:bg-[#8B3A22] transition cursor-pointer uppercase tracking-[0.18em] duration-200 ease-out"
+                className="mt-5 px-5 py-2.5 rounded-full bg-[#1E1510] text-[#F6F1E9] text-[11px] font-medium hover:bg-[#8B3A22] transition cursor-pointer uppercase tracking-[0.18em] duration-200 ease-out shadow-xs"
               >
                 Reset Filters
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {filteredProducts.map((product) => {
                 const isAdded = addedIds[product.id];
                 return (
                   <div
                     key={product.id}
-                    className="group relative flex flex-col bg-white rounded-2xl shadow-xs hover:shadow-ambient transition-all duration-300 overflow-hidden border border-stone-200/80"
+                    className="group relative flex flex-col justify-between transition-all duration-300"
                   >
-                    {/* Image Box */}
-                    <div className="relative w-full aspect-square bg-stone-100 overflow-hidden p-0 border-b border-stone-100">
+                    {/* Seamless Image Area: Sits directly on #FAF9F5 without box borders */}
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-xl bg-transparent mb-3">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">
                         <Image
                           src={product.image}
@@ -245,64 +245,64 @@ export function ProductsPageView() {
                           fill
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           quality={100}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         />
                       </Link>
 
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 pointer-events-none">
-                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-[2px] text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9] text-[#8B3A22]">
+                      <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10 pointer-events-none">
+                        <span className="px-2 py-0.5 rounded text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#F6F1E9]/95 text-[#8B3A22] backdrop-blur-xs">
                           Sale
                         </span>
                       </div>
 
-                      <div className="hidden sm:flex absolute inset-x-4 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
+                      <div className="hidden sm:flex absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
                         <button
                           onClick={() => setQuickViewProduct(product)}
-                          className="w-full py-2 px-3 rounded-lg bg-white/95 text-stone-900 text-xs font-bold shadow-ambient hover:bg-[#1E1510] hover:text-white transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer"
+                          className="w-full py-2 px-3 rounded-lg bg-stone-900/90 text-[#FAF9F5] text-xs font-semibold hover:bg-black transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer shadow-xs"
                         >
                           <Eye className="w-3.5 h-3.5" /> Quick View
                         </button>
                       </div>
                     </div>
 
-                    {/* Info */}
-                    <div className="p-3 md:p-5 flex-1 flex flex-col justify-between">
+                    {/* Minimal, Clean, Left-Aligned Info */}
+                    <div className="flex flex-col flex-1 justify-between">
                       <div>
-                        <div className="text-xs font-semibold uppercase tracking-wider text-amber-900 mb-1">
+                        <div className="text-[11px] sm:text-xs font-medium text-stone-500 uppercase tracking-wider mb-1">
                           {product.weight}
                         </div>
                         <Link href={`/product/${product.id}`}>
-                          <h2 className="text-base sm:text-lg font-bold font-serif text-stone-900 leading-snug line-clamp-2 hover:text-amber-800 transition min-h-[2.75rem]">
+                          <h2 className="text-sm sm:text-base font-serif font-bold text-stone-900 leading-snug line-clamp-2 hover:text-[#8B3A22] transition-colors min-h-[2.5rem]">
                             {product.title}
                           </h2>
                         </Link>
                       </div>
 
-                      <div className="mt-3 pt-3 sm:mt-5 sm:pt-4 border-t border-stone-100 flex flex-col gap-2.5">
-                        <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                          <span className="text-lg sm:text-xl font-extrabold font-sans text-stone-900">
+                      <div className="mt-2.5 flex flex-col gap-2.5">
+                        <div className="flex items-baseline gap-1.5 flex-wrap">
+                          <span className="text-sm sm:text-base font-bold text-stone-900">
                             {product.priceFormatted}
                           </span>
-                          <span className="text-sm font-normal font-sans text-stone-500 line-through ml-1.5">
+                          <span className="text-xs text-stone-400 line-through">
                             {product.originalPriceFormatted}
                           </span>
                         </div>
 
                         <button
                           onClick={(e) => handleAddToCart(product, e)}
-                          className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer min-h-[48px] shadow-ambient ${
+                          className={`w-full py-2 sm:py-2.5 px-3 text-xs sm:text-sm font-semibold tracking-wide rounded-lg flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer min-h-[38px] sm:min-h-[42px] ${
                             isAdded
-                              ? "bg-emerald-600 text-white"
-                              : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                              ? "bg-emerald-700 text-white"
+                              : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF9F5]"
                           }`}
                         >
                           {isAdded ? (
                             <>
-                              <Check className="w-4 h-4 stroke-[2.5]" /> Added
+                              <Check className="w-3.5 h-3.5 stroke-[2.5]" /> Added
                             </>
                           ) : (
                             <>
-                              <ShoppingBag className="w-4 h-4" /> Add to Cart
+                              <ShoppingBag className="w-3.5 h-3.5" /> Add to Cart
                             </>
                           )}
                         </button>

@@ -63,7 +63,7 @@ export function MegaBundles() {
             return (
               <article
                 key={bundle.id}
-                className="bg-[#F6F1E9] rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-between shadow-ambient hover:shadow-ambient transition-all duration-300 group"
+                className="bg-[#F6F1E9] rounded-xl sm:rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 group"
               >
                 <div>
                   {/* Edge-to-edge image showcase - touches top, left, right edges */}

@@ -174,7 +174,7 @@ export function CustomerReviews() {
                   className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2.5"
                   style={{ minWidth: "100%" }}
                 >
-                  <div className="bg-white rounded-sm border border-[#1E1510]/10 p-5 sm:p-6 h-full flex flex-col justify-between shadow-xs hover:shadow-md transition-shadow duration-300">
+                  <div className="bg-[#F5F2EB]/90 rounded-2xl p-5 sm:p-6 h-full flex flex-col justify-between transition-colors duration-300">
                     <div>
                       {/* Top Bar: Stars + Verified Badge */}
                       <div className="flex items-center justify-between gap-2 mb-3">

@@ -173,8 +173,8 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
       <Header isSolid theme="amber" />
 
         <main className="flex-1">
-          {/* Breadcrumb Navigation */}
-          <div className="bg-white/90 backdrop-blur-xs border-b border-stone-200/80">
+          {/* Breadcrumb Navigation - Seamless on #FAF9F5 */}
+          <div className="bg-[#FAF9F5] border-b border-stone-200/60">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center gap-2 text-xs text-stone-500 overflow-x-auto whitespace-nowrap">
               <Link href="/" className="hover:text-stone-900 transition font-medium">
                 Home
@@ -201,79 +201,63 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
           <TickerMarquee />
 
-          {/* Hero Product Showcase Section with Subtle Scenery Backdrop */}
-          <section className="relative py-8 sm:py-12 lg:py-16 overflow-hidden">
-            {/* Subtle natural scenery backdrop scoped strictly to the product showcase */}
-            <div className="absolute inset-0 pointer-events-none -z-0 overflow-hidden">
-              <Image
-                src={backdropImage}
-                alt={isFlour ? "Natural Wheat Field Backdrop" : "Botanical Herbal Garden Backdrop"}
-                fill
-                sizes="100vw"
-                quality={85}
-                priority
-                className="w-full h-full object-cover object-center opacity-30 sm:opacity-35"
-              />
-              {/* Soft gradient wash that cleanly transitions to the natural page background at the bottom */}
-              <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F5]/85 via-[#FAF9F5]/80 to-[#FAF9F5]" />
-            </div>
+          {/* Flat Organic Showcase: Sits directly on #FAF9F5 without boxed containers or artificial backdrops */}
+          <section className="relative py-8 sm:py-12 lg:py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
+                {/* Left Photograph Container with Slider & Touch Swipe */}
+                <div className="lg:col-span-6 flex flex-col items-center">
+                  <div className="relative w-full aspect-[4/5] min-h-[280px] sm:min-h-[420px] lg:min-h-[520px] max-h-[560px] rounded-2xl overflow-hidden p-0 group select-none">
+                    {/* Native snap carousel for mobile touch swipe & desktop navigation */}
+                    <div
+                      ref={carouselRef}
+                      onScroll={handleScroll}
+                      className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full p-0"
+                    >
+                      {galleryImages.map((img, idx) => (
+                        <div
+                          key={img}
+                          className="snap-center min-w-full w-full h-full shrink-0 relative p-0 overflow-hidden"
+                        >
+                          <Image
+                            src={img}
+                            alt={`${product.title} - View ${idx + 1}`}
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            quality={100}
+                            priority={idx === 0}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                          />
+                        </div>
+                      ))}
+                    </div>
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-sm border border-stone-200/80 p-4 sm:p-10 lg:p-14">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-14 items-start">
-                  {/* Left Photograph Container with Slider & Touch Swipe */}
-                  <div className="lg:col-span-6 flex flex-col items-center">
-                    <div className="relative w-full aspect-square min-h-[260px] sm:min-h-[400px] lg:min-h-[520px] max-h-[540px] rounded-2xl bg-stone-100 overflow-hidden p-0 border border-stone-200/80 shadow-xs group select-none">
-                      {/* Native snap carousel for mobile touch swipe & desktop navigation */}
-                      <div
-                        ref={carouselRef}
-                        onScroll={handleScroll}
-                        className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full p-0"
-                      >
-                        {galleryImages.map((img, idx) => (
-                          <div
-                            key={img}
-                            className="snap-center min-w-full w-full h-full shrink-0 relative p-0 overflow-hidden"
-                          >
-                            <Image
-                              src={img}
-                              alt={`${product.title} - View ${idx + 1}`}
-                              fill
-                              sizes="(max-width: 1024px) 100vw, 50vw"
-                              quality={100}
-                              priority={idx === 0}
-                              className="w-full h-full object-cover transition-transform duration-500 ease-out hover:scale-105"
-                            />
-                          </div>
-                        ))}
-                      </div>
+                    {/* Product Badge */}
+                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-[#F6F1E9]/95 backdrop-blur-xs text-[#8B3A22] pointer-events-none">
+                      Sale &bull; Zero Additives
+                    </span>
 
-                      {/* Product Badge */}
-                      <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-white/95 backdrop-blur-xs text-[#8B3A22] border border-[#8B3A22]/20 shadow-xs z-10 pointer-events-none">
-                        Sale &bull; Zero Additives
-                      </span>
-
-                      {/* Navigation Arrows for Sliding */}
-                      {galleryImages.length > 1 && (
-                        <>
-                          <button
-                            type="button"
-                            onClick={handlePrevImage}
-                            aria-label="Previous image"
-                            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-md flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-110 active:scale-95 border border-stone-200/60"
-                          >
-                            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={handleNextImage}
-                            aria-label="Next image"
-                            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-md flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-110 active:scale-95 border border-stone-200/60"
-                          >
-                            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-stone-800" />
-                          </button>
-                        </>
-                      )}
+                    {/* Navigation Arrows for Sliding */}
+                    {galleryImages.length > 1 && (
+                      <>
+                        <button
+                          type="button"
+                          onClick={handlePrevImage}
+                          aria-label="Previous image"
+                          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-105 active:scale-95"
+                        >
+                          <ChevronLeft className="w-5 h-5 text-stone-800" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleNextImage}
+                          aria-label="Next image"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-105 active:scale-95"
+                        >
+                          <ChevronRight className="w-5 h-5 text-stone-800" />
+                        </button>
+                      </>
+                    )}
 
                       {/* Slide Indicators / Dots */}
                       {galleryImages.length > 1 && (
@@ -294,24 +278,24 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
                     {/* Thumbnail Previews for Instant Selection */}
                     {galleryImages.length > 1 && (
-                      <div className="mt-4 flex items-center justify-center gap-3 w-full">
+                      <div className="mt-4 flex items-center justify-center gap-2.5 w-full">
                         {galleryImages.map((img, idx) => (
                           <button
                             key={img}
                             type="button"
                             onClick={() => scrollToImage(idx)}
                             aria-label={`View picture ${idx + 1}`}
-                            className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden p-0 border-2 transition-all cursor-pointer ${
+                            className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden p-0 transition-all cursor-pointer ${
                               activeImageIndex === idx
-                                ? "border-[#8B3A22] ring-2 ring-[#8B3A22]/20 shadow-md scale-105"
-                                : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
+                                ? "ring-2 ring-stone-900 scale-105"
+                                : "opacity-60 hover:opacity-100"
                             }`}
                           >
                             <Image
                               src={img}
                               alt=""
                               fill
-                              sizes="(max-width: 640px) 80px, 96px"
+                              sizes="(max-width: 640px) 64px, 80px"
                               quality={100}
                               className="w-full h-full object-cover"
                             />
@@ -395,25 +379,25 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     ))}
                   </div>
 
-                  {/* Pack Selector */}
-                  <div className="mt-7 pt-6 border-t border-stone-200">
+                  {/* Pack Selector - Minimal Flat Styling */}
+                  <div className="mt-7 pt-6 border-t border-stone-200/80">
                     <label className="block text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-stone-800 mb-3.5">
                       Select Packaging Format:
                     </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-lg">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
                       <button
                         type="button"
                         onClick={() => setSelectedPack("standard")}
-                        className={`p-4 sm:p-5 rounded-xl border text-left transition-all cursor-pointer ${
+                        className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all cursor-pointer ${
                           selectedPack === "standard"
-                            ? "border-2 border-[#8B3A22] bg-[#FAF5EE] text-stone-900 shadow-sm ring-2 ring-[#8B3A22]/15"
-                            : "border-stone-200 bg-white text-stone-800 hover:border-stone-400"
+                            ? "border-stone-900 bg-stone-200/40 text-stone-900 font-semibold"
+                            : "border-stone-300/80 bg-transparent text-stone-700 hover:border-stone-400"
                         }`}
                       >
                         <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-900 flex items-center justify-between">
                           <span>Standard Pack ({product.weight})</span>
                           {selectedPack === "standard" && (
-                            <span className="w-2 h-2 rounded-full bg-[#8B3A22]" />
+                            <span className="w-2 h-2 rounded-full bg-stone-900" />
                           )}
                         </div>
                         <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">₨ {product.price.toLocaleString()}</div>
@@ -422,15 +406,15 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       <button
                         type="button"
                         onClick={() => setSelectedPack("large")}
-                        className={`p-4 sm:p-5 rounded-xl border text-left transition-all cursor-pointer ${
+                        className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all cursor-pointer ${
                           selectedPack === "large"
-                            ? "border-2 border-[#8B3A22] bg-[#FAF5EE] text-stone-900 shadow-sm ring-2 ring-[#8B3A22]/15"
-                            : "border-stone-200 bg-white text-stone-800 hover:border-stone-400"
+                            ? "border-stone-900 bg-stone-200/40 text-stone-900 font-semibold"
+                            : "border-stone-300/80 bg-transparent text-stone-700 hover:border-stone-400"
                         }`}
                       >
                         <div className="text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-between text-stone-900">
                           <span>Family Double Pack</span>
-                          <span className="text-[11px] text-emerald-800 font-bold bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200">Save More</span>
+                          <span className="text-[11px] text-emerald-800 font-bold bg-emerald-100 px-2 py-0.5 rounded">Save More</span>
                         </div>
                         <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">
                           ₨ {Math.round(product.price * 1.85).toLocaleString()}
@@ -443,21 +427,21 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                   <div className="mt-7 space-y-3.5">
                     <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                       {/* Quantity Selector */}
-                      <div className="flex items-center justify-between sm:justify-start border border-stone-300 rounded-xl bg-stone-50 px-3.5 py-2.5 w-full sm:w-auto gap-4">
+                      <div className="flex items-center justify-between sm:justify-start border border-stone-300/80 rounded-xl bg-transparent px-3 py-2 w-full sm:w-auto gap-3">
                         <button
                           type="button"
                           onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                          className="w-9 h-9 rounded-lg bg-white border border-stone-300 text-stone-800 font-bold hover:bg-stone-200 flex items-center justify-center cursor-pointer transition"
+                          className="w-8 h-8 rounded-lg bg-stone-200/50 hover:bg-stone-200 text-stone-800 font-bold flex items-center justify-center cursor-pointer transition"
                         >
                           -
                         </button>
-                        <span className="text-lg font-bold text-stone-900 min-w-[28px] text-center">
+                        <span className="text-base font-bold text-stone-900 min-w-[24px] text-center">
                           {quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => setQuantity((q) => q + 1)}
-                          className="w-9 h-9 rounded-lg bg-white border border-stone-300 text-stone-800 font-bold hover:bg-stone-200 flex items-center justify-center cursor-pointer transition"
+                          className="w-8 h-8 rounded-lg bg-stone-200/50 hover:bg-stone-200 text-stone-800 font-bold flex items-center justify-center cursor-pointer transition"
                         >
                           +
                         </button>
@@ -466,7 +450,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       {/* Primary Order Now Button */}
                       <Link
                         href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
-                        className="flex-1 py-4 sm:py-4.5 px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] flex items-center justify-center gap-2.5 transition-colors cursor-pointer text-center uppercase tracking-[0.16em] shadow-md"
+                        className="flex-1 py-3.5 sm:py-4 px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] flex items-center justify-center gap-2.5 transition-colors cursor-pointer text-center uppercase tracking-[0.16em] shadow-xs"
                       >
                         <Truck className="w-5 h-5 text-amber-400 shrink-0" />
                         <span>Order Cash on Delivery (₨ {totalPrice.toLocaleString()})</span>
@@ -478,10 +462,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       <button
                         type="button"
                         onClick={handleAddToCart}
-                        className={`flex-1 py-3.5 sm:py-4 px-5 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition cursor-pointer border ${
+                        className={`flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition cursor-pointer border ${
                           isAdded
-                            ? "bg-emerald-700 border-emerald-700 text-white shadow-sm"
-                            : "bg-white hover:bg-stone-100 border-stone-300 text-stone-900 shadow-xs"
+                            ? "bg-emerald-700 border-emerald-700 text-white"
+                            : "bg-transparent hover:bg-stone-200/40 border-stone-300 text-stone-900"
                         }`}
                       >
                         {isAdded ? (
@@ -502,7 +486,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         )}%20(${selectedPack}%20x%20${quantity}%20=%20₨${totalPrice})%20with%20Cash%20on%20Delivery.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 py-3.5 sm:py-4 px-5 rounded-xl text-xs sm:text-sm font-bold uppercase tracking-[0.14em] bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center gap-2 transition shadow-xs"
+                        className="flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center gap-2 transition shadow-xs"
                       >
                         <WhatsAppIcon className="w-5 h-5 shrink-0" variant="white" />
                         <span>Order via WhatsApp</span>
@@ -513,20 +497,19 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* =========================================================================
             COLLAPSIBLE PRODUCT DETAILS ACCORDION DROPDOWNS
             ========================================================================= */}
-        <div className="w-full max-w-4xl mx-auto px-4 py-12 sm:py-16">
-          <div className="border border-stone-200/90 rounded-2xl bg-white shadow-xs overflow-hidden divide-y divide-stone-200/80">
+        <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+          <div className="border-t border-b border-stone-200/80 divide-y divide-stone-200/70">
             {/* 1. PRODUCT OVERVIEW ACCORDION */}
             <div className="transition-colors">
               <button
                 type="button"
                 onClick={() => toggleSection("overview")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                className="w-full py-5 flex items-center justify-between text-left hover:text-[#8B3A22] transition-colors cursor-pointer"
                 aria-expanded={openSection === "overview"}
               >
                 <div className="flex items-center gap-3">
@@ -535,7 +518,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     Product Overview
                   </h2>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
                   {openSection === "overview" ? (
                     <Minus className="w-4 h-4" />
                   ) : (
@@ -544,7 +527,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                 </div>
               </button>
               {openSection === "overview" && (
-                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base border-t border-stone-100">
+                <div className="pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base">
                   <p>
                     {product.description ||
                       "Proprietary cold-milled blend of traditional whole grains. Helps maintain prolonged fullness, prevents insulin spikes, and turns stored fat into everyday sustained energy."}
@@ -561,7 +544,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               <button
                 type="button"
                 onClick={() => toggleSection("benefits")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                className="w-full py-5 flex items-center justify-between text-left hover:text-[#8B3A22] transition-colors cursor-pointer"
                 aria-expanded={openSection === "benefits"}
               >
                 <div className="flex items-center gap-3">
@@ -570,7 +553,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     Health Benefits / Usage
                   </h2>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
                   {openSection === "benefits" ? (
                     <Minus className="w-4 h-4" />
                   ) : (
@@ -579,16 +562,16 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                 </div>
               </button>
               {openSection === "benefits" && (
-                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-4 text-sm sm:text-base border-t border-stone-100">
+                <div className="pb-6 pt-1 text-stone-700 leading-relaxed space-y-4 text-sm sm:text-base">
                   <ul className="list-disc pl-5 space-y-2">
                     <li><strong>Low Glycemic Index (&lt;50):</strong> Slow carb breakdown prevents insulin spikes.</li>
                     <li><strong>High Dietary Fiber (18g/100g):</strong> Keeps you full for 5+ hours and promotes digestion.</li>
-                    <li><strong>cold milled (&lt;40°C):</strong> Natural wheat germ, bran, and enzymes intact.</li>
+                    <li><strong>Cold Milled (&lt;40°C):</strong> Natural wheat germ, bran, and enzymes intact.</li>
                     {product.benefits?.map((b, i) => (
                       <li key={i}>{b}</li>
                     ))}
                   </ul>
-                  <div className="pt-2 text-xs sm:text-sm text-stone-600 bg-stone-50 p-4 rounded-xl border border-stone-200/60">
+                  <div className="pt-2 text-xs sm:text-sm text-stone-700 bg-[#F5F2EB] p-4 rounded-xl">
                     <p className="font-bold text-stone-900 mb-1">Recommended Usage Guide:</p>
                     <p><strong>For Flours / Rotis:</strong> Knead with lukewarm water and let rest for 15 minutes before rolling for extra softness.</p>
                     <p className="mt-1"><strong>For Teas:</strong> Steep 1 teaspoon in 90°C hot water for 4–5 minutes. Strain and enjoy pure without additives.</p>
@@ -602,7 +585,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               <button
                 type="button"
                 onClick={() => toggleSection("storage")}
-                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-stone-50/80 transition-colors cursor-pointer"
+                className="w-full py-5 flex items-center justify-between text-left hover:text-[#8B3A22] transition-colors cursor-pointer"
                 aria-expanded={openSection === "storage"}
               >
                 <div className="flex items-center gap-3">
@@ -611,7 +594,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     Storage &amp; Purity Guarantee
                   </h2>
                 </div>
-                <div className="w-7 h-7 rounded-full bg-stone-100 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
+                <div className="w-7 h-7 rounded-full bg-stone-200/60 flex items-center justify-center text-stone-700 hover:text-stone-900 transition shrink-0 ml-4">
                   {openSection === "storage" ? (
                     <Minus className="w-4 h-4" />
                   ) : (
@@ -620,7 +603,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                 </div>
               </button>
               {openSection === "storage" && (
-                <div className="px-6 pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base border-t border-stone-100">
+                <div className="pb-6 pt-1 text-stone-700 leading-relaxed space-y-3 text-sm sm:text-base">
                   <p>
                     <strong>Storage Instructions:</strong> Store in a cool, dry place inside an airtight container away from moisture and direct sunlight. Because our flours and teas contain zero preservatives or artificial chemicals, using an airtight jar preserves their farm-fresh aroma for up to 6 months.
                   </p>
@@ -636,9 +619,9 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         {/* Verified Household Customer Reviews Section */}
         <section className="py-14 sm:py-16 border-t border-stone-200/80">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 bg-white/85 backdrop-blur-xs p-5 sm:p-6 rounded-2xl border border-stone-200/70 shadow-2xs">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
               <div>
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#8B3A22]">
                     Verified Household Reviews
                   </span>
@@ -659,10 +642,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                 <button
                   type="button"
                   onClick={() => setIsReviewModalOpen(true)}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   <PenLine className="w-3.5 h-3.5" />
-                  <span>+ Write a Review</span>
+                  <span>Write a Review</span>
                 </button>
                 <Link
                   href="/reviews"
@@ -679,7 +662,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               {reviewsToDisplay.map((r) => (
                 <div
                   key={r.id}
-                  className="bg-white rounded-xl p-5 border border-stone-200/80 shadow-xs flex flex-col justify-between hover:shadow-md transition-shadow"
+                  className="bg-[#F5F2EB]/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -689,7 +672,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         ))}
                       </div>
                       {r.verified && (
-                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full">
                           <BadgeCheck className="w-3 h-3 text-emerald-600" />
                           Verified Buyer
                         </span>
@@ -705,7 +688,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+                  <div className="mt-4 pt-3 border-t border-stone-200/60 flex items-center justify-between">
                     <div>
                       <div className="text-xs font-bold text-stone-900">{r.name}</div>
                       <div className="text-[11px] text-stone-500 mt-0.5">
@@ -860,15 +843,15 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
               {relatedProducts.map((rel) => (
                 <div
                   key={rel.id}
-                  className="group bg-white rounded-xl p-3 md:p-4 border border-stone-200/80 shadow-xs hover:shadow-md transition-all duration-300 flex flex-col justify-between"
+                  className="group flex flex-col justify-between"
                 >
                   <div>
                     <Link href={`/product/${rel.id}`} className="block">
-                      <div className="relative aspect-square w-full rounded bg-white overflow-hidden mb-2.5 border border-stone-200/60">
+                      <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-3 bg-stone-100/60 flex items-center justify-center p-3">
                         <Image
                           src={rel.image}
                           alt={rel.title}
@@ -876,12 +859,12 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           sizes="(max-width: 640px) 50vw, 25vw"
                           className="object-contain p-2 group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
-                        <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded-xs text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-white/95 text-[#8B3A22]">
-                          Sale
+                        <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-white/90 text-[#8B3A22]">
+                          Pure
                         </span>
                       </div>
 
-                      <div className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[#8B3A22] mb-1">
+                      <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#8B3A22] mb-1">
                         {rel.categoryLabel}
                       </div>
                       <h4 className="text-xs sm:text-sm font-bold text-stone-900 line-clamp-2 group-hover:text-[#8B3A22] transition min-h-[34px] sm:min-h-[38px] leading-snug">
@@ -889,7 +872,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       </h4>
                     </Link>
 
-                    <div className="mt-2 flex items-baseline gap-1.5 flex-wrap">
+                    <div className="mt-1.5 flex items-baseline gap-1.5 flex-wrap">
                       <span className="text-sm sm:text-base font-bold text-stone-900">{rel.priceFormatted}</span>
                       <span className="text-[10px] sm:text-xs text-stone-400 line-through">
                         {rel.originalPriceFormatted}
@@ -897,10 +880,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     </div>
                   </div>
 
-                  <div className="mt-3 pt-2.5 border-t border-stone-200/60">
+                  <div className="mt-3.5">
                     <Link
                       href={`/product/${rel.id}`}
-                      className="w-full py-2 px-2 rounded bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] text-xs font-bold flex items-center justify-center gap-1 transition text-center uppercase tracking-wider min-h-[38px]"
+                      className="w-full py-2.5 px-3 rounded-xl bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] text-xs font-bold flex items-center justify-center gap-1 transition text-center uppercase tracking-wider"
                     >
                       <span>View Pure Item</span>
                     </Link>
@@ -912,9 +895,9 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         </section>
 
         {/* Sticky Mobile Order Bar */}
-        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-stone-200 p-3 z-30 shadow-md flex items-center justify-between gap-3">
+        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-[#FAF9F5]/95 backdrop-blur-md border-t border-stone-200/80 p-3 z-30 flex items-center justify-between gap-3">
           <div className="flex items-center gap-2.5 min-w-0">
-            <div className="relative w-11 h-11 rounded bg-stone-100 border border-stone-200 shrink-0 overflow-hidden">
+            <div className="relative w-11 h-11 rounded-lg bg-stone-100/80 shrink-0 overflow-hidden">
               <Image src={product.image} alt={product.title} fill sizes="44px" className="object-cover" />
             </div>
             <div className="min-w-0">
@@ -924,7 +907,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
           </div>
           <Link
             href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
-            className="py-2.5 px-4 rounded bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] text-xs font-bold shrink-0 flex items-center gap-1.5 uppercase tracking-wider transition-colors"
+            className="py-2.5 px-4 rounded-xl bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] text-xs font-bold shrink-0 flex items-center gap-1.5 uppercase tracking-wider transition-colors"
           >
             <Truck className="w-3.5 h-3.5 text-amber-400" />
             <span>Order (COD)</span>
