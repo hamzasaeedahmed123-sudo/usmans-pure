@@ -42,7 +42,7 @@ export const CATEGORY_PILLS = [
   },
   {
     id: "herbals",
-    label: "02. Herbal Teas",
+    label: "02. Oregano Tea",
     slideIndex: 1,
     activeClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
   },
@@ -54,13 +54,13 @@ export const SLIDES: HeroSlide[] = [
     tag: "Taaza Chakki Atta",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
-    fullTitle: "Fat 2 Fuel Multigrain Flour",
+    fullTitle: "Usman's Pure Multigrain Flour",
     benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — chakki ka qudrati fiber, bina kisi maiday ke.",
     miniStats: ["Weight Management", "Zero Maida", "Chakki Ground"],
     price: "Rs 2,450",
     originalPrice: "Rs 2,950",
     weight: "2 LBS (900g)",
-    bgColor: "#E5D2BA",
+    bgColor: "#FAF9F5",
     announcementBg: "#2A1F17", // Deep Roasted Brown
     activePillClass: "bg-[#2A1F17] text-white shadow-md border border-[#3D2B1F]",
     backdropImage: "/images/hero/flour-backdrop.jpg",
@@ -70,20 +70,20 @@ export const SLIDES: HeroSlide[] = [
     image: "/images/hero/hero-flour-product.png",
     floating: ["/images/hero/wheat-1.png", "/images/hero/wheat-2.png"],
     detailUrl: "/flour",
-    altText: "Usman's Pure Products Fat 2 Fuel Multigrain Flour 2 LBS",
+    altText: "Usman's Pure Multigrain Flour with golden dried wheat stalks and grains",
   },
   {
     id: "herbals",
     tag: "Qudrati Desi Qehwa",
-    title: "HERBAL",
-    subtitle: "TEAS",
-    fullTitle: "Pure Thyme Herbal Tea",
-    benefit: "Rozmarrah ke sukoon aur pur-lutf zaiqay ke liye asli thyme aur herbal leaves ka qehwa.",
-    miniStats: ["100% Qudrati", "Caffeine-Free", "Immunity & Throat"],
-    price: "Rs 1,250",
-    originalPrice: "Rs 1,500",
-    weight: "113g (4 oz)",
-    bgColor: "#A3D2B7",
+    title: "OREGANO",
+    subtitle: "TEA",
+    fullTitle: "Usman's Oregano Tea",
+    benefit: "Rozmarrah ke sukoon, hazmay aur immunity ke liye asli qudrati oregano leaves aur herbal arq ka qehwa.",
+    miniStats: ["100% Qudrati", "Digestive Health", "Immunity Booster"],
+    price: "Rs 850",
+    originalPrice: "Rs 1,100",
+    weight: "50g Jar",
+    bgColor: "#EAF4EE",
     announcementBg: "#0E381C", // Deep Forest Green
     activePillClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
     backdropImage: "/images/hero/herbal-flatlay-bg.jpg",
@@ -93,7 +93,7 @@ export const SLIDES: HeroSlide[] = [
     image: "/images/hero/hero-tea-product.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
-    altText: "Usman's Pure Products Pure Thyme Herbal Tea 113g",
+    altText: "Usman's Oregano Tea jar with fresh oregano leaves and wooden scoop",
   },
 ];
 
@@ -308,13 +308,13 @@ export function HeroSlider() {
         </div>
       </div>
 
-      {/* 5. Main Hero Stage (Desktop: Layered 3D Swirl & Backdrop | Mobile: Detached Vertical Flow with Zero Overlap) */}
-      <div className="relative flex-1 flex items-center justify-center w-full max-w-full px-4 sm:px-6 py-2 md:py-2 overflow-hidden">
+      {/* 5. Main Hero Stage (Desktop: 2-Column Text & Product Layout | Mobile: Vertically Stacked with Product Below) */}
+      <div className="relative flex-1 flex items-center justify-center w-full max-w-full px-4 sm:px-6 lg:px-12 py-3 md:py-6 overflow-hidden">
         
         {/* ========================================================================= */}
-        {/* MOBILE VIEW (< md): Clean, Readable Vertical Flow with Safe Padding       */}
+        {/* MOBILE VIEW (< md): Vertical Stack with Headline/Price Top, Product Below  */}
         {/* ========================================================================= */}
-        <div className="md:hidden relative w-full h-full flex flex-col items-center justify-center py-2 z-10 overflow-hidden px-2">
+        <div className="md:hidden relative w-full h-full flex flex-col items-center justify-center py-2 z-10 overflow-hidden px-2 max-w-md mx-auto">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`mobile-stage-${currentSlide.id}`}
@@ -322,86 +322,29 @@ export function HeroSlider() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
               transition={{ duration: 0.45, ease: "easeInOut" }}
-              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform gap-2.5 px-2 max-w-sm mx-auto"
+              className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform"
             >
-              {/* 1. Category Title: Bold, Prominent & Space-Filling Typography */}
-              <div className="w-full text-center shrink-0 z-10 select-none py-1">
-                <h1
-                  style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[46px] min-[390px]:text-[54px] sm:text-[62px] font-serif font-black tracking-tight leading-[0.96] text-center max-w-full px-2 select-none ${currentSlide.giantTextClass}`}
-                >
-                  <span className="block">{currentSlide.title}</span>
-                  <span className="block text-[36px] min-[390px]:text-[42px] sm:text-[48px] font-serif font-black tracking-tight mt-1 leading-[0.98]">{currentSlide.subtitle}</span>
-                </h1>
-              </div>
+              {/* 1. Eyebrow Tag */}
+              <span className="inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-white/80 border border-stone-200/70 text-stone-800 mb-1.5 shadow-2xs">
+                🌱 {currentSlide.tag}
+              </span>
 
-              {/* 2. Main Product Cutout Visual: Enlarged & Prominent Sizing (Collision-Free) */}
-              <div className="relative w-full h-52 min-[390px]:h-60 sm:h-68 min-h-[200px] max-h-[260px] flex items-center justify-center pointer-events-none z-10 my-1">
-                {/* Natural Soft Radial Drop-Shadow at Base */}
-                <div className="absolute -bottom-1 inset-x-12 h-4 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
+              {/* 2. Headline Title */}
+              <h1 className="text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-stone-900 text-center mb-1.5">
+                {currentSlide.fullTitle}
+              </h1>
 
-                {/* Product Glow Aura */}
-                <div
-                  className="absolute inset-2 rounded-full blur-xl opacity-35 pointer-events-none -z-10"
-                  style={{ backgroundColor: currentSlide.bgColor }}
-                />
+              {/* 3. Description / Benefit */}
+              <p className="text-xs sm:text-sm text-stone-700 text-center font-medium leading-snug line-clamp-2 max-w-xs mb-3">
+                {currentSlide.benefit}
+              </p>
 
-                {/* Main Product Cutout Image */}
-                <div className="relative w-full h-full flex items-center justify-center pointer-events-none">
-                  <Image
-                    src={currentSlide.image}
-                    alt={currentSlide.altText}
-                    fill
-                    sizes="(max-width: 768px) 75vw, 360px"
-                    quality={95}
-                    className="max-w-full h-auto object-contain p-0.5 w-auto"
-                    loading="eager"
-                  />
-                </div>
-              </div>
-
-              {/* 3. Glassmorphism Info Card: Hugs the Pouch with Standard Typography & Safe Padding */}
-              <div className="flex items-center gap-2.5 backdrop-blur-md bg-white/60 border border-white/60 rounded-xl p-3 sm:p-4 shadow-sm w-full pointer-events-auto">
-                {/* Left Mini Badges */}
-                <div className="flex flex-col gap-1 border-r border-stone-200/50 pr-2 shrink-0 self-center">
-                  {currentSlide.miniStats.map((stat, i) => (
-                    <span
-                      key={i}
-                      className="px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold tracking-tight bg-white/80 text-stone-900 border border-stone-200/60 whitespace-nowrap text-center"
-                    >
-                      {stat}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Product Thumbnail */}
-                <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-lg bg-white/70 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
-                  <Image
-                    src={currentSlide.image}
-                    alt={currentSlide.fullTitle}
-                    fill
-                    className="max-w-full h-auto object-contain p-0.5"
-                    sizes="44px"
-                  />
-                </div>
-
-                {/* Title & Description */}
-                <div className="flex flex-col justify-center min-w-0 flex-1">
-                  <h3 className="text-sm font-bold text-stone-900 tracking-tight leading-tight line-clamp-1">
-                    {currentSlide.fullTitle}
-                  </h3>
-                  <p className="text-xs text-stone-700 leading-snug mt-0.5 font-medium line-clamp-2">
-                    {currentSlide.benefit}
-                  </p>
-                </div>
-              </div>
-
-              {/* 4. Bottom Price/CTA Button Bar: Fixed Strikethrough & Flexible Layout */}
-              <div className="flex flex-wrap items-center gap-2 w-full pointer-events-auto">
-                <div className="flex items-center gap-1.5 flex-wrap px-3 py-1.5 rounded-lg bg-white/85 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
+              {/* 4. Price & CTAs Row (with generous mb-5 to mb-6 spacing below) */}
+              <div className="flex flex-wrap items-center justify-center gap-2 w-full mb-5 sm:mb-6 pointer-events-auto">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/90 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
                   <span className="text-xs sm:text-sm font-bold">{currentSlide.price}</span>
                   {currentSlide.originalPrice && (
-                    <span className="text-[11px] sm:text-xs text-stone-500 line-through">
+                    <span className="text-[11px] text-stone-500 line-through">
                       {currentSlide.originalPrice}
                     </span>
                   )}
@@ -409,7 +352,7 @@ export function HeroSlider() {
 
                 <button
                   onClick={handleAddToCart}
-                  className="flex-1 min-w-[120px] py-2 px-3 rounded-lg text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="py-2 px-3.5 rounded-lg text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   {isAdded ? (
                     <>
@@ -426,10 +369,32 @@ export function HeroSlider() {
                 <button
                   type="button"
                   onClick={handleLearnMore}
-                  className="py-2 px-3 rounded-lg text-xs font-semibold border border-stone-300 hover:border-stone-500 bg-white/70 hover:bg-white transition-all cursor-pointer shrink-0 text-stone-800"
+                  className="py-2 px-3 rounded-lg text-xs font-semibold border border-stone-300 hover:border-stone-500 bg-white/80 hover:bg-white transition-all text-stone-800 cursor-pointer shrink-0"
                 >
                   <span>Learn More</span>
                 </button>
+              </div>
+
+              {/* 5. Isolated Product Image Placed Below CTAs */}
+              <div className="relative w-full flex items-center justify-center pointer-events-none my-1">
+                {/* Floor shadow */}
+                <div className="absolute -bottom-1 inset-x-12 h-4 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
+
+                <div className="relative w-full flex items-center justify-center">
+                  <Image
+                    src={currentSlide.image}
+                    alt={currentSlide.altText}
+                    width={450}
+                    height={450}
+                    priority
+                    quality={95}
+                    className={`w-auto mx-auto object-contain drop-shadow-md select-none ${
+                      currentSlide.id === "herbals"
+                        ? "max-h-[250px] sm:max-h-[280px]"
+                        : "max-h-[260px] sm:max-h-[290px]"
+                    }`}
+                  />
+                </div>
               </div>
 
             </motion.div>
@@ -437,276 +402,194 @@ export function HeroSlider() {
         </div>
 
         {/* ========================================================================= */}
-        {/* DESKTOP VIEW (md:flex): Preserved 3D Layering Behind Product Pouch       */}
+        {/* DESKTOP/LAPTOP VIEW (md:grid): 2-Column Layout (Text Left | Product Right) */}
         {/* ========================================================================= */}
-        <div className="hidden md:flex relative items-center justify-center w-full h-full">
-          {/* Giant Back-Text: Liquid Horizontal Sliding */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 max-w-full overflow-hidden">
-            <AnimatePresence custom={direction} mode="popLayout">
-              <motion.div
-                key={`text-desk-${currentSlide.id}`}
-                custom={direction}
-                variants={{
-                  enter: (dir: number) => ({
-                    x: dir > 0 ? "85%" : "-85%",
-                    opacity: 0,
-                    scale: 0.96,
-                  }),
-                  center: {
-                    x: "0%",
-                    opacity: 0.9,
-                    scale: 1,
-                    transition: {
-                      duration: 0.75,
-                      ease: [0.16, 1, 0.3, 1],
-                    },
-                  },
-                  exit: (dir: number) => ({
-                    x: dir > 0 ? "-85%" : "85%",
-                    opacity: 0,
-                    scale: 0.96,
-                    transition: {
-                      duration: 0.65,
-                      ease: [0.16, 1, 0.3, 1],
-                    },
-                  }),
-                }}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="w-full max-w-full flex flex-col items-center justify-center text-center px-2 overflow-hidden transform-gpu will-change-transform"
-              >
-                <h1
-                  style={{ color: currentSlide.giantTextColor }}
-                  className={`text-[10vw] sm:text-[12vw] md:text-[120px] lg:text-[150px] font-black tracking-tight text-center leading-none select-none px-2 max-w-full overflow-hidden ${currentSlide.giantTextClass} drop-shadow-xs`}
+        <div className="hidden md:grid md:grid-cols-2 md:items-center max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 gap-8 lg:gap-12 w-full h-full relative z-10">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={`desktop-left-${currentSlide.id}`}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 30 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex flex-col justify-center text-left max-w-xl z-10"
+            >
+              {/* Eyebrow Tag */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/75 backdrop-blur-md border border-stone-300/70 text-stone-900 w-fit mb-3.5 shadow-2xs">
+                🌱 {currentSlide.tag}
+              </div>
+
+              {/* Large Headline */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight leading-[1.12] text-stone-900 mb-3.5">
+                {currentSlide.fullTitle}
+              </h1>
+
+              {/* Brief Description */}
+              <p className="text-sm lg:text-base text-stone-700 leading-relaxed font-medium max-w-lg mb-4.5">
+                {currentSlide.benefit}
+              </p>
+
+              {/* Bullet Points / Mini Stats */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                {currentSlide.miniStats.map((stat, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 rounded-full text-xs font-bold bg-white/75 backdrop-blur-md border border-stone-200/80 text-stone-900 shadow-2xs"
+                  >
+                    ✓ {stat}
+                  </span>
+                ))}
+              </div>
+
+              {/* Price & Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/85 backdrop-blur-md shadow-xs border border-white/80 text-stone-900 shrink-0">
+                  <span className="text-base lg:text-lg font-black text-stone-900">{currentSlide.price}</span>
+                  {currentSlide.originalPrice && (
+                    <span className="text-xs text-stone-500 line-through">{currentSlide.originalPrice}</span>
+                  )}
+                  <span className="text-xs font-bold text-stone-600 bg-stone-100 px-2 py-0.5 rounded-md ml-1">{currentSlide.weight}</span>
+                </div>
+
+                <button
+                  onClick={handleAddToCart}
+                  className="py-2.5 px-5 rounded-xl text-sm font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer"
                 >
-                  <span className="block max-w-full truncate">{currentSlide.title}</span>
-                  <span className="block mt-1 sm:mt-2 max-w-full truncate">{currentSlide.subtitle}</span>
-                </h1>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                  {isAdded ? (
+                    <>
+                      <svg
+                        className="w-4 h-4 text-emerald-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        strokeWidth={2.5}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>Added!</span>
+                    </>
+                  ) : (
+                    <span>Add to Cart</span>
+                  )}
+                </button>
 
-          {/* Center Product Showcase with Spring Scale-in */}
-          <div className="relative z-10 flex items-center justify-center w-full max-w-lg sm:max-w-xl lg:max-w-2xl">
-            <AnimatePresence mode="wait">
+                <button
+                  type="button"
+                  onClick={handleLearnMore}
+                  className="py-2.5 px-4 rounded-xl text-sm font-semibold border border-stone-300 hover:border-stone-500 bg-white/75 hover:bg-white transition-all text-stone-900 cursor-pointer shadow-xs"
+                >
+                  <span>Learn More</span>
+                </button>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Right Column: Prominent Isolated Product Visual */}
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={`desktop-right-${currentSlide.id}`}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                transition: { type: "spring", stiffness: 260, damping: 24 },
+              }}
+              exit={{ opacity: 0, scale: 0.9, y: -20, transition: { duration: 0.3 } }}
+              className="relative w-full h-full min-h-[380px] max-h-[500px] flex items-center justify-center p-2"
+            >
+              {/* Natural Floor Drop Shadow */}
+              <div className="absolute bottom-4 inset-x-12 h-6 rounded-full bg-black/15 blur-lg pointer-events-none -z-10" />
+
+              {/* Product Visual Container with 3D Spring Hover Interaction */}
               <motion.div
-                key={`prod-desk-${currentSlide.id}`}
-                initial={{ scale: 0.8, opacity: 0, y: 25 }}
-                animate={{
-                  scale: 1,
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 240,
-                    damping: 22,
-                  },
-                }}
-                exit={{
-                  scale: 0.82,
-                  opacity: 0,
-                  y: -20,
-                  transition: { duration: 0.35, ease: "easeInOut" },
-                }}
-                className="relative w-56 h-64 sm:w-64 sm:h-72 md:w-56 md:h-[256px] lg:w-64 lg:h-[280px] flex items-center justify-center transform-gpu will-change-transform"
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                className="relative w-full h-full flex items-center justify-center"
               >
-                {/* Natural Soft Radial Drop-Shadow at Base */}
-                <div className="absolute -bottom-3 inset-x-6 sm:inset-x-10 h-6 rounded-full bg-black/20 blur-md pointer-events-none -z-10" />
-
-                {/* Product Glow Aura */}
-                <div
-                  className="absolute inset-4 rounded-full blur-2xl opacity-30 pointer-events-none -z-10"
-                  style={{ backgroundColor: currentSlide.bgColor }}
+                <Image
+                  src={currentSlide.image}
+                  alt={currentSlide.altText}
+                  width={700}
+                  height={700}
+                  priority
+                  quality={95}
+                  className={`w-auto object-contain select-none drop-shadow-md ${
+                    currentSlide.id === "herbals"
+                      ? "max-h-[440px] lg:max-h-[490px]"
+                      : "max-h-[430px] lg:max-h-[470px]"
+                  }`}
                 />
-
-                {/* Main Product Cutout Image with 3D Spring Hover Interaction & Dynamic Drop Shadow */}
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="relative w-full h-full flex items-center justify-center cursor-pointer transition-[filter] duration-300 ease-out hover:[filter:drop-shadow(0_12px_20px_rgba(0,0,0,0.1))] transform-gpu will-change-transform"
-                >
-                  <Image
-                    src={currentSlide.image}
-                    alt={currentSlide.altText}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 280px"
-                    quality={95}
-                    className="object-contain p-1 select-none"
-                    priority
-                  />
-                </motion.div>
               </motion.div>
-            </AnimatePresence>
-          </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
       </div>
 
-      {/* 5. Bottom Controls Dock (Left: Weight + Pause with Info Card directly above, Center: Add to Cart + Learn More + Dots) */}
-      <footer className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-5 sm:pb-7 flex flex-col gap-3">
-        {/* Floating Product Info Card: Scaled up 10%, Full Title (No Truncation), No Price Tag */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`info-card-${currentSlide.id}`}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 10 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="hidden md:flex items-center gap-3 sm:gap-3.5 md:gap-4 backdrop-blur-md bg-white/35 border border-white/45 rounded-2xl md:rounded-3xl p-3 sm:p-4 md:p-4.5 shadow-xl w-[92%] max-w-[360px] md:max-w-[420px] absolute bottom-[90px] sm:bottom-[100px] md:bottom-[110px] lg:bottom-[120px] left-1/2 md:left-8 -translate-x-1/2 md:translate-x-0 z-20 pointer-events-auto transform-gpu will-change-transform"
+      {/* 5. Bottom Controls Dock (Left: Weight Badge + Pause Button | Center: Pagination Dots | Right: Prev/Next Buttons) */}
+      <footer className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 pb-4 sm:pb-6 flex items-center justify-between gap-4">
+        {/* Left Controls: Weight Pill + Single Pause Button */}
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <div className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/80 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 transition-transform">
+            <span>{currentSlide.weight}</span>
+          </div>
+
+          <button
+            onClick={() => setIsPlaying((prev) => !prev)}
+            aria-label={isPlaying ? "Pause auto-slide" : "Resume auto-slide"}
+            className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-xs border ${
+              isPlaying
+                ? "bg-white/80 hover:bg-white text-stone-900 border-white/70 shadow-sm"
+                : "bg-black/40 hover:bg-black/60 text-white border-white/30"
+            }`}
           >
-            {/* Left 3-Badge Stack: Scaled up & Vertically Centered */}
-            <div className="flex flex-col gap-1.5 border-r border-white/30 pr-2.5 md:pr-3.5 shrink-0 self-center">
-              {currentSlide.miniStats.map((stat, i) => (
-                <span
-                  key={i}
-                  className="px-2 py-0.5 rounded-full text-[9px] md:text-[10px] font-bold tracking-tight bg-white/45 text-stone-900 border border-white/50 whitespace-nowrap shadow-2xs text-center"
-                >
-                  {stat}
-                </span>
-              ))}
-            </div>
+            <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+            </svg>
+          </button>
+        </div>
 
-            {/* Product Thumbnail: Scaled up & Vertically Centered */}
-            <div className="relative w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/45 backdrop-blur-sm p-1 shrink-0 flex items-center justify-center shadow-inner self-center">
-              <Image
-                src={currentSlide.image}
-                alt={currentSlide.fullTitle}
-                fill
-                className="object-contain p-0.5 md:p-1"
-                sizes="(max-width: 640px) 48px, 56px"
+        {/* Center: Pagination Dots */}
+        <div className="flex items-center gap-2">
+          {SLIDES.map((slide, idx) => {
+            const isActive = idx === currentSlideIndex;
+            return (
+              <button
+                key={slide.id}
+                onClick={() => goToSlide(idx, idx > currentSlideIndex ? 1 : -1)}
+                aria-label={`Go to slide ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  isActive
+                    ? "w-7 sm:w-8 bg-current shadow-xs"
+                    : "w-2 bg-current/40 hover:bg-current/75"
+                }`}
               />
-            </div>
+            );
+          })}
+        </div>
 
-            {/* Full Product Title (No Truncation) & Description - Price Tag Removed */}
-            <div className="flex flex-col justify-center min-w-0 flex-1">
-              <h3 className="text-lg md:text-xl font-bold text-stone-900 tracking-tight whitespace-normal leading-snug">
-                {currentSlide.fullTitle}
-              </h3>
-              <p className="text-xs md:text-sm text-stone-800/90 leading-snug mt-1 font-medium whitespace-normal">
-                {currentSlide.benefit}
-              </p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        {/* Right: Prev & Next Navigation Controls */}
+        <div className="flex items-center gap-1.5">
+          <button
+            onClick={prevSlide}
+            aria-label="Previous slide"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/45 hover:bg-white text-stone-900 backdrop-blur-md flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
 
-        <div className="flex flex-wrap items-center justify-between gap-3 sm:gap-4">
-          
-          {/* Left Controls: Weight Pill + Single Pause Button */}
-          <div className="flex items-center gap-2.5 sm:gap-3">
-            {/* Weight Pill Badge */}
-            <div className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/80 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 transition-transform">
-              <span>{currentSlide.weight}</span>
-            </div>
-
-            {/* Single Clean Round Pause Button (Toggles Auto-Slide) */}
-            <button
-              onClick={() => setIsPlaying((prev) => !prev)}
-              aria-label={isPlaying ? "Pause auto-slide" : "Resume auto-slide"}
-              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-xs border ${
-                isPlaying
-                  ? "bg-white/80 hover:bg-white text-stone-900 border-white/70 shadow-sm"
-                  : "bg-black/40 hover:bg-black/60 text-white border-white/30"
-              }`}
-            >
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Center Dock: Add to Cart & Learn More with Pagination Dots right beneath (Shifted right on desktop to prevent card collision) */}
-          <div className="flex flex-col items-center gap-2 md:translate-x-10 lg:translate-x-14">
-            {/* Center Pill: Hidden on Mobile, Only Visible on Desktop/Tablet */}
-            <div className="hidden md:flex items-center gap-2.5 sm:gap-3 bg-white/45 backdrop-blur-md border border-white/65 rounded-2xl py-1.5 px-3 sm:py-2 sm:px-4 shadow-lg">
-              {/* Formatted Price & Strikethrough */}
-              <div className="flex items-center gap-1.5 px-1">
-                <span className="text-xs sm:text-sm font-black text-current">
-                  {currentSlide.price}
-                </span>
-                {currentSlide.originalPrice && (
-                  <span className="text-[11px] sm:text-xs font-normal opacity-60 line-through">
-                    {currentSlide.originalPrice}
-                  </span>
-                )}
-              </div>
-
-              {/* Add to Cart CTA */}
-              <button
-                onClick={handleAddToCart}
-                className="py-2 sm:py-2.5 px-4 sm:px-5 rounded-xl text-xs sm:text-sm font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer"
-              >
-                {isAdded ? (
-                  <>
-                    <svg
-                      className="w-4 h-4 text-emerald-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      strokeWidth={2.5}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Added!</span>
-                  </>
-                ) : (
-                  <span>Add to Cart</span>
-                )}
-              </button>
-
-              {/* Learn More Button */}
-              <button
-                type="button"
-                onClick={handleLearnMore}
-                className="py-2 sm:py-2.5 px-3.5 sm:px-4 rounded-xl text-xs sm:text-sm font-semibold border border-current/30 hover:bg-white/40 transition-all flex items-center gap-1.5 cursor-pointer"
-              >
-                <span>Learn More</span>
-              </button>
-            </div>
-
-            {/* Pagination Dots right beneath the capsule dock */}
-            <div className="flex items-center gap-1.5 pt-0.5">
-              {SLIDES.map((slide, idx) => {
-                const isActive = idx === currentSlideIndex;
-                return (
-                  <button
-                    key={slide.id}
-                    onClick={() => goToSlide(idx, idx > currentSlideIndex ? 1 : -1)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                      isActive
-                        ? "w-7 sm:w-8 bg-current shadow-xs"
-                        : "w-2 bg-current/40 hover:bg-current/75"
-                    }`}
-                  />
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right Spacer / Prev & Next Controls */}
-          <div className="flex items-center gap-1.5">
-            <button
-              onClick={prevSlide}
-              aria-label="Previous slide"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/45 hover:bg-white text-stone-900 backdrop-blur-md flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button
-              onClick={nextSlide}
-              aria-label="Next slide"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/45 hover:bg-white text-stone-900 backdrop-blur-md flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
+          <button
+            onClick={nextSlide}
+            aria-label="Next slide"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/45 hover:bg-white text-stone-900 backdrop-blur-md flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </footer>
 
