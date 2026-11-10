@@ -240,31 +240,31 @@ export function ProductCatalog() {
   const displayedProducts = HOMEPAGE_3_PRODUCTS;
 
   return (
-    <section id="featured-products" className="relative py-14 sm:py-24 transition-colors duration-700 ease-in-out overflow-hidden">
+    <section id="featured-products" className="relative py-12 sm:py-20 bg-[#FAF9F5] transition-colors duration-700 ease-in-out overflow-hidden">
       {/* Organic Botanical Watermark Accents in Section Background */}
       <BotanicalWatermark
         type="wheat"
         className="absolute top-10 -left-12 w-[420px] h-[420px]"
-        opacity={0.22}
+        opacity={0.16}
         size={420}
       />
       <BotanicalWatermark
         type="herbal"
         className="absolute bottom-10 -right-12 w-[420px] h-[420px]"
-        opacity={0.28}
+        opacity={0.18}
         size={420}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         {/* Editorial Section Heading with Brand Logo opposite title */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-6 sm:mb-10">
           <div className="max-w-xl">
             <span className="eyebrow">Essentials</span>
-            <h2 className="mt-3 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#1E1510] leading-snug">
+            <h2 className="mt-2 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#2C2A29] leading-tight">
               Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>
-          <div className="flex flex-col items-start md:items-end gap-3 max-w-sm shrink-0">
+          <div className="flex flex-col items-start md:items-end gap-2.5 max-w-sm shrink-0">
             <Link
               href="/"
               className="inline-block transition-transform duration-300 hover:scale-[1.02] focus:outline-none"
@@ -273,9 +273,9 @@ export function ProductCatalog() {
               <Image
                 src="/logo.png"
                 alt="Usman's Pure Products"
-                width={240}
-                height={68}
-                className="w-auto h-11 sm:h-12 md:h-14 object-contain object-left md:object-right"
+                width={200}
+                height={55}
+                className="w-auto h-8 sm:h-10 md:h-12 object-contain object-left md:object-right"
                 priority
               />
             </Link>
@@ -285,25 +285,25 @@ export function ProductCatalog() {
           </div>
         </div>
 
-        {/* Clean Header Bar with Direct Link to Dedicated Shop Page (Replacing Tabs) */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-stone-200/80 pb-4 mb-8 sm:mb-12">
+        {/* Clean Header Bar with Direct Link to Dedicated Shop Page */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-stone-200/80 pb-4 mb-6 sm:mb-10">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
-            <span className="text-xs sm:text-sm font-semibold text-stone-700 uppercase tracking-wider">
+            <span className="w-2 h-2 rounded-full bg-[#8B3A22] animate-pulse" />
+            <span className="text-xs sm:text-sm font-semibold text-[#2C2A29] uppercase tracking-wider">
               Featured Staples (2 Pure Flours &bull; 1 Herbal Tea)
             </span>
           </div>
           <Link
             href="/products"
-            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B3A22] hover:text-[#1E1510] transition-colors self-start sm:self-auto"
+            className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[#8B3A22] hover:text-[#2C2A29] transition-colors self-start sm:self-auto"
           >
             <span>View All Products</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" strokeWidth={2} />
           </Link>
         </div>
 
-        {/* Product Responsive Grid - Side-by-Side 2 Columns on Mobile, 3 on Desktop */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-6 md:gap-8 gap-y-6 sm:gap-y-10 md:gap-y-12">
+        {/* Product Strict 2-Column Responsive Grid on Mobile, 3 on Desktop */}
+        <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 md:grid-cols-3 gap-y-6 sm:gap-y-10">
           {displayedProducts.map((product) => {
             const isAdded = addedIds[product.id];
             const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
@@ -319,44 +319,48 @@ export function ProductCatalog() {
                 className="group relative flex flex-col justify-between"
               >
                 <div>
-                  {/* Full natural packaging shoot photograph */}
-                  <div className="relative aspect-[4/5] w-full bg-[#EFEAE2] overflow-hidden rounded-xl p-0">
+                  {/* Floating Edge-to-Edge Image Frame: Soft rounded-2xl, no boxy borders */}
+                  <div className="relative aspect-[4/5] w-full bg-[#F2EDE4]/70 overflow-hidden rounded-2xl p-0">
                     <Link href={product.detailUrl} className="absolute inset-0" aria-label={product.title}>
                       <Image
                         src={product.image}
                         alt={product.title}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 33vw"
-                        quality={100}
+                        quality={85}
                         loading="lazy"
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                     </Link>
 
-                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] bg-[#F6F1E9]/95 backdrop-blur-xs px-2 py-0.5 rounded-sm pointer-events-none shadow-2xs">
+                    <span className="absolute top-2 left-2 sm:top-3 sm:left-3 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] bg-[#FAF9F5]/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full pointer-events-none shadow-2xs">
                       Sale
                     </span>
 
                     <button
                       onClick={() => setQuickViewProduct(product)}
-                      className="hidden sm:flex absolute bottom-0 inset-x-0 py-3 bg-[#1E1510]/90 text-[#F6F1E9] text-xs font-bold uppercase tracking-[0.16em] items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out cursor-pointer"
+                      className="hidden sm:flex absolute bottom-0 inset-x-0 py-3 bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-bold uppercase tracking-[0.16em] items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out cursor-pointer"
                     >
                       <Eye className="w-4 h-4" strokeWidth={1.5} /> Quick View
                     </button>
                   </div>
 
-                  {/* Text */}
-                  <div className="pt-2 sm:pt-4 flex flex-col">
-                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] truncate block">{product.categoryBadge}</span>
+                  {/* Clean Left-Aligned Floating Content */}
+                  <div className="pt-2.5 sm:pt-4 flex flex-col">
+                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] truncate block">
+                      {product.categoryBadge}
+                    </span>
 
                     <Link href={product.detailUrl}>
-                      <h3 className="mt-1 font-serif text-xs sm:text-base md:text-lg font-bold text-stone-900 leading-tight sm:leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
+                      <h3 className="mt-1 font-serif text-xs sm:text-base md:text-lg font-bold text-[#2C2A29] leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
                         {product.title}
                       </h3>
                     </Link>
 
                     {/* Clean 1-line everyday benefit */}
-                    <p className="mt-0.5 sm:mt-1 text-[11px] sm:text-sm text-stone-700 font-medium line-clamp-1">{product.highlight}</p>
+                    <p className="mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-[#6B5D52] font-medium line-clamp-1 leading-relaxed">
+                      {product.highlight}
+                    </p>
 
                     {/* Pack size — clear touch-friendly toggles */}
                     <div className="mt-2 sm:mt-2.5 flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5">
@@ -366,10 +370,10 @@ export function ProductCatalog() {
                           onClick={() =>
                             setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
                           }
-                          className={`px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-md sm:rounded-lg transition-colors duration-200 cursor-pointer border shrink-0 ${
+                          className={`px-2.5 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs font-semibold rounded-full transition-colors duration-200 cursor-pointer border shrink-0 ${
                             currentSize === opt.size
-                              ? "bg-[#FAF5EE] text-[#8B3A22] border-2 border-[#8B3A22] font-bold shadow-2xs"
-                              : "bg-white text-stone-700 border-stone-200 hover:border-stone-400"
+                              ? "bg-[#F2EDE4] text-[#8B3A22] border-[#8B3A22] font-bold shadow-2xs"
+                              : "bg-white/80 text-[#2C2A29] border-stone-200 hover:border-stone-400"
                           }`}
                         >
                           {opt.size}
@@ -379,32 +383,25 @@ export function ProductCatalog() {
 
                     {/* Price & Strikethrough */}
                     <div className="mt-2 sm:mt-3 flex items-baseline gap-1 sm:gap-1.5 flex-wrap">
-                      <span className="text-sm sm:text-xl font-extrabold font-sans text-stone-900">
+                      <span className="text-sm sm:text-xl font-extrabold font-sans text-[#2C2A29]">
                         Rs {currentOption.price.toLocaleString()}
                       </span>
-                      <span className="text-[10px] sm:text-sm font-normal font-sans text-stone-500 line-through ml-1 sm:ml-1.5">
+                      <span className="text-[10px] sm:text-sm font-normal font-sans text-[#6B5D52] line-through ml-1 sm:ml-1.5">
                         Rs {currentOption.originalPrice.toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="mt-2.5 sm:mt-4 grid grid-cols-1 min-[440px]:grid-cols-2 gap-1.5 sm:gap-2">
-                  <Link
-                    href={product.detailUrl || "/products"}
-                    className="py-1.5 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl border border-stone-300 hover:border-stone-900 bg-white hover:bg-stone-50 text-stone-800 text-[11px] sm:text-sm font-semibold transition-all cursor-pointer flex items-center justify-center gap-1 active:scale-98 shadow-2xs"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-stone-600" />
-                  </Link>
-
+                {/* Minimalist Full-Width CTA Button with Active Scale */}
+                <div className="mt-2.5 sm:mt-4 flex flex-col gap-1.5 sm:gap-2">
                   <button
                     type="button"
                     onClick={(e) => handleAddToCart(product, currentOption, e)}
-                    className={`py-2 sm:py-2.5 px-2 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-bold tracking-wide min-h-[36px] sm:min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer shadow-ambient active:scale-98 ${
+                    className={`w-full py-2.5 sm:py-3 px-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-bold tracking-wide min-h-[38px] sm:min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer active:scale-95 transition-transform ${
                       isAdded
-                        ? "bg-emerald-600 text-white"
-                        : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                        ? "bg-[#1E3A2F] text-white"
+                        : "bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5]"
                     }`}
                   >
                     {isAdded ? (
@@ -417,6 +414,12 @@ export function ProductCatalog() {
                       </>
                     )}
                   </button>
+                  <Link
+                    href={product.detailUrl || "/products"}
+                    className="w-full text-center py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold text-[#6B5D52] hover:text-[#2C2A29] transition-colors"
+                  >
+                    Details &rarr;
+                  </Link>
                 </div>
               </article>
             );
@@ -463,7 +466,7 @@ export function ProductCatalog() {
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
-                  quality={100}
+                  quality={85}
                   loading="lazy"
                   className="w-full h-full object-cover p-0 m-0"
                 />

@@ -13,7 +13,7 @@ export function HeroFeatureShowcase() {
           width={1024}
           height={765}
           priority
-          quality={100}
+          quality={85}
           className="w-full h-auto object-contain max-h-[500px] md:max-h-[600px] mix-blend-multiply select-none pointer-events-none"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1024px"
         />

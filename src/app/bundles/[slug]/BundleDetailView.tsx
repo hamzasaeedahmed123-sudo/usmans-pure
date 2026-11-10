@@ -123,7 +123,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                     fill
                     priority
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    quality={100}
+                    quality={85}
                     className="w-full h-full object-cover p-0 m-0 transition-transform duration-500 ease-out group-hover:scale-105"
                   />
 
@@ -460,7 +460,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                           alt={other.title}
                           fill
                           sizes="(max-width: 640px) 50vw, 33vw"
-                          quality={100}
+                          quality={85}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                         <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 px-2 py-0.5 rounded-full text-[9px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
@@ -511,7 +511,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                   src={bundle.image}
                   alt={bundle.title}
                   fill
-                  quality={100}
+                  quality={85}
                   sizes="(max-width: 1024px) 100vw, 896px"
                   className="w-full h-full object-cover p-0 m-0"
                 />

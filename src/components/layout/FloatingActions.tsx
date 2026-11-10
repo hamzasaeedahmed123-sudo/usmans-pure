@@ -33,7 +33,7 @@ export function FloatingActions() {
           <button
             type="button"
             onClick={toggleCart}
-            className="relative w-12 h-12 sm:w-14 sm:h-14 min-w-[48px] min-h-[48px] rounded-full bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8B3A22]/50"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 min-w-[48px] min-h-[48px] rounded-full bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5] shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1E3A2F]/50"
             aria-label={`View pure basket (${totalCount} items)`}
           >
             <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.75} />
@@ -50,7 +50,7 @@ export function FloatingActions() {
           </button>
 
           {/* Hover Tooltip */}
-          <span className="pointer-events-none absolute right-full top-1/2 -translate-y-1/2 mr-3 px-2.5 py-1 rounded bg-[#1E1510] text-[#F6F1E9] text-[11px] font-medium shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:block">
+          <span className="pointer-events-none absolute right-full top-1/2 -translate-y-1/2 mr-3 px-2.5 py-1 rounded-full bg-[#2C2A29] text-[#FAF9F5] text-[11px] font-medium shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 hidden sm:block">
             Pure Basket ({totalCount})
           </span>
         </div>

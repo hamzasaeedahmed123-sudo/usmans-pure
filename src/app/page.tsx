@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import { Header } from "@/components/Header";
 import { HeroSlider } from "@/components/home/HeroSlider";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { ProductVideoShowcase } from "@/components/home/ProductVideoShowcase";
@@ -83,6 +84,9 @@ export default function Home() {
     <AmbientThemeWrapper className="min-h-screen selection:bg-amber-500/20 selection:text-amber-900">
       {/* Primary Semantic H1 for Search Engine Dominance */}
       <h1 className="sr-only">FRESHLY MILLED CHAKKI Atta &amp; Organics in Pakistan</h1>
+
+      {/* Primary Sticky Header */}
+      <Header />
 
       {/* 1. Hero Section Slider */}
       <HeroSlider />

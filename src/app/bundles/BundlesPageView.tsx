@@ -141,7 +141,7 @@ export function BundlesPageView() {
                             alt={bundle.title}
                             fill
                             sizes="(max-width: 768px) 50vw, 33vw"
-                            quality={100}
+                            quality={85}
                             className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                           />
                         </Link>

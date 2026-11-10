@@ -168,7 +168,7 @@ export function FlagshipFeaturedProduct() {
               width={1200}
               height={896}
               priority
-              quality={100}
+              quality={85}
               className="w-full h-auto object-contain max-h-[500px] md:max-h-[600px] mix-blend-multiply select-none pointer-events-none"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
             />
@@ -298,7 +298,7 @@ export function FlagshipFeaturedProduct() {
               {/* Primary CTA: Add To Cart */}
               <button
                 onClick={handleAddToCart}
-                className="flex-1 h-12 px-6 rounded-2xl bg-[#8B3A22] hover:bg-[#722F1B] active:scale-[0.98] text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer"
+                className="flex-1 h-12 px-6 rounded-2xl bg-[#2C2A29] hover:bg-[#1E3A2F] active:scale-95 text-[#FAF9F5] font-bold text-sm tracking-wide shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer transition-transform"
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span>
@@ -311,7 +311,7 @@ export function FlagshipFeaturedProduct() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-12 px-5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0"
+                className="h-12 px-5 rounded-2xl bg-[#1E3A2F] hover:bg-[#152a22] active:scale-95 text-[#FAF9F5] font-bold text-sm shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0 transition-transform"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" variant="white" />
                 <span>Order on WhatsApp</span>

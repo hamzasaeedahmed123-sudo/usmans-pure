@@ -182,7 +182,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
                         alt={product.title}
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        quality={100}
+                        quality={85}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </Link>
@@ -277,7 +277,7 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
-                  quality={100}
+                  quality={85}
                   className="w-full h-full object-cover p-0 m-0"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase bg-[#F6F1E9] text-[#8B3A22]">

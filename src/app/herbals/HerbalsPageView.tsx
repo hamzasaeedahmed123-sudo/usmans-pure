@@ -47,7 +47,7 @@ export function HerbalsPageView() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F2F7F4] text-stone-900 transition-colors duration-700 ease-in-out flex flex-col justify-between">
+    <div className="min-h-screen bg-[#FAF9F5] text-[#2C2A29] transition-colors duration-700 ease-in-out flex flex-col justify-between">
       <Header isSolid theme="green" />
 
       <main className="flex-1">
@@ -136,107 +136,95 @@ export function HerbalsPageView() {
             />
           </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex items-center justify-between mb-8 pb-4 border-b border-[#D0E2D6]">
+          <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex items-center justify-between mb-8 pb-4 border-b border-stone-200/80">
               <div>
-                <h2 className="text-xl font-bold text-stone-900">Pure Herbal Infusions</h2>
-                <p className="text-xs text-stone-500">Showing {teaProducts.length} pure organic teas</p>
+                <h2 className="text-xl sm:text-2xl font-serif font-bold text-[#2C2A29]">Pure Herbal Infusions</h2>
+                <p className="text-xs text-[#6B5D52]">Showing {teaProducts.length} pure organic teas</p>
               </div>
               <Link
                 href="/products"
-                className="text-xs font-bold text-[#2D5A3E] hover:text-stone-900 transition flex items-center gap-1"
+                className="text-xs font-bold text-[#1E3A2F] hover:text-[#2C2A29] transition flex items-center gap-1"
               >
                 <span>View All Store Products</span>
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
               {teaProducts.map((product) => {
                 const isAdded = addedIds[product.id];
                 return (
                   <div
                     key={product.id}
-                    className="group relative flex flex-col bg-white rounded-sm border border-[#D0E2D6]/80 hover:border-[#2D5A3E]/60 shadow-xs hover:shadow-ambient transition-all duration-300 overflow-hidden"
+                    className="group relative flex flex-col justify-between transition-all duration-300"
                   >
-                    {/* Authentic Watercolor Botanical Leaf Watermark inside Card Background */}
-                    <div
-                      className="absolute -bottom-4 -right-4 w-44 h-44 pointer-events-none select-none z-0 opacity-40 group-hover:opacity-55 transition-opacity duration-300"
-                      aria-hidden="true"
-                    >
-                      <Image
-                        src="/images/watermarks/leaves-free-img.png"
-                        alt=""
-                        fill
-                        className="object-contain object-bottom-right"
-                      />
-                    </div>
-
-                    <div className="relative w-full aspect-square bg-stone-100 overflow-hidden p-0 border-b border-stone-100 flex items-center justify-center">
+                    {/* Floating Product Image Frame: Soft rounded-2xl on #FAF9F5 */}
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#F2EDE4]/70 mb-2.5 sm:mb-3">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">
                         <Image
                           src={product.image}
                           alt={product.title}
                           fill
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          quality={100}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                          quality={85}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                         />
                       </Link>
 
-                      <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 pointer-events-none">
-                        <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-[2px] text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9] text-[#8B3A22]">
+                      <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10 pointer-events-none">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#FAF9F5]/90 text-[#1E3A2F] backdrop-blur-xs">
                           Sale
                         </span>
                       </div>
 
-                      <div className="hidden sm:flex absolute inset-x-4 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
+                      <div className="hidden sm:flex absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
                         <button
                           onClick={() => setQuickViewProduct(product)}
-                          className="w-full py-2 px-3 rounded-lg bg-white/95 text-stone-900 text-xs font-bold shadow-ambient hover:bg-[#1E1510] hover:text-white transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer"
+                          className="w-full py-2 px-3 rounded-xl bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-semibold hover:bg-[#2C2A29] transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer shadow-xs active:scale-95"
                         >
                           <Eye className="w-3.5 h-3.5" /> Quick View
                         </button>
                       </div>
                     </div>
 
-                    <div className="p-3 md:p-5 flex-1 flex flex-col justify-between relative z-10">
+                    <div className="flex-1 flex flex-col justify-between relative z-10">
                       <div>
-                        <div className="text-xs font-semibold uppercase tracking-wider text-emerald-900 mb-1">
+                        <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#1E3A2F] mb-1">
                           {product.weight}
                         </div>
                         <Link href={`/product/${product.id}`}>
-                          <h3 className="text-base sm:text-lg font-bold font-serif text-stone-900 leading-snug line-clamp-2 hover:text-emerald-800 transition min-h-[2.75rem]">
+                          <h3 className="text-xs sm:text-base font-serif font-bold text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#1E3A2F] transition min-h-[2rem] sm:min-h-[2.5rem]">
                             {product.title}
                           </h3>
                         </Link>
                       </div>
 
-                      <div className="mt-3 pt-3 sm:mt-5 sm:pt-4 border-t border-stone-100 flex flex-col gap-2.5">
-                        <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                          <span className="text-lg sm:text-xl font-extrabold font-sans text-stone-900">
+                      <div className="mt-2.5 flex flex-col gap-2">
+                        <div className="flex items-baseline gap-1.5 flex-wrap">
+                          <span className="text-sm sm:text-base font-extrabold text-[#2C2A29]">
                             {product.priceFormatted}
                           </span>
-                          <span className="text-sm font-normal font-sans text-stone-500 line-through ml-1.5">
+                          <span className="text-[10px] sm:text-xs text-[#6B5D52] line-through">
                             {product.originalPriceFormatted}
                           </span>
                         </div>
 
                         <button
                           onClick={(e) => handleAddToCart(product, e)}
-                          className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer min-h-[48px] shadow-ambient ${
+                          className={`w-full py-2 sm:py-2.5 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl sm:rounded-2xl flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer min-h-[38px] sm:min-h-[42px] active:scale-95 transition-transform ${
                             isAdded
-                              ? "bg-emerald-600 text-white"
-                              : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                              ? "bg-[#1E3A2F] text-white"
+                              : "bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5]"
                           }`}
                         >
                           {isAdded ? (
                             <>
-                              <Check className="w-4 h-4 stroke-[2.5]" /> Added
+                              <Check className="w-3.5 h-3.5 stroke-[2.5]" /> Added
                             </>
                           ) : (
                             <>
-                              <ShoppingBag className="w-4 h-4" /> Add to Cart
+                              <ShoppingBag className="w-3.5 h-3.5" /> Add to Cart
                             </>
                           )}
                         </button>
@@ -322,7 +310,7 @@ export function HerbalsPageView() {
                   alt={quickViewProduct.title}
                   fill
                   sizes="320px"
-                  quality={100}
+                  quality={85}
                   className="w-full h-full object-cover p-0 m-0"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-[2px] text-xs font-medium uppercase bg-[#F6F1E9] text-[#8B3A22]">

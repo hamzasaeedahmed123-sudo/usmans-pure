@@ -224,7 +224,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                             alt={`${product.title} - View ${idx + 1}`}
                             fill
                             sizes="(max-width: 1024px) 100vw, 50vw"
-                            quality={100}
+                            quality={85}
                             priority={idx === 0}
                             className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
                           />
@@ -296,7 +296,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                               alt=""
                               fill
                               sizes="(max-width: 640px) 64px, 80px"
-                              quality={100}
+                              quality={75}
                               className="w-full h-full object-cover"
                             />
                           </button>

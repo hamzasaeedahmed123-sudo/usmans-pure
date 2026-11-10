@@ -41,10 +41,11 @@ export function ProductVideoShowcase() {
           <video
             ref={videoRef}
             src="/videos/flour-production-process.mp4"
+            poster="/images/hero/flour-backdrop.jpg"
             className="w-full h-auto aspect-video sm:aspect-[16/9] object-cover cursor-pointer bg-stone-100"
             controls={hasStarted}
             playsInline
-            preload="metadata"
+            preload="none"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
             onClick={togglePlay}

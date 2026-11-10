@@ -46,6 +46,32 @@ export function CustomerReviews() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [modalError, setModalError] = useState<string | null>(null);
   const [modalTouched, setModalTouched] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchDeltaX, setTouchDeltaX] = useState<number>(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsHovered(true);
+    setTouchStartX(e.touches[0].clientX);
+    setTouchDeltaX(0);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX === null) return;
+    setTouchDeltaX(e.touches[0].clientX - touchStartX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX !== null) {
+      if (touchDeltaX < -40) {
+        handleNext();
+      } else if (touchDeltaX > 40) {
+        handlePrev();
+      }
+    }
+    setTouchStartX(null);
+    setTouchDeltaX(0);
+    setIsHovered(false);
+  };
 
   // Responsive slide step: 1 card on mobile, 2 on tablet, 3 on desktop
   const totalSlides = displayReviews.length;
@@ -109,26 +135,26 @@ export function CustomerReviews() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-[#FAF7F2] border-b border-[#1E1510]/10 overflow-hidden">
+    <section className="py-12 sm:py-16 bg-[#FAF9F5] border-b border-stone-200/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Header with CTAs next to Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="eyebrow">Customer Reviews</span>
-              <span className="text-[#1E1510]/20">&bull;</span>
+              <span className="text-[#2C2A29]/20">&bull;</span>
               <div className="flex items-center text-amber-500">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="text-xs font-semibold text-stone-700">Customer Rating</span>
+              <span className="text-xs font-semibold text-[#2C2A29]">Customer Rating</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-serif text-[#1E1510] leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-serif text-[#2C2A29] leading-tight">
               Loved by Families <em className="italic font-normal text-[#8B3A22]">Across Pakistan</em>
             </h2>
-            <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52]">
+            <p className="mt-1.5 text-xs sm:text-sm text-[#6B5D52] leading-relaxed">
               Real experiences from households who upgraded to FRESHLY MILLED CHAKKI flour and pure essentials.
             </p>
           </div>
@@ -138,7 +164,7 @@ export function CustomerReviews() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-[#1E1510] hover:bg-[#8B3A22] text-[#FAF7F2] text-xs font-bold uppercase tracking-[0.14em] transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5] text-xs font-bold uppercase tracking-[0.14em] transition-all cursor-pointer shadow-xs active:scale-95"
             >
               <PenLine className="w-3.5 h-3.5" />
               <span>+ Write a Review</span>
@@ -146,7 +172,7 @@ export function CustomerReviews() {
 
             <Link
               href="/reviews"
-              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#8B3A22] hover:text-[#1E1510] transition-colors py-2 px-2"
+              className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.14em] text-[#8B3A22] hover:text-[#2C2A29] transition-colors py-2 px-2"
             >
               <span>View All Reviews</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -159,6 +185,9 @@ export function CustomerReviews() {
           className="relative"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           {/* Slider viewport */}
           <div className="overflow-hidden">
@@ -174,7 +203,7 @@ export function CustomerReviews() {
                   className="w-full sm:w-1/2 lg:w-1/3 shrink-0 px-2.5"
                   style={{ minWidth: "100%" }}
                 >
-                  <div className="bg-[#F5F2EB]/90 rounded-2xl p-5 sm:p-6 h-full flex flex-col justify-between transition-colors duration-300">
+                  <div className="bg-[#F2EDE4]/70 border border-stone-200/60 rounded-2xl p-5 sm:p-6 h-full flex flex-col justify-between transition-colors duration-300">
                     <div>
                       {/* Top Bar: Stars + Verified Badge */}
                       <div className="flex items-center justify-between gap-2 mb-3">
@@ -184,7 +213,7 @@ export function CustomerReviews() {
                           ))}
                         </div>
                         {r.verified && (
-                          <span className="tag-quiet !text-[10px] text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-2 py-0.5 rounded-xs font-semibold">
+                          <span className="text-[10px] text-[#1E3A2F] bg-[#1E3A2F]/10 border border-[#1E3A2F]/20 px-2.5 py-0.5 rounded-full font-bold">
                             Verified Buyer
                           </span>
                         )}
@@ -196,7 +225,7 @@ export function CustomerReviews() {
                       </div>
 
                       {/* Review Quote text */}
-                      <p className="text-[15px] sm:text-base text-stone-800 leading-relaxed font-normal">
+                      <p className="text-[15px] sm:text-base text-[#2C2A29] leading-relaxed font-normal">
                         &ldquo;{r.review || (r as any).text}&rdquo;
                       </p>
 
@@ -271,8 +300,8 @@ export function CustomerReviews() {
                   aria-label={`Go to slide ${i + 1}`}
                   className={`transition-all duration-300 rounded-full cursor-pointer ${
                     currentIndex === i
-                      ? "w-6 h-1.5 bg-[#8B3A22]"
-                      : "w-1.5 h-1.5 bg-stone-300 hover:bg-stone-400"
+                      ? "w-8 h-2 bg-[#8B3A22]"
+                      : "w-2 h-2 bg-stone-300 hover:bg-stone-400"
                   }`}
                 />
               ))}
@@ -283,14 +312,14 @@ export function CustomerReviews() {
               <button
                 onClick={handlePrev}
                 aria-label="Previous Review"
-                className="w-8 h-8 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer shadow-2xs"
+                className="w-9 h-9 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-[#2C2A29] flex items-center justify-center transition active:scale-95 cursor-pointer shadow-2xs"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={handleNext}
                 aria-label="Next Review"
-                className="w-8 h-8 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer shadow-2xs"
+                className="w-9 h-9 rounded-full bg-white hover:bg-stone-100 border border-stone-200 text-[#2C2A29] flex items-center justify-center transition active:scale-95 cursor-pointer shadow-2xs"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
