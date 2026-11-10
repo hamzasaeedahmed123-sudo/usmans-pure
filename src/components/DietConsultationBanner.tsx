@@ -19,7 +19,7 @@ export function DietConsultationBanner() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill="#FAF9F5"
+                fill="#FFFFFF"
                 d="M 0,0 L 0,25 C 90,45 270,5 360,25 C 450,45 630,5 720,25 C 810,45 990,5 1080,25 C 1170,45 1350,5 1440,25 L 1440,0 Z"
               />
             </svg>
@@ -30,7 +30,7 @@ export function DietConsultationBanner() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill="#FAF9F5"
+                fill="#FFFFFF"
                 d="M 0,0 L 0,25 C 90,45 270,5 360,25 C 450,45 630,5 720,25 C 810,45 990,5 1080,25 C 1170,45 1350,5 1440,25 L 1440,0 Z"
               />
             </svg>
@@ -45,7 +45,7 @@ export function DietConsultationBanner() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill="#FAF9F5"
+                fill="#FFFFFF"
                 d="M 0,0 L 0,35 C 90,5 270,65 360,35 C 450,5 630,65 720,35 C 810,5 990,65 1080,35 C 1170,5 1350,65 1440,35 L 1440,0 Z"
               />
             </svg>
@@ -56,7 +56,7 @@ export function DietConsultationBanner() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                fill="#FAF9F5"
+                fill="#FFFFFF"
                 d="M 0,0 L 0,35 C 90,5 270,65 360,35 C 450,5 630,65 720,35 C 810,5 990,65 1080,35 C 1170,5 1350,65 1440,35 L 1440,0 Z"
               />
             </svg>

@@ -126,7 +126,7 @@ export function CustomerReviews() {
   };
 
   return (
-    <section className="py-12 sm:py-16 bg-[#FAF9F5] border-b border-stone-200/60 overflow-hidden">
+    <section className="py-12 sm:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Editorial Header with CTAs next to Heading */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">

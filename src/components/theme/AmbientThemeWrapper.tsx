@@ -19,16 +19,16 @@ export interface ThemePalette {
 
 export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
   default: {
-    bg: "bg-[#FAF7F2]",
-    bgHex: "#FAF7F2",
-    border: "border-[#EBE4D8]",
-    borderHex: "#EBE4D8",
+    bg: "bg-white",
+    bgHex: "#FFFFFF",
+    border: "border-stone-200",
+    borderHex: "#E5E7EB",
     accent: "text-[#8B3A22]",
     accentHex: "#8B3A22",
-    pillBg: "bg-[#EFE2CE]",
-    pillText: "text-[#54361C]",
+    pillBg: "bg-stone-100",
+    pillText: "text-stone-800",
     label: "Organic Pantry",
-    subtext: "Pure Pure Chakki Milling Products",
+    subtext: "Pure Chakki Milling Products",
   },
   flour: {
     bg: "bg-[#F7F3EB]",

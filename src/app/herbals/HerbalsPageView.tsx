@@ -161,10 +161,10 @@ export function HerbalsPageView() {
                 return (
                   <article
                     key={product.id}
-                    className="group flex flex-col justify-start bg-transparent border-0 shadow-none p-0"
+                    className="group flex flex-col justify-start bg-transparent border-none shadow-none p-0"
                   >
-                    {/* 1. Soft Mint-Green Rounded Square Container */}
-                    <div className="relative aspect-square w-full bg-[#EBF4EE] rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-4 flex items-center justify-center">
+                    {/* Floating image container on flat white canvas with no borders or bounding boxes */}
+                    <div className="relative aspect-square w-full bg-transparent overflow-hidden flex items-center justify-center">
                       <Link
                         href={`/product/${product.id}`}
                         className="absolute inset-0 z-0 flex items-center justify-center"
@@ -174,38 +174,39 @@ export function HerbalsPageView() {
                           src={product.image}
                           alt={product.title}
                           fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
                           quality={85}
                           loading="lazy"
                           className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
                         />
                       </Link>
 
-                      {/* 2. Tiny Minimalist Red Circular Pill Badge at Top-Right */}
+                      {/* Tiny minimalist circular/pill-shaped red badge */}
                       {discountPercent > 0 && (
-                        <span className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[10px] sm:text-[11px] font-bold tracking-tight shadow-xs pointer-events-none">
+                        <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs">
                           -{discountPercent}%
                         </span>
                       )}
                     </div>
 
-                    {/* 3. Below Image: ONLY Product Title (clean, thin font) and Price */}
-                    <div className="pt-2.5 sm:pt-3 flex flex-col text-left">
+                    {/* Text and details below image */}
+                    <div className="pt-2 sm:pt-2.5 flex flex-col text-left">
                       <Link href={`/product/${product.id}`}>
-                        <h2 className="font-sans text-xs sm:text-sm font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors">
+                        <h2 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
                           {product.title}
                         </h2>
                       </Link>
 
-                      <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                      {/* Price display: sale price on the left, original crossed-out on the right */}
+                      <div className="mt-1 flex items-baseline gap-2 flex-wrap">
+                        <span className="text-sm md:text-base font-normal text-[#2C2A29]">
+                          Rs {product.price.toLocaleString()}
+                        </span>
                         {product.originalPrice > product.price && (
-                          <span className="text-[11px] sm:text-xs text-stone-400 line-through font-normal">
+                          <span className="text-xs text-stone-400 line-through font-normal">
                             Rs {product.originalPrice.toLocaleString()}
                           </span>
                         )}
-                        <span className="text-xs sm:text-sm font-medium text-black">
-                          Rs {product.price.toLocaleString()}
-                        </span>
                       </div>
                     </div>
                   </article>

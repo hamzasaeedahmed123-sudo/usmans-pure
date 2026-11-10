@@ -81,49 +81,49 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <AmbientThemeWrapper className="min-h-screen selection:bg-amber-500/20 selection:text-amber-900">
+    <AmbientThemeWrapper className="min-h-screen bg-white selection:bg-amber-500/20 selection:text-amber-900">
       {/* Primary Semantic H1 for Search Engine Dominance */}
       <h1 className="sr-only">FRESHLY MILLED CHAKKI Atta &amp; Organics in Pakistan</h1>
 
       {/* Sticky Mobile/Desktop Glassmorphism Header Bar (appears smoothly on scroll past hero) */}
       <HomeStickyHeader />
 
-      {/* 1. Hero Section Slider */}
+      {/* 1. Hero Section Slider - Untouched */}
       <HeroSlider />
 
-      {/* 2. Flagship Featured Product (with seamless merged visual of kitchen display and young man) */}
+      {/* 2. Flagship Featured Product (Solid Pure White Background, No Watermarks) */}
       <FlagshipFeaturedProduct />
 
-      {/* 3. Scrolling Marquee Ticker */}
-      <TickerMarquee />
-
-      {/* 4. Featured Products (freshly milled Whole Wheat Flour & Multi-Grain Blends) */}
+      {/* 3. Featured Products Storefront (Pure White Canvas, Borderless Minimalist Grid) */}
       <ProductCatalog />
 
-      {/* 6. Customer Voices & Testimonials (Repositioned Higher on Homepage) */}
-      <div className="content-visibility-auto">
-        <CustomerReviews />
-      </div>
-
-      {/* 7. Dietary Care / Whole Grains Editorial CTA Banner */}
-      <div className="content-visibility-auto">
-        <DoctorsChoiceBanner />
-      </div>
-
-      {/* 8. Curated Mega Bundles Section */}
+      {/* 4. Curated Mega Bundles Section (Pure White Canvas, Borderless Minimalist Grid) */}
       <div className="content-visibility-auto">
         <MegaBundles />
       </div>
 
-      {/* 8.1 Full-Width Video Showcase (Asli Qudrati Purity & Milling in Action) */}
+      {/* 5. Customer Voices & Testimonials */}
+      <div className="content-visibility-auto">
+        <CustomerReviews />
+      </div>
+
+      {/* 6. Middle/Footer Green Section: Animated Wavy Liquid Divider & Scrolling Marquee Buttons */}
+      <div className="content-visibility-auto">
+        <DoctorsChoiceBanner />
+      </div>
+
+      {/* 7. Full-Width Video Showcase (Asli Qudrati Purity & Milling in Action) */}
       <div className="content-visibility-auto">
         <ProductVideoShowcase />
       </div>
 
-      {/* 9. Personalized Diet Plan & Health Guidance Banner */}
+      {/* 8. Personalized Diet Plan & Health Guidance Banner (Green with Animated Wavy Liquid Divider) */}
       <div className="content-visibility-auto">
         <DietConsultationBanner />
       </div>
+
+      {/* 9. Scrolling Marquee Ticker */}
+      <TickerMarquee />
 
       {/* 10. Email Newsletter Subscription */}
       <div className="content-visibility-auto">

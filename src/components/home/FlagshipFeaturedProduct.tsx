@@ -104,35 +104,9 @@ export function FlagshipFeaturedProduct() {
   return (
     <section
       id="flagship-product"
-      className="relative w-full overflow-hidden bg-[#FAF9F5] border-t border-[#E8E2D5] border-b border-[#E8E2D5]"
+      className="relative w-full overflow-hidden bg-white"
     >
-      {/* 1. Subtle Low-Opacity Radial Ambient Glow */}
-      <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-amber-100/40 via-transparent to-transparent pointer-events-none z-0"
-        aria-hidden="true"
-      />
-
-      {/* 3. Bottom-Left: Authentic Watercolor Botanical Leaf Graphic (from user reference) */}
-      <div
-        className="absolute left-0 bottom-0 pointer-events-none select-none z-0 w-[380px] sm:w-[520px] md:w-[640px] lg:w-[720px] h-[340px] sm:h-[460px] md:h-[540px] -translate-x-10 translate-y-8 sm:translate-y-6"
-        aria-hidden="true"
-      >
-        <Image
-          src="/images/watermarks/leaves-free-img.png"
-          alt=""
-          fill
-          sizes="(max-width: 768px) 380px, (max-width: 1200px) 640px, 720px"
-          className="object-contain object-left-bottom opacity-60"
-        />
-      </div>
-
-      {/* Subtle Warm Ambient Radial Glow Behind Left Product Area */}
-      <div
-        className="absolute left-1/4 top-1/2 -translate-y-1/2 w-80 h-80 bg-amber-200/25 rounded-full blur-3xl pointer-events-none z-0"
-        aria-hidden="true"
-      />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 py-10 md:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         
         {/* ================= COLUMN 1: SEAMLESS MERGED VISUAL (LEFT) ================= */}
         <div className="lg:col-span-6 flex items-center justify-center relative border-none shadow-none p-0 m-0">
