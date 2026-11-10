@@ -169,12 +169,12 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
   const relatedProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className="relative min-h-screen bg-[#FAF9F5] flex flex-col justify-between selection:bg-[#8B3A22]/20 selection:text-stone-900 overflow-x-hidden">
+    <div className="relative min-h-screen bg-white flex flex-col justify-between selection:bg-[#8B3A22]/20 selection:text-stone-900 overflow-x-hidden">
       <Header isSolid theme="amber" />
 
-        <main className="flex-1">
-          {/* Breadcrumb Navigation - Seamless on #FAF9F5 */}
-          <div className="bg-[#FAF9F5] border-b border-stone-200/60">
+        <main className="flex-1 bg-white">
+          {/* Breadcrumb Navigation - Sits directly on pure white canvas */}
+          <div className="bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center gap-2 text-xs text-stone-500 overflow-x-auto whitespace-nowrap">
               <Link href="/" className="hover:text-stone-900 transition font-medium">
                 Home
@@ -201,41 +201,37 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
           <TickerMarquee />
 
-          {/* Flat Organic Showcase: Sits directly on #FAF9F5 without boxed containers or artificial backdrops */}
-          <section className="relative py-8 sm:py-12 lg:py-16">
+          {/* Ultra-Minimalist Flat Organic Showcase: Sits directly on bg-white without boxed containers or borders */}
+          <section className="relative py-6 sm:py-10 lg:py-12 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-start">
-                {/* Left Photograph Container with Slider & Touch Swipe */}
+                {/* ================= COLUMN 1: IMAGE GALLERY (LEFT) ================= */}
                 <div className="lg:col-span-6 flex flex-col items-center">
-                  <div className="relative w-full aspect-[4/5] min-h-[280px] sm:min-h-[420px] lg:min-h-[520px] max-h-[560px] rounded-2xl overflow-hidden p-0 group select-none">
+                  {/* Main Product Image: Completely flat on pure white with NO background container, NO borders, and NO shadows */}
+                  <div className="relative w-full aspect-square max-h-[500px] bg-transparent border-none shadow-none p-0 group select-none flex items-center justify-center">
                     {/* Native snap carousel for mobile touch swipe & desktop navigation */}
                     <div
                       ref={carouselRef}
                       onScroll={handleScroll}
-                      className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full p-0"
+                      className="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar w-full h-full p-0 bg-transparent"
                     >
                       {galleryImages.map((img, idx) => (
                         <div
                           key={img}
-                          className="snap-center min-w-full w-full h-full shrink-0 relative p-0 overflow-hidden"
+                          className="snap-center min-w-full w-full h-full shrink-0 relative p-2 flex items-center justify-center bg-transparent"
                         >
                           <Image
                             src={img}
                             alt={`${product.title} - View ${idx + 1}`}
                             fill
                             sizes="(max-width: 1024px) 100vw, 50vw"
-                            quality={85}
+                            quality={90}
                             priority={idx === 0}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                            className="w-full h-full object-contain transition-transform duration-500 ease-out hover:scale-105"
                           />
                         </div>
                       ))}
                     </div>
-
-                    {/* Product Badge */}
-                    <span className="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-[0.16em] bg-[#F6F1E9]/95 backdrop-blur-xs text-[#8B3A22] pointer-events-none">
-                      Sale &bull; Zero Additives
-                    </span>
 
                     {/* Navigation Arrows for Sliding */}
                     {galleryImages.length > 1 && (
@@ -244,7 +240,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           type="button"
                           onClick={handlePrevImage}
                           aria-label="Previous image"
-                          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-105 active:scale-95"
+                          className="absolute left-1 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105 active:scale-95"
                         >
                           <ChevronLeft className="w-5 h-5 text-stone-800" />
                         </button>
@@ -252,251 +248,270 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           type="button"
                           onClick={handleNextImage}
                           aria-label="Next image"
-                          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/90 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 backdrop-blur-xs hover:scale-105 active:scale-95"
+                          className="absolute right-1 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-stone-900 shadow-sm flex items-center justify-center transition-all cursor-pointer z-20 hover:scale-105 active:scale-95"
                         >
                           <ChevronRight className="w-5 h-5 text-stone-800" />
                         </button>
                       </>
                     )}
 
-                      {/* Slide Indicators / Dots */}
-                      {galleryImages.length > 1 && (
-                        <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5 z-10 pointer-events-none">
-                          {galleryImages.map((_, idx) => (
-                            <span
-                              key={idx}
-                              className={`h-2 rounded-full transition-all duration-300 ${
-                                activeImageIndex === idx
-                                  ? "w-6 bg-white shadow-sm"
-                                  : "w-2 bg-white/60"
-                              }`}
-                            />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Thumbnail Previews for Instant Selection */}
+                    {/* Slide Indicators / Dots */}
                     {galleryImages.length > 1 && (
-                      <div className="mt-4 flex items-center justify-center gap-2.5 w-full">
-                        {galleryImages.map((img, idx) => (
-                          <button
-                            key={img}
-                            type="button"
-                            onClick={() => scrollToImage(idx)}
-                            aria-label={`View picture ${idx + 1}`}
-                            className={`relative w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden p-0 transition-all cursor-pointer ${
+                      <div className="absolute bottom-2 inset-x-0 flex items-center justify-center gap-1.5 z-10 pointer-events-none">
+                        {galleryImages.map((_, idx) => (
+                          <span
+                            key={idx}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${
                               activeImageIndex === idx
-                                ? "ring-2 ring-stone-900 scale-105"
-                                : "opacity-60 hover:opacity-100"
+                                ? "w-5 bg-stone-900"
+                                : "w-1.5 bg-stone-300"
                             }`}
-                          >
-                            <Image
-                              src={img}
-                              alt=""
-                              fill
-                              sizes="(max-width: 640px) 64px, 80px"
-                              quality={75}
-                              className="w-full h-full object-cover"
-                            />
-                          </button>
+                          />
                         ))}
                       </div>
                     )}
-
-                    <div className="mt-5 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs sm:text-sm text-stone-600 font-medium">
-                      <span className="flex items-center gap-1.5">
-                        <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-700" />
-                        Zero Maida &amp; Fillers
-                      </span>
-                      <span className="hidden sm:inline text-stone-300">&bull;</span>
-                      <span className="flex items-center gap-1.5">
-                        <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-amber-700" strokeWidth={1.75} />
-                        pure milled
-                      </span>
-                      <span className="hidden sm:inline text-stone-300">&bull;</span>
-                      <span className="flex items-center gap-1.5">
-                        <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-stone-700" />
-                        0% Preservatives
-                      </span>
-                    </div>
                   </div>
 
-                  {/* Right Product Controls & Clear Typography */}
-                  <div className="lg:col-span-6 flex flex-col justify-between space-y-6 sm:space-y-7">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2.5 mb-3">
-                    <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#8B3A22]">
-                      {product.categoryLabel}
-                    </span>
-                    <span className="text-stone-300">•</span>
-                    <span className="text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/60">
-                      In Stock &bull; Fresh Batch
-                    </span>
-                  </div>
-
-                  <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-stone-900 tracking-tight leading-snug">
-                    {product.title}
-                  </h1>
-
-                  {/* Rating Strip */}
-                  <div className="mt-3.5 flex items-center gap-3">
-                    <div className="flex items-center text-amber-500">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 fill-amber-400 text-amber-400" />
+                  {/* Thumbnail Previews: Floating naturally with NO borders and NO background blocks */}
+                  {galleryImages.length > 1 && (
+                    <div className="mt-4 flex items-center justify-center gap-3 w-full bg-transparent">
+                      {galleryImages.map((img, idx) => (
+                        <button
+                          key={img}
+                          type="button"
+                          onClick={() => scrollToImage(idx)}
+                          aria-label={`View picture ${idx + 1}`}
+                          className={`relative w-14 h-14 sm:w-16 sm:h-16 bg-transparent p-0 transition-all cursor-pointer ${
+                            activeImageIndex === idx
+                              ? "opacity-100 scale-105"
+                              : "opacity-40 hover:opacity-80"
+                          }`}
+                        >
+                          <Image
+                            src={img}
+                            alt=""
+                            fill
+                            sizes="(max-width: 640px) 56px, 64px"
+                            quality={75}
+                            className="w-full h-full object-contain"
+                          />
+                          {activeImageIndex === idx && (
+                            <span className="absolute -bottom-1 inset-x-2 h-0.5 bg-stone-900 rounded-full" />
+                          )}
+                        </button>
                       ))}
                     </div>
-                    <span className="text-xs sm:text-sm font-semibold text-stone-800">
-                      {product.rating} &bull; {product.reviewCount} Verified Household Reviews
+                  )}
+
+                  {/* Trust Badges: Floating directly on pure white canvas */}
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-stone-600 font-medium bg-transparent">
+                    <span className="flex items-center gap-1.5">
+                      <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-700" />
+                      Zero Maida &amp; Fillers
+                    </span>
+                    <span className="text-stone-300">&bull;</span>
+                    <span className="flex items-center gap-1.5">
+                      <Wheat className="w-4 h-4 sm:w-5 sm:h-5 text-amber-700" strokeWidth={1.75} />
+                      Pure Chakki Milled
+                    </span>
+                    <span className="text-stone-300">&bull;</span>
+                    <span className="flex items-center gap-1.5">
+                      <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-stone-700" />
+                      0% Preservatives
                     </span>
                   </div>
+                </div>
 
-                  {/* Price Row */}
-                  <div className="mt-5 sm:mt-6 flex flex-wrap items-baseline gap-2.5 sm:gap-4">
-                    <span className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-stone-900 tracking-tight">
-                      ₨ {unitPrice.toLocaleString()}
-                    </span>
-                    <span className="text-base sm:text-2xl text-stone-400 line-through">
-                      ₨ {originalUnitPrice.toLocaleString()}
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold px-2.5 sm:px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
-                      Save ₨ {(originalUnitPrice - unitPrice).toLocaleString()}
-                    </span>
-                  </div>
-
-                  {/* Body Copy */}
-                  <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-stone-700 leading-relaxed font-normal">
-                    {product.description}
-                  </p>
-
-                  {/* Benefits Checklist */}
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-3.5">
-                    {product.benefits.map((benefit, i) => (
-                      <div key={i} className="flex items-start gap-2.5 text-sm sm:text-base font-medium text-stone-800">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                        <span className="leading-snug">{benefit}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Pack Selector - Minimal Flat Styling */}
-                  <div className="mt-7 pt-6 border-t border-stone-200/80">
-                    <label className="block text-xs sm:text-sm font-bold uppercase tracking-[0.16em] text-stone-800 mb-3.5">
-                      Select Packaging Format:
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPack("standard")}
-                        className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all cursor-pointer ${
-                          selectedPack === "standard"
-                            ? "border-stone-900 bg-stone-200/40 text-stone-900 font-semibold"
-                            : "border-stone-300/80 bg-transparent text-stone-700 hover:border-stone-400"
-                        }`}
-                      >
-                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-900 flex items-center justify-between">
-                          <span>Standard Pack ({product.weight})</span>
-                          {selectedPack === "standard" && (
-                            <span className="w-2 h-2 rounded-full bg-stone-900" />
-                          )}
-                        </div>
-                        <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">₨ {product.price.toLocaleString()}</div>
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => setSelectedPack("large")}
-                        className={`p-3.5 sm:p-4 rounded-xl border text-left transition-all cursor-pointer ${
-                          selectedPack === "large"
-                            ? "border-stone-900 bg-stone-200/40 text-stone-900 font-semibold"
-                            : "border-stone-300/80 bg-transparent text-stone-700 hover:border-stone-400"
-                        }`}
-                      >
-                        <div className="text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center justify-between text-stone-900">
-                          <span>Family Double Pack</span>
-                          <span className="text-[11px] text-emerald-800 font-bold bg-emerald-100 px-2 py-0.5 rounded">Save More</span>
-                        </div>
-                        <div className="text-base sm:text-lg font-bold mt-1 text-[#8B3A22]">
-                          ₨ {Math.round(product.price * 1.85).toLocaleString()}
-                        </div>
-                      </button>
+                {/* ================= COLUMN 2: PRODUCT DETAILS & CONTROLS (RIGHT) ================= */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-5 sm:space-y-6">
+                  <div>
+                    {/* Category Label & Clean Stock Indicator (No Boxed Container) */}
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                      <span className="text-xs font-semibold uppercase tracking-wider text-[#8B3A22]">
+                        {product.categoryLabel}
+                      </span>
+                      <span className="text-stone-300">•</span>
+                      <span className="text-xs font-medium text-emerald-700">
+                        In Stock &bull; Fresh Batch
+                      </span>
                     </div>
-                  </div>
 
-                  {/* Quantity & Actions */}
-                  <div className="mt-7 space-y-3.5">
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                      {/* Quantity Selector */}
-                      <div className="flex items-center justify-between sm:justify-start border border-stone-300/80 rounded-xl bg-transparent px-3 py-2 w-full sm:w-auto gap-3">
-                        <button
-                          type="button"
-                          onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                          className="w-8 h-8 rounded-lg bg-stone-200/50 hover:bg-stone-200 text-stone-800 font-bold flex items-center justify-center cursor-pointer transition"
-                        >
-                          -
-                        </button>
-                        <span className="text-base font-bold text-stone-900 min-w-[24px] text-center">
-                          {quantity}
+                    {/* Product Title: Clean, Prominent Typography Floating on White */}
+                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight leading-snug">
+                      {product.title}
+                    </h1>
+
+                    {/* Rating Strip */}
+                    <div className="mt-2.5 flex items-center gap-2.5">
+                      <div className="flex items-center text-amber-500">
+                        {[...Array(5)].map((_, i) => (
+                          <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                        ))}
+                      </div>
+                      <span className="text-xs text-stone-600 font-medium">
+                        {product.rating} &bull; {product.reviewCount} Verified Household Reviews
+                      </span>
+                    </div>
+
+                    {/* Price Row: Bold prominent price & clean strike-through */}
+                    <div className="mt-4 flex flex-wrap items-baseline gap-3">
+                      <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black tracking-tight">
+                        Rs {unitPrice.toLocaleString()}
+                      </span>
+                      {originalUnitPrice > unitPrice && (
+                        <span className="text-sm sm:text-base text-gray-400 line-through font-normal">
+                          Rs {originalUnitPrice.toLocaleString()}
                         </span>
-                        <button
-                          type="button"
-                          onClick={() => setQuantity((q) => q + 1)}
-                          className="w-8 h-8 rounded-lg bg-stone-200/50 hover:bg-stone-200 text-stone-800 font-bold flex items-center justify-center cursor-pointer transition"
-                        >
-                          +
-                        </button>
-                      </div>
-
-                      {/* Primary Order Now Button */}
-                      <Link
-                        href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
-                        className="flex-1 py-3.5 sm:py-4 px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-[#FAF9F5] flex items-center justify-center gap-2.5 transition-transform cursor-pointer text-center tracking-wide shadow-xs"
-                      >
-                        <Truck className="w-5 h-5 text-amber-400 shrink-0" />
-                        <span>Order Cash on Delivery (₨ {totalPrice.toLocaleString()})</span>
-                      </Link>
+                      )}
+                      {originalUnitPrice > unitPrice && (
+                        <span className="text-[11px] font-semibold text-white bg-red-600 px-2 py-0.5 rounded-full shadow-xs">
+                          Save Rs {(originalUnitPrice - unitPrice).toLocaleString()}
+                        </span>
+                      )}
                     </div>
 
-                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                      {/* Secondary Add to Cart */}
-                      <button
-                        type="button"
-                        onClick={handleAddToCart}
-                        className={`flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-transform active:scale-95 cursor-pointer border ${
-                          isAdded
-                            ? "bg-[#145330] border-[#145330] text-white"
-                            : "bg-transparent hover:bg-[#F5F2EB] border-stone-300 text-[#2C2A29]"
-                        }`}
-                      >
-                        {isAdded ? (
-                          <>
-                            <Check className="w-5 h-5" /> Added to Basket
-                          </>
-                        ) : (
-                          <>
-                            <ShoppingBag className="w-5 h-5 text-stone-600" /> Add to Basket
-                          </>
-                        )}
-                      </button>
+                    {/* Body Copy */}
+                    <p className="mt-4 text-sm sm:text-base text-stone-700 leading-relaxed font-normal">
+                      {product.description}
+                    </p>
 
-                      {/* WhatsApp COD Order */}
-                      <a
-                        href={`https://wa.me/923129996658?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
-                          product.title
-                        )}%20(${selectedPack}%20x%20${quantity}%20=%20₨${totalPrice})%20with%20Cash%20on%20Delivery.`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform shadow-xs"
-                      >
-                        <WhatsAppIcon className="w-5 h-5 shrink-0" variant="white" />
-                        <span>Order via WhatsApp</span>
-                      </a>
+                    {/* Benefits Checklist Floating on White Canvas */}
+                    <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {product.benefits.map((benefit, i) => (
+                        <div key={i} className="flex items-start gap-2 text-xs sm:text-sm font-normal text-stone-800">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                          <span className="leading-snug">{benefit}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Variant Selectors: Minimalist text options with clean bottom underline (NO thick bordered boxes) */}
+                    <div className="mt-6 pt-3">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-stone-500 mb-3">
+                        Select Packaging Format:
+                      </label>
+                      <div className="flex flex-wrap items-center gap-5 sm:gap-8">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPack("standard")}
+                          className={`pb-1.5 text-left transition-all cursor-pointer border-b-2 flex flex-col ${
+                            selectedPack === "standard"
+                              ? "border-black text-black font-semibold"
+                              : "border-transparent text-stone-500 hover:text-stone-800 font-normal"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm">Standard Pack ({product.weight})</span>
+                            {selectedPack === "standard" && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                            )}
+                          </div>
+                          <span className={`text-base mt-0.5 ${selectedPack === "standard" ? "font-bold text-black" : "text-stone-600"}`}>
+                            Rs {product.price.toLocaleString()}
+                          </span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => setSelectedPack("large")}
+                          className={`pb-1.5 text-left transition-all cursor-pointer border-b-2 flex flex-col ${
+                            selectedPack === "large"
+                              ? "border-black text-black font-semibold"
+                              : "border-transparent text-stone-500 hover:text-stone-800 font-normal"
+                          }`}
+                        >
+                          <div className="flex items-center gap-2">
+                            <span className="text-sm">Family Double Pack</span>
+                            <span className="text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.2 rounded-full">
+                              Save More
+                            </span>
+                            {selectedPack === "large" && (
+                              <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                            )}
+                          </div>
+                          <span className={`text-base mt-0.5 ${selectedPack === "large" ? "font-bold text-black" : "text-stone-600"}`}>
+                            Rs {Math.round(product.price * 1.85).toLocaleString()}
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Quantity & Actions: Pill-shaped buttons matching luxury aesthetic */}
+                    <div className="mt-7 space-y-3">
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        {/* Quantity Selector - Pill with thin black border */}
+                        <div className="flex items-center justify-between sm:justify-start border border-black rounded-full bg-white px-4 py-2 w-full sm:w-auto gap-4 shadow-xs">
+                          <button
+                            type="button"
+                            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                            className="w-6 h-6 flex items-center justify-center text-stone-800 font-bold hover:text-black transition cursor-pointer"
+                            aria-label="Decrease quantity"
+                          >
+                            -
+                          </button>
+                          <span className="text-sm font-bold text-stone-900 min-w-[20px] text-center">
+                            {quantity}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => setQuantity((q) => q + 1)}
+                            className="w-6 h-6 flex items-center justify-center text-stone-800 font-bold hover:text-black transition cursor-pointer"
+                            aria-label="Increase quantity"
+                          >
+                            +
+                          </button>
+                        </div>
+
+                        {/* Primary Order Now Button */}
+                        <Link
+                          href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
+                          className="flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-medium bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform cursor-pointer text-center tracking-wide shadow-sm"
+                        >
+                          <Truck className="w-4 h-4 text-amber-400 shrink-0" />
+                          <span>Order Cash on Delivery (Rs {totalPrice.toLocaleString()})</span>
+                        </Link>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                        {/* Secondary Add to Cart - White pill with thin black border & soft shadow-md */}
+                        <button
+                          type="button"
+                          onClick={handleAddToCart}
+                          className={`flex-1 py-2.5 sm:py-3 px-5 rounded-full text-xs sm:text-sm font-normal tracking-wide flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer border border-black shadow-md hover:shadow-lg ${
+                            isAdded
+                              ? "bg-[#145330] border-[#145330] text-white"
+                              : "bg-white hover:bg-stone-50 text-[#2C2A29]"
+                          }`}
+                        >
+                          {isAdded ? (
+                            <>
+                              <Check className="w-4 h-4" /> Added to Basket
+                            </>
+                          ) : (
+                            <>
+                              <ShoppingBag className="w-4 h-4 text-stone-700" /> Add to Basket
+                            </>
+                          )}
+                        </button>
+
+                        {/* WhatsApp COD Order */}
+                        <a
+                          href={`https://wa.me/923129996658?text=Hello%20Usman's%20Pure,%20I%20want%20to%20order%20${encodeURIComponent(
+                            product.title
+                          )}%20(${selectedPack}%20x%20${quantity}%20=%20Rs${totalPrice})%20with%20Cash%20on%20Delivery.`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 py-2.5 sm:py-3 px-5 rounded-full text-xs sm:text-sm font-medium tracking-wide bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform shadow-xs"
+                        >
+                          <WhatsAppIcon className="w-4 h-4 shrink-0" variant="white" />
+                          <span>Order via WhatsApp</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
         </section>
 
         {/* =========================================================================
@@ -571,7 +586,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       <li key={i}>{b}</li>
                     ))}
                   </ul>
-                  <div className="pt-2 text-xs sm:text-sm text-stone-700 bg-[#F5F2EB] p-4 rounded-xl">
+                  <div className="pt-2 text-xs sm:text-sm text-stone-700 bg-stone-50 border border-stone-100 p-4 rounded-xl">
                     <p className="font-bold text-stone-900 mb-1">Recommended Usage Guide:</p>
                     <p><strong>For Flours / Rotis:</strong> Knead with lukewarm water and let rest for 15 minutes before rolling for extra softness.</p>
                     <p className="mt-1"><strong>For Teas:</strong> Steep 1 teaspoon in 90°C hot water for 4–5 minutes. Strain and enjoy pure without additives.</p>
@@ -662,7 +677,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               {reviewsToDisplay.map((r) => (
                 <div
                   key={r.id}
-                  className="bg-[#F5F2EB]/90 rounded-2xl p-5 sm:p-6 flex flex-col justify-between"
+                  className="bg-white border border-stone-200/80 rounded-2xl p-5 sm:p-6 flex flex-col justify-between shadow-2xs"
                 >
                   <div>
                     <div className="flex items-center justify-between gap-2 mb-2.5">
@@ -902,7 +917,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
         </section>
 
         {/* Sticky Mobile Order Bar */}
-        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-[#FAF9F5]/95 backdrop-blur-md border-t border-stone-200/80 p-3 z-30 flex items-center justify-between gap-3">
+        <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white/95 backdrop-blur-md border-t border-stone-200/80 p-3 z-30 flex items-center justify-between gap-3 shadow-lg">
           <div className="flex items-center gap-2.5 min-w-0">
             <div className="relative w-11 h-11 rounded-lg bg-stone-100/80 shrink-0 overflow-hidden">
               <Image src={product.image} alt={product.title} fill sizes="44px" className="object-cover" />
