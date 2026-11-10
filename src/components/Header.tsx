@@ -120,9 +120,9 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
         {/* Top Announcement Bar */}
         <AnnouncementBar theme={theme} />
 
-        {/* Main Frosted Glass Luxury Navbar */}
+        {/* Main Solid Pure White Luxury Navbar */}
         <div
-          className="w-full backdrop-blur-md bg-[#FAF9F5]/95 border-b border-stone-200/70 shadow-xs transition-all duration-300"
+          className="w-full bg-white opacity-100 border-b border-gray-200 shadow-xs transition-all duration-300"
         >
           {/* Top Row: Centered Logo + User Action Items (and Mobile Left Hamburger) */}
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative flex items-center justify-between py-2.5 sm:py-3.5 min-h-[58px] sm:min-h-[68px]">
@@ -130,7 +130,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
             <div className="flex items-center lg:hidden z-10">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer"
+                className="w-10 h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer"
                 aria-label="Toggle Navigation Menu"
               >
                 {mobileMenuOpen ? (
@@ -172,7 +172,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               <button
                 onClick={() => setSearchModalOpen(true)}
                 aria-label="Search Pure Products"
-                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
               >
                 <Search className="w-4 h-4 text-[#2C2A29]" strokeWidth={2} />
               </button>
@@ -180,7 +180,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               {/* Shopping Cart Button */}
               <button
                 onClick={() => openCart()}
-                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
+                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-100 hover:bg-stone-200 text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4 text-[#2C2A29]" strokeWidth={2} />
@@ -202,7 +202,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
           </div>
 
           {/* Bottom Row (Desktop): Centered Horizontal Navigation Links */}
-          <div className="hidden lg:block border-t border-stone-200/60 bg-[#FAF9F5]/70">
+          <div className="hidden lg:block border-t border-gray-200 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
               <nav className="flex items-center justify-center gap-7 xl:gap-9 py-2">
                 {/* 1. Home */}

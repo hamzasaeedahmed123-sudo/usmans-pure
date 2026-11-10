@@ -85,119 +85,120 @@ export function Navbar({
 
   return (
     <>
-      <header
-        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
-      >
-        {/* Top Row: Mobile Left Hamburger + Center Logo + Right Actions */}
-        <div className="relative flex items-center justify-between py-2 sm:py-3 min-h-[54px] sm:min-h-[64px]">
-          {/* Mobile Left: Hamburger Button */}
-          <div className="flex items-center lg:hidden z-10">
-            <button
-              onClick={() => setMobileMenuOpen((prev) => !prev)}
-              aria-label="Open navigation menu"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1]/90 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
-            >
-              {mobileMenuOpen ? (
-                <X className="w-5 h-5 text-stone-800" />
-              ) : (
-                <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
-
-          {/* Desktop Left: Subtle Tagline Spacer to balance center */}
-          <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-widest text-stone-700/80 font-medium z-10 w-44">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
-            <span>Pure Chakki Milling</span>
-          </div>
-
-          {/* Top Center: "Usman's Pure Products" Logo (Prominent Focal Point, Centered on Mobile & Desktop) */}
-          <div className="absolute inset-0 mx-auto flex justify-center items-center pointer-events-none z-0 px-14 sm:px-20">
-            <Link
-              href="/"
-              className="pointer-events-auto inline-flex items-center transition-transform hover:scale-[1.02] shrink-0 focus:outline-none"
-              aria-label="USMAN'S PURE PRODUCTS"
-            >
-              <Image
-                src="/logo.png"
-                alt="Usman's Pure Products"
-                width={280}
-                height={76}
-                className="w-auto h-9 sm:h-11 md:h-13 lg:h-15 object-contain max-w-[155px] xs:max-w-[190px] sm:max-w-[235px] md:max-w-[275px]"
-                priority
-              />
-              <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
-            </Link>
-          </div>
-
-          {/* Right Section: Actions (Cart & Auth) */}
-          <div className="flex items-center gap-2 shrink-0 ml-auto z-10">
-            {/* Quick Cart Trigger */}
-            <button
-              onClick={() => {
-                if (typeof window !== "undefined") {
-                  window.dispatchEvent(new CustomEvent("usman-open-cart"));
-                }
-              }}
-              aria-label="Open Basket"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1]/90 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
-            >
-              <svg
-                className="w-4 h-4 text-stone-800"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-            </button>
-
-            {/* User Auth Buttons / Avatar */}
-            <AuthHeaderButton slideTheme={effectiveTheme} />
-          </div>
-        </div>
-
-        {/* Bottom Row (Desktop): Centered Horizontal Navigation Links */}
-        <div className="hidden lg:block border-t border-stone-800/10 py-2">
-          <nav className="flex items-center justify-center gap-7 xl:gap-9">
-            {/* 1. Home */}
-            <Link
-              href="/"
-              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
-            >
-              Home
-            </Link>
-
-            {/* 2. Dietary Care Flours */}
-            <Link
-              href="/doctors-choice"
-              className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
-            >
-              <span>Dietary Care</span>
-              <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-                Whole Grain
-              </span>
-            </Link>
-
-            {/* 3. All Products Dropdown */}
-            <div
-              ref={dropdownRef}
-              className="relative"
-              onMouseEnter={() => setProductsDropdownOpen(true)}
-              onMouseLeave={() => setProductsDropdownOpen(false)}
-            >
+      <div className={`w-full bg-white opacity-100 border-b border-gray-200 shadow-xs relative z-50 shrink-0 transition-all duration-300 ${className}`}>
+        <header
+          className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-50 shrink-0"
+        >
+          {/* Top Row: Mobile Left Hamburger + Center Logo + Right Actions */}
+          <div className="relative flex items-center justify-between py-2 sm:py-3 min-h-[54px] sm:min-h-[64px]">
+            {/* Mobile Left: Hamburger Button */}
+            <div className="flex items-center lg:hidden z-10">
               <button
-                onClick={() => setProductsDropdownOpen((prev) => !prev)}
-                className="flex items-center gap-1 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1 cursor-pointer"
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+                aria-label="Open navigation menu"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition shadow-xs cursor-pointer shrink-0"
               >
-                <span>All Products</span>
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-stone-800" />
+                ) : (
+                  <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
+            </div>
+
+            {/* Desktop Left: Subtle Tagline Spacer to balance center */}
+            <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-widest text-stone-600 font-medium z-10 w-44">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
+              <span>Pure Chakki Milling</span>
+            </div>
+
+            {/* Top Center: "Usman's Pure Products" Logo (Prominent Focal Point, Centered on Mobile & Desktop) */}
+            <div className="absolute inset-0 mx-auto flex justify-center items-center pointer-events-none z-0 px-14 sm:px-20">
+              <Link
+                href="/"
+                className="pointer-events-auto inline-flex items-center transition-transform hover:scale-[1.02] shrink-0 focus:outline-none"
+                aria-label="USMAN'S PURE PRODUCTS"
+              >
+                <Image
+                  src="/logo.png"
+                  alt="Usman's Pure Products"
+                  width={280}
+                  height={76}
+                  className="w-auto h-9 sm:h-11 md:h-13 lg:h-15 object-contain max-w-[155px] xs:max-w-[190px] sm:max-w-[235px] md:max-w-[275px]"
+                  priority
+                />
+                <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
+              </Link>
+            </div>
+
+            {/* Right Section: Actions (Cart & Auth) */}
+            <div className="flex items-center gap-2 shrink-0 ml-auto z-10">
+              {/* Quick Cart Trigger */}
+              <button
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.dispatchEvent(new CustomEvent("usman-open-cart"));
+                  }
+                }}
+                aria-label="Open Basket"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-100 flex items-center justify-center hover:bg-stone-200 transition shadow-xs cursor-pointer shrink-0"
+              >
+                <svg
+                  className="w-4 h-4 text-stone-800"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                  />
+                </svg>
+              </button>
+
+              {/* User Auth Buttons / Avatar */}
+              <AuthHeaderButton slideTheme={effectiveTheme} />
+            </div>
+          </div>
+
+          {/* Bottom Row (Desktop): Centered Horizontal Navigation Links */}
+          <div className="hidden lg:block border-t border-gray-200 py-2.5 bg-white">
+            <nav className="flex items-center justify-center gap-7 xl:gap-9">
+              {/* 1. Home */}
+              <Link
+                href="/"
+                className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+              >
+                Home
+              </Link>
+
+              {/* 2. Dietary Care Flours */}
+              <Link
+                href="/doctors-choice"
+                className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+              >
+                <span>Dietary Care</span>
+                <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                  Whole Grain
+                </span>
+              </Link>
+
+              {/* 3. All Products Dropdown */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={() => setProductsDropdownOpen(true)}
+                onMouseLeave={() => setProductsDropdownOpen(false)}
+              >
+                <button
+                  onClick={() => setProductsDropdownOpen((prev) => !prev)}
+                  className="flex items-center gap-1 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1 cursor-pointer"
+                >
+                  <span>All Products</span>
                 <svg
                   className={`w-3.5 h-3.5 transition-transform duration-200 ${
                     productsDropdownOpen ? "rotate-180" : ""
@@ -258,7 +259,7 @@ export function Navbar({
             {/* 4. Mega Bundles with Save Badge */}
             <Link
               href="/bundles"
-              className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+              className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
             >
               <span>Mega Bundles</span>
               <span className="bg-amber-600 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
@@ -269,7 +270,7 @@ export function Navbar({
             {/* 5. FAQs */}
             <Link
               href="/faqs"
-              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
             >
               FAQs
             </Link>
@@ -277,7 +278,7 @@ export function Navbar({
             {/* 6. About Us */}
             <Link
               href="/about"
-              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
             >
               About Us
             </Link>
@@ -285,13 +286,14 @@ export function Navbar({
             {/* 7. Contact */}
             <Link
               href="/contact"
-              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
             >
               Contact
             </Link>
           </nav>
         </div>
       </header>
+    </div>
 
       {/* Mobile Navigation Drawer Overlay */}
       <AnimatePresence>
