@@ -156,7 +156,7 @@ export function CategoryCollections({ onSelectCategory }: CategoryCollectionsPro
               >
                 <div>
                   {/* Floating Edge-to-Edge Image Container */}
-                  <div className="relative aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-[#F5F2EB] rounded-2xl p-0">
+                  <div className="relative aspect-[4/5] sm:aspect-square w-full overflow-hidden bg-white rounded-2xl p-0">
                     <Link href={`/product/${product.id}`} className="absolute inset-0" aria-label={product.title}>
                       <Image
                         src={product.image}

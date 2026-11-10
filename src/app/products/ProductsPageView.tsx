@@ -237,7 +237,7 @@ export function ProductsPageView() {
                     className="group relative flex flex-col justify-between transition-all duration-300"
                   >
                     {/* Floating Edge-to-Edge Image: Soft rounded corners on #FAF9F5 */}
-                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#F5F2EB] mb-3">
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-white mb-3">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">
                         <Image
                           src={product.image}

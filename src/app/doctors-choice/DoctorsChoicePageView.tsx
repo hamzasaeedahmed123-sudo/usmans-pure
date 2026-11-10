@@ -303,7 +303,7 @@ export function DoctorsChoicePageView() {
                   >
                     <div>
                       {/* Floating Edge-to-Edge Image */}
-                      <div className="relative w-full aspect-[4/5] bg-[#F5F2EB] overflow-hidden rounded-2xl p-0 flex items-center justify-center mb-3">
+                      <div className="relative w-full aspect-[4/5] bg-white overflow-hidden rounded-2xl p-0 flex items-center justify-center mb-3">
                         <Link href={product.detailUrl} className="absolute inset-0">
                           <Image
                             src={product.image}

@@ -82,7 +82,7 @@ export function MegaBundles() {
               >
                 <div>
                   {/* Edge-to-edge floating image showcase */}
-                  <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-[#EFEBE4] rounded-t-2xl">
+                  <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-white rounded-t-2xl">
                     <Link href={`/bundles/${bundle.slug}`} className="block w-full h-full relative" aria-label={bundle.title}>
                       <Image
                         src={bundle.image}
