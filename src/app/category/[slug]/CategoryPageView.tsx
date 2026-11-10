@@ -167,8 +167,8 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
             </Link>
           </div>
 
-          {/* Strict 2-Column Grid on Mobile, Scaling to 4 on Desktop - Borderless Minimalist */}
-          <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-6 sm:gap-y-8 md:grid-cols-3 lg:grid-cols-4">
+          {/* Strict 2-Column Grid on Mobile, Scaling to 4 on Desktop - Borderless Minimalist with Luxury Whitespace */}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:gap-x-12 lg:gap-y-16 md:grid-cols-3 lg:grid-cols-4">
             {categoryProducts.map((product) => {
               const discountPercent = product.originalPrice > product.price
                 ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
@@ -199,37 +199,37 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
 
                     {/* Tiny minimalist circular/pill-shaped red badge */}
                     {discountPercent > 0 && (
-                      <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs">
+                      <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
                         -{discountPercent}%
                       </span>
                     )}
                   </div>
 
                   {/* Text and details below image */}
-                  <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
+                  <div className="mt-4 sm:mt-5 flex flex-col text-center">
                     <Link href={`/product/${product.id}`}>
-                      <h2 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
+                      <h2 className="text-sm md:text-base font-normal text-stone-800 leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-normal">
                         {product.title}
                       </h2>
                     </Link>
 
                     {/* Price display: bold prominent sale price & subtle crossed-out original, center-aligned */}
-                    <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
-                      <span className="text-base sm:text-lg font-bold text-black">
+                    <div className="mt-2 flex items-baseline justify-center gap-2 flex-wrap">
+                      <span className="text-base sm:text-lg font-semibold text-stone-800">
                         Rs {product.price.toLocaleString()}
                       </span>
                       {product.originalPrice > product.price && (
-                        <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
+                        <span className="text-xs sm:text-sm text-stone-400 line-through font-normal">
                           Rs {product.originalPrice.toLocaleString()}
                         </span>
                       )}
                     </div>
 
-                    {/* Pill-shaped Add to Cart Button */}
+                    {/* Delicate Pill-shaped Add to Cart Button */}
                     <button
                       type="button"
                       onClick={() => handleAddToCart(product)}
-                      className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                      className="mt-3.5 w-full max-w-[170px] sm:max-w-[190px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 hover:bg-stone-50 text-xs sm:text-sm font-normal tracking-wide shadow-xs hover:shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                     >
                       {addedIds[product.id] ? "Added to cart ✓" : "Add to cart"}
                     </button>

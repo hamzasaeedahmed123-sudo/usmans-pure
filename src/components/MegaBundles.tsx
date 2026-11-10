@@ -49,23 +49,28 @@ export function MegaBundles() {
   };
 
   return (
-    <section className="bg-white text-[#2C2A29] relative overflow-hidden py-8 px-4 md:px-8">
+    <section className="bg-white text-stone-900 relative overflow-hidden py-16 sm:py-24 px-4 sm:px-8 lg:px-10">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex items-baseline justify-between mb-6 sm:mb-8 pb-3">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-sans font-normal text-[#2C2A29] tracking-tight">
-            Curated Wellness Bundles
-          </h2>
+        <div className="flex items-baseline justify-between mb-8 sm:mb-12 pb-3">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8B3A22] block mb-1.5 font-sans">
+              Exclusive Value
+            </span>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight">
+              Curated Wellness Bundles
+            </h2>
+          </div>
           <Link
             href="/bundles"
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm text-stone-500 hover:text-stone-900 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium tracking-wide uppercase text-stone-500 hover:text-stone-900 transition-colors"
           >
             <span>View All</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
-        {/* Flat, borderless product grid (grid-cols-2 for mobile, grid-cols-4 for desktop/tablet) */}
-        <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 md:grid-cols-4">
+        {/* Flat, borderless product grid with generous luxury spacing */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:gap-x-12 lg:gap-y-16 md:grid-cols-4">
           {bundles.map((bundle) => {
             const discountPercent =
               bundle.originalPrice > bundle.price
@@ -99,37 +104,37 @@ export function MegaBundles() {
 
                   {/* Tiny minimalist circular/pill-shaped red badge */}
                   {discountPercent > 0 && (
-                    <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs">
+                    <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-medium text-[10px] px-2 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
                       -{discountPercent}%
                     </span>
                   )}
                 </div>
 
-                {/* Text and details below image */}
-                <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
+                {/* Text and details below image with increased breathing room */}
+                <div className="mt-4 sm:mt-5 flex flex-col text-center">
                   <Link href={`/bundles/${bundle.slug}`}>
-                    <h3 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
+                    <h3 className="text-sm sm:text-base font-normal text-stone-800 leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-normal">
                       {bundle.title}
                     </h3>
                   </Link>
 
-                  {/* Price display: bold prominent sale price & subtle crossed-out original, center-aligned */}
+                  {/* Price display: soft deep charcoal price & subtle crossed-out original */}
                   <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
-                    <span className="text-base sm:text-lg font-bold text-black">
+                    <span className="text-base sm:text-lg font-semibold text-stone-800 tracking-tight">
                       Rs {bundle.price.toLocaleString()}
                     </span>
                     {bundle.originalPrice > bundle.price && (
-                      <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
+                      <span className="text-xs sm:text-sm text-stone-400 line-through font-normal">
                         Rs {bundle.originalPrice.toLocaleString()}
                       </span>
                     )}
                   </div>
 
-                  {/* Pill-shaped Add to Cart Button (Pure white bg, thin black border, soft shadow-md) */}
+                  {/* Pill-shaped Add to Cart Button (Pure white bg, delicate thin border, ultra-soft shadow) */}
                   <button
                     type="button"
                     onClick={(e) => handleAddBundle(bundle, e)}
-                    className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                    className="mt-3.5 w-full max-w-[170px] sm:max-w-[190px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 hover:bg-stone-50/80 text-xs sm:text-sm font-normal tracking-wide shadow-xs hover:shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                   >
                     {addedIds[bundle.id] ? "Added to cart ✓" : "Add to cart"}
                   </button>

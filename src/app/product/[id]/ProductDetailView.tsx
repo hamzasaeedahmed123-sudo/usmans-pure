@@ -383,18 +383,18 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       </span>
                     </div>
 
-                    {/* Price Row: Bold prominent price & clean strike-through */}
+                    {/* Price Row: Soft deep charcoal price & clean strike-through */}
                     <div className="mt-4 flex flex-wrap items-baseline gap-3">
-                      <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black tracking-tight">
+                      <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-stone-800 tracking-tight">
                         Rs {unitPrice.toLocaleString()}
                       </span>
                       {originalUnitPrice > unitPrice && (
-                        <span className="text-sm sm:text-base text-gray-400 line-through font-normal">
+                        <span className="text-sm sm:text-base text-stone-400 line-through font-normal">
                           Rs {originalUnitPrice.toLocaleString()}
                         </span>
                       )}
                       {originalUnitPrice > unitPrice && (
-                        <span className="text-[11px] font-semibold text-white bg-red-600 px-2 py-0.5 rounded-full shadow-xs">
+                        <span className="text-[11px] font-semibold text-white bg-red-600 px-2 py-0.5 rounded-full shadow-xs tracking-wider">
                           Save Rs {(originalUnitPrice - unitPrice).toLocaleString()}
                         </span>
                       )}
@@ -426,17 +426,17 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           onClick={() => setSelectedPack("standard")}
                           className={`pb-1.5 text-left transition-all cursor-pointer border-b-2 flex flex-col ${
                             selectedPack === "standard"
-                              ? "border-black text-black font-semibold"
+                              ? "border-stone-800 text-stone-800 font-semibold"
                               : "border-transparent text-stone-500 hover:text-stone-800 font-normal"
                           }`}
                         >
                           <div className="flex items-center gap-2">
                             <span className="text-sm">Standard Pack ({product.weight})</span>
                             {selectedPack === "standard" && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-stone-800 shrink-0" />
                             )}
                           </div>
-                          <span className={`text-base mt-0.5 ${selectedPack === "standard" ? "font-bold text-black" : "text-stone-600"}`}>
+                          <span className={`text-base mt-0.5 ${selectedPack === "standard" ? "font-bold text-stone-800" : "text-stone-600"}`}>
                             Rs {product.price.toLocaleString()}
                           </span>
                         </button>
@@ -446,7 +446,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                           onClick={() => setSelectedPack("large")}
                           className={`pb-1.5 text-left transition-all cursor-pointer border-b-2 flex flex-col ${
                             selectedPack === "large"
-                              ? "border-black text-black font-semibold"
+                              ? "border-stone-800 text-stone-800 font-semibold"
                               : "border-transparent text-stone-500 hover:text-stone-800 font-normal"
                           }`}
                         >
@@ -456,10 +456,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                               Save More
                             </span>
                             {selectedPack === "large" && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-stone-800 shrink-0" />
                             )}
                           </div>
-                          <span className={`text-base mt-0.5 ${selectedPack === "large" ? "font-bold text-black" : "text-stone-600"}`}>
+                          <span className={`text-base mt-0.5 ${selectedPack === "large" ? "font-bold text-stone-800" : "text-stone-600"}`}>
                             Rs {Math.round(product.price * 1.85).toLocaleString()}
                           </span>
                         </button>
@@ -469,23 +469,23 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                     {/* Quantity & Actions: Pill-shaped buttons matching luxury aesthetic */}
                     <div className="mt-7 space-y-3">
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                        {/* Quantity Selector - Pill with thin black border */}
-                        <div className="flex items-center justify-between sm:justify-start border border-black rounded-full bg-white px-4 py-2 w-full sm:w-auto gap-4 shadow-xs">
+                        {/* Quantity Selector - Pill with delicate border */}
+                        <div className="flex items-center justify-between sm:justify-start border border-stone-300 rounded-full bg-white px-4 py-2 w-full sm:w-auto gap-4 shadow-xs">
                           <button
                             type="button"
                             onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                            className="w-6 h-6 flex items-center justify-center text-stone-800 font-bold hover:text-black transition cursor-pointer"
+                            className="w-6 h-6 flex items-center justify-center text-stone-700 font-bold hover:text-stone-900 transition cursor-pointer"
                             aria-label="Decrease quantity"
                           >
                             -
                           </button>
-                          <span className="text-sm font-bold text-stone-900 min-w-[20px] text-center">
+                          <span className="text-sm font-bold text-stone-800 min-w-[20px] text-center">
                             {quantity}
                           </span>
                           <button
                             type="button"
                             onClick={() => setQuantity((q) => q + 1)}
-                            className="w-6 h-6 flex items-center justify-center text-stone-800 font-bold hover:text-black transition cursor-pointer"
+                            className="w-6 h-6 flex items-center justify-center text-stone-700 font-bold hover:text-stone-900 transition cursor-pointer"
                             aria-label="Increase quantity"
                           >
                             +
@@ -495,7 +495,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         {/* Primary Order Now Button */}
                         <Link
                           href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
-                          className="flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-medium bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform cursor-pointer text-center tracking-wide shadow-sm"
+                          className="flex-1 py-3 px-6 rounded-full text-xs sm:text-sm font-medium bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform cursor-pointer text-center tracking-wide shadow-xs"
                         >
                           <Truck className="w-4 h-4 text-amber-400 shrink-0" />
                           <span>Order Cash on Delivery (Rs {totalPrice.toLocaleString()})</span>
@@ -503,14 +503,14 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       </div>
 
                       <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                        {/* Secondary Add to Cart - White pill with thin black border & soft shadow-md */}
+                        {/* Secondary Add to Cart - White pill with delicate border & ultra-soft shadow */}
                         <button
                           type="button"
                           onClick={handleAddToCart}
-                          className={`flex-1 py-2.5 sm:py-3 px-5 rounded-full text-xs sm:text-sm font-normal tracking-wide flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer border border-black shadow-md hover:shadow-lg ${
+                          className={`flex-1 py-2.5 sm:py-3 px-5 rounded-full text-xs sm:text-sm font-normal tracking-wide flex items-center justify-center gap-2 transition-all active:scale-95 cursor-pointer border border-stone-300 hover:border-stone-400 shadow-xs hover:shadow-sm ${
                             isAdded
                               ? "bg-[#145330] border-[#145330] text-white"
-                              : "bg-white hover:bg-stone-50 text-[#2C2A29]"
+                              : "bg-white hover:bg-stone-50/80 text-stone-800"
                           }`}
                         >
                           {isAdded ? (
@@ -884,7 +884,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 md:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:gap-x-8 sm:gap-y-12 lg:gap-x-12 lg:gap-y-16 md:grid-cols-4">
               {fullCatalogProducts.map((item) => {
                 const discountPercent =
                   item.originalPrice > item.price
@@ -916,37 +916,37 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
 
                       {/* Tiny minimalist circular/pill-shaped red badge */}
                       {discountPercent > 0 && (
-                        <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs">
+                        <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-medium text-[10px] px-2 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
                           -{discountPercent}%
                         </span>
                       )}
                     </div>
 
-                    {/* Text and details below image */}
-                    <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
+                    {/* Text and details below image with increased breathing room */}
+                    <div className="mt-4 sm:mt-5 flex flex-col text-center">
                       <Link href={`/product/${item.id}`}>
-                        <h3 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
+                        <h3 className="text-sm sm:text-base font-normal text-stone-800 leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-normal">
                           {item.title}
                         </h3>
                       </Link>
 
-                      {/* Price display: bold prominent sale price & subtle crossed-out original */}
+                      {/* Price display: soft deep charcoal price & subtle crossed-out original */}
                       <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
-                        <span className="text-base sm:text-lg font-bold text-black">
+                        <span className="text-base sm:text-lg font-semibold text-stone-800 tracking-tight">
                           Rs {item.price.toLocaleString()}
                         </span>
                         {item.originalPrice > item.price && (
-                          <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
+                          <span className="text-xs sm:text-sm text-stone-400 line-through font-normal">
                             Rs {item.originalPrice.toLocaleString()}
                           </span>
                         )}
                       </div>
 
-                      {/* Pill-shaped Add to Cart Button */}
+                      {/* Pill-shaped Add to Cart Button (Pure white bg, delicate thin border, ultra-soft shadow) */}
                       <button
                         type="button"
                         onClick={(e) => handleAddCatalogProduct(item, e)}
-                        className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                        className="mt-3.5 w-full max-w-[170px] sm:max-w-[190px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 hover:bg-stone-50/80 text-xs sm:text-sm font-normal tracking-wide shadow-xs hover:shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                       >
                         {addedCatalogIds[item.id] ? "Added to cart ✓" : "Add to cart"}
                       </button>
