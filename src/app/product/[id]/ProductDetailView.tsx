@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -46,6 +46,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
   const [quantity, setQuantity] = useState(1);
   const [selectedPack, setSelectedPack] = useState<"standard" | "large">("standard");
   const [isAdded, setIsAdded] = useState(false);
+  const [addedCatalogIds, setAddedCatalogIds] = useState<Record<string, boolean>>({});
   const [openSection, setOpenSection] = useState<string | null>("overview");
 
   // Review modal state
@@ -161,12 +162,41 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
     setTimeout(() => setIsAdded(false), 2000);
   };
 
+  const handleAddCatalogProduct = (item: Product, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    setAddedCatalogIds((prev) => ({ ...prev, [item.id]: true }));
+    addItem(
+      {
+        id: item.id,
+        name: item.title,
+        pack: item.weight || "Standard Pack",
+        price: item.price,
+        image: item.image,
+      },
+      1
+    );
+    openCart();
+    setTimeout(() => {
+      setAddedCatalogIds((prev) => ({ ...prev, [item.id]: false }));
+    }, 2000);
+  };
+
   const isFlour = product.category === "flours";
   const backdropImage = isFlour
     ? "/images/backgrounds/wheat-field-backplate.jpg"
     : "/images/backgrounds/herbal-garden-backplate.jpg";
 
-  const relatedProducts = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4);
+  // Full catalog products: remove category filter and display all products
+  const fullCatalogProducts = useMemo(() => {
+    const sourceList = storeProducts && storeProducts.length > 0 ? storeProducts : PRODUCTS;
+    return sourceList.map((item) => {
+      const fallback = PRODUCTS.find((p) => p.id === item.id);
+      return {
+        ...fallback,
+        ...item,
+      };
+    });
+  }, [storeProducts]);
 
   return (
     <div className="relative min-h-screen bg-white flex flex-col justify-between selection:bg-[#8B3A22]/20 selection:text-stone-900 overflow-x-hidden">
@@ -837,81 +867,93 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
           </div>
         )}
 
-        {/* Related Products Section */}
-        <section className="py-16 border-t border-stone-200/80">
+        {/* Explore Our Complete Range Section (Full Catalog, Borderless Minimalist Grid) */}
+        <section className="py-12 sm:py-16 bg-white border-t border-stone-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 bg-white/85 backdrop-blur-xs p-5 sm:p-6 rounded-2xl border border-stone-200/70 shadow-2xs">
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-8 sm:mb-10 gap-3">
               <div>
-                <span className="text-xs font-bold uppercase tracking-[0.18em] text-[#8B3A22]">
-                  Complementary Selection
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8B3A22] block mb-1.5 font-sans">
+                  Artisanal &bull; 100% Pure
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-stone-900 tracking-tight mt-1">
-                  Other Pure Essentials You May Like
-                </h3>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-stone-900 tracking-tight">
+                  Explore Our Complete Range
+                </h2>
               </div>
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-stone-900 hover:text-[#8B3A22] transition-colors"
-              >
-                <span>Explore All 10 Products</span>
-                <ChevronRight className="w-4 h-4" />
-              </Link>
+              <p className="text-xs sm:text-sm text-stone-500 font-normal">
+                All {fullCatalogProducts.length} Pure Staples (Chakki Flours &amp; Herbal Teas)
+              </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-              {relatedProducts.map((rel) => (
-                <article
-                  key={rel.id}
-                  className="group flex flex-col justify-start bg-transparent border-none shadow-none p-0"
-                >
-                  {/* Floating image container on flat white canvas */}
-                  <div className="relative aspect-square w-full bg-transparent overflow-hidden flex items-center justify-center">
-                    <Link
-                      href={`/product/${rel.id}`}
-                      className="absolute inset-0 z-0 flex items-center justify-center"
-                      aria-label={rel.title}
-                    >
-                      <Image
-                        src={rel.image}
-                        alt={rel.title}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
-                        quality={85}
-                        className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
-                      />
-                    </Link>
-                  </div>
+            <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 md:grid-cols-4">
+              {fullCatalogProducts.map((item) => {
+                const discountPercent =
+                  item.originalPrice > item.price
+                    ? Math.round(((item.originalPrice - item.price) / item.originalPrice) * 100)
+                    : 0;
 
-                  {/* Text and details below image */}
-                  <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
-                    <Link href={`/product/${rel.id}`}>
-                      <h4 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
-                        {rel.title}
-                      </h4>
-                    </Link>
+                return (
+                  <article
+                    key={item.id}
+                    className="group flex flex-col justify-start bg-transparent border-none shadow-none p-0"
+                  >
+                    {/* Floating image container on flat white canvas */}
+                    <div className="relative aspect-square w-full bg-transparent overflow-hidden flex items-center justify-center">
+                      <Link
+                        href={`/product/${item.id}`}
+                        className="absolute inset-0 z-0 flex items-center justify-center"
+                        aria-label={item.title}
+                      >
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                          quality={85}
+                          loading="lazy"
+                          className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
+                        />
+                      </Link>
 
-                    {/* Price display: bold prominent sale price & subtle crossed-out original */}
-                    <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
-                      <span className="text-base sm:text-lg font-bold text-black">
-                        {rel.priceFormatted}
-                      </span>
-                      {rel.originalPriceFormatted && (
-                        <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
-                          {rel.originalPriceFormatted}
+                      {/* Tiny minimalist circular/pill-shaped red badge */}
+                      {discountPercent > 0 && (
+                        <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs">
+                          -{discountPercent}%
                         </span>
                       )}
                     </div>
 
-                    {/* Pill-shaped Add to Cart Button */}
-                    <Link
-                      href={`/product/${rel.id}`}
-                      className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
-                    >
-                      View Details
-                    </Link>
-                  </div>
-                </article>
-              ))}
+                    {/* Text and details below image */}
+                    <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
+                      <Link href={`/product/${item.id}`}>
+                        <h3 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
+                          {item.title}
+                        </h3>
+                      </Link>
+
+                      {/* Price display: bold prominent sale price & subtle crossed-out original */}
+                      <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
+                        <span className="text-base sm:text-lg font-bold text-black">
+                          Rs {item.price.toLocaleString()}
+                        </span>
+                        {item.originalPrice > item.price && (
+                          <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
+                            Rs {item.originalPrice.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Pill-shaped Add to Cart Button */}
+                      <button
+                        type="button"
+                        onClick={(e) => handleAddCatalogProduct(item, e)}
+                        className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                      >
+                        {addedCatalogIds[item.id] ? "Added to cart ✓" : "Add to cart"}
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </section>
