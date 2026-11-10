@@ -3,7 +3,66 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 
 export function DietConsultationBanner() {
   return (
-    <section className="py-12 sm:py-20 bg-emerald-950 text-white relative overflow-hidden border-b border-emerald-900">
+    <section className="bg-emerald-950 text-white relative overflow-hidden border-b border-emerald-900 pb-12 sm:pb-20">
+      {/* Animated Liquid Flowing Wavy Divider at Top Boundary */}
+      <div
+        className="w-full overflow-hidden leading-none relative pointer-events-none select-none -mt-px mb-8 sm:mb-12"
+        aria-hidden="true"
+      >
+        <div className="relative w-full h-10 sm:h-16 md:h-20 overflow-hidden">
+          {/* Depth Wave Layer */}
+          <div className="absolute inset-0 w-[200%] min-w-[200%] h-full flex animate-flowing-wave-slow opacity-30">
+            <svg
+              className="w-1/2 h-full shrink-0"
+              viewBox="0 0 1440 70"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FAF9F5"
+                d="M 0,0 L 0,25 C 90,45 270,5 360,25 C 450,45 630,5 720,25 C 810,45 990,5 1080,25 C 1170,45 1350,5 1440,25 L 1440,0 Z"
+              />
+            </svg>
+            <svg
+              className="w-1/2 h-full shrink-0"
+              viewBox="0 0 1440 70"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FAF9F5"
+                d="M 0,0 L 0,25 C 90,45 270,5 360,25 C 450,45 630,5 720,25 C 810,45 990,5 1080,25 C 1170,45 1350,5 1440,25 L 1440,0 Z"
+              />
+            </svg>
+          </div>
+
+          {/* Primary Front Wave Layer */}
+          <div className="absolute inset-0 w-[200%] min-w-[200%] h-full flex animate-flowing-wave">
+            <svg
+              className="w-1/2 h-full shrink-0"
+              viewBox="0 0 1440 70"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FAF9F5"
+                d="M 0,0 L 0,35 C 90,5 270,65 360,35 C 450,5 630,65 720,35 C 810,5 990,65 1080,35 C 1170,5 1350,65 1440,35 L 1440,0 Z"
+              />
+            </svg>
+            <svg
+              className="w-1/2 h-full shrink-0"
+              viewBox="0 0 1440 70"
+              preserveAspectRatio="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FAF9F5"
+                d="M 0,0 L 0,35 C 90,5 270,65 360,35 C 450,5 630,65 720,35 C 810,5 990,65 1080,35 C 1170,5 1350,65 1440,35 L 1440,0 Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
       {/* Decorative background glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-700/20 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />

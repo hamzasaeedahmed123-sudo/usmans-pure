@@ -277,10 +277,10 @@ html {
 
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -294,11 +294,33 @@ html {
   animation-play-state: paused;
 }
 
-.hide-scrollbar {
+/* Continuous Flowing Liquid Wave Animations (Nazish & Affan dynamic aesthetic) */
+@keyframes flowingWave {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-flowing-wave {
+  animation: flowingWave 14s linear infinite;
+  will-change: transform;
+}
+
+.animate-flowing-wave-slow {
+  animation: flowingWave 22s linear infinite;
+  will-change: transform;
+}
+
+.hide-scrollbar,
+.no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.hide-scrollbar::-webkit-scrollbar {
+.hide-scrollbar::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
