@@ -46,6 +46,18 @@ export const CATEGORY_PILLS = [
     slideIndex: 1,
     activeClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
   },
+  {
+    id: "all-products",
+    label: "03. All Products",
+    slideIndex: 2,
+    activeClass: "bg-[#121212] text-white shadow-md border border-[#121212]",
+  },
+  {
+    id: "diabetic",
+    label: "04. Diabetic Care",
+    slideIndex: 3,
+    activeClass: "bg-[#1E3A2F] text-white shadow-md border border-[#1E3A2F]",
+  },
 ];
 
 export const SLIDES: HeroSlide[] = [
@@ -54,20 +66,20 @@ export const SLIDES: HeroSlide[] = [
     tag: "Taaza Chakki Atta",
     title: "MULTIGRAIN",
     subtitle: "FLOUR",
-    fullTitle: "Usman's Pure Multigrain Flour",
-    benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — chakki ka qudrati fiber, bina kisi maiday ke.",
-    miniStats: ["Weight Management", "Zero Maida", "Chakki Ground"],
-    price: "Rs 2,450",
-    originalPrice: "Rs 2,950",
-    weight: "2 LBS (900g)",
-    bgColor: "#FAF9F5",
-    announcementBg: "#2A1F17", // Deep Roasted Brown
+    fullTitle: "Usman's Pure Multigrain Chakki Atta",
+    benefit: "Ghar ke dastarkhwan ke liye narm phulka roti — 100% khalis chakki atta, bina kisi maiday aur chemical ke.",
+    miniStats: ["100% Khalis Chakki", "Zero Maida", "Weight Management"],
+    price: "Rs 1,200",
+    originalPrice: "Rs 1,500",
+    weight: "5kg Family Pack",
+    bgColor: "#FAF8F5",
+    announcementBg: "#121212",
     activePillClass: "bg-[#2A1F17] text-white shadow-md border border-[#3D2B1F]",
     backdropImage: "/images/hero/flour-backdrop.jpg",
-    textColor: "#3B291A",
-    giantTextColor: "#3B291A",
-    giantTextClass: "text-[#3B291A] font-black opacity-95",
-    image: "/images/hero/hero-flour-product.png",
+    textColor: "#121212",
+    giantTextColor: "#121212",
+    giantTextClass: "text-[#121212] font-black opacity-95",
+    image: "/images/products/image_302.png",
     floating: ["/images/hero/wheat-1.png", "/images/hero/wheat-2.png"],
     detailUrl: "/flour",
     altText: "Usman's Pure Multigrain Flour with golden dried wheat stalks and grains",
@@ -77,23 +89,69 @@ export const SLIDES: HeroSlide[] = [
     tag: "Desi Herbal Qehwa",
     title: "OREGANO",
     subtitle: "TEA",
-    fullTitle: "Usman's Oregano Tea",
-    benefit: "Rozmarrah ke sukoon, hazmay aur immunity ke liye asli qudrati oregano leaves aur herbal arq ka qehwa.",
-    miniStats: ["100% Qudrati", "Digestive Health", "Immunity Booster"],
+    fullTitle: "Usman's Pure Oregano Tea & Infusions",
+    benefit: "Rozmarrah ke sukoon, hazmay aur immunity ke liye asli qudrati oregano leaves aur herbal arq ka shafaf qehwa.",
+    miniStats: ["100% Qudrati Herbs", "Digestive Health", "Immunity Booster"],
     price: "Rs 850",
     originalPrice: "Rs 1,100",
-    weight: "50g Jar",
-    bgColor: "#EAF4EE",
-    announcementBg: "#0E381C", // Deep Forest Green
+    weight: "50g Artisanal Jar",
+    bgColor: "#F2F7F4",
+    announcementBg: "#121212",
     activePillClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
-    backdropImage: "/images/hero/herbal-flatlay-bg.jpg",
-    textColor: "#FAF9F5",
-    giantTextColor: "#FAF9F5",
-    giantTextClass: "text-[#FAF9F5] font-black opacity-95",
-    image: "/images/hero/hero-tea-product.png",
+    backdropImage: "/images/backgrounds/herbal-garden-backplate.jpg",
+    textColor: "#121212",
+    giantTextColor: "#121212",
+    giantTextClass: "text-[#121212] font-black opacity-95",
+    image: "/images/products/image_300.png",
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
-    altText: "Usman's Oregano Tea jar with fresh oregano leaves and wooden scoop",
+    altText: "Usman's Oregano Tea jar surrounded by lush green fresh oregano leaves",
+  },
+  {
+    id: "all-products",
+    tag: "Complete Organic Pantry",
+    title: "ALL PURE",
+    subtitle: "PRODUCTS",
+    fullTitle: "Usman's Complete Organic Health Range",
+    benefit: "Stone-ground chakki attas, diabetic-care formulas aur healing herbal teas — aik hi jagah pure Pakistan mein home delivery ke sath.",
+    miniStats: ["Stone-Ground Atta", "Diabetic Care", "Herbal Infusions", "Nationwide COD"],
+    price: "From Rs 650",
+    originalPrice: "Rs 800",
+    weight: "Complete Family Suite",
+    bgColor: "#FAF7F2",
+    announcementBg: "#121212",
+    activePillClass: "bg-[#121212] text-white shadow-md border border-[#121212]",
+    backdropImage: "/images/hero/flour-backdrop.jpg",
+    textColor: "#121212",
+    giantTextColor: "#121212",
+    giantTextClass: "text-[#121212] font-black opacity-95",
+    image: "/images/hero/all-products-family.jpg",
+    floating: ["/images/hero/wheat-1.png", "/images/hero/leaf.png"],
+    detailUrl: "/products",
+    altText: "Usman's Complete Organic Range: Chakki Flours, Diabetic Formulas, and Herbal Teas",
+  },
+  {
+    id: "diabetic",
+    tag: "Doctor's Choice Formula",
+    title: "FENUGREEK",
+    subtitle: "PLUS",
+    fullTitle: "Fenugreek Plus Diabetic Care Flour",
+    benefit: "Buzurgo ki sugar control aur pait ke bhari-pan ke liye 15 qudrati ajza aur methi dane se tayyar shuda khalis atta.",
+    miniStats: ["Low GI Index", "Sugar Friendly", "15 Pure Grains"],
+    price: "Rs 1,200",
+    originalPrice: "Rs 1,500",
+    weight: "4 LBS (1.8kg)",
+    bgColor: "#F6F9F7",
+    announcementBg: "#121212",
+    activePillClass: "bg-[#1E3A2F] text-white shadow-md border border-[#1E3A2F]",
+    backdropImage: "/images/backgrounds/wheat-field-backplate.jpg",
+    textColor: "#121212",
+    giantTextColor: "#121212",
+    giantTextClass: "text-[#121212] font-black opacity-95",
+    image: "/images/products/prod-4.png",
+    floating: ["/images/hero/wheat-2.png", "/images/hero/leaf.png"],
+    detailUrl: "/product/prod-4",
+    altText: "Fenugreek Plus Diabetic Care Flour with herbal garden background",
   },
 ];
 
@@ -121,7 +179,7 @@ export function HeroSlider() {
 
   // Sync ambient theme with active slide
   useEffect(() => {
-    setActiveTheme(rawSlide.id as "flour" | "herbals");
+    setActiveTheme(rawSlide.id as any);
   }, [rawSlide.id, setActiveTheme]);
 
   // Navigation handlers
@@ -224,8 +282,7 @@ export function HeroSlider() {
   const handleLearnMore = (e: React.MouseEvent) => {
     e.preventDefault();
     if (typeof window !== "undefined") {
-      const category = currentSlide.id === "herbals" ? "teas" : "flours";
-      window.location.href = `/products?category=${category}`;
+      window.location.href = currentSlide.detailUrl;
     }
   };
 
@@ -325,44 +382,26 @@ export function HeroSlider() {
               className="relative w-full flex flex-col items-center justify-center transform-gpu will-change-transform"
             >
               {/* 1. Eyebrow Tag */}
-              <span
-                className={`inline-block px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-1.5 shadow-2xs backdrop-blur-md transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "bg-black/50 text-[#FAF9F5] border border-white/40 drop-shadow-md"
-                    : "bg-white/80 border border-stone-200/70 text-stone-800"
-                }`}
-              >
+              <span className="inline-block px-3.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-2 shadow-2xs backdrop-blur-md bg-white/85 border border-stone-200/80 text-[#121212]">
                 🌱 {currentSlide.tag}
               </span>
 
-              {/* 2. Headline Title (White / Cream with drop-shadow on busy backdrops) */}
-              <h1
-                className={`text-2xl sm:text-3xl font-serif font-black tracking-tight leading-tight text-center mb-1.5 transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "text-[#FAF9F5] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
-                    : "text-stone-900"
-                }`}
-              >
+              {/* 2. Headline Title (Clean Raleway Typography) */}
+              <h1 className="text-2xl sm:text-3xl font-heading font-normal tracking-tight leading-tight text-center mb-2 text-[#121212]">
                 {currentSlide.fullTitle}
               </h1>
 
-              {/* 3. Description / Benefit (Light cream with drop-shadow on busy backdrops) */}
-              <p
-                className={`text-xs sm:text-sm text-center font-medium leading-snug line-clamp-2 max-w-xs mb-3 transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "text-[#FAF9F5] drop-shadow-[0_1px_5px_rgba(0,0,0,0.85)]"
-                    : "text-stone-700"
-                }`}
-              >
+              {/* 3. Description / Benefit */}
+              <p className="text-xs sm:text-sm text-center font-normal leading-relaxed line-clamp-2 max-w-xs mb-3.5 text-stone-600">
                 {currentSlide.benefit}
               </p>
 
-              {/* 4. Price & CTAs Row (with generous mb-5 to mb-6 spacing below) */}
+              {/* 4. Price & CTAs Row (Dr. Nazish Affan Buttons) */}
               <div className="flex flex-wrap items-center justify-center gap-2 w-full mb-5 sm:mb-6 pointer-events-auto">
-                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/90 backdrop-blur-md shadow-xs border border-white/70 text-stone-900 shrink-0">
+                <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-[14px] bg-white/90 backdrop-blur-md shadow-xs border border-stone-200/80 text-[#121212] shrink-0">
                   <span className="text-xs sm:text-sm font-bold">{currentSlide.price}</span>
                   {currentSlide.originalPrice && (
-                    <span className="text-[11px] text-stone-500 line-through">
+                    <span className="text-[11px] text-stone-400 line-through">
                       {currentSlide.originalPrice}
                     </span>
                   )}
@@ -370,7 +409,7 @@ export function HeroSlider() {
 
                 <button
                   onClick={handleAddToCart}
-                  className="py-2 px-3.5 rounded-lg text-xs font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="py-2 px-4 rounded-[16px] text-xs font-medium bg-[#121212] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   {isAdded ? (
                     <>
@@ -387,7 +426,7 @@ export function HeroSlider() {
                 <button
                   type="button"
                   onClick={handleLearnMore}
-                  className="py-2 px-3 rounded-lg text-xs font-semibold border border-stone-300 hover:border-stone-500 bg-white/80 hover:bg-white transition-all text-stone-800 cursor-pointer shrink-0"
+                  className="py-2 px-3.5 rounded-[16px] text-xs font-normal border border-[#121212] hover:bg-stone-50 bg-white transition-all text-[#121212] cursor-pointer shrink-0 shadow-xs active:scale-95"
                 >
                   <span>Learn More</span>
                 </button>
@@ -407,10 +446,12 @@ export function HeroSlider() {
                     priority
                     quality={85}
                     sizes="(max-width: 768px) 320px, 450px"
-                    className={`w-auto mx-auto object-contain drop-shadow-md select-none ${
-                      currentSlide.id === "herbals"
-                        ? "max-h-[250px] sm:max-h-[280px]"
-                        : "max-h-[260px] sm:max-h-[290px]"
+                    className={`w-auto mx-auto select-none drop-shadow-md ${
+                      currentSlide.id === "all-products"
+                        ? "max-h-[230px] sm:max-h-[260px] rounded-2xl shadow-xl border border-white/60 object-cover"
+                        : currentSlide.id === "herbals"
+                        ? "max-h-[260px] sm:max-h-[290px] object-contain"
+                        : "max-h-[260px] sm:max-h-[290px] object-contain"
                     }`}
                   />
                 </div>
@@ -434,35 +475,17 @@ export function HeroSlider() {
               className="flex flex-col justify-center text-left max-w-xl z-10"
             >
               {/* Eyebrow Tag */}
-              <div
-                className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider w-fit mb-3.5 shadow-2xs backdrop-blur-md transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "bg-black/50 text-[#FAF9F5] border border-white/40 drop-shadow-md"
-                    : "bg-white/75 border border-stone-300/70 text-stone-900"
-                }`}
-              >
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider w-fit mb-3.5 shadow-2xs backdrop-blur-md bg-white/85 border border-stone-200/80 text-[#121212]">
                 🌱 {currentSlide.tag}
               </div>
 
-              {/* Large Headline */}
-              <h1
-                className={`text-3xl sm:text-4xl lg:text-5xl font-serif font-black tracking-tight leading-[1.12] mb-3.5 transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "text-[#FAF9F5] drop-shadow-[0_2px_8px_rgba(0,0,0,0.75)]"
-                    : "text-stone-900"
-                }`}
-              >
+              {/* Large Headline (Clean Raleway Typography) */}
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-normal tracking-tight leading-[1.15] mb-3.5 text-[#121212]">
                 {currentSlide.fullTitle}
               </h1>
 
               {/* Brief Description */}
-              <p
-                className={`text-sm lg:text-base leading-relaxed font-medium max-w-lg mb-4.5 transition-colors ${
-                  currentSlide.id === "herbals"
-                    ? "text-[#FAF9F5] drop-shadow-[0_1px_5px_rgba(0,0,0,0.85)]"
-                    : "text-stone-700"
-                }`}
-              >
+              <p className="text-sm lg:text-base leading-relaxed font-normal max-w-lg mb-4.5 text-stone-600">
                 {currentSlide.benefit}
               </p>
 
@@ -471,30 +494,26 @@ export function HeroSlider() {
                 {currentSlide.miniStats.map((stat, i) => (
                   <span
                     key={i}
-                    className={`px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md shadow-2xs transition-colors ${
-                      currentSlide.id === "herbals"
-                        ? "bg-black/40 border border-white/30 text-[#FAF9F5] drop-shadow-sm"
-                        : "bg-white/75 border border-stone-200/80 text-stone-900"
-                    }`}
+                    className="px-3.5 py-1 rounded-full text-xs font-medium backdrop-blur-md shadow-2xs bg-white/85 border border-stone-200/80 text-[#121212]"
                   >
                     ✓ {stat}
                   </span>
                 ))}
               </div>
 
-              {/* Price & Action Buttons */}
+              {/* Price & Action Buttons (Dr. Nazish Affan Style) */}
               <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white/85 backdrop-blur-md shadow-xs border border-white/80 text-stone-900 shrink-0">
-                  <span className="text-base lg:text-lg font-black text-stone-900">{currentSlide.price}</span>
+                <div className="flex items-center gap-2 px-4 py-2.5 rounded-[16px] bg-white/90 backdrop-blur-md shadow-xs border border-stone-200/80 text-[#121212] shrink-0">
+                  <span className="text-base lg:text-lg font-bold text-[#121212]">{currentSlide.price}</span>
                   {currentSlide.originalPrice && (
-                    <span className="text-xs text-stone-500 line-through">{currentSlide.originalPrice}</span>
+                    <span className="text-xs text-stone-400 line-through">{currentSlide.originalPrice}</span>
                   )}
-                  <span className="text-xs font-bold text-stone-600 bg-stone-100 px-2 py-0.5 rounded-md ml-1">{currentSlide.weight}</span>
+                  <span className="text-xs font-medium text-stone-600 bg-stone-100 px-2.5 py-0.5 rounded-full ml-1">{currentSlide.weight}</span>
                 </div>
 
                 <button
                   onClick={handleAddToCart}
-                  className="py-2.5 px-5 rounded-xl text-sm font-bold bg-[#1C1613] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer"
+                  className="py-2.5 px-6 rounded-[16px] text-sm font-medium bg-[#121212] text-white hover:bg-black transition-all shadow-md active:scale-95 flex items-center gap-2 cursor-pointer"
                 >
                   {isAdded ? (
                     <>
@@ -517,7 +536,7 @@ export function HeroSlider() {
                 <button
                   type="button"
                   onClick={handleLearnMore}
-                  className="py-2.5 px-4 rounded-xl text-sm font-semibold border border-stone-300 hover:border-stone-500 bg-white/75 hover:bg-white transition-all text-stone-900 cursor-pointer shadow-xs"
+                  className="py-2.5 px-5 rounded-[16px] text-sm font-normal border border-[#121212] hover:bg-stone-50 bg-white transition-all text-[#121212] cursor-pointer shadow-xs active:scale-95"
                 >
                   <span>Learn More</span>
                 </button>
@@ -556,10 +575,12 @@ export function HeroSlider() {
                   priority
                   quality={85}
                   sizes="(max-width: 1024px) 50vw, 650px"
-                  className={`w-auto object-contain select-none drop-shadow-md ${
-                    currentSlide.id === "herbals"
-                      ? "max-h-[440px] lg:max-h-[490px]"
-                      : "max-h-[430px] lg:max-h-[470px]"
+                  className={`w-auto select-none drop-shadow-md ${
+                    currentSlide.id === "all-products"
+                      ? "max-h-[440px] lg:max-h-[490px] rounded-3xl shadow-2xl border border-white/70 object-cover"
+                      : currentSlide.id === "herbals"
+                      ? "max-h-[450px] lg:max-h-[500px] object-contain"
+                      : "max-h-[440px] lg:max-h-[480px] object-contain"
                   }`}
                 />
               </motion.div>
