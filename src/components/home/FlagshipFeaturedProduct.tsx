@@ -47,7 +47,7 @@ export function FlagshipFeaturedProduct() {
             </div>
 
             {/* Wholesome Family Dinner Table Visual with Grandmother, Parents & Children */}
-            <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-sm border border-stone-100">
+            <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-3xl">
               <Image
                 src="/images/products/family-dinner-table.jpg"
                 alt="Happy Pakistani family enjoying wholesome dinner with Usman's Pure Chakki Atta"

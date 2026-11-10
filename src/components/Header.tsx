@@ -116,7 +116,7 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full transition-all duration-300">
+      <header className="relative w-full transition-all duration-300">
         {/* Top Announcement Bar */}
         <AnnouncementBar theme={theme} />
 

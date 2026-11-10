@@ -843,52 +843,59 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
               </Link>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:gap-x-6 sm:gap-y-10 md:grid-cols-3 lg:grid-cols-4">
               {relatedProducts.map((rel) => (
-                <div
+                <article
                   key={rel.id}
-                  className="group flex flex-col justify-between"
+                  className="group flex flex-col justify-start bg-transparent border-none shadow-none p-0"
                 >
-                  <div>
-                    <Link href={`/product/${rel.id}`} className="block">
-                      <div className="relative aspect-square w-full rounded-2xl overflow-hidden mb-3 bg-stone-100/60 flex items-center justify-center p-3">
-                        <Image
-                          src={rel.image}
-                          alt={rel.title}
-                          fill
-                          sizes="(max-width: 640px) 50vw, 25vw"
-                          className="object-contain p-2 group-hover:scale-105 transition-transform duration-500 ease-out"
-                        />
-                        <span className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-white/90 text-[#8B3A22]">
-                          Pure
-                        </span>
-                      </div>
+                  {/* Floating image container on flat white canvas */}
+                  <div className="relative aspect-square w-full bg-transparent overflow-hidden flex items-center justify-center">
+                    <Link
+                      href={`/product/${rel.id}`}
+                      className="absolute inset-0 z-0 flex items-center justify-center"
+                      aria-label={rel.title}
+                    >
+                      <Image
+                        src={rel.image}
+                        alt={rel.title}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                        quality={85}
+                        className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
+                      />
+                    </Link>
+                  </div>
 
-                      <div className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-[#8B3A22] mb-1">
-                        {rel.categoryLabel}
-                      </div>
-                      <h4 className="text-xs sm:text-sm font-bold text-stone-900 line-clamp-2 group-hover:text-[#8B3A22] transition min-h-[34px] sm:min-h-[38px] leading-snug">
+                  {/* Text and details below image */}
+                  <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
+                    <Link href={`/product/${rel.id}`}>
+                      <h4 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
                         {rel.title}
                       </h4>
                     </Link>
 
-                    <div className="mt-1.5 flex items-baseline gap-1.5 flex-wrap">
-                      <span className="text-sm sm:text-base font-bold text-stone-900">{rel.priceFormatted}</span>
-                      <span className="text-[10px] sm:text-xs text-stone-400 line-through">
-                        {rel.originalPriceFormatted}
+                    {/* Price display: bold prominent sale price & subtle crossed-out original */}
+                    <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
+                      <span className="text-base sm:text-lg font-bold text-black">
+                        {rel.priceFormatted}
                       </span>
+                      {rel.originalPriceFormatted && (
+                        <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
+                          {rel.originalPriceFormatted}
+                        </span>
+                      )}
                     </div>
-                  </div>
 
-                  <div className="mt-3.5">
+                    {/* Pill-shaped Add to Cart Button */}
                     <Link
                       href={`/product/${rel.id}`}
-                      className="w-full py-2.5 px-3 rounded-xl bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] text-xs font-bold flex items-center justify-center gap-1 transition text-center uppercase tracking-wider"
+                      className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                     >
-                      <span>View Pure Item</span>
+                      View Details
                     </Link>
                   </div>
-                </div>
+                </article>
               ))}
             </div>
           </div>

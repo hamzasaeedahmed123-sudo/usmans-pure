@@ -85,9 +85,9 @@ export function Navbar({
 
   return (
     <>
-      <div className={`w-full bg-white opacity-100 border-b border-gray-200 shadow-xs relative z-50 shrink-0 transition-all duration-300 ${className}`}>
+      <div className={`w-full bg-white opacity-100 border-b border-gray-200 shadow-xs relative shrink-0 transition-all duration-300 ${className}`}>
         <header
-          className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-50 shrink-0"
+          className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative shrink-0"
         >
           {/* Top Row: Mobile Left Hamburger + Center Logo + Right Actions */}
           <div className="relative flex items-center justify-between py-2 sm:py-3 min-h-[54px] sm:min-h-[64px]">
