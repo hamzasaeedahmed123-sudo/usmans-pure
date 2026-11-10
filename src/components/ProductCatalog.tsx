@@ -273,7 +273,7 @@ export function ProductCatalog() {
   }, [allProductsList, categoryFilter]);
 
   return (
-    <section id="featured-products" className="relative py-12 sm:py-20 bg-[#FAF9F5] transition-colors duration-700 ease-in-out overflow-hidden">
+    <section id="featured-products" className="relative py-12 sm:py-20 bg-white transition-colors duration-700 ease-in-out overflow-hidden">
       {/* Pure clean background with strictly zero leaf watermarks or patterns behind products */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
         
@@ -309,15 +309,15 @@ export function ProductCatalog() {
         </div>
 
         {/* Clean Luxury Category Filter Bar & Direct Store Link */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-stone-200/70 pb-4 mb-6 sm:mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-stone-100 pb-4 mb-6 sm:mb-10">
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-1">
             <button
               type="button"
               onClick={() => setCategoryFilter("all")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
                 categoryFilter === "all"
                   ? "bg-[#2C2A29] text-[#FAF9F5] shadow-xs"
-                  : "bg-white text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
+                  : "bg-stone-100 text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
               }`}
             >
               All Products ({allProductsList.length})
@@ -325,10 +325,10 @@ export function ProductCatalog() {
             <button
               type="button"
               onClick={() => setCategoryFilter("flours")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
                 categoryFilter === "flours"
                   ? "bg-[#4A3525] text-white shadow-xs"
-                  : "bg-white text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
+                  : "bg-stone-100 text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
               }`}
             >
               Stone-Ground Flours ({allProductsList.filter((p) => p.category === "flours").length})
@@ -336,10 +336,10 @@ export function ProductCatalog() {
             <button
               type="button"
               onClick={() => setCategoryFilter("teas")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
+              className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer whitespace-nowrap active:scale-95 ${
                 categoryFilter === "teas"
                   ? "bg-[#145330] text-white shadow-xs"
-                  : "bg-white text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
+                  : "bg-stone-100 text-stone-700 hover:text-stone-900 border border-stone-200/80 hover:bg-stone-50"
               }`}
             >
               Organic Herbal Teas ({allProductsList.filter((p) => p.category === "teas").length})
@@ -355,115 +355,66 @@ export function ProductCatalog() {
           </Link>
         </div>
 
-        {/* Luxury Minimalist Grid - Strict 2 Columns on Mobile, Edge-to-Edge Floating Cards */}
-        <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+        {/* Borderless Minimalist Product Grid - Floating Content Directly on Pure White Canvas */}
+        <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-6 sm:gap-y-8 md:grid-cols-3 lg:grid-cols-4">
           {displayedProducts.map((product) => {
-            const isAdded = addedIds[product.id];
-            const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
-            const currentOption =
-              product.packOptions.find((o) => o.size === currentSize) || product.packOptions[0];
-            const themeCategory = product.category === "flours" ? "flour" : "herbals";
+            const defaultOption = product.packOptions?.[0] || { price: 0, originalPrice: 0 };
+            const price = defaultOption.price;
+            const originalPrice = defaultOption.originalPrice;
+            const discountPercent = originalPrice > price
+              ? Math.round(((originalPrice - price) / originalPrice) * 100)
+              : 0;
 
             return (
               <article
                 key={product.id}
                 id={product.id}
-                data-ambient-theme={themeCategory}
-                className="group relative flex flex-col justify-between border-0 shadow-none bg-transparent"
+                className="group flex flex-col justify-start bg-transparent border-0 shadow-none p-0"
               >
-                <div>
-                  {/* Pure Solid White Image Background with Soft Rounded Corners */}
-                  <div className="relative aspect-[4/5] sm:aspect-square w-full bg-white overflow-hidden rounded-2xl p-2 sm:p-3 flex items-center justify-center">
-                    <Link href={product.detailUrl} className="absolute inset-0 z-0 flex items-center justify-center" aria-label={product.title}>
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        quality={85}
-                        loading="lazy"
-                        className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                    </Link>
+                {/* 1. Soft Mint-Green Rounded Square Container */}
+                <div className="relative aspect-square w-full bg-[#EBF4EE] rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-4 flex items-center justify-center">
+                  <Link
+                    href={product.detailUrl}
+                    className="absolute inset-0 z-0 flex items-center justify-center"
+                    aria-label={product.title}
+                  >
+                    <Image
+                      src={product.image}
+                      alt={product.title}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      quality={85}
+                      loading="lazy"
+                      className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                  </Link>
 
-                    <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] bg-white/95 backdrop-blur-xs px-2.5 py-0.5 rounded-full pointer-events-none shadow-2xs">
-                      Sale
+                  {/* 2. Tiny Minimalist Red Circular Pill Badge at Top-Right */}
+                  {discountPercent > 0 && (
+                    <span className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[10px] sm:text-[11px] font-bold tracking-tight shadow-xs pointer-events-none">
+                      -{discountPercent}%
                     </span>
-
-                    <button
-                      type="button"
-                      onClick={() => setQuickViewProduct(product)}
-                      className="hidden sm:flex absolute bottom-0 inset-x-0 z-10 py-2.5 bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-bold uppercase tracking-[0.16em] items-center justify-center gap-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out cursor-pointer backdrop-blur-xs"
-                    >
-                      <Eye className="w-3.5 h-3.5" strokeWidth={1.5} /> Quick View
-                    </button>
-                  </div>
-
-                  {/* Product Details with Luxury Typography */}
-                  <div className="pt-2.5 sm:pt-3.5 flex flex-col">
-                    <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#8B3A22] truncate block">
-                      {product.categoryBadge}
-                    </span>
-
-                    <Link href={product.detailUrl}>
-                      <h3 className="mt-1 font-serif text-sm sm:text-base font-bold text-[#2C2A29] leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-[#8B3A22] transition-colors duration-200">
-                        {product.title}
-                      </h3>
-                    </Link>
-
-                    {/* Pack size — minimal touch-friendly toggles */}
-                    <div className="mt-2 flex items-center gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar py-0.5">
-                      {product.packOptions.map((opt) => (
-                        <button
-                          key={opt.size}
-                          type="button"
-                          onClick={() =>
-                            setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
-                          }
-                          className={`px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-semibold rounded-md transition-transform active:scale-95 duration-150 cursor-pointer shrink-0 ${
-                            currentSize === opt.size
-                              ? "bg-[#4A3525] text-white shadow-2xs font-bold"
-                              : "bg-white text-[#2C2A29] border border-stone-200/80 hover:bg-stone-50"
-                          }`}
-                        >
-                          {opt.size}
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Price & Strikethrough */}
-                    <div className="mt-2 sm:mt-2.5 flex items-baseline gap-1.5 flex-wrap">
-                      <span className="text-sm sm:text-base md:text-lg font-extrabold font-sans text-[#2C2A29]">
-                        Rs {currentOption.price.toLocaleString()}
-                      </span>
-                      <span className="text-[11px] sm:text-xs font-normal font-sans text-stone-400 line-through">
-                        Rs {currentOption.originalPrice.toLocaleString()}
-                      </span>
-                    </div>
-                  </div>
+                  )}
                 </div>
 
-                {/* Sleek Minimalist Order Button */}
-                <div className="mt-2.5 sm:mt-3">
-                  <button
-                    type="button"
-                    onClick={(e) => handleAddToCart(product, currentOption, e)}
-                    className={`w-full py-2 sm:py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide min-h-[38px] sm:min-h-[42px] flex items-center justify-center gap-1.5 transition-transform active:scale-95 duration-150 cursor-pointer shadow-xs ${
-                      isAdded
-                        ? "bg-[#145330] text-white"
-                        : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
-                    }`}
-                  >
-                    {isAdded ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 stroke-[2.5]" /> Added to Cart
-                      </>
-                    ) : (
-                      <>
-                        <ShoppingBag className="w-3.5 h-3.5" /> Order Now
-                      </>
+                {/* 3. Below Image: ONLY Product Title (clean, thin font) and Price */}
+                <div className="pt-2.5 sm:pt-3 flex flex-col text-left">
+                  <Link href={product.detailUrl}>
+                    <h3 className="font-sans text-xs sm:text-sm font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors">
+                      {product.title}
+                    </h3>
+                  </Link>
+
+                  <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                    {originalPrice > price && (
+                      <span className="text-[11px] sm:text-xs text-stone-400 line-through font-normal">
+                        Rs {originalPrice.toLocaleString()}
+                      </span>
                     )}
-                  </button>
+                    <span className="text-xs sm:text-sm font-medium text-black">
+                      Rs {price.toLocaleString()}
+                    </span>
+                  </div>
                 </div>
               </article>
             );

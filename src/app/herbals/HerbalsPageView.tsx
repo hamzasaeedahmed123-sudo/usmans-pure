@@ -151,87 +151,64 @@ export function HerbalsPageView() {
               </Link>
             </div>
 
-            {/* Strict 2-Column Grid on Mobile, Scaling to 4 on Desktop */}
-            <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
+            {/* Strict 2-Column Grid on Mobile, Scaling to 4 on Desktop - Borderless Minimalist */}
+            <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-6 sm:gap-y-8 md:grid-cols-3 lg:grid-cols-4">
               {teaProducts.map((product) => {
-                const isAdded = addedIds[product.id];
+                const discountPercent = product.originalPrice > product.price
+                  ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+                  : 0;
+
                 return (
-                  <div
+                  <article
                     key={product.id}
-                    className="group relative flex flex-col justify-between transition-all duration-300"
+                    className="group flex flex-col justify-start bg-transparent border-0 shadow-none p-0"
                   >
-                    {/* Floating Edge-to-Edge Image Container */}
-                    <div className="relative w-full aspect-[4/5] bg-white overflow-hidden rounded-2xl p-0 flex items-center justify-center mb-3">
-                      <Link href={`/product/${product.id}`} className="absolute inset-0">
+                    {/* 1. Soft Mint-Green Rounded Square Container */}
+                    <div className="relative aspect-square w-full bg-[#EBF4EE] rounded-2xl sm:rounded-3xl overflow-hidden p-3 sm:p-4 flex items-center justify-center">
+                      <Link
+                        href={`/product/${product.id}`}
+                        className="absolute inset-0 z-0 flex items-center justify-center"
+                        aria-label={product.title}
+                      >
                         <Image
                           src={product.image}
                           alt={product.title}
                           fill
                           sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                           quality={85}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          loading="lazy"
+                          className="w-full h-full object-contain p-2 transition-transform duration-500 ease-out group-hover:scale-105"
                         />
                       </Link>
 
-                      <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 pointer-events-none">
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FAF9F5]/90 text-[#145330] shadow-2xs backdrop-blur-xs">
-                          Pure Leaf
+                      {/* 2. Tiny Minimalist Red Circular Pill Badge at Top-Right */}
+                      {discountPercent > 0 && (
+                        <span className="absolute top-2.5 right-2.5 sm:top-3 sm:right-3 z-10 px-1.5 sm:px-2 py-0.5 rounded-full bg-[#DC2626] text-white text-[10px] sm:text-[11px] font-bold tracking-tight shadow-xs pointer-events-none">
+                          -{discountPercent}%
+                        </span>
+                      )}
+                    </div>
+
+                    {/* 3. Below Image: ONLY Product Title (clean, thin font) and Price */}
+                    <div className="pt-2.5 sm:pt-3 flex flex-col text-left">
+                      <Link href={`/product/${product.id}`}>
+                        <h2 className="font-sans text-xs sm:text-sm font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors">
+                          {product.title}
+                        </h2>
+                      </Link>
+
+                      <div className="mt-1 flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
+                        {product.originalPrice > product.price && (
+                          <span className="text-[11px] sm:text-xs text-stone-400 line-through font-normal">
+                            Rs {product.originalPrice.toLocaleString()}
+                          </span>
+                        )}
+                        <span className="text-xs sm:text-sm font-medium text-black">
+                          Rs {product.price.toLocaleString()}
                         </span>
                       </div>
-
-                      <div className="hidden sm:flex absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
-                        <button
-                          onClick={() => setQuickViewProduct(product)}
-                          className="w-full py-2 px-3 rounded-xl bg-[#0E381C]/90 text-[#FAF9F5] text-xs font-bold shadow-xs hover:bg-[#072411] transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer"
-                        >
-                          <Eye className="w-3.5 h-3.5" /> Quick View
-                        </button>
-                      </div>
                     </div>
-
-                    <div className="flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#145330] mb-1">
-                          {product.weight}
-                        </div>
-                        <Link href={`/product/${product.id}`}>
-                          <h3 className="text-sm sm:text-base md:text-lg font-bold font-serif text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition min-h-[2.5rem] sm:min-h-[2.75rem]">
-                            {product.title}
-                          </h3>
-                        </Link>
-                      </div>
-
-                      <div className="mt-2.5 flex flex-col gap-2.5">
-                        <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                          <span className="text-base sm:text-xl font-extrabold font-sans text-[#2C2A29]">
-                            {product.priceFormatted}
-                          </span>
-                          <span className="text-xs sm:text-sm font-normal font-sans text-stone-400 line-through ml-1">
-                            {product.originalPriceFormatted}
-                          </span>
-                        </div>
-
-                        <button
-                          onClick={(e) => handleAddToCart(product, e)}
-                          className={`w-full py-2.5 sm:py-3 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 duration-150 cursor-pointer min-h-[40px] sm:min-h-[44px] shadow-xs ${
-                            isAdded
-                              ? "bg-[#0E381C] text-white"
-                              : "bg-[#145330] hover:bg-[#0E381C] text-[#FAF9F5]"
-                          }`}
-                        >
-                          {isAdded ? (
-                            <>
-                              <Check className="w-4 h-4 stroke-[2.5]" /> Added
-                            </>
-                          ) : (
-                            <>
-                              <ShoppingBag className="w-4 h-4" /> Add to Cart
-                            </>
-                          )}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  </article>
                 );
               })}
             </div>
