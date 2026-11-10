@@ -66,12 +66,12 @@ export function FlagshipFeaturedProduct() {
         <div className="lg:col-span-6 flex flex-col justify-center">
           
           {/* Brand Heritage Tagline */}
-          <span className="text-xs font-bold text-[#8B3A22] uppercase tracking-wider mb-2 block font-sans">
+          <span className="text-xs font-semibold text-red-600 uppercase tracking-wider mb-2 block font-sans">
             ⭐ Har Ammi Ki Pehli Pasand &bull; Asli Chakki Atta
           </span>
 
           {/* Headline */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-[#1E3A2F] tracking-tight leading-[1.25] mb-3">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-normal text-[#121212] tracking-tight leading-[1.25] mb-3">
             Kash Rozana Ki Roti Sirf Pait Na Bhare, Balke Poore Ghar Ki Sehat Bhi Banaye
           </h2>
 
@@ -83,25 +83,25 @@ export function FlagshipFeaturedProduct() {
           {/* 3 Natural Desi Family Points */}
           <div className="space-y-3 mb-5">
             <div className="flex items-start gap-3">
-              <Wheat className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <Wheat className="w-4 h-4 text-red-600 shrink-0 mt-0.5" strokeWidth={1.75} />
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                <strong className="text-stone-900 font-bold">Ammi Abbu Aur Buzurgo Ke Liye:</strong>{" "}
+                <strong className="text-[#121212] font-semibold">Ammi Abbu Aur Buzurgo Ke Liye:</strong>{" "}
                 Low GI anaj jo sugar aur pait ke bhari-pan ko control mein rakhe.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <ShieldCheck className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <ShieldCheck className="w-4 h-4 text-red-600 shrink-0 mt-0.5" strokeWidth={1.75} />
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                <strong className="text-stone-900 font-bold">Bacchon Ki Sehat Aur Taaqat:</strong>{" "}
+                <strong className="text-[#121212] font-semibold">Bacchon Ki Sehat Aur Taaqat:</strong>{" "}
                 Sabut anaj ka qudrati iron aur calcium jo bacchon ki sehat aur haddiyon ki taaqat ke liye zaroori hai.
               </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 text-[#8B3A22] shrink-0 mt-0.5" strokeWidth={1.75} />
+              <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" strokeWidth={1.75} />
               <p className="text-xs sm:text-sm text-stone-700 leading-relaxed">
-                <strong className="text-stone-900 font-bold">Ghar Ki Tasalli:</strong>{" "}
+                <strong className="text-[#121212] font-semibold">Ghar Ki Tasalli:</strong>{" "}
                 100% khalis aur taaza pisa hua, bina kisi maiday ke khalis chakki atta aur narm phulka roti.
               </p>
             </div>
@@ -109,7 +109,7 @@ export function FlagshipFeaturedProduct() {
 
           {/* 8 Traditional Grains Single Elegant Sentence */}
           <p className="text-xs sm:text-sm text-stone-600 mb-6 leading-relaxed">
-            <span className="font-semibold text-stone-800">8 Khalis Anaj:</span>{" "}
+            <span className="font-semibold text-[#121212]">8 Khalis Anaj:</span>{" "}
             Gandum, Jau, Jowar, Bajra, Kala Chana, Oats, Alsi (Flaxseeds) aur Methi Dana.
           </p>
 
@@ -117,7 +117,7 @@ export function FlagshipFeaturedProduct() {
           <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
             <Link
               href="#featured-products"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-[#FAF9F5] text-xs sm:text-sm font-bold tracking-wide transition-all shadow-xs cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-[16px] bg-[#121212] hover:bg-stone-800 active:scale-95 text-white text-xs sm:text-sm font-medium tracking-wide transition-all shadow-md cursor-pointer"
             >
               <span>Explore Fresh Chakki Flours</span>
               <ChevronRight className="w-4 h-4" />

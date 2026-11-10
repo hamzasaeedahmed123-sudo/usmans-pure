@@ -13,10 +13,10 @@ interface AnnouncementBarProps {
 }
 
 const THEME_COLORS: Record<AnnouncementBarTheme, string> = {
-  flour: "#2A1F17", // Deep Roasted Brown
-  amber: "#2A1F17",
-  herbals: "#0E381C", // Deep Forest Green
-  green: "#0E381C",
+  flour: "#121212",
+  amber: "#121212",
+  herbals: "#121212",
+  green: "#121212",
 };
 
 export function AnnouncementBar({ theme = "flour", className = "", customBg }: AnnouncementBarProps) {

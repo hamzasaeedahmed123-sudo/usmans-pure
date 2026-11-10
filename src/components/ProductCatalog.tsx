@@ -280,10 +280,10 @@ export function ProductCatalog() {
         {/* Editorial Section Heading with Brand Logo opposite title - Preserved completely */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 sm:gap-8 mb-8 sm:mb-10">
           <div className="max-w-xl">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8B3A22] block mb-2 font-sans">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-red-600 block mb-2 font-sans">
               Artisanal Milling
             </span>
-            <h2 className="mt-1 text-2xl sm:text-4xl lg:text-5xl font-serif text-[#2C2A29] leading-snug font-bold">
+            <h2 className="mt-1 text-2xl sm:text-3xl lg:text-4xl font-heading text-[#121212] leading-tight font-normal">
               Freshly Milled Whole Wheat Flour &amp; Multi-Grain Blends
             </h2>
           </div>
@@ -389,25 +389,25 @@ export function ProductCatalog() {
                     />
                   </Link>
 
-                  {/* Tiny minimalist circular/pill-shaped red badge */}
+                  {/* Dr Nazish Affan vibrant red pill badge */}
                   {discountPercent > 0 && (
-                    <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-medium text-[10px] px-2 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
+                    <span className="absolute top-2.5 right-2.5 z-10 bg-[#DC2626] text-white font-semibold text-[11px] px-2.5 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
                       -{discountPercent}%
                     </span>
                   )}
                 </div>
 
-                {/* Text and details below image with increased breathing space */}
+                {/* Text and details below image with Dr Nazish Affan layout */}
                 <div className="mt-4 sm:mt-5 flex flex-col text-center">
                   <Link href={product.detailUrl}>
-                    <h3 className="text-sm sm:text-base font-normal text-stone-800 leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-normal">
+                    <h3 className="text-sm sm:text-base font-normal text-[#121212] leading-snug line-clamp-2 hover:underline transition-colors tracking-normal">
                       {product.title}
                     </h3>
                   </Link>
 
-                  {/* Price display: soft deep charcoal price & subtle crossed-out original */}
+                  {/* Price display: crisp dark sale price & subtle crossed-out original */}
                   <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
-                    <span className="text-base sm:text-lg font-semibold text-stone-800 tracking-tight">
+                    <span className="text-base sm:text-lg font-bold text-[#121212] tracking-tight">
                       Rs {price.toLocaleString()}
                     </span>
                     {originalPrice > price && (
@@ -417,11 +417,11 @@ export function ProductCatalog() {
                     )}
                   </div>
 
-                  {/* Pill-shaped Add to Cart Button (Pure white bg, delicate thin border, ultra-soft shadow) */}
+                  {/* Dr. Nazish Affan Signature Button: 16px radius, 1px dark border, distinct bottom drop-shadow */}
                   <button
                     type="button"
                     onClick={(e) => handleAddToCart(product, defaultOption, e)}
-                    className="mt-3.5 w-full max-w-[170px] sm:max-w-[190px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 hover:bg-stone-50/80 text-xs sm:text-sm font-normal tracking-wide shadow-xs hover:shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                    className="mt-3.5 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2.5 px-4 rounded-[16px] bg-white border border-[#121212] text-[#121212] hover:bg-stone-50 text-xs sm:text-sm font-normal tracking-wide shadow-[0_4px_6px_rgba(0,0,0,0.15)] active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                   >
                     {addedIds[product.id] ? "Added to cart ✓" : "Add to cart"}
                   </button>

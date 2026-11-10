@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FAF9F5;
-  --foreground: #2C2A29;
+  --background: #FFFFFF;
+  --foreground: #121212;
 
-  /* Luxury Organic Standard (Green Gold Grocers / Chilton Pure Aesthetic) */
-  --canvas: #FAF9F5;
-  --charcoal: #2C2A29;
-  --earthy-brown: #4A3525;
-  --earthy-dark: #3D2B1F;
+  /* Dr. Nazish Affan Aesthetic: Pure White Canvas, Raleway Typography, Deep Charcoal & Vibrant Accents */
+  --canvas: #FFFFFF;
+  --charcoal: #121212;
+  --earthy-brown: #2C2A29;
+  --earthy-dark: #1E1E1E;
   --forest-green: #145330;
   --forest-green-dark: #0E381C;
   --forest-green-light: #1B3B2B;
   --terracotta: #8B3A22;
-  --cream: #FAF9F5;
-  --cream-soft: #F5F2EB;
-  --linen: #EFEBE4;
-  --sand: #E8E2D8;
+  --cream: #FFFFFF;
+  --cream-soft: #F9F9F9;
+  --linen: #F3F3F3;
+  --sand: #EAEAEA;
   --olive: #3D4A2B;
-  --ink-muted: #5E5852;
-  --espresso: #2C2A29;
+  --ink-muted: #717171;
+  --espresso: #121212;
 }
 
 @theme inline {
@@ -37,10 +37,10 @@
   --color-sand: var(--sand);
   --color-olive: var(--olive);
   --color-ink-muted: var(--ink-muted);
-  --font-sans: var(--font-sans), Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: var(--font-sans), Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: var(--font-serif), "Playfair Display", Georgia, Cambria, "Times New Roman", serif;
-  --font-heading: var(--font-serif), "Playfair Display", Georgia, Cambria, "Times New Roman", serif;
+  --font-sans: var(--font-raleway), "Raleway", var(--font-sans), Montserrat, sans-serif;
+  --font-body: var(--font-raleway), "Raleway", var(--font-sans), Montserrat, sans-serif;
+  --font-serif: var(--font-raleway), "Raleway", var(--font-serif), "Playfair Display", Georgia, serif;
+  --font-heading: var(--font-raleway), "Raleway", var(--font-serif), sans-serif;
   --font-mono: var(--font-geist-mono);
   --breakpoint-xs: 400px;
 }

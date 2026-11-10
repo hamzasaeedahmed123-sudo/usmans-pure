@@ -1,7 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Playfair_Display, Geist_Mono } from "next/font/google";
+import { Raleway, Montserrat, Playfair_Display, Geist_Mono } from "next/font/google";
 import dynamic from "next/dynamic";
 import "./globals.css";
+
+const raleway = Raleway({
+  variable: "--font-raleway",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
 
 const montserrat = Montserrat({
   variable: "--font-sans",
@@ -152,7 +159,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} ${playfair.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
+      className={`${raleway.variable} ${montserrat.variable} ${playfair.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -164,7 +171,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans antialiased text-[#2C2A29] bg-[#FAF9F5] overflow-x-hidden w-full max-w-full selection:bg-[#8B3A22]/15 selection:text-[#2C2A29]">
+      <body className="min-h-full flex flex-col font-sans antialiased text-[#121212] bg-white overflow-x-hidden w-full max-w-full selection:bg-red-500/15 selection:text-[#121212]">
         <AuthProvider>
           <StoreDataProvider>
             <CartProvider>

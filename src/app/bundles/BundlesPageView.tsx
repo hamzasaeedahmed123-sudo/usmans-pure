@@ -149,25 +149,25 @@ export function BundlesPageView() {
                         />
                       </Link>
 
-                      {/* Tiny minimalist circular/pill-shaped red badge */}
+                      {/* Dr Nazish Affan vibrant red pill badge */}
                       {discountPercent > 0 && (
-                        <span className="absolute top-2 right-2 z-10 bg-red-600 text-white font-semibold text-[10px] px-1.5 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
+                        <span className="absolute top-2.5 right-2.5 z-10 bg-[#DC2626] text-white font-semibold text-[11px] px-2.5 py-0.5 rounded-full pointer-events-none shadow-xs tracking-wider">
                           -{discountPercent}%
                         </span>
                       )}
                     </div>
 
-                    {/* Text and details below image */}
+                    {/* Text and details below image with Dr Nazish Affan layout */}
                     <div className="mt-4 sm:mt-5 flex flex-col text-center">
                       <Link href={`/bundles/${bundle.slug}`}>
-                        <h2 className="text-sm md:text-base font-normal text-stone-800 leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-normal">
+                        <h2 className="text-sm md:text-base font-normal text-[#121212] leading-snug line-clamp-2 hover:underline transition-colors tracking-normal">
                           {bundle.title}
                         </h2>
                       </Link>
 
-                      {/* Price display: bold prominent sale price & subtle crossed-out original, center-aligned */}
+                      {/* Price display: crisp dark sale price & subtle crossed-out original, center-aligned */}
                       <div className="mt-2 flex items-baseline justify-center gap-2 flex-wrap">
-                        <span className="text-base sm:text-lg font-semibold text-stone-800">
+                        <span className="text-base sm:text-lg font-bold text-[#121212]">
                           Rs {bundle.price.toLocaleString()}
                         </span>
                         {bundle.originalPrice > bundle.price && (
@@ -177,11 +177,11 @@ export function BundlesPageView() {
                         )}
                       </div>
 
-                      {/* Delicate Pill-shaped Add to Cart Button */}
+                      {/* Dr. Nazish Affan Signature Button: 16px radius, 1px dark border, distinct bottom drop-shadow */}
                       <button
                         type="button"
                         onClick={(e) => handleAddBundle(bundle, e)}
-                        className="mt-3.5 w-full max-w-[170px] sm:max-w-[190px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-stone-300 hover:border-stone-400 text-stone-800 hover:bg-stone-50 text-xs sm:text-sm font-normal tracking-wide shadow-xs hover:shadow-sm active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                        className="mt-3.5 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2.5 px-4 rounded-[16px] bg-white border border-[#121212] text-[#121212] hover:bg-stone-50 text-xs sm:text-sm font-normal tracking-wide shadow-[0_4px_6px_rgba(0,0,0,0.15)] active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
                       >
                         {addedIds[bundle.id] ? "Added to cart ✓" : "Add to cart"}
                       </button>
