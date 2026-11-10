@@ -55,7 +55,7 @@ const PACK_OPTIONS: PackOption[] = [
   },
 ];
 
-const PRODUCT_IMAGE = "/images/products/flagship-man-product-merged.png";
+const PRODUCT_IMAGE = "/images/products/family-dinner-table.jpg";
 const WHATSAPP_PHONE = "923129996658";
 
 export function FlagshipFeaturedProduct() {
@@ -135,17 +135,19 @@ export function FlagshipFeaturedProduct() {
               </div>
             </div>
 
-            {/* Continuous, Borderless Merged Visual: Kitchen Setup on Left & Gesturing Man on Right */}
-            <Image
-              src="/images/products/flagship-man-product-merged.png"
-              alt="Usman's Pure Products Multigrain Flour & Organic Ingredients"
-              width={1200}
-              height={896}
-              priority
-              quality={85}
-              className="w-full h-auto object-contain max-h-[500px] md:max-h-[600px] mix-blend-multiply select-none pointer-events-none"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
-            />
+            {/* Wholesome Family Dinner Table Visual with Grandmother, Parents & Children */}
+            <div className="relative w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-sm border border-stone-100">
+              <Image
+                src="/images/products/family-dinner-table.jpg"
+                alt="Happy Pakistani family enjoying wholesome dinner with Usman's Pure Chakki Atta"
+                width={1200}
+                height={896}
+                priority
+                quality={90}
+                className="w-full h-auto object-cover max-h-[480px] md:max-h-[560px] select-none"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 650px"
+              />
+            </div>
           </div>
         </div>
 
