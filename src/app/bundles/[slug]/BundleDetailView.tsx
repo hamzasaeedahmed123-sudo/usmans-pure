@@ -248,23 +248,23 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                 </div>
 
                 {/* Quantity & CTA Buttons */}
-                <div className="mt-8 pt-6 border-t border-[#1E1510]/10 flex flex-col gap-3">
-                  <div className="flex items-center gap-4">
+                <div className="mt-8 pt-6 border-t border-stone-200/60 flex flex-col gap-3">
+                  <div className="flex items-center gap-3">
                     {/* Quantity Picker */}
-                    <div className="flex items-center border border-[#1E1510]/20 rounded-[3px] bg-white px-3 py-2 gap-4">
+                    <div className="flex items-center border border-stone-300 rounded-xl bg-white px-3 py-2 gap-3 shadow-2xs">
                       <button
                         onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                        className="text-sm font-medium hover:text-[#8B3A22] transition-colors cursor-pointer"
+                        className="text-base font-bold text-[#2C2A29] hover:text-[#8B3A22] active:scale-95 transition-all cursor-pointer w-6 h-6 flex items-center justify-center"
                         aria-label="Decrease quantity"
                       >
                         -
                       </button>
-                      <span className="text-xs font-semibold min-w-[20px] text-center">
+                      <span className="text-sm font-bold min-w-[24px] text-center text-[#2C2A29]">
                         {quantity}
                       </span>
                       <button
                         onClick={() => setQuantity((q) => q + 1)}
-                        className="text-sm font-medium hover:text-[#8B3A22] transition-colors cursor-pointer"
+                        className="text-base font-bold text-[#2C2A29] hover:text-[#8B3A22] active:scale-95 transition-all cursor-pointer w-6 h-6 flex items-center justify-center"
                         aria-label="Increase quantity"
                       >
                         +
@@ -274,7 +274,11 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                     {/* Add to Cart Button */}
                     <button
                       onClick={handleAddToCart}
-                      className={`flex-1 ${isAdded ? "btn-lux-terra" : "btn-lux"} py-3.5`}
+                      className={`flex-1 py-3.5 px-4 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-transform active:scale-95 duration-150 flex items-center justify-center gap-2 cursor-pointer shadow-xs ${
+                        isAdded
+                          ? "bg-[#145330] text-white"
+                          : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
+                      }`}
                     >
                       {isAdded ? (
                         <>
@@ -293,7 +297,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                     href={`https://wa.me/923129996658?text=${whatsappMessage}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 px-5 rounded-[3px] bg-[#25D366] hover:bg-[#20ba5a] text-white text-xs font-bold uppercase tracking-[0.18em] flex items-center justify-center gap-2 transition-colors duration-200 shadow-xs text-center cursor-pointer"
+                    className="w-full py-3 px-5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] active:scale-95 text-white text-xs font-bold tracking-wide flex items-center justify-center gap-2 transition-transform duration-150 shadow-xs text-center cursor-pointer"
                   >
                     <WhatsAppIcon className="w-4 h-4 shrink-0" variant="white" />
                     <span>Order via WhatsApp (Cash on Delivery)</span>
@@ -302,7 +306,7 @@ export function BundleDetailView({ slug }: BundleDetailViewProps) {
                   {/* Instant Checkout Link */}
                   <Link
                     href={`/checkout?bundle=${bundle.id}&qty=${quantity}`}
-                    className="self-center link-lux mt-2"
+                    className="self-center text-xs font-bold text-[#8B3A22] hover:text-[#2C2A29] active:scale-95 transition-transform mt-2"
                   >
                     <span>Instant Doorstep COD Checkout &rarr;</span>
                   </Link>

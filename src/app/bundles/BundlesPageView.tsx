@@ -117,20 +117,20 @@ export function BundlesPageView() {
           </div>
         </section>
 
-        {/* 3-Column Editorial Grid Section */}
-        <section className="py-16 sm:py-24 bg-[#FAF7F2] relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+        {/* 3-Column Editorial Grid Section - Strict 2 Columns on Mobile */}
+        <section className="py-16 sm:py-24 bg-[#FAF9F5] relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
+            <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 lg:grid-cols-3">
               {bundles.map((bundle) => {
                 const isAdded = addedIds[bundle.id];
                 return (
                   <article
                     key={bundle.id}
-                    className="group relative flex flex-col justify-between bg-[#F6F1E9] rounded-2xl overflow-hidden shadow-ambient hover:shadow-ambient transition-all duration-300"
+                    className="group relative flex flex-col justify-between bg-[#F5F2EB] rounded-2xl overflow-hidden shadow-2xs hover:shadow-xs transition-all duration-300"
                   >
                     <div>
-                      {/* Edge-to-edge image showcase - touches top, left, right edges */}
-                      <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-stone-100">
+                      {/* Edge-to-edge floating image showcase */}
+                      <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-[#EFEBE4] rounded-t-2xl">
                         <Link
                           href={`/bundles/${bundle.slug}`}
                           className="block w-full h-full relative"
@@ -142,53 +142,53 @@ export function BundlesPageView() {
                             fill
                             sizes="(max-width: 768px) 50vw, 33vw"
                             quality={85}
-                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                           />
                         </Link>
 
                         {/* Saving / Discount Badge */}
-                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-amber-100/95 text-amber-900 border border-amber-200/60 shadow-2xs z-10 backdrop-blur-xs">
+                        <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-[#FAF9F5]/90 text-[#8B3A22] shadow-2xs z-10 backdrop-blur-xs">
                           Save Rs {bundle.savings}
                         </span>
                       </div>
 
                       {/* Bundle Information */}
-                      <div className="p-3.5 sm:p-5 pb-0 sm:pb-0">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-1">
+                      <div className="p-3 sm:p-5 pb-0 sm:pb-0">
+                        <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-1">
                           {bundle.badge}
                         </span>
 
                         <Link href={`/bundles/${bundle.slug}`}>
-                          <h2 className="text-base sm:text-lg font-serif font-bold text-stone-900 leading-snug line-clamp-2 min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
+                          <h2 className="text-sm sm:text-lg font-serif font-bold text-[#2C2A29] leading-snug line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem] group-hover:text-[#8B3A22] transition-colors duration-200">
                             {bundle.title}
                           </h2>
                         </Link>
 
                         {/* Included Items Summary */}
-                        <p className="mt-1.5 text-xs sm:text-sm text-stone-700 line-clamp-2 leading-relaxed font-medium">
+                        <p className="mt-1 text-xs sm:text-sm text-[#5E5852] line-clamp-1 sm:line-clamp-2 leading-relaxed font-normal">
                           {bundle.includedTags.join(" • ")}
                         </p>
 
                         {/* Pricing Line */}
-                        <div className="flex items-baseline gap-2 font-sans mt-3 pt-2 sm:pt-3 border-t border-[#1E1510]/10 flex-wrap">
-                          <span className="text-xl sm:text-2xl font-extrabold text-stone-900 tracking-tight font-sans">
+                        <div className="flex items-baseline gap-1.5 sm:gap-2 font-sans mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-stone-200/60 flex-wrap">
+                          <span className="text-base sm:text-2xl font-extrabold text-[#2C2A29] tracking-tight font-sans">
                             Rs {bundle.price.toLocaleString()}
                           </span>
-                          <span className="text-sm font-medium text-stone-400 line-through font-sans">
+                          <span className="text-xs sm:text-sm font-medium text-stone-400 line-through font-sans">
                             Rs {bundle.originalPrice.toLocaleString()}
                           </span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Call to Actions */}
-                    <div className="p-3.5 sm:p-5 pt-3 sm:pt-4 flex flex-col gap-2">
+                    {/* Call to Actions with Active Touch Scale */}
+                    <div className="p-3 sm:p-5 pt-3 sm:pt-4 flex flex-col gap-2">
                       <button
                         onClick={(e) => handleAddBundle(bundle, e)}
-                        className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl min-h-[48px] flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shadow-ambient ${
+                        className={`w-full py-2.5 sm:py-3 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl min-h-[40px] sm:min-h-[44px] flex items-center justify-center gap-2 transition-transform active:scale-95 duration-150 cursor-pointer shadow-xs ${
                           isAdded
-                            ? "bg-emerald-600 text-white"
-                            : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                            ? "bg-[#145330] text-white"
+                            : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
                         }`}
                       >
                         {isAdded ? (

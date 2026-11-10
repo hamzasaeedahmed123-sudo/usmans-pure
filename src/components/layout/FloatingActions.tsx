@@ -33,7 +33,7 @@ export function FloatingActions() {
           <button
             type="button"
             onClick={toggleCart}
-            className="relative w-12 h-12 sm:w-14 sm:h-14 min-w-[48px] min-h-[48px] rounded-full bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5] shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1E3A2F]/50"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 min-w-[48px] min-h-[48px] rounded-full bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5] shadow-xl flex items-center justify-center transition-transform active:scale-95 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#8B3A22]/50"
             aria-label={`View pure basket (${totalCount} items)`}
           >
             <ShoppingBag className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={1.75} />

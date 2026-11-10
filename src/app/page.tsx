@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { Header } from "@/components/Header";
 import { HeroSlider } from "@/components/home/HeroSlider";
+import { HomeStickyHeader } from "@/components/home/HomeStickyHeader";
 import { FlagshipFeaturedProduct } from "@/components/home/FlagshipFeaturedProduct";
 import { ProductVideoShowcase } from "@/components/home/ProductVideoShowcase";
 import { TickerMarquee } from "@/components/TickerMarquee";
@@ -85,8 +85,8 @@ export default function Home() {
       {/* Primary Semantic H1 for Search Engine Dominance */}
       <h1 className="sr-only">FRESHLY MILLED CHAKKI Atta &amp; Organics in Pakistan</h1>
 
-      {/* Primary Sticky Header */}
-      <Header />
+      {/* Sticky Mobile/Desktop Glassmorphism Header Bar (appears smoothly on scroll past hero) */}
+      <HomeStickyHeader />
 
       {/* 1. Hero Section Slider */}
       <HeroSlider />

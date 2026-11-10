@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Search } from "lucide-react";
+import { X } from "lucide-react";
 import { AuthHeaderButton } from "./auth/AuthHeaderButton";
 import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 
@@ -235,21 +235,8 @@ export function Navbar({
           </Link>
         </nav>
 
-        {/* Right Section: Perfectly Aligned Touch Targets with Zero Horizontal Overflow */}
-        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 ml-auto pr-0.5">
-          {/* Quick Search Trigger */}
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                window.location.href = "/products";
-              }
-            }}
-            aria-label="Search Pure Products"
-            className="w-10 h-10 rounded-full bg-stone-100/90 hover:bg-stone-200/90 flex items-center justify-center text-[#2C2A29] transition active:scale-95 cursor-pointer shrink-0"
-          >
-            <Search className="w-4 h-4" strokeWidth={2} />
-          </button>
-
+        {/* Right Section: Viewport safety padding and compact button sizing */}
+        <div className="flex items-center gap-2 shrink-0 ml-auto pr-1 sm:pr-2">
           {/* Quick Cart Trigger */}
           <button
             onClick={() => {
@@ -258,10 +245,10 @@ export function Navbar({
               }
             }}
             aria-label="Open Basket"
-            className="w-10 h-10 rounded-full bg-stone-100/90 hover:bg-stone-200/90 flex items-center justify-center text-[#2C2A29] transition active:scale-95 cursor-pointer shrink-0"
+            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
           >
             <svg
-              className="w-4 h-4 text-[#2C2A29]"
+              className="w-4 h-4 text-stone-800"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -282,14 +269,14 @@ export function Navbar({
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label="Open navigation menu"
-            className="lg:hidden w-10 h-10 rounded-full bg-stone-100/90 hover:bg-stone-200/90 flex items-center justify-center text-[#2C2A29] transition active:scale-95 cursor-pointer shrink-0"
+            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
           >
             {mobileMenuOpen ? (
-              <svg className="w-5 h-5 text-[#2C2A29]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="w-5 h-5 text-[#2C2A29]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}

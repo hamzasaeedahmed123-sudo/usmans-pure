@@ -288,8 +288,8 @@ export function DoctorsChoicePageView() {
               </p>
             </div>
 
-            {/* 2-Column Grid on Mobile, Scaling up to 4-Columns on Desktop */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+            {/* Strict 2-Column Grid on Mobile, Scaling up to 4-Columns on Desktop */}
+            <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 lg:grid-cols-4">
               {DOCTOR_PRODUCTS.map((product) => {
                 const currentSize = selectedPacks[product.id] || product.packOptions[0].size;
                 const currentOption =
@@ -299,113 +299,119 @@ export function DoctorsChoicePageView() {
                 return (
                   <article
                     key={product.id}
-                    className="flex flex-col rounded-xl sm:rounded-2xl bg-white border border-[#1E1510]/10 overflow-hidden shadow-xs hover:shadow-md transition-shadow duration-300 justify-between"
+                    className="flex flex-col justify-between transition-all duration-300"
                   >
-                    {/* Top Photograph Container */}
-                    <div className="relative w-full aspect-[4/5] bg-stone-100 overflow-hidden rounded-t-xl p-0 flex items-center justify-center">
-                      <Image
-                        src={product.image}
-                        alt={product.title}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        quality={85}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                      {/* Problem Tag on Image Badge */}
-                      <span className="absolute top-2 left-2 sm:top-3.5 sm:left-3.5 z-10 inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-md text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#18281E]/95 text-[#E5B869] backdrop-blur-xs shadow-xs max-w-[90%] truncate">
-                        <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#E5B869] shrink-0" />
-                        <span className="truncate">{product.problemTag}</span>
-                      </span>
-                    </div>
-
-                    {/* Card Content */}
-                    <div className="p-3 sm:p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        {/* Product Title */}
-                        <Link href={product.detailUrl}>
-                          <h3 className="text-xs sm:text-base md:text-lg font-serif text-[#1E1510] hover:text-[#8B3A22] transition-colors leading-snug font-bold line-clamp-2 min-h-[2.25rem] sm:min-h-[2.75rem]">
-                            {product.title}
-                          </h3>
+                    <div>
+                      {/* Floating Edge-to-Edge Image */}
+                      <div className="relative w-full aspect-[4/5] bg-[#F5F2EB] overflow-hidden rounded-2xl p-0 flex items-center justify-center mb-3">
+                        <Link href={product.detailUrl} className="absolute inset-0">
+                          <Image
+                            src={product.image}
+                            alt={product.title}
+                            fill
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                            quality={85}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-105"
+                          />
                         </Link>
-
-                        {/* 2. Easy 1-Line Benefit */}
-                        <p className="mt-1 sm:mt-2 text-[11px] sm:text-xs font-bold text-[#8B3A22] leading-snug line-clamp-2">
-                          {product.easyBenefit}
-                        </p>
-
-                        {/* 3. Simple Bullet Points (visible on tablet/desktop) */}
-                        <ul className="hidden sm:block mt-3 space-y-1.5">
-                          {product.simplePoints.slice(0, 2).map((point, idx) => (
-                            <li key={idx} className="flex items-start gap-1.5 text-xs text-stone-700 leading-snug">
-                              <Check className="w-3.5 h-3.5 text-emerald-700 shrink-0 mt-0.5" strokeWidth={2.5} />
-                              <span className="font-medium line-clamp-1">{point}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        {/* Problem Tag on Image Badge */}
+                        <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider bg-[#145330]/95 text-[#E5B869] backdrop-blur-xs shadow-xs max-w-[90%] truncate">
+                          <CheckCircle2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-[#E5B869] shrink-0" />
+                          <span className="truncate">{product.problemTag}</span>
+                        </span>
                       </div>
 
-                      {/* Pricing, Packaging Toggles & CTA Action Area */}
-                      <div className="mt-3 pt-2.5 border-t border-[#1E1510]/10">
-                        {/* Packaging Toggle */}
-                        <div className="flex items-center justify-between gap-1 mb-2.5">
-                          <span className="text-[10px] font-semibold text-[#6B5D52] uppercase tracking-wider">
-                            Pack:
-                          </span>
-                          <div className="flex items-center gap-1">
-                            {product.packOptions.map((opt) => (
-                              <button
-                                key={opt.size}
-                                onClick={() =>
-                                  setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
-                                }
-                                className={`px-2 py-0.5 rounded-sm text-[10px] font-semibold uppercase tracking-wider transition-colors cursor-pointer border ${
-                                  currentSize === opt.size
-                                    ? "bg-[#1E1510] text-[#FAF7F2] border-[#1E1510]"
-                                    : "bg-stone-50 text-[#6B5D52] border-stone-200 hover:border-stone-400"
-                                }`}
-                              >
-                                {opt.size}
-                              </button>
+                      {/* Card Content with Luxury Typography */}
+                      <div className="flex-1 flex flex-col justify-between">
+                        <div>
+                          {/* Product Title */}
+                          <Link href={product.detailUrl}>
+                            <h3 className="text-sm sm:text-base md:text-lg font-serif text-[#2C2A29] hover:text-[#8B3A22] transition-colors leading-snug font-bold line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem]">
+                              {product.title}
+                            </h3>
+                          </Link>
+
+                          {/* 2. Easy 1-Line Benefit */}
+                          <p className="mt-1 text-xs sm:text-sm font-semibold text-[#8B3A22] leading-relaxed line-clamp-1">
+                            {product.easyBenefit}
+                          </p>
+
+                          {/* 3. Simple Bullet Points (visible on tablet/desktop) */}
+                          <ul className="hidden sm:block mt-2.5 space-y-1">
+                            {product.simplePoints.slice(0, 2).map((point, idx) => (
+                              <li key={idx} className="flex items-start gap-1.5 text-xs text-[#5E5852] leading-snug">
+                                <Check className="w-3.5 h-3.5 text-[#145330] shrink-0 mt-0.5" strokeWidth={2.5} />
+                                <span className="font-normal line-clamp-1">{point}</span>
+                              </li>
                             ))}
-                          </div>
+                          </ul>
                         </div>
 
-                        {/* Price & Primary CTA */}
-                        <div>
-                          <div className="flex items-baseline gap-1.5">
-                            <span className="text-sm sm:text-base font-bold text-[#1E1510]">
-                              ₨ {currentOption.price.toLocaleString()}
+                        {/* Pricing, Packaging Toggles & CTA Action Area */}
+                        <div className="mt-2.5 pt-2 border-t border-stone-200/60">
+                          {/* Packaging Toggle */}
+                          <div className="flex items-center justify-between gap-1 mb-2">
+                            <span className="text-[10px] font-semibold text-[#5E5852] uppercase tracking-wider">
+                              Pack:
                             </span>
-                            <span className="text-[10px] sm:text-xs text-[#6B5D52]/60 line-through">
-                              ₨ {currentOption.originalPrice.toLocaleString()}
-                            </span>
+                            <div className="flex items-center gap-1">
+                              {product.packOptions.map((opt) => (
+                                <button
+                                  key={opt.size}
+                                  onClick={() =>
+                                    setSelectedPacks((prev) => ({ ...prev, [product.id]: opt.size }))
+                                  }
+                                  className={`px-2 py-0.5 rounded-lg text-[10px] font-semibold uppercase tracking-wider transition-transform active:scale-95 duration-150 cursor-pointer ${
+                                    currentSize === opt.size
+                                      ? "bg-[#4A3525] text-[#FAF9F5] font-bold"
+                                      : "bg-[#F5F2EB] text-[#2C2A29] hover:bg-[#EFEBE4]"
+                                  }`}
+                                >
+                                  {opt.size}
+                                </button>
+                              ))}
+                            </div>
                           </div>
 
-                          <div className="flex flex-col gap-1.5 mt-2.5">
-                            <button
-                              onClick={(e) => handleAddToCart(product, currentOption, e)}
-                              className={`w-full inline-flex items-center justify-center gap-1.5 py-2 px-2 rounded-lg text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer shadow-xs ${
-                                isAdded ? "btn-lux-terra" : "btn-lux"
-                              }`}
-                            >
-                              {isAdded ? (
-                                <>
-                                  <Check className="w-3.5 h-3.5" /> Added
-                                </>
-                              ) : (
-                                <>
-                                  <ShoppingBag className="w-3.5 h-3.5" /> Add to Cart
-                                </>
-                              )}
-                            </button>
+                          {/* Price & Primary CTA */}
+                          <div>
+                            <div className="flex items-baseline gap-1.5">
+                              <span className="text-base sm:text-lg font-bold text-[#2C2A29]">
+                                ₨ {currentOption.price.toLocaleString()}
+                              </span>
+                              <span className="text-xs text-stone-400 line-through">
+                                ₨ {currentOption.originalPrice.toLocaleString()}
+                              </span>
+                            </div>
 
-                            <Link
-                              href={`${product.checkoutUrl}&pack=${currentOption.size}&qty=1`}
-                              className="w-full inline-flex items-center justify-center gap-1 py-1.5 px-2 rounded-lg bg-[#8B3A22] hover:bg-[#A0452C] text-white text-[10px] sm:text-[11px] font-bold uppercase tracking-wider transition-colors text-center"
-                            >
-                              <Truck className="w-3 h-3" />
-                              <span>Order COD</span>
-                            </Link>
+                            <div className="flex flex-col gap-1.5 mt-2.5">
+                              <button
+                                onClick={(e) => handleAddToCart(product, currentOption, e)}
+                                className={`w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold tracking-wide transition-transform active:scale-95 duration-150 cursor-pointer shadow-xs ${
+                                  isAdded
+                                    ? "bg-[#145330] text-white"
+                                    : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
+                                }`}
+                              >
+                                {isAdded ? (
+                                  <>
+                                    <Check className="w-3.5 h-3.5" /> Added
+                                  </>
+                                ) : (
+                                  <>
+                                    <ShoppingBag className="w-3.5 h-3.5" /> Add to Cart
+                                  </>
+                                )}
+                              </button>
+
+                              <Link
+                                href={`${product.checkoutUrl}&pack=${currentOption.size}&qty=1`}
+                                className="w-full inline-flex items-center justify-center gap-1 py-2 px-3 rounded-xl bg-[#8B3A22] hover:bg-[#722F1B] active:scale-95 text-white text-xs font-bold tracking-wide transition-transform text-center shadow-xs"
+                              >
+                                <Truck className="w-3.5 h-3.5" />
+                                <span>Order COD</span>
+                              </Link>
+                            </div>
                           </div>
                         </div>
                       </div>

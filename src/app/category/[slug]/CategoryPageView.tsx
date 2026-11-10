@@ -167,15 +167,17 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+          {/* Strict 2-Column Grid on Mobile, Scaling to 4 on Desktop */}
+          <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
             {categoryProducts.map((product) => {
               const isAdded = addedIds[product.id];
               return (
                 <div
                   key={product.id}
-                  className="group relative flex flex-col bg-white rounded-sm shadow-xs hover:shadow-ambient transition-all duration-300 overflow-hidden"
+                  className="group relative flex flex-col justify-between transition-all duration-300"
                 >
-                  <div className="relative w-full aspect-square bg-stone-100 overflow-hidden p-0 border-b border-stone-100 flex items-center justify-center">
+                  {/* Floating Edge-to-Edge Image */}
+                  <div className="relative w-full aspect-[4/5] bg-[#F5F2EB] overflow-hidden rounded-2xl p-0 flex items-center justify-center mb-3">
                     <Link href={`/product/${product.id}`} className="absolute inset-0">
                       <Image
                         src={product.image}
@@ -183,54 +185,54 @@ export function CategoryPageView({ slug }: CategoryViewProps) {
                         fill
                         sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         quality={85}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                       />
                     </Link>
 
-                    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 z-10 pointer-events-none">
-                      <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-[2px] text-[10px] sm:text-xs font-medium uppercase tracking-[0.18em] bg-[#F6F1E9] text-[#8B3A22]">
+                    <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 pointer-events-none">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FAF9F5]/90 text-[#8B3A22] shadow-2xs backdrop-blur-xs">
                         Sale
                       </span>
                     </div>
 
-                    <div className="hidden sm:flex absolute inset-x-4 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
+                    <div className="hidden sm:flex absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
                       <button
                         onClick={() => setQuickViewProduct(product)}
-                        className="w-full py-2 px-3 rounded-lg bg-white/95 text-stone-900 text-xs font-bold shadow-ambient hover:bg-[#1E1510] hover:text-white transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer"
+                        className="w-full py-2 px-3 rounded-xl bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-bold shadow-xs hover:bg-black transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer"
                       >
                         <Eye className="w-3.5 h-3.5" /> Quick View
                       </button>
                     </div>
                   </div>
 
-                  <div className="p-3 md:p-5 flex-1 flex flex-col justify-between">
+                  <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="text-xs font-semibold uppercase tracking-wider text-amber-900 mb-1">
+                      <div className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] mb-1">
                         {product.weight}
                       </div>
                       <Link href={`/product/${product.id}`}>
-                        <h3 className="text-base sm:text-lg font-bold font-serif text-stone-900 leading-snug line-clamp-2 hover:text-amber-800 transition min-h-[2.75rem]">
+                        <h3 className="text-sm sm:text-base md:text-lg font-bold font-serif text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#8B3A22] transition min-h-[2.5rem] sm:min-h-[2.75rem]">
                           {product.title}
                         </h3>
                       </Link>
                     </div>
 
-                    <div className="mt-3 pt-3 sm:mt-5 sm:pt-4 border-t border-stone-100 flex flex-col gap-2.5">
+                    <div className="mt-2.5 flex flex-col gap-2.5">
                       <div className="flex items-baseline gap-1.5 sm:gap-2 flex-wrap">
-                        <span className="text-lg sm:text-xl font-extrabold font-sans text-stone-900">
+                        <span className="text-base sm:text-xl font-extrabold font-sans text-[#2C2A29]">
                           {product.priceFormatted}
                         </span>
-                        <span className="text-sm font-normal font-sans text-stone-500 line-through ml-1.5">
+                        <span className="text-xs sm:text-sm font-normal font-sans text-stone-400 line-through ml-1">
                           {product.originalPriceFormatted}
                         </span>
                       </div>
 
                       <button
                         onClick={(e) => handleAddToCart(product, e)}
-                        className={`w-full py-3 px-3 text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer min-h-[48px] shadow-ambient ${
+                        className={`w-full py-2.5 sm:py-3 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl flex items-center justify-center gap-2 transition-transform active:scale-95 duration-150 cursor-pointer min-h-[40px] sm:min-h-[44px] shadow-xs ${
                           isAdded
-                            ? "bg-emerald-600 text-white"
-                            : "bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9]"
+                            ? "bg-[#145330] text-white"
+                            : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
                         }`}
                       >
                         {isAdded ? (

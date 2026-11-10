@@ -4,30 +4,35 @@
   --background: #FAF9F5;
   --foreground: #2C2A29;
 
-  /* Luxury organic palette (Green Gold Grocers / Chilton Pure aesthetic) */
+  /* Luxury Organic Standard (Green Gold Grocers / Chilton Pure Aesthetic) */
+  --canvas: #FAF9F5;
   --charcoal: #2C2A29;
-  --espresso: #2C2A29;
-  --earth-brown: #3E2B1D;
-  --forest-green: #1E3A2F;
+  --earthy-brown: #4A3525;
+  --earthy-dark: #3D2B1F;
+  --forest-green: #145330;
+  --forest-green-dark: #0E381C;
+  --forest-green-light: #1B3B2B;
   --terracotta: #8B3A22;
   --cream: #FAF9F5;
-  --warm-cream: #FAF9F5;
-  --linen: #F2EDE4;
-  --sand: #EBE5DB;
-  --olive: #3D4A26;
-  --ink-muted: #6B5D52;
+  --cream-soft: #F5F2EB;
+  --linen: #EFEBE4;
+  --sand: #E8E2D8;
+  --olive: #3D4A2B;
+  --ink-muted: #5E5852;
+  --espresso: #2C2A29;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-canvas: var(--canvas);
   --color-charcoal: var(--charcoal);
-  --color-espresso: var(--espresso);
-  --color-earth-brown: var(--earth-brown);
+  --color-earthy-brown: var(--earthy-brown);
   --color-forest-green: var(--forest-green);
+  --color-espresso: var(--espresso);
   --color-terracotta: var(--terracotta);
   --color-cream: var(--cream);
-  --color-warm-cream: var(--warm-cream);
+  --color-cream-soft: var(--cream-soft);
   --color-linen: var(--linen);
   --color-sand: var(--sand);
   --color-olive: var(--olive);
@@ -164,23 +169,20 @@ html {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 9999px;
-  background-color: var(--charcoal);
+  border-radius: 4px;
+  background-color: var(--espresso);
   color: var(--cream);
-  border: 1px solid var(--charcoal);
+  border: 1px solid var(--espresso);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.825rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   line-height: 1.2;
-  transition: all 200ms ease-out;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out, color 200ms ease-out;
   cursor: pointer;
   &:hover {
-    background-color: var(--forest-green);
-    border-color: var(--forest-green);
-  }
-  &:active {
-    transform: scale(0.95);
+    background-color: var(--terracotta);
+    border-color: var(--terracotta);
   }
 }
 
@@ -190,7 +192,7 @@ html {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 9999px;
+  border-radius: 4px;
   background-color: var(--terracotta);
   color: var(--cream);
   border: 1px solid var(--terracotta);
@@ -199,14 +201,11 @@ html {
   font-weight: 600;
   letter-spacing: 0.03em;
   line-height: 1.2;
-  transition: all 200ms ease-out;
+  transition: background-color 200ms ease-out, border-color 200ms ease-out;
   cursor: pointer;
   &:hover {
-    background-color: var(--charcoal);
-    border-color: var(--charcoal);
-  }
-  &:active {
-    transform: scale(0.95);
+    background-color: var(--espresso);
+    border-color: var(--espresso);
   }
 }
 
@@ -216,24 +215,21 @@ html {
   justify-content: center;
   gap: 0.6rem;
   padding: 0.85rem 1.75rem;
-  border-radius: 9999px;
+  border-radius: 4px;
   background-color: transparent;
-  color: var(--charcoal);
-  border: 1px solid rgba(44, 42, 41, 0.25);
+  color: var(--espresso);
+  border: 1px solid rgba(30, 21, 16, 0.25);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: 0.825rem;
   font-weight: 600;
   letter-spacing: 0.03em;
   line-height: 1.2;
-  transition: all 200ms ease-out;
+  transition: border-color 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out;
   cursor: pointer;
   &:hover {
-    border-color: var(--charcoal);
-    background-color: var(--charcoal);
+    border-color: var(--espresso);
+    background-color: var(--espresso);
     color: var(--cream);
-  }
-  &:active {
-    transform: scale(0.95);
   }
 }
 

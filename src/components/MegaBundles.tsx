@@ -49,38 +49,40 @@ export function MegaBundles() {
   };
 
   return (
-    <section className="py-12 sm:py-20 bg-[#FAF9F5] text-[#2C2A29] border-b border-stone-200/60 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-6">
+    <section className="py-14 sm:py-24 bg-[#FAF9F5] text-[#2C2A29] border-b border-stone-200/60 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10 relative z-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10 sm:mb-14 gap-6">
           <div className="max-w-xl">
-            <span className="eyebrow mb-2">Lifestyle Value Combos</span>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#8B3A22] block mb-2">
+              Lifestyle Value Combos
+            </span>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif text-[#2C2A29] tracking-tight">
               Curated Wellness <em className="italic font-normal text-[#8B3A22]">Bundles</em>
             </h2>
           </div>
           <div className="flex flex-col items-start sm:items-end gap-2">
-            <p className="text-sm text-[#6B5D52] max-w-sm sm:text-right">
+            <p className="text-sm text-[#5E5852] max-w-sm sm:text-right leading-relaxed">
               Save up to ₨800 on carefully paired lifestyle bundles with nationwide Cash on Delivery (Free over ₨10,000).
             </p>
-            <Link href="/bundles" className="link-lux text-xs mt-1">
+            <Link href="/bundles" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#8B3A22] hover:text-[#2C2A29] transition-colors mt-1">
               <span>Explore All Bundles</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>
 
-        {/* Strict 2-Column Mobile Grid, Edge-to-Edge Floating Cards */}
+        {/* Strict 2 Columns on Mobile Devices, 4 Columns on Desktop */}
         <div className="grid grid-cols-2 gap-3 p-3 sm:p-0 sm:gap-6 lg:grid-cols-4">
           {bundles.map((bundle) => {
             const isAdded = addedIds[bundle.id];
             return (
               <article
                 key={bundle.id}
-                className="group relative flex flex-col justify-between transition-all duration-300"
+                className="bg-[#F5F2EB] rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-2xs"
               >
                 <div>
-                  {/* Floating Image Frame: Soft rounded-2xl on #FAF9F5 */}
-                  <div className="w-full aspect-[4/3] relative overflow-hidden rounded-2xl bg-[#F2EDE4]/70 p-0">
+                  {/* Edge-to-edge floating image showcase */}
+                  <div className="w-full aspect-[4/3] relative p-0 overflow-hidden bg-[#EFEBE4] rounded-t-2xl">
                     <Link href={`/bundles/${bundle.slug}`} className="block w-full h-full relative" aria-label={bundle.title}>
                       <Image
                         src={bundle.image}
@@ -92,61 +94,61 @@ export function MegaBundles() {
                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                     </Link>
-                    <span className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 px-2 sm:px-2.5 py-0.5 rounded-full text-[9px] sm:text-xs font-bold font-sans bg-[#FAF9F5]/90 text-[#8B3A22] border border-stone-200/60 shadow-2xs z-10 backdrop-blur-xs pointer-events-none">
+                    <span className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 px-2 sm:px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold font-sans bg-[#FAF9F5]/90 text-[#8B3A22] shadow-2xs z-10 backdrop-blur-xs">
                       Save Rs {bundle.savings}
                     </span>
                   </div>
 
-                  <div className="pt-2.5 sm:pt-3.5 flex flex-col">
-                    <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-0.5 sm:mb-1">
+                  <div className="p-3 sm:p-5 pb-0 sm:pb-0">
+                    <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] truncate block mb-1">
                       {bundle.badge}
                     </span>
 
                     <Link href={`/bundles/${bundle.slug}`}>
-                      <h3 className="text-xs sm:text-base font-serif font-bold text-[#2C2A29] group-hover:text-[#8B3A22] transition-colors leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem]">
+                      <h3 className="text-sm sm:text-lg font-serif font-bold text-[#2C2A29] group-hover:text-[#8B3A22] transition-colors leading-snug line-clamp-2 min-h-[2.5rem] sm:min-h-[2.75rem]">
                         {bundle.title}
                       </h3>
                     </Link>
 
                     {/* Included Items Summary */}
-                    <p className="mt-0.5 sm:mt-1 text-[11px] sm:text-xs text-[#6B5D52] line-clamp-1 sm:line-clamp-2 leading-relaxed font-normal">
+                    <p className="mt-1 text-xs sm:text-sm text-[#5E5852] line-clamp-1 sm:line-clamp-2 leading-relaxed font-normal">
                       {bundle.includedTags.join(" • ")}
                     </p>
 
-                    <div className="flex items-baseline gap-1 sm:gap-2 font-sans mt-2 sm:mt-2.5 pt-2 sm:pt-2.5 border-t border-stone-200/60 flex-wrap">
-                      <span className="text-sm sm:text-xl font-extrabold text-[#2C2A29] tracking-tight font-sans">
+                    <div className="flex items-baseline gap-1.5 sm:gap-2 font-sans mt-2.5 sm:mt-3 pt-2.5 sm:pt-3 border-t border-stone-200/60 flex-wrap">
+                      <span className="text-base sm:text-2xl font-extrabold text-[#2C2A29] tracking-tight font-sans">
                         Rs {bundle.price.toLocaleString()}
                       </span>
-                      <span className="text-[10px] sm:text-xs font-medium text-[#6B5D52] line-through font-sans">
+                      <span className="text-xs sm:text-sm font-medium text-stone-400 line-through font-sans">
                         Rs {bundle.originalPrice.toLocaleString()}
                       </span>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-2 sm:pt-3 flex flex-col gap-1 sm:gap-1.5">
+                <div className="p-3 sm:p-5 pt-3 sm:pt-4 flex flex-col gap-1.5 sm:gap-2">
                   <button
                     onClick={(e) => handleAddBundle(bundle, e)}
-                    className={`w-full py-2 sm:py-2.5 px-2.5 text-xs sm:text-sm font-bold tracking-wide rounded-xl sm:rounded-2xl min-h-[38px] sm:min-h-[44px] flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer active:scale-95 transition-transform ${
+                    className={`w-full py-2.5 sm:py-3 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl min-h-[40px] sm:min-h-[44px] flex items-center justify-center gap-1.5 transition-transform active:scale-95 duration-150 cursor-pointer shadow-xs ${
                       isAdded
-                        ? "bg-[#1E3A2F] text-white"
-                        : "bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5]"
+                        ? "bg-[#145330] text-white"
+                        : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
                     }`}
                   >
                     {isAdded ? (
                       <>
-                        <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" /> Added
+                        <Check className="w-4 h-4 stroke-[2.5]" /> Added
                       </>
                     ) : (
                       <>
-                        <ShoppingBag className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Add to Cart
+                        <ShoppingBag className="w-4 h-4" /> Add to Cart
                       </>
                     )}
                   </button>
 
                   <Link
                     href={`/bundles/${bundle.slug}`}
-                    className="text-center text-[10px] sm:text-xs font-semibold text-[#6B5D52] hover:text-[#2C2A29] transition-colors py-0.5"
+                    className="text-center text-[10px] sm:text-xs font-bold text-stone-700 hover:text-stone-900 transition-colors py-0.5 sm:py-1"
                   >
                     View Details &rarr;
                   </Link>

@@ -450,7 +450,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       {/* Primary Order Now Button */}
                       <Link
                         href={`/checkout?product=${product.id}&pack=${selectedPack}&qty=${quantity}`}
-                        className="flex-1 py-3.5 sm:py-4 px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#1E1510] hover:bg-[#8B3A22] text-[#F9F6F0] flex items-center justify-center gap-2.5 transition-colors cursor-pointer text-center uppercase tracking-[0.16em] shadow-xs"
+                        className="flex-1 py-3.5 sm:py-4 px-6 rounded-xl text-xs sm:text-sm font-bold bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-[#FAF9F5] flex items-center justify-center gap-2.5 transition-transform cursor-pointer text-center tracking-wide shadow-xs"
                       >
                         <Truck className="w-5 h-5 text-amber-400 shrink-0" />
                         <span>Order Cash on Delivery (₨ {totalPrice.toLocaleString()})</span>
@@ -462,10 +462,10 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                       <button
                         type="button"
                         onClick={handleAddToCart}
-                        className={`flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] flex items-center justify-center gap-2 transition cursor-pointer border ${
+                        className={`flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-transform active:scale-95 cursor-pointer border ${
                           isAdded
-                            ? "bg-emerald-700 border-emerald-700 text-white"
-                            : "bg-transparent hover:bg-stone-200/40 border-stone-300 text-stone-900"
+                            ? "bg-[#145330] border-[#145330] text-white"
+                            : "bg-transparent hover:bg-[#F5F2EB] border-stone-300 text-[#2C2A29]"
                         }`}
                       >
                         {isAdded ? (
@@ -486,7 +486,7 @@ export function ProductDetailView({ id }: ProductDetailViewProps) {
                         )}%20(${selectedPack}%20x%20${quantity}%20=%20₨${totalPrice})%20with%20Cash%20on%20Delivery.`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center gap-2 transition shadow-xs"
+                        className="flex-1 py-3 sm:py-3.5 px-5 rounded-xl text-xs sm:text-sm font-semibold tracking-wide bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 text-white flex items-center justify-center gap-2 transition-transform shadow-xs"
                       >
                         <WhatsAppIcon className="w-5 h-5 shrink-0" variant="white" />
                         <span>Order via WhatsApp</span>

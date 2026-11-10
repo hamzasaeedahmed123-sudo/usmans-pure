@@ -243,10 +243,10 @@ export function FlagshipFeaturedProduct() {
                     <button
                       key={pack.id}
                       onClick={() => setSelectedPack(pack)}
-                      className={`relative p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-left border transition-all cursor-pointer min-h-[64px] flex flex-col justify-between ${
+                      className={`relative p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl text-left border transition-transform active:scale-95 duration-150 cursor-pointer min-h-[64px] flex flex-col justify-between ${
                         isSelected
-                          ? "bg-[#FAF5EE] text-stone-900 border-2 border-[#8B3A22] shadow-sm ring-2 ring-[#8B3A22]/15"
-                          : "bg-white text-stone-700 border border-stone-200/90 hover:border-stone-300 hover:bg-stone-50"
+                          ? "bg-[#FAF5EE] text-[#2C2A29] border-2 border-[#8B3A22] shadow-sm ring-2 ring-[#8B3A22]/15"
+                          : "bg-white text-[#2C2A29] border border-stone-200/90 hover:border-stone-300 hover:bg-stone-50"
                       }`}
                     >
                       <div className="flex items-center justify-between w-full">
@@ -298,7 +298,7 @@ export function FlagshipFeaturedProduct() {
               {/* Primary CTA: Add To Cart */}
               <button
                 onClick={handleAddToCart}
-                className="flex-1 h-12 px-6 rounded-2xl bg-[#2C2A29] hover:bg-[#1E3A2F] active:scale-95 text-[#FAF9F5] font-bold text-sm tracking-wide shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer transition-transform"
+                className="flex-1 h-12 px-6 rounded-2xl bg-[#8B3A22] hover:bg-[#722F1B] active:scale-95 text-white font-bold text-sm tracking-wide shadow-md hover:shadow-lg transition-transform duration-150 flex items-center justify-center gap-2 cursor-pointer"
               >
                 <ShoppingCart className="w-4 h-4" />
                 <span>
@@ -311,7 +311,7 @@ export function FlagshipFeaturedProduct() {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-12 px-5 rounded-2xl bg-[#1E3A2F] hover:bg-[#152a22] active:scale-95 text-[#FAF9F5] font-bold text-sm shadow-md transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer shrink-0 transition-transform"
+                className="h-12 px-5 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 text-white font-bold text-sm shadow-md hover:shadow-lg transition-transform duration-150 flex items-center justify-center gap-2 cursor-pointer shrink-0"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" variant="white" />
                 <span>Order on WhatsApp</span>

@@ -91,16 +91,16 @@ export function CartDrawer() {
         }`}
       >
         {/* Drawer Header */}
-        <div className="p-4 sm:p-6 bg-white border-b border-[#1E1510]/10 flex items-center justify-between shrink-0">
+        <div className="p-4 sm:p-6 bg-[#FAF9F5] border-b border-stone-200/70 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-full bg-[#1E1510] text-[#F6F1E9] flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-[#2C2A29] text-[#FAF9F5] flex items-center justify-center">
               <ShoppingBag className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-serif font-bold text-[#1E1510] leading-tight">
+              <h2 className="text-base sm:text-lg font-serif font-bold text-[#2C2A29] leading-tight">
                 Your Pure Basket
               </h2>
-              <span className="text-[11px] text-[#6B5D52] font-medium">
+              <span className="text-[11px] text-[#5E5852] font-medium">
                 {totalCount} {totalCount === 1 ? "item" : "items"} selected
               </span>
             </div>
@@ -108,7 +108,7 @@ export function CartDrawer() {
 
           <button
             onClick={closeCart}
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-stone-100 hover:bg-stone-200 text-stone-700 flex items-center justify-center transition cursor-pointer"
+            className="w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center active:scale-95 transition-transform cursor-pointer"
             aria-label="Close cart drawer"
           >
             <X className="w-5 h-5" />
@@ -273,7 +273,7 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={closeCart}
-                className="w-full py-3.5 px-4 rounded-[3px] bg-[#1E1510] hover:bg-[#8B3A22] text-[#F6F1E9] font-medium text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors uppercase tracking-[0.18em] duration-200 ease-out shadow-sm text-center"
+                className="w-full py-3.5 px-4 rounded-xl bg-[#2C2A29] hover:bg-[#4A3525] active:scale-95 text-[#FAF9F5] font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-transform duration-150 shadow-xs text-center tracking-wide"
               >
                 <span>Proceed to Checkout</span>
                 <ArrowRight className="w-4 h-4" />
@@ -284,7 +284,7 @@ export function CartDrawer() {
                 href={generateWhatsAppLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-[3px] bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold text-xs flex items-center justify-center gap-2 transition duration-200 shadow-xs"
+                className="w-full py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] active:scale-95 text-white font-bold text-xs flex items-center justify-center gap-2 transition-transform duration-150 shadow-xs"
               >
                 <WhatsAppIcon className="w-4 h-4 shrink-0" variant="white" />
                 <span>Quick Order on WhatsApp</span>

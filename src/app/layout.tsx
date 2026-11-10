@@ -157,7 +157,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
-      <body className="min-h-full flex flex-col font-sans antialiased text-[#2C2A29] bg-[#FAF9F5] overflow-x-hidden w-full max-w-full selection:bg-[#1E3A2F]/15 selection:text-[#2C2A29] leading-relaxed">
+      <body className="min-h-full flex flex-col font-sans antialiased text-[#2C2A29] bg-[#FAF9F5] overflow-x-hidden w-full max-w-full selection:bg-[#8B3A22]/15 selection:text-[#2C2A29]">
         <AuthProvider>
           <StoreDataProvider>
             <CartProvider>

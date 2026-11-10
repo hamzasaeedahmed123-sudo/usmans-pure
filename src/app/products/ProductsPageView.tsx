@@ -112,8 +112,8 @@ export function ProductsPageView() {
             selectedCategory === "flours"
               ? { backgroundColor: "#4D3817" }
               : selectedCategory === "teas"
-                ? { backgroundColor: "#172A1C" }
-                : {
+              ? { backgroundColor: "#172A1C" }
+              : {
                   background: "linear-gradient(135deg, #4D3817 0%, #17281D 100%)",
                 }
           }
@@ -141,28 +141,31 @@ export function ProductsPageView() {
               <div className="flex items-center gap-2 overflow-x-auto pb-1 md:pb-0">
                 <button
                   onClick={() => setSelectedCategory("all")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${selectedCategory === "all"
-                    ? "bg-[#1E1510] text-white shadow-xs"
-                    : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
-                    }`}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
+                    selectedCategory === "all"
+                      ? "bg-[#1E1510] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
+                  }`}
                 >
                   All Essentials
                 </button>
                 <button
                   onClick={() => setSelectedCategory("flours")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${selectedCategory === "flours"
-                    ? "bg-[#4D3817] text-white shadow-xs"
-                    : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
-                    }`}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
+                    selectedCategory === "flours"
+                      ? "bg-[#4D3817] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
+                  }`}
                 >
                   Flour
                 </button>
                 <button
                   onClick={() => setSelectedCategory("teas")}
-                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${selectedCategory === "teas"
-                    ? "bg-[#172A1C] text-white shadow-xs"
-                    : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
-                    }`}
+                  className={`px-4 py-2 rounded-full text-xs font-bold transition shrink-0 cursor-pointer ${
+                    selectedCategory === "teas"
+                      ? "bg-[#172A1C] text-white shadow-xs"
+                      : "bg-white/80 text-stone-700 hover:bg-white border border-stone-200/70"
+                  }`}
                 >
                   Herbal Teas
                 </button>
@@ -208,18 +211,18 @@ export function ProductsPageView() {
         </div>
 
         {/* Product Grid - Borderless Flat Organic Brand Layout */}
-        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
           {filteredProducts.length === 0 ? (
             <div className="py-20 text-center bg-transparent p-8 max-w-md mx-auto">
               <Search className="w-12 h-12 text-stone-300 mx-auto mb-4" />
-              <h3 className="text-lg font-bold text-[#2C2A29]">No products found</h3>
-              <p className="text-xs text-[#6B5D52] mt-1">Try resetting your filters or search terms.</p>
+              <h3 className="text-lg font-bold text-stone-800">No products found</h3>
+              <p className="text-xs text-stone-500 mt-1">Try resetting your filters or search terms.</p>
               <button
                 onClick={() => {
                   setSelectedCategory("all");
                   setSearchQuery("");
                 }}
-                className="mt-5 px-5 py-2.5 rounded-full bg-[#2C2A29] text-[#FAF9F5] text-xs font-medium hover:bg-[#1E3A2F] transition cursor-pointer active:scale-95 duration-200 ease-out shadow-xs"
+                className="mt-5 px-5 py-2.5 rounded-full bg-[#1E1510] text-[#F6F1E9] text-[11px] font-medium hover:bg-[#8B3A22] transition cursor-pointer uppercase tracking-[0.18em] duration-200 ease-out shadow-xs"
               >
                 Reset Filters
               </button>
@@ -233,8 +236,8 @@ export function ProductsPageView() {
                     key={product.id}
                     className="group relative flex flex-col justify-between transition-all duration-300"
                   >
-                    {/* Seamless Image Area: Sits directly on #FAF9F5 without box borders */}
-                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#F2EDE4]/70 mb-2.5 sm:mb-3">
+                    {/* Floating Edge-to-Edge Image: Soft rounded corners on #FAF9F5 */}
+                    <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-[#F5F2EB] mb-3">
                       <Link href={`/product/${product.id}`} className="absolute inset-0">
                         <Image
                           src={product.image}
@@ -246,8 +249,8 @@ export function ProductsPageView() {
                         />
                       </Link>
 
-                      <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-10 pointer-events-none">
-                        <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#FAF9F5]/90 text-[#8B3A22] backdrop-blur-xs">
+                      <div className="absolute top-2.5 left-2.5 sm:top-3 sm:left-3 z-10 pointer-events-none">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-[#FAF9F5]/90 text-[#8B3A22] backdrop-blur-xs shadow-2xs">
                           Sale
                         </span>
                       </div>
@@ -255,7 +258,7 @@ export function ProductsPageView() {
                       <div className="hidden sm:flex absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 justify-center">
                         <button
                           onClick={() => setQuickViewProduct(product)}
-                          className="w-full py-2 px-3 rounded-xl bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-semibold hover:bg-[#2C2A29] transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer shadow-xs active:scale-95"
+                          className="w-full py-2 px-3 rounded-xl bg-[#2C2A29]/90 text-[#FAF9F5] text-xs font-semibold hover:bg-black transition flex items-center justify-center gap-1.5 backdrop-blur-xs cursor-pointer shadow-xs"
                         >
                           <Eye className="w-3.5 h-3.5" /> Quick View
                         </button>
@@ -265,32 +268,33 @@ export function ProductsPageView() {
                     {/* Minimal, Clean, Left-Aligned Info */}
                     <div className="flex flex-col flex-1 justify-between">
                       <div>
-                        <div className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-[#8B3A22] mb-1">
+                        <div className="text-[11px] sm:text-xs font-semibold text-[#5E5852] uppercase tracking-wider mb-1">
                           {product.weight}
                         </div>
                         <Link href={`/product/${product.id}`}>
-                          <h2 className="text-xs sm:text-base font-serif font-bold text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#8B3A22] transition-colors min-h-[2rem] sm:min-h-[2.5rem]">
+                          <h2 className="text-sm sm:text-base font-serif font-bold text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#8B3A22] transition-colors min-h-[2.5rem]">
                             {product.title}
                           </h2>
                         </Link>
                       </div>
 
-                      <div className="mt-2.5 flex flex-col gap-2">
+                      <div className="mt-2.5 flex flex-col gap-2.5">
                         <div className="flex items-baseline gap-1.5 flex-wrap">
-                          <span className="text-sm sm:text-base font-extrabold text-[#2C2A29]">
+                          <span className="text-base sm:text-lg font-bold text-[#2C2A29]">
                             {product.priceFormatted}
                           </span>
-                          <span className="text-[10px] sm:text-xs text-[#6B5D52] line-through">
+                          <span className="text-xs text-stone-400 line-through">
                             {product.originalPriceFormatted}
                           </span>
                         </div>
 
                         <button
                           onClick={(e) => handleAddToCart(product, e)}
-                          className={`w-full py-2 sm:py-2.5 px-3 text-xs sm:text-sm font-bold tracking-wide rounded-xl sm:rounded-2xl flex items-center justify-center gap-1.5 transition-all duration-200 cursor-pointer min-h-[38px] sm:min-h-[42px] active:scale-95 transition-transform ${isAdded
-                            ? "bg-[#1E3A2F] text-white"
-                            : "bg-[#2C2A29] hover:bg-[#1E3A2F] text-[#FAF9F5]"
-                            }`}
+                          className={`w-full py-2.5 sm:py-2.5 px-3 text-xs sm:text-sm font-semibold tracking-wide rounded-xl flex items-center justify-center gap-1.5 transition-transform active:scale-95 duration-150 cursor-pointer min-h-[40px] sm:min-h-[44px] shadow-xs ${
+                            isAdded
+                              ? "bg-[#145330] text-white"
+                              : "bg-[#2C2A29] hover:bg-[#4A3525] text-[#FAF9F5]"
+                          }`}
                         >
                           {isAdded ? (
                             <>
