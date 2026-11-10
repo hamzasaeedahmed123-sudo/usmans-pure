@@ -86,201 +86,210 @@ export function Navbar({
   return (
     <>
       <header
-        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-2 relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
+        className={`w-full max-w-7xl mx-auto px-4 sm:px-6 relative z-50 shrink-0 transition-all duration-500 ease-in-out ${className}`}
       >
-        {/* Left Section (Logo): Light glassmorphism container + white glow for maximum legibility against dark hero */}
-        <div className="flex items-center shrink-0">
-          <Link
-            href="/"
-            className="inline-flex items-center transition-transform hover:scale-[1.02] shrink-0 focus:outline-none"
-            aria-label="USMAN'S PURE PRODUCTS"
-          >
-            <div className="relative flex items-center transition-all duration-300">
+        {/* Top Row: Mobile Left Hamburger + Center Logo + Right Actions */}
+        <div className="relative flex items-center justify-between py-2 sm:py-3 min-h-[54px] sm:min-h-[64px]">
+          {/* Mobile Left: Hamburger Button */}
+          <div className="flex items-center lg:hidden z-10">
+            <button
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-label="Open navigation menu"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1]/90 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
+            >
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5 text-stone-800" />
+              ) : (
+                <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          </div>
+
+          {/* Desktop Left: Subtle Tagline Spacer to balance center */}
+          <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-widest text-stone-700/80 font-medium z-10 w-44">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-700" />
+            <span>Pure Chakki Milling</span>
+          </div>
+
+          {/* Top Center: "Usman's Pure Products" Logo (Prominent Focal Point, Centered on Mobile & Desktop) */}
+          <div className="absolute inset-0 mx-auto flex justify-center items-center pointer-events-none z-0 px-14 sm:px-20">
+            <Link
+              href="/"
+              className="pointer-events-auto inline-flex items-center transition-transform hover:scale-[1.02] shrink-0 focus:outline-none"
+              aria-label="USMAN'S PURE PRODUCTS"
+            >
               <Image
                 src="/logo.png"
                 alt="Usman's Pure Products"
-                width={220}
-                height={60}
-                className="w-auto h-9 sm:h-10 md:h-11 object-contain object-left"
+                width={280}
+                height={76}
+                className="w-auto h-9 sm:h-11 md:h-13 lg:h-15 object-contain max-w-[155px] xs:max-w-[190px] sm:max-w-[235px] md:max-w-[275px]"
                 priority
               />
-            </div>
-            <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
-          </Link>
-        </div>
+              <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
+            </Link>
+          </div>
 
-        {/* Center Section: Navigation Pill Menu */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-[#ede8e1]/90 backdrop-blur-md px-3 xl:px-4 py-1.5 rounded-full border border-stone-200/80 shadow-sm shrink">
-          {/* 1. Home */}
-          <Link
-            href="/"
-            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            Home
-          </Link>
-
-          {/* 2. Dietary Care Flours */}
-          <Link
-            href="/doctors-choice"
-            className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            <span>Dietary Care</span>
-            <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-              Whole Grain
-            </span>
-          </Link>
-
-          {/* 3. All Products Dropdown */}
-          <div
-            ref={dropdownRef}
-            className="relative"
-            onMouseEnter={() => setProductsDropdownOpen(true)}
-            onMouseLeave={() => setProductsDropdownOpen(false)}
-          >
+          {/* Right Section: Actions (Cart & Auth) */}
+          <div className="flex items-center gap-2 shrink-0 ml-auto z-10">
+            {/* Quick Cart Trigger */}
             <button
-              onClick={() => setProductsDropdownOpen((prev) => !prev)}
-              className="flex items-center gap-0.5 xl:gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition cursor-pointer whitespace-nowrap"
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.dispatchEvent(new CustomEvent("usman-open-cart"));
+                }
+              }}
+              aria-label="Open Basket"
+              className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1]/90 flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
             >
-              <span>All Products</span>
               <svg
-                className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                  productsDropdownOpen ? "rotate-180" : ""
-                }`}
-                viewBox="0 0 20 20"
-                fill="currentColor"
+                className="w-4 h-4 text-stone-800"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth={2}
               >
                 <path
-                  fillRule="evenodd"
-                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                  clipRule="evenodd"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
                 />
               </svg>
             </button>
 
-            {/* Dropdown Menu */}
-            <AnimatePresence>
-              {productsDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 4, scale: 0.96 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className="absolute top-full left-0 mt-2 w-52 bg-white/95 backdrop-blur-md border border-stone-200/80 rounded-2xl shadow-xl p-2 z-50 text-stone-900"
-                >
-                  <Link
-                    href="/products"
-                    onClick={() => setProductsDropdownOpen(false)}
-                    className="block px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 border-b border-stone-100"
-                  >
-                    View All Products &rarr;
-                  </Link>
-
-                  <div className="py-1">
-                    <Link
-                      href="/flour"
-                      onClick={() => setProductsDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition-colors text-stone-800"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-[#8C6D46]" />
-                      <span>1. Chakki Flour</span>
-                    </Link>
-
-                    <Link
-                      href="/herbals"
-                      onClick={() => setProductsDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition-colors text-stone-800"
-                    >
-                      <span className="w-2 h-2 rounded-full bg-[#2D5A3E]" />
-                      <span>2. Herbal Teas</span>
-                    </Link>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {/* User Auth Buttons / Avatar */}
+            <AuthHeaderButton slideTheme={effectiveTheme} />
           </div>
+        </div>
 
-          {/* 4. Mega Bundles with Save Badge */}
-          <Link
-            href="/bundles"
-            className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            <span>Mega Bundles</span>
-            <span className="bg-amber-600 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-              Save
-            </span>
-          </Link>
-
-          {/* 5. FAQs */}
-          <Link
-            href="/faqs"
-            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            FAQs
-          </Link>
-
-          {/* 6. About Us */}
-          <Link
-            href="/about"
-            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            About Us
-          </Link>
-
-          {/* 7. Contact */}
-          <Link
-            href="/contact"
-            className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-stone-800 hover:text-stone-950 transition whitespace-nowrap"
-          >
-            Contact
-          </Link>
-        </nav>
-
-        {/* Right Section: Viewport safety padding and compact button sizing */}
-        <div className="flex items-center gap-2 shrink-0 ml-auto pr-1 sm:pr-2">
-          {/* Quick Cart Trigger */}
-          <button
-            onClick={() => {
-              if (typeof window !== "undefined") {
-                window.dispatchEvent(new CustomEvent("usman-open-cart"));
-              }
-            }}
-            aria-label="Open Basket"
-            className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
-          >
-            <svg
-              className="w-4 h-4 text-stone-800"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth={2}
+        {/* Bottom Row (Desktop): Centered Horizontal Navigation Links */}
+        <div className="hidden lg:block border-t border-stone-800/10 py-2">
+          <nav className="flex items-center justify-center gap-7 xl:gap-9">
+            {/* 1. Home */}
+            <Link
+              href="/"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
-          </button>
+              Home
+            </Link>
 
-          {/* User Auth Buttons / Avatar */}
-          <AuthHeaderButton slideTheme={effectiveTheme} />
+            {/* 2. Dietary Care Flours */}
+            <Link
+              href="/doctors-choice"
+              className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+            >
+              <span>Dietary Care</span>
+              <span className="bg-emerald-700 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                Whole Grain
+              </span>
+            </Link>
 
-          {/* Mobile Hamburger Button: Strictly Top Right of Header */}
-          <button
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
-            aria-label="Open navigation menu"
-            className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#ede8e1] flex items-center justify-center hover:bg-stone-200 transition shadow-sm cursor-pointer shrink-0"
-          >
-            {mobileMenuOpen ? (
-              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-stone-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+            {/* 3. All Products Dropdown */}
+            <div
+              ref={dropdownRef}
+              className="relative"
+              onMouseEnter={() => setProductsDropdownOpen(true)}
+              onMouseLeave={() => setProductsDropdownOpen(false)}
+            >
+              <button
+                onClick={() => setProductsDropdownOpen((prev) => !prev)}
+                className="flex items-center gap-1 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1 cursor-pointer"
+              >
+                <span>All Products</span>
+                <svg
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    productsDropdownOpen ? "rotate-180" : ""
+                  }`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {productsDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 4, scale: 0.96 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-52 bg-white/95 backdrop-blur-md border border-stone-200/80 rounded-2xl shadow-xl p-2 z-50 text-stone-900"
+                  >
+                    <Link
+                      href="/products"
+                      onClick={() => setProductsDropdownOpen(false)}
+                      className="block px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-stone-900 border-b border-stone-100"
+                    >
+                      View All Products &rarr;
+                    </Link>
+
+                    <div className="py-1">
+                      <Link
+                        href="/flour"
+                        onClick={() => setProductsDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition-colors text-stone-800"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-[#8C6D46]" />
+                        <span>1. Chakki Flour</span>
+                      </Link>
+
+                      <Link
+                        href="/herbals"
+                        onClick={() => setProductsDropdownOpen(false)}
+                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-stone-100 transition-colors text-stone-800"
+                      >
+                        <span className="w-2 h-2 rounded-full bg-[#2D5A3E]" />
+                        <span>2. Herbal Teas</span>
+                      </Link>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 4. Mega Bundles with Save Badge */}
+            <Link
+              href="/bundles"
+              className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+            >
+              <span>Mega Bundles</span>
+              <span className="bg-amber-600 text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                Save
+              </span>
+            </Link>
+
+            {/* 5. FAQs */}
+            <Link
+              href="/faqs"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+            >
+              FAQs
+            </Link>
+
+            {/* 6. About Us */}
+            <Link
+              href="/about"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+            >
+              About Us
+            </Link>
+
+            {/* 7. Contact */}
+            <Link
+              href="/contact"
+              className="text-xs xl:text-[13px] font-medium tracking-wide text-stone-800 hover:text-stone-950 transition-colors py-1"
+            >
+              Contact
+            </Link>
+          </nav>
         </div>
       </header>
 

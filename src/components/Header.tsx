@@ -122,160 +122,65 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
 
         {/* Main Frosted Glass Luxury Navbar */}
         <div
-          className="w-full backdrop-blur-md bg-[#FAF9F5]/90 border-b border-stone-200/70 shadow-xs py-2 sm:py-2.5 transition-all duration-300"
+          className="w-full backdrop-blur-md bg-[#FAF9F5]/95 border-b border-stone-200/70 shadow-xs transition-all duration-300"
         >
-          <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 relative z-50">
-            {/* Left Section (Logo): Cleanly scaled, spacious touch target, zero clipping */}
-            <div className="flex items-center shrink-0">
+          {/* Top Row: Centered Logo + User Action Items (and Mobile Left Hamburger) */}
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 relative flex items-center justify-between py-2.5 sm:py-3.5 min-h-[58px] sm:min-h-[68px]">
+            {/* Mobile Left: Hamburger Button */}
+            <div className="flex items-center lg:hidden z-10">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer"
+                aria-label="Toggle Navigation Menu"
+              >
+                {mobileMenuOpen ? (
+                  <X className="w-5 h-5 text-[#2C2A29]" />
+                ) : (
+                  <Menu className="w-5 h-5 text-[#2C2A29]" />
+                )}
+              </button>
+            </div>
+
+            {/* Desktop Left: Subtle Brand Seal / Tagline Spacer */}
+            <div className="hidden lg:flex items-center gap-2 text-[11px] uppercase tracking-widest text-stone-500 font-medium z-10 w-48">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#145330]" />
+              <span>Pure &amp; Freshly Milled</span>
+            </div>
+
+            {/* Top Center: "Usman's Pure Products" Logo (Prominent Focal Point, Centered on Mobile & Desktop) */}
+            <div className="absolute inset-0 mx-auto flex justify-center items-center pointer-events-none z-0 px-14 sm:px-20">
               <Link
                 href="/"
-                className="flex items-center gap-2 group focus:outline-none shrink-0"
+                className="pointer-events-auto flex items-center justify-center group focus:outline-none transition-transform active:scale-98"
                 aria-label="USMAN'S PURE PRODUCTS"
               >
-                <div className="relative flex items-center transition-transform active:scale-98">
-                  <Image
-                    src="/logo.png"
-                    alt="USMAN'S PURE PRODUCTS"
-                    width={220}
-                    height={60}
-                    className="w-auto h-8 sm:h-9 md:h-11 object-contain object-left max-w-[135px] xs:max-w-[165px] sm:max-w-[200px]"
-                    priority
-                  />
-                </div>
+                <Image
+                  src="/logo.png"
+                  alt="USMAN'S PURE PRODUCTS"
+                  width={280}
+                  height={76}
+                  className="w-auto h-9 sm:h-11 md:h-13 lg:h-15 object-contain max-w-[155px] xs:max-w-[190px] sm:max-w-[235px] md:max-w-[275px]"
+                  priority
+                />
                 <span className="sr-only">USMAN&apos;S PURE PRODUCTS</span>
               </Link>
             </div>
 
-            {/* Center Section: Navigation Pill Menu (Compact & Balanced with All Items Restored) */}
-            <nav className="hidden lg:flex items-center gap-1 xl:gap-2 bg-[#F5F2EB]/90 backdrop-blur-md px-3 xl:px-4 py-1.5 rounded-full border border-stone-200/80 shadow-xs shrink">
-              {/* 1. Home */}
-              <Link
-                href="/"
-                className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                Home
-              </Link>
-
-              {/* 2. Dietary Care Flours */}
-              <Link
-                href="/doctors-choice"
-                className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                <span>Dietary Care</span>
-                <span className="bg-[#145330] text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-                  Whole Grain
-                </span>
-              </Link>
-
-              {/* 3. All Products Dropdown */}
-              <div
-                ref={dropdownRef}
-                className="relative"
-                onMouseEnter={() => setProductsDropdownOpen(true)}
-                onMouseLeave={() => setProductsDropdownOpen(false)}
-              >
-                <button
-                  onClick={() => setProductsDropdownOpen((prev) => !prev)}
-                  className="flex items-center gap-0.5 xl:gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition cursor-pointer whitespace-nowrap"
-                >
-                  <span>All Products</span>
-                  <svg
-                    className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                      productsDropdownOpen ? "rotate-180" : ""
-                    }`}
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-
-                {productsDropdownOpen && (
-                  <div className="absolute top-full left-0 mt-2 w-52 bg-[#FAF9F5]/98 backdrop-blur-xl border border-stone-200/80 rounded-2xl shadow-xl p-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150 text-[#2C2A29]">
-                    <Link
-                      href="/products"
-                      onClick={() => setProductsDropdownOpen(false)}
-                      className="block px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-[#8B3A22] border-b border-stone-200/60"
-                    >
-                      All Catalog &rarr;
-                    </Link>
-                    <div className="py-1">
-                      <Link
-                        href="/flour"
-                        onClick={() => setProductsDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#F5F2EB] text-[#2C2A29]"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-[#8B3A22]" />
-                        <span>1. Chakki Flour</span>
-                      </Link>
-                      <Link
-                        href="/herbals"
-                        onClick={() => setProductsDropdownOpen(false)}
-                        className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#F5F2EB] text-[#2C2A29]"
-                      >
-                        <span className="w-2 h-2 rounded-full bg-[#145330]" />
-                        <span>2. Herbal Teas</span>
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* 4. Mega Bundles with Save Badge */}
-              <Link
-                href="/bundles"
-                className="flex items-center gap-1 px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                <span>Mega Bundles</span>
-                <span className="bg-[#8B3A22] text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
-                  Save
-                </span>
-              </Link>
-
-              {/* 5. FAQs */}
-              <Link
-                href="/faqs"
-                className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                FAQs
-              </Link>
-
-              {/* 6. About Us */}
-              <Link
-                href="/about"
-                className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                About Us
-              </Link>
-
-              {/* 7. Contact */}
-              <Link
-                href="/contact"
-                className="px-2 xl:px-2.5 py-1 text-xs xl:text-[13px] font-medium text-[#2C2A29] hover:text-[#8B3A22] transition whitespace-nowrap"
-              >
-                Contact
-              </Link>
-            </nav>
-
-            {/* Right Section: Perfectly Aligned Actions with Spacious Touch Targets */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0 ml-auto">
-              {/* Quick Search Trigger (Accessible on both Mobile & Desktop) */}
+            {/* Top Right: User Action Items (Search, Cart, Login, Sign Up) */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 z-10 ml-auto">
+              {/* Quick Search Trigger */}
               <button
                 onClick={() => setSearchModalOpen(true)}
                 aria-label="Search Pure Products"
-                className="w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
               >
                 <Search className="w-4 h-4 text-[#2C2A29]" strokeWidth={2} />
               </button>
 
-              {/* Shopping Cart Button with Dynamic Item Badge Count */}
+              {/* Shopping Cart Button */}
               <button
                 onClick={() => openCart()}
-                className="relative w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
+                className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
                 aria-label="View Shopping Cart"
               >
                 <ShoppingBag className="w-4 h-4 text-[#2C2A29]" strokeWidth={2} />
@@ -293,19 +198,117 @@ export function Header({ theme = "amber", isSolid = false }: HeaderProps) {
               <div className="hidden sm:flex shrink-0">
                 <AuthHeaderButton slideTheme={slideThemeKey} />
               </div>
+            </div>
+          </div>
 
-              {/* Mobile Hamburger Button: Spacious touch target, zero overflow */}
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden w-10 h-10 rounded-full bg-[#F5F2EB] hover:bg-[#EFEBE4] text-[#2C2A29] flex items-center justify-center transition-transform active:scale-95 shadow-xs cursor-pointer shrink-0"
-                aria-label="Toggle Navigation Menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="w-5 h-5 text-[#2C2A29]" />
-                ) : (
-                  <Menu className="w-5 h-5 text-[#2C2A29]" />
-                )}
-              </button>
+          {/* Bottom Row (Desktop): Centered Horizontal Navigation Links */}
+          <div className="hidden lg:block border-t border-stone-200/60 bg-[#FAF9F5]/70">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6">
+              <nav className="flex items-center justify-center gap-7 xl:gap-9 py-2">
+                {/* 1. Home */}
+                <Link
+                  href="/"
+                  className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  Home
+                </Link>
+
+                {/* 2. Dietary Care */}
+                <Link
+                  href="/doctors-choice"
+                  className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  <span>Dietary Care</span>
+                  <span className="bg-[#145330] text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                    Whole Grain
+                  </span>
+                </Link>
+
+                {/* 3. All Products Dropdown */}
+                <div
+                  ref={dropdownRef}
+                  className="relative"
+                  onMouseEnter={() => setProductsDropdownOpen(true)}
+                  onMouseLeave={() => setProductsDropdownOpen(false)}
+                >
+                  <button
+                    onClick={() => setProductsDropdownOpen((prev) => !prev)}
+                    className="flex items-center gap-1 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1 cursor-pointer"
+                  >
+                    <span>All Products</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        productsDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {productsDropdownOpen && (
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-1 w-56 bg-[#FAF9F5]/98 backdrop-blur-xl border border-stone-200/80 rounded-2xl shadow-xl p-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150 text-[#2C2A29]">
+                      <Link
+                        href="/products"
+                        onClick={() => setProductsDropdownOpen(false)}
+                        className="block px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-stone-500 hover:text-[#8B3A22] border-b border-stone-200/60"
+                      >
+                        All Catalog &rarr;
+                      </Link>
+                      <div className="py-1">
+                        <Link
+                          href="/flour"
+                          onClick={() => setProductsDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#F5F2EB] text-[#2C2A29]"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-[#8B3A22]" />
+                          <span>1. Chakki Flour</span>
+                        </Link>
+                        <Link
+                          href="/herbals"
+                          onClick={() => setProductsDropdownOpen(false)}
+                          className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold hover:bg-[#F5F2EB] text-[#2C2A29]"
+                        >
+                          <span className="w-2 h-2 rounded-full bg-[#145330]" />
+                          <span>2. Herbal Teas</span>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* 4. Mega Bundles */}
+                <Link
+                  href="/bundles"
+                  className="flex items-center gap-1.5 text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  <span>Mega Bundles</span>
+                  <span className="bg-[#8B3A22] text-white text-[9px] xl:text-[10px] font-semibold px-1.5 py-0.5 rounded-full leading-none">
+                    Save
+                  </span>
+                </Link>
+
+                {/* 5. FAQs */}
+                <Link
+                  href="/faqs"
+                  className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  FAQs
+                </Link>
+
+                {/* 6. About Us */}
+                <Link
+                  href="/about"
+                  className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  About Us
+                </Link>
+
+                {/* 7. Contact */}
+                <Link
+                  href="/contact"
+                  className="text-xs xl:text-[13px] font-medium tracking-wide text-[#2C2A29] hover:text-[#8B3A22] transition-colors py-1"
+                >
+                  Contact
+                </Link>
+              </nav>
             </div>
           </div>
 
