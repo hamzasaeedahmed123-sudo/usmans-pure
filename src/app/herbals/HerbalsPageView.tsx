@@ -190,24 +190,33 @@ export function HerbalsPageView() {
                     </div>
 
                     {/* Text and details below image */}
-                    <div className="pt-2 sm:pt-2.5 flex flex-col text-left">
+                    <div className="pt-2.5 sm:pt-3 flex flex-col text-center">
                       <Link href={`/product/${product.id}`}>
                         <h2 className="text-sm md:text-base font-normal text-[#2C2A29] leading-snug line-clamp-2 hover:text-[#145330] transition-colors tracking-tight">
                           {product.title}
                         </h2>
                       </Link>
 
-                      {/* Price display: sale price on the left, original crossed-out on the right */}
-                      <div className="mt-1 flex items-baseline gap-2 flex-wrap">
-                        <span className="text-sm md:text-base font-normal text-[#2C2A29]">
+                      {/* Price display: bold prominent sale price & subtle crossed-out original, center-aligned */}
+                      <div className="mt-1.5 flex items-baseline justify-center gap-2 flex-wrap">
+                        <span className="text-base sm:text-lg font-bold text-black">
                           Rs {product.price.toLocaleString()}
                         </span>
                         {product.originalPrice > product.price && (
-                          <span className="text-xs text-stone-400 line-through font-normal">
+                          <span className="text-xs sm:text-sm text-gray-400 line-through font-normal">
                             Rs {product.originalPrice.toLocaleString()}
                           </span>
                         )}
                       </div>
+
+                      {/* Pill-shaped Add to Cart Button */}
+                      <button
+                        type="button"
+                        onClick={() => handleAddToCart(product)}
+                        className="mt-3 w-full max-w-[180px] sm:max-w-[200px] mx-auto py-2 sm:py-2.5 px-4 rounded-full bg-white border border-black text-[#2C2A29] hover:bg-stone-50 text-xs sm:text-sm font-normal shadow-md hover:shadow-lg active:scale-95 transition-all duration-200 cursor-pointer flex items-center justify-center"
+                      >
+                        {addedIds[product.id] ? "Added to cart ✓" : "Add to cart"}
+                      </button>
                     </div>
                   </article>
                 );
