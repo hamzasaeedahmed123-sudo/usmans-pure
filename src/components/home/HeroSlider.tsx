@@ -46,18 +46,6 @@ export const CATEGORY_PILLS = [
     slideIndex: 1,
     activeClass: "bg-[#0E381C] text-white shadow-md border border-[#145330]",
   },
-  {
-    id: "all-products",
-    label: "03. All Products",
-    slideIndex: 2,
-    activeClass: "bg-[#121212] text-white shadow-md border border-[#121212]",
-  },
-  {
-    id: "diabetic",
-    label: "04. Diabetic Care",
-    slideIndex: 3,
-    activeClass: "bg-[#1E3A2F] text-white shadow-md border border-[#1E3A2F]",
-  },
 ];
 
 export const SLIDES: HeroSlide[] = [
@@ -106,52 +94,6 @@ export const SLIDES: HeroSlide[] = [
     floating: ["/images/hero/chamomile.png", "/images/hero/leaf.png"],
     detailUrl: "/herbals",
     altText: "Usman's Oregano Tea jar surrounded by lush green fresh oregano leaves",
-  },
-  {
-    id: "all-products",
-    tag: "Complete Organic Pantry",
-    title: "ALL PURE",
-    subtitle: "PRODUCTS",
-    fullTitle: "Usman's Complete Organic Health Range",
-    benefit: "Stone-ground chakki attas, diabetic-care formulas aur healing herbal teas — aik hi jagah pure Pakistan mein home delivery ke sath.",
-    miniStats: ["Stone-Ground Atta", "Diabetic Care", "Herbal Infusions", "Nationwide COD"],
-    price: "From Rs 650",
-    originalPrice: "Rs 800",
-    weight: "Complete Family Suite",
-    bgColor: "#FAF7F2",
-    announcementBg: "#121212",
-    activePillClass: "bg-[#121212] text-white shadow-md border border-[#121212]",
-    backdropImage: "/images/hero/flour-backdrop.jpg",
-    textColor: "#121212",
-    giantTextColor: "#121212",
-    giantTextClass: "text-[#121212] font-black opacity-95",
-    image: "/images/hero/all-products-family.jpg",
-    floating: ["/images/hero/wheat-1.png", "/images/hero/leaf.png"],
-    detailUrl: "/products",
-    altText: "Usman's Complete Organic Range: Chakki Flours, Diabetic Formulas, and Herbal Teas",
-  },
-  {
-    id: "diabetic",
-    tag: "Doctor's Choice Formula",
-    title: "FENUGREEK",
-    subtitle: "PLUS",
-    fullTitle: "Fenugreek Plus Diabetic Care Flour",
-    benefit: "Buzurgo ki sugar control aur pait ke bhari-pan ke liye 15 qudrati ajza aur methi dane se tayyar shuda khalis atta.",
-    miniStats: ["Low GI Index", "Sugar Friendly", "15 Pure Grains"],
-    price: "Rs 1,200",
-    originalPrice: "Rs 1,500",
-    weight: "4 LBS (1.8kg)",
-    bgColor: "#F6F9F7",
-    announcementBg: "#121212",
-    activePillClass: "bg-[#1E3A2F] text-white shadow-md border border-[#1E3A2F]",
-    backdropImage: "/images/backgrounds/wheat-field-backplate.jpg",
-    textColor: "#121212",
-    giantTextColor: "#121212",
-    giantTextClass: "text-[#121212] font-black opacity-95",
-    image: "/images/products/prod-4.png",
-    floating: ["/images/hero/wheat-2.png", "/images/hero/leaf.png"],
-    detailUrl: "/product/prod-4",
-    altText: "Fenugreek Plus Diabetic Care Flour with herbal garden background",
   },
 ];
 
@@ -446,13 +388,7 @@ export function HeroSlider() {
                     priority
                     quality={85}
                     sizes="(max-width: 768px) 320px, 450px"
-                    className={`w-auto mx-auto select-none drop-shadow-md ${
-                      currentSlide.id === "all-products"
-                        ? "max-h-[230px] sm:max-h-[260px] rounded-2xl shadow-xl border border-white/60 object-cover"
-                        : currentSlide.id === "herbals"
-                        ? "max-h-[260px] sm:max-h-[290px] object-contain"
-                        : "max-h-[260px] sm:max-h-[290px] object-contain"
-                    }`}
+                    className="w-auto mx-auto select-none drop-shadow-md max-h-[260px] sm:max-h-[290px] object-contain"
                   />
                 </div>
               </div>
@@ -464,7 +400,7 @@ export function HeroSlider() {
         {/* ========================================================================= */}
         {/* DESKTOP/LAPTOP VIEW (md:grid): 2-Column Layout (Text Left | Product Right) */}
         {/* ========================================================================= */}
-        <div className="hidden md:grid md:grid-cols-2 md:items-center max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 gap-8 lg:gap-12 w-full h-full relative z-10">
+        <div className="hidden md:grid md:grid-cols-[1fr_1.15fr] lg:grid-cols-[1fr_1.3fr] xl:grid-cols-[1fr_1.45fr] md:items-center max-w-7xl xl:max-w-[1440px] mx-auto px-6 sm:px-8 lg:px-12 gap-6 lg:gap-10 w-full h-full relative z-10">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={`desktop-left-${currentSlide.id}`}
@@ -556,31 +492,35 @@ export function HeroSlider() {
                 transition: { type: "spring", stiffness: 260, damping: 24 },
               }}
               exit={{ opacity: 0, scale: 0.9, y: -20, transition: { duration: 0.3 } }}
-              className="relative w-full h-full min-h-[380px] max-h-[500px] flex items-center justify-center p-2"
+              className="relative w-full h-full min-h-[440px] md:min-h-[500px] lg:min-h-[580px] xl:min-h-[660px] flex items-center justify-center p-0 overflow-visible"
             >
               {/* Natural Floor Drop Shadow */}
-              <div className="absolute bottom-4 inset-x-12 h-6 rounded-full bg-black/15 blur-lg pointer-events-none -z-10" />
+              <div
+                className={`absolute bottom-2 lg:bottom-4 rounded-full bg-black/20 blur-xl pointer-events-none -z-10 transition-all ${
+                  currentSlide.id === "flour"
+                    ? "inset-x-6 lg:inset-x-10 h-8 lg:h-10 scale-125"
+                    : "inset-x-10 lg:inset-x-16 h-7 lg:h-8 scale-115"
+                }`}
+              />
 
               {/* Product Visual Container with 3D Spring Hover Interaction */}
               <motion.div
-                whileHover={{ y: -6, scale: 1.02 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 350, damping: 25 }}
                 className="relative w-full h-full flex items-center justify-center"
               >
                 <Image
                   src={currentSlide.image}
                   alt={currentSlide.altText}
-                  width={700}
-                  height={700}
+                  width={1000}
+                  height={750}
                   priority
-                  quality={85}
-                  sizes="(max-width: 1024px) 50vw, 650px"
-                  className={`w-auto select-none drop-shadow-md ${
-                    currentSlide.id === "all-products"
-                      ? "max-h-[440px] lg:max-h-[490px] rounded-3xl shadow-2xl border border-white/70 object-cover"
-                      : currentSlide.id === "herbals"
-                      ? "max-h-[450px] lg:max-h-[500px] object-contain"
-                      : "max-h-[440px] lg:max-h-[480px] object-contain"
+                  quality={90}
+                  sizes="(max-width: 1024px) 60vw, 850px"
+                  className={`w-auto select-none drop-shadow-2xl object-contain transition-transform origin-center duration-300 ${
+                    currentSlide.id === "flour"
+                      ? "md:max-h-[560px] lg:max-h-[640px] xl:max-h-[720px] 2xl:max-h-[780px] md:scale-120 lg:scale-130 xl:scale-140"
+                      : "md:max-h-[500px] lg:max-h-[580px] xl:max-h-[650px] 2xl:max-h-[700px] md:scale-115 lg:scale-125 xl:scale-130"
                   }`}
                 />
               </motion.div>

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type AmbientCategoryTheme = "default" | "flour" | "herbals" | "all-products" | "diabetic";
+export type AmbientCategoryTheme = "default" | "flour" | "herbals";
 
 export interface ThemePalette {
   bg: string;
@@ -53,30 +53,6 @@ export const THEME_PALETTES: Record<AmbientCategoryTheme, ThemePalette> = {
     pillText: "text-[#1C4A2D]",
     label: "Pure Botanical Herbal Teas",
     subtext: "Botanical Sage & Mint Mist Tone",
-  },
-  "all-products": {
-    bg: "bg-white",
-    bgHex: "#FFFFFF",
-    border: "border-stone-200",
-    borderHex: "#E5E7EB",
-    accent: "text-[#121212]",
-    accentHex: "#121212",
-    pillBg: "bg-stone-100",
-    pillText: "text-stone-900",
-    label: "All Pure Products",
-    subtext: "Complete Organic Health Range",
-  },
-  diabetic: {
-    bg: "bg-[#F7FAF8]",
-    bgHex: "#F7FAF8",
-    border: "border-emerald-100",
-    borderHex: "#D1FAE5",
-    accent: "text-emerald-800",
-    accentHex: "#065F46",
-    pillBg: "bg-emerald-50",
-    pillText: "text-emerald-900",
-    label: "Diabetic & Diet Care",
-    subtext: "Low-GI Wellness Formulas",
   },
 };
 

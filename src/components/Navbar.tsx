@@ -10,7 +10,7 @@ import { useAmbientTheme } from "@/components/theme/AmbientThemeWrapper";
 
 export { AuthHeaderButton };
 
-export type SlideTheme = "flour" | "herbals" | "all-products" | "diabetic";
+export type SlideTheme = "flour" | "herbals";
 
 export interface NavbarProps {
   slideTheme?: SlideTheme;
@@ -43,20 +43,6 @@ export const NAVBAR_THEMES: Record<
     badgeBg: "bg-[#D4E8D8]/70 border-[#BFDDC3]/80 text-[#0E351B]",
     cartBtn: "bg-[#EAF3EC]/70 hover:bg-[#EAF3EC] border-[#C5DEC9]/80 text-[#0E351B]",
     defaultTag: "Pure Botanical",
-  },
-  "all-products": {
-    name: "All Products",
-    pillBg: "bg-stone-100 border-stone-200 text-stone-900",
-    badgeBg: "bg-stone-100 border-stone-200 text-stone-900",
-    cartBtn: "bg-stone-100 hover:bg-stone-200 border-stone-300 text-stone-900",
-    defaultTag: "Complete Pantry",
-  },
-  diabetic: {
-    name: "Diabetic Care",
-    pillBg: "bg-emerald-50 border-emerald-200 text-emerald-900",
-    badgeBg: "bg-emerald-100 border-emerald-200 text-emerald-900",
-    cartBtn: "bg-emerald-50 hover:bg-emerald-100 border-emerald-200 text-emerald-900",
-    defaultTag: "Doctor's Choice",
   },
 };
 
@@ -175,7 +161,7 @@ export function Navbar({
               </button>
 
               {/* User Auth Buttons / Avatar */}
-              <AuthHeaderButton slideTheme={effectiveTheme === "herbals" ? "herbals" : "flour"} />
+              <AuthHeaderButton slideTheme={effectiveTheme} />
             </div>
           </div>
 
